@@ -8,7 +8,7 @@ import com.kt.iotheroes.kidscafesolution.Model.User;
 
 public class LoginPresenterImpl implements LoginContract.LoginPresenter {
 
-    private LoginActivity view;
+    private LoginContract.LoginView view;
     private User model;
 
     public LoginPresenterImpl(LoginActivity view) {

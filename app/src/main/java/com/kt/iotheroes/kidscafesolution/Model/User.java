@@ -18,6 +18,7 @@ public class User implements Serializable{
 
     private String id;
     private String pw;
+    private String phone;
 
     public String getId() {
         return id;
@@ -42,6 +43,20 @@ public class User implements Serializable{
         // TODO : 로그인 통신 구현
         // login 성공 시 return true
         if (id.equals("id") && pw.equals("pw")) {
+            // login 성공 시 return true
+            return true;
+        }
+        return false;
+    }
+
+    public boolean join(String id, String pw, String phone) {
+        this.id = id;
+        this.pw = pw;
+        this.phone = phone;
+
+        // TODO : 회원가입 통신 구현
+        // login 성공 시 return true
+        if (id.equals("id") && pw.equals("pw") && phone.equals("phone")) {
             // login 성공 시 return true
             return true;
         }
