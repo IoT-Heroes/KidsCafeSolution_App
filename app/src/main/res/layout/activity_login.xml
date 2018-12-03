@@ -18,20 +18,20 @@
             android:textColor="@color/colorText"
             android:textSize="@dimen/title_text_size"
             android:textStyle="bold"
-            android:layout_marginBottom="30dp"/>
+            android:layout_marginBottom="@dimen/space_large"/>
         <EditText
-            android:id="@+id/edit_text_id"
+            android:id="@+id/edit_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="ID"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="@dimen/space_small"
             android:maxLines="1"/>
         <EditText
-            android:id="@+id/edit_text_pw"
+            android:id="@+id/edit_tpw"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="PASSWORD"
-            android:layout_marginBottom="30dp"
+            android:layout_marginBottom="@dimen/space_large"
             android:maxLines="1"
             android:password="true"/>
 
@@ -48,7 +48,7 @@
             android:layout_height="@dimen/button_height"
             android:text="회원가입"
             android:textColor="@color/colorButtonText"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="@dimen/space_small"
             android:background="@drawable/button_large"/>
     </LinearLayout>
 
