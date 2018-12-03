@@ -5,7 +5,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
-import android.text.InputType;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
@@ -43,13 +42,8 @@ public class JoinActivity extends AppCompatActivity implements View.OnClickListe
         btnJoin = (Button)findViewById(R.id.button_join);
 
         btnJoin.setOnClickListener(this);
-        editPwCheck.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
-
-    }
-
-    private void checkImage(boolean check) {
-        if (check) imgCheck.setColorFilter(R.color.colorPrimary);
-        else imgCheck.setColorFilter(Color.BLACK);
+        editPwCheck.addTextChangedListener(this);
+        editPwCheck.addTextChangedListener(this);
     }
 
     @Override
@@ -67,6 +61,12 @@ public class JoinActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
+    public void imageCheck(boolean check) {
+        if (check) imgCheck.setColorFilter(Color.parseColor("#2fc299"));
+        else imgCheck.setColorFilter(Color.parseColor("#000000"));
+    }
+
+    @Override
     public void close() {
         close();
     }
@@ -79,23 +79,28 @@ public class JoinActivity extends AppCompatActivity implements View.OnClickListe
 
         if (id.isEmpty()) presentDialog("id를 입력해주세요.");
         else if (phone.isEmpty()) presentDialog("전화번호를 입력해주세요.");
-        else if (!presenter.pwCheck() || pw.isEmpty()) presentDialog("pw가 일치하지 않습니다.");
+        else if (!presenter.isCheck() || pw.isEmpty()) presentDialog("pw가 일치하지 않습니다.");
         else presenter.onJoinBtnSelected(id, pw, phone);
     }
 
     @Override
     public void beforeTextChanged(CharSequence charSequence, int start, int before, int count) {
-        boolean same = charSequence.equals(editPw.getText());
-
-        if (same) checkImage(true);
-        else checkImage(false);
-
-        presenter.setCheck(same);
+//        String pw = editPw.getText().toString();
+//        String pwCk = editPwCheck.getText().toString();
+//
+//        boolean same = pw.equals(pwCk);
+//
+//        if (same) checkImage(true);
+//        else checkImage(false);
+//
+//        presenter.setCheck(same);
     }
 
     @Override
     public void onTextChanged(CharSequence charSequence, int start, int count, int after) {
-
+        String pw1 = editPw.getText().toString().trim();
+        String pw2 = editPwCheck.getText().toString().trim();
+        presenter.pwCheck(pw1, pw2);
     }
 
     @Override

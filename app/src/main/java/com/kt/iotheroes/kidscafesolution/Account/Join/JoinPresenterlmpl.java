@@ -1,5 +1,7 @@
 package com.kt.iotheroes.kidscafesolution.Account.Join;
 
+import android.util.Log;
+
 import com.kt.iotheroes.kidscafesolution.Model.User;
 
 /**
@@ -17,11 +19,6 @@ public class JoinPresenterlmpl implements JoinContract.JoinPresenter {
         checked = false;
     }
 
-    public boolean isChecked() {
-        return checked;
-    }
-
-
     @Override
     public void onJoinBtnSelected(String id, String pw, String phone) {
         Boolean joinResult = user.join(id, pw, phone);
@@ -31,12 +28,14 @@ public class JoinPresenterlmpl implements JoinContract.JoinPresenter {
     }
 
     @Override
-    public void setCheck(boolean check) {
-        this.checked = check;
+    public boolean isCheck() {
+        return checked;
     }
 
     @Override
-    public boolean pwCheck() {
-        return checked;
+    public void pwCheck(String pw1, String pw2) {
+        checked = pw1.equals(pw2);
+        view.imageCheck(checked);
+        Log.i("pw", "result : " + checked);
     }
 }

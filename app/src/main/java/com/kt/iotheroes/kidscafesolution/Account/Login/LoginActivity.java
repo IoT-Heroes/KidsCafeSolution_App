@@ -6,8 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
+import com.kt.iotheroes.kidscafesolution.Account.Join.JoinActivity;
 import com.kt.iotheroes.kidscafesolution.Model.User;
 import com.kt.iotheroes.kidscafesolution.R;
 import com.kt.iotheroes.kidscafesolution.TabActivity.BottomTabActivity;
@@ -54,9 +54,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                 break;
             case R.id.button_join :
-
-                Toast.makeText(getApplicationContext(), "2", Toast.LENGTH_SHORT).show();
-
+                Intent intent = new Intent(LoginActivity.this, JoinActivity.class);
+                startActivity(intent);
                 break;
         }
     }
