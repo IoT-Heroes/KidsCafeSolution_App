@@ -29,7 +29,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="아이디"
-                android:maxLines="1"/>
+                android:singleLine="true"/>
         </LinearLayout>
 
         <RelativeLayout
@@ -57,7 +57,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="비밀번호"
-                android:maxLines="1"
+                android:singleLine="true"
                 android:password="true"
                 android:layout_below="@id/text_pw"
                 android:layout_marginEnd="@dimen/space_small"/>
@@ -66,7 +66,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="비밀번호 확인"
-                android:maxLines="1"
+                android:singleLine="true"
                 android:password="true"
                 android:layout_below="@id/edit_pw"
                 android:layout_marginEnd="@dimen/space_small"/>
@@ -88,7 +88,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="연락처"
-                android:maxLines="1"/>
+                android:singleLine="true"/>
         </LinearLayout>
     </LinearLayout>
 

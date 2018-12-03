@@ -3,7 +3,6 @@ package com.kt.iotheroes.kidscafesolution.Account.Login;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,13 +17,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private EditText editId, editPw;
     private Button btnLogin, btnJoin;
 
-    private LoginPresenterImpl presenter = new LoginPresenterImpl(this);
+    private LoginPresenterImpl presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        presenter = new LoginPresenterImpl(this);
         initView();
     }
 
@@ -34,13 +34,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         btnLogin = (Button) findViewById(R.id.button_login);
         btnJoin = (Button) findViewById(R.id.button_join);
 
-//        btnLogin.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//                Log.i("test", "id : " + id);
-//            }
-//        });
         btnLogin.setOnClickListener(this);
         btnJoin.setOnClickListener(this);
     }
@@ -49,16 +42,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.button_login :
-
                 String id = editId.getText().toString();
                 String pw = editPw.getText().toString();
 
+                if (id.isEmpty()) presentDialog("id를 입력해주세요.");
+                else if (pw.isEmpty()) presentDialog("pw를 입력해주세요.");
+                else presenter.onLoginBtnSelected(editId.getText().toString(), editPw.getText().toString());
 
-                Log.i("test", "id : " + id);
-                Log.i("test", "pw : " + pw);
-
-
-//                presenter.onLoginBtnSelected(editId.getText().toString(), editPw.getText().toString());
+                break;
             case R.id.button_join :
 
                 Toast.makeText(getApplicationContext(), "2", Toast.LENGTH_SHORT).show();

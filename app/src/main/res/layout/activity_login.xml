@@ -25,14 +25,14 @@
             android:layout_height="wrap_content"
             android:hint="ID"
             android:layout_marginBottom="@dimen/space_small"
-            android:maxLines="1"/>
+            android:singleLine="true"/>
         <EditText
-            android:id="@+id/edit_tpw"
+            android:id="@+id/edit_pw"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="PASSWORD"
             android:layout_marginBottom="@dimen/space_large"
-            android:maxLines="1"
+            android:singleLine="true"
             android:password="true"/>
 
         <Button
