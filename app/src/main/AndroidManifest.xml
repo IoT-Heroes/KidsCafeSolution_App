@@ -21,7 +21,9 @@
         </activity>
         <activity
             android:name=".TabActivity.BottomTabActivity"
-            android:label="@string/title_activity_tab"></activity>
+            android:label="@string/title_activity_tab" />
+        <activity android:name=".Account.LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
