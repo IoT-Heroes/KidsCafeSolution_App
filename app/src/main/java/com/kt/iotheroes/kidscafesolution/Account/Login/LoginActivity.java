@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.kt.iotheroes.kidscafesolution.Model.User;
 import com.kt.iotheroes.kidscafesolution.R;
 import com.kt.iotheroes.kidscafesolution.TabActivity.BottomTabActivity;
+import com.kt.iotheroes.kidscafesolution.Util.Dialog.OkDialog;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener, LoginContract.LoginView {
 
@@ -60,7 +61,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     // TODO : 실패 다이얼로그 만들기
     public void presentDialog(String message) {
-        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+        OkDialog okDialog = new OkDialog(this, message);
+        okDialog.show();
+
+
+//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//        builder.setMessage(message);
+//        builder.setNeutralButton("닫기", null);
+//        builder.create().show();
+
+//        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
     }
 
     public void goToBottomTabActivity(User user) {

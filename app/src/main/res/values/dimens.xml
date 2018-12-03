@@ -15,7 +15,13 @@
 
     <!--button-->
     <dimen name="button_height">40dp</dimen>
+    <dimen name="dialog_button_height">25dp</dimen>
 
     <!--image-->
     <dimen name="image_check">18dp</dimen>
+
+    <!--dialog-->
+    <dimen name="dialog_width">300dp</dimen>
+    <dimen name="dialog_height">180dp</dimen>
+    <dimen name="dialog_padding">30dp</dimen>
 </resources>

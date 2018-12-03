@@ -25,7 +25,8 @@
         <activity
             android:name=".Account.Login.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Account.JoinActivity"></activity>
+        <activity android:name=".Account.JoinActivity"
+            android:theme="@style/AppTheme.NoActionBar" ></activity>
     </application>
 
 </manifest>

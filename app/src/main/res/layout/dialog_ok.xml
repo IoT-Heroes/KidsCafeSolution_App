@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/dialog_width"
+    android:layout_height="@dimen/dialog_height"
+    android:background="@color/colorBackground"
+    android:gravity="center"
+    android:padding="@dimen/dialog_padding">
+    <TextView
+        android:id="@+id/text_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxHeight="100dp"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:text="message"
+        android:layout_alignParentTop="true"
+        android:layout_above="@+id/button_ok"
+        android:layout_marginBottom="@dimen/space_small"/>
+    <Button
+        android:id="@+id/button_ok"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dialog_button_height"
+        android:background="@drawable/button_large"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="확인"/>
+</RelativeLayout>
