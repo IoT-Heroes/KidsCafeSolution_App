@@ -1,5 +1,6 @@
 package com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
@@ -8,6 +9,9 @@ import android.view.ViewGroup;
  */
 
 public class KidsAdapter extends RecyclerView.Adapter<KidsViewHolder> {
+
+    private Context context;
+
     @Override
     public KidsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return null;
