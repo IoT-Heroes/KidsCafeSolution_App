@@ -10,7 +10,7 @@ public interface JoinContract {
 
     interface JoinView {
         void imageCheck(boolean check);
-        void close();
+        void finish();
 
         void joinSuccess(User user);
         void joinFail();

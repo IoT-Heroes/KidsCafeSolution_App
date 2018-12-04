@@ -52,7 +52,7 @@ public class JoinActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void close() {
-        close();
+        finish();
     }
 
     @Override
