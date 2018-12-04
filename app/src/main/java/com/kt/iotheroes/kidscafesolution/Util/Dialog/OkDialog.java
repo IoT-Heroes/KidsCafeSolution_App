@@ -14,6 +14,7 @@ import com.kt.iotheroes.kidscafesolution.R;
 
 /**
  * Created by mijeong on 2018. 12. 3..
+ * cycle : constructor -> onCreate(show)
  */
 
 public class OkDialog extends Dialog {

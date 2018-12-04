@@ -12,6 +12,7 @@ import com.kt.iotheroes.kidscafesolution.R;
  */
 
 public abstract class TabParentFragment extends Fragment {
+    // reload : 웹서버와 다시 접속 / refresh : 캐쉬된 내용 보여준다.
     public abstract void reload();
 
     public void willBeDisplayed() {

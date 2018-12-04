@@ -1,5 +1,6 @@
 package com.kt.iotheroes.kidscafesolution.TabActivity;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -14,7 +15,7 @@ import com.kt.iotheroes.kidscafesolution.TabActivity.Tab2ZoneFragment.Tab2ZoneFa
 
 import java.util.ArrayList;
 
-public class BottomTabActivity extends AppCompatActivity {
+public class BottomTabActivity extends AppCompatActivity implements Tab1KidsFargment.OnFragmentInteractionListener {
 
     private ArrayList<TabParentFragment> fragments = new ArrayList<>();
 
@@ -35,11 +36,15 @@ public class BottomTabActivity extends AppCompatActivity {
             }
 
             Log.i("tag", "click id : " + item.getItemId());
+//            currentFragment.reload();
             return loadFragment(currentFragment);
         }
 
     };
 
+    /*
+    transaction : 액티비티에 커밋한 변경 내용의 집합
+     */
     private boolean loadFragment(TabParentFragment fragment) {
         //switching fragment
         if (fragment != null) {
@@ -48,7 +53,7 @@ public class BottomTabActivity extends AppCompatActivity {
                     .replace(R.id.content, fragment)
                     .commit();
 
-            Log.i("tag", "change id : " + fragment.getId());
+            Log.i("tag", "tab change id : " + fragment.getId());
 
             return true;
         }
@@ -69,4 +74,8 @@ public class BottomTabActivity extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
 
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
+    }
 }
