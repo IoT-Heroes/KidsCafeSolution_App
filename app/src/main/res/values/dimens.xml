@@ -24,4 +24,8 @@
     <dimen name="dialog_width">300dp</dimen>
     <dimen name="dialog_height">180dp</dimen>
     <dimen name="dialog_padding">30dp</dimen>
+
+    <!--kidInfo-->
+    <dimen name="kid_info_height">120dp</dimen>
+    <dimen name="text_kid_band">12sp</dimen>
 </resources>

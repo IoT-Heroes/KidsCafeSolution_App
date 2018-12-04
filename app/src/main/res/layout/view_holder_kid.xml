@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/kid_info_height"
+    android:background="@color/colorWhite"
+    android:paddingRight="@dimen/space_large"
+    android:paddingLeft="@dimen/space_large">
+
+    <TextView
+        android:id="@+id/text_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="name"
+        android:textSize="@dimen/title_text_size"
+        android:textStyle="bold"
+        android:textColor="@color/colorText"
+        android:layout_alignTop="@+id/linear_info"/>
+
+    <TextView
+        android:id="@+id/text_band"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dialog_button_height"
+        android:text="밴드 착용 중"
+        android:textColor="@color/colorWhite"
+        android:gravity="center"
+        android:textSize="@dimen/text_kid_band"
+        android:textStyle="bold"
+        android:background="@drawable/label_band"
+        android:layout_toLeftOf="@+id/linear_info"
+        android:layout_marginRight="@dimen/space_small"
+        android:layout_alignBottom="@+id/linear_info"/>
+
+    <LinearLayout
+        android:id="@+id/linear_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true">
+        <TextView
+            android:id="@+id/text_age"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:text="5살"
+            android:gravity="center"
+            android:background="@drawable/circle"
+            android:layout_marginRight="@dimen/space_small"/>
+        <ImageView
+            android:id="@+id/image_sex"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:gravity="center"
+            android:background="@drawable/circle"
+            android:layout_marginRight="@dimen/space_small"/>
+        <TextView
+            android:id="@+id/text_height"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:text="110cm"
+            android:gravity="center"
+            android:background="@drawable/circle"/>
+    </LinearLayout>
+
+
+</RelativeLayout>

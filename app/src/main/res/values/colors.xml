@@ -3,8 +3,10 @@
     <color name="colorPrimary">#FCBE32</color>
     <color name="colorPrimaryDark">#c78b00</color>
     <color name="colorAccent">#ff7473</color>
-    <color name="colorBackground">#ffffff</color>
+    <color name="colorWhite">#ffffff</color>
     <color name="colorText">#000000</color>
     <color name="colorButtonText">#FFFFFF</color>
     <color name="colorChecked">#2fc299</color>
+    <color name="colorBackground">#e7e7e7</color>
+    <color name="colorCirlceBackground">#efefef</color>
 </resources>
