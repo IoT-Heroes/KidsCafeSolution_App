@@ -61,7 +61,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     public void presentDialog(String message) {
-        OkDialog okDialog = new OkDialog(this, message);
+        final OkDialog okDialog = new OkDialog(this);
+        okDialog.setMessage(message);
         okDialog.show();
     }
 

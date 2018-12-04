@@ -1,6 +1,5 @@
 package com.kt.iotheroes.kidscafesolution.Account.Join;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -13,7 +12,6 @@ import android.widget.ImageView;
 
 import com.kt.iotheroes.kidscafesolution.Model.User;
 import com.kt.iotheroes.kidscafesolution.R;
-import com.kt.iotheroes.kidscafesolution.TabActivity.BottomTabActivity;
 import com.kt.iotheroes.kidscafesolution.Util.Dialog.OkDialog;
 
 public class JoinActivity extends AppCompatActivity implements View.OnClickListener, JoinContract.JoinView, TextWatcher {
@@ -47,20 +45,6 @@ public class JoinActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
-    public void presentDialog(String message) {
-        OkDialog okDialog = new OkDialog(this, message);
-        okDialog.show();
-    }
-
-    @Override
-    public void goToBottomTabActivity(User user) {
-        Intent intent = new Intent(JoinActivity.this, BottomTabActivity.class);
-        intent.putExtra("user", user);
-        startActivity(intent);
-        close();
-    }
-
-    @Override
     public void imageCheck(boolean check) {
         if (check) imgCheck.setColorFilter(Color.parseColor("#2fc299"));
         else imgCheck.setColorFilter(Color.parseColor("#000000"));
@@ -69,6 +53,25 @@ public class JoinActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void close() {
         close();
+    }
+
+    @Override
+    public void joinSuccess(final User user) {
+        final OkDialog okDialog = new OkDialog(this);
+        okDialog.setMessage("회원가입에 성공했습니다!\n로그인 해주세요.");
+        okDialog.setOkListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                JoinActivity.this.close();
+                okDialog.dismiss();
+            }
+        });
+        okDialog.show();
+    }
+
+    @Override
+    public void joinFail() {
+        presentDialog("회원가입에 실패하셨어요.");
     }
 
     @Override
@@ -81,6 +84,12 @@ public class JoinActivity extends AppCompatActivity implements View.OnClickListe
         else if (phone.isEmpty()) presentDialog("전화번호를 입력해주세요.");
         else if (!presenter.isCheck() || pw.isEmpty()) presentDialog("pw가 일치하지 않습니다.");
         else presenter.onJoinBtnSelected(id, pw, phone);
+    }
+
+    private void presentDialog(String s) {
+        OkDialog okDialog = new OkDialog(this);
+        okDialog.setMessage(s);
+        okDialog.show();
     }
 
     @Override

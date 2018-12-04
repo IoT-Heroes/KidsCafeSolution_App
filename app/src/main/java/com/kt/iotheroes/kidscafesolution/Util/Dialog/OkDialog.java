@@ -20,10 +20,24 @@ public class OkDialog extends Dialog {
     private TextView textView;
     private Button button;
     private String message;
+    View.OnClickListener okListener;
 
-    public OkDialog(@NonNull Context context, String message) {
-        super(context);
+    public void setMessage(String message) {
         this.message = message;
+    }
+
+    public void setOkListener(View.OnClickListener listener) {
+        this.okListener = listener;
+    }
+
+    public OkDialog(@NonNull Context context) {
+        super(context);
+        okListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dismiss();
+            }
+        };
     }
 
     @Override
@@ -41,11 +55,12 @@ public class OkDialog extends Dialog {
         textView.setText(message);
 
         button = (Button)findViewById(R.id.button_ok);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dismiss();
-            }
-        });
+        button.setOnClickListener(okListener);
+//        button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                dismiss();
+//            }
+//        });
     }
 }

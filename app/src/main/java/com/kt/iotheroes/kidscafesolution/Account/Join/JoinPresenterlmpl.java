@@ -23,8 +23,8 @@ public class JoinPresenterlmpl implements JoinContract.JoinPresenter {
     public void onJoinBtnSelected(String id, String pw, String phone) {
         Boolean joinResult = user.join(id, pw, phone);
 
-        if (joinResult) view.goToBottomTabActivity(user);
-        else view.presentDialog("회원가입에 실패했습니다.");
+        if (joinResult) view.joinSuccess(user);
+        else view.joinFail();
     }
 
     @Override

@@ -9,10 +9,11 @@ import com.kt.iotheroes.kidscafesolution.Model.User;
 public interface JoinContract {
 
     interface JoinView {
-        void presentDialog(String message);
-        void goToBottomTabActivity(User user);
         void imageCheck(boolean check);
         void close();
+
+        void joinSuccess(User user);
+        void joinFail();
     }
 
     interface  JoinPresenter {
