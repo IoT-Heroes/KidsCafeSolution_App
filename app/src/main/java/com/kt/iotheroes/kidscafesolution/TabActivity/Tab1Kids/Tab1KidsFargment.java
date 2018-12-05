@@ -1,21 +1,30 @@
 package com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids;
 
-import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.kt.iotheroes.kidscafesolution.Model.Kid;
 import com.kt.iotheroes.kidscafesolution.R;
+import com.kt.iotheroes.kidscafesolution.TabActivity.BottomTabActivity;
 import com.kt.iotheroes.kidscafesolution.TabActivity.ParentFragment.TabParentFragment;
 
+import java.util.ArrayList;
+
 public class Tab1KidsFargment extends TabParentFragment {
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String NAVIGATION_ID = "navigationId";
 
-    private int navigationId;
+    private BottomTabActivity tabActivity;
 
-    private OnFragmentInteractionListener mListener;
+    private RecyclerView recyclerView;
+    private RecyclerView.LayoutManager layoutManger;
+    private KidsAdapter adapter;
+
+//    private OnFragmentInteractionListener mListener;
 
     public Tab1KidsFargment() {
         // Required empty public constructor
@@ -30,32 +39,59 @@ public class Tab1KidsFargment extends TabParentFragment {
         return fragment;
     }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            navigationId = getArguments().getInt(NAVIGATION_ID);
-        }
-    }
-
+    // back stack에 있다가 돌아올 때 호출됨
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_tab1_kids_fargment, container, false);
+        View view = inflater.inflate(R.layout.fragment_tab1_kids_fargment, container, false);
+        initView(view);
+        return view;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
+    private void initView(View view) {
+        tabActivity = (BottomTabActivity)getActivity();
+
+        if (recyclerView == null) {
+            recyclerView = (RecyclerView)view.findViewById(R.id.recyclerView_kids);
+            recyclerView.setHasFixedSize(true);
+            layoutManger = new LinearLayoutManager(tabActivity);
+            recyclerView.setLayoutManager(layoutManger);
         }
+
+        if (adapter == null) {
+            adapter = new KidsAdapter(this, new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    // 아이 상세 페이지로 이동
+                    Toast.makeText(getContext(), "아이 상세 페이지로 이동!", Toast.LENGTH_SHORT).show();
+                }
+            });
+            recyclerView.setAdapter(adapter);
+        }
+
+        connectKids();
     }
+
+    // 버튼 클릭 리스트 아이템 클릭과 같은 특정 이벤트 발생 시 리스너 호출
+//    public void onButtonPressed(Uri uri) {
+//        if (mListener != null) {
+//            mListener.onFragmentInteraction(uri);
+//        }
+//    }
+
+    /*
+    onAttach, onDetach : 다른 외부 요소들과 통신 할 수 있는 리스너를 프래그먼트에 탈/부착
+     */
 
     // Activity에 할당되었을 때 호출되며 인자로 Activity를 넘겨준다.
-    //Activity에 이벤트 콜백을 설정
+    //Activity에 이벤트 콜백을 설정 - 리스너 부착
+    // onAttach -> onCreate -> onCreateView()
 //    @Override
 //    public void onAttach(Context context) {
 //        super.onAttach(context);
+//
+//        Log.i("tag", "onAttach 호출");
+//
 //        if (context instanceof OnFragmentInteractionListener) {
 //            mListener = (OnFragmentInteractionListener) context;
 //        } else {
@@ -64,30 +100,32 @@ public class Tab1KidsFargment extends TabParentFragment {
 //        }
 //    }
 
-    // Fragment가 Activity로부터 할당이 제거될 때 호출
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
+    // Fragment가 Activity로부터 할당이 제거될 때 호출 - 리스너 탈착
+//   @Override
+//    public void onDetach() {
+//        super.onDetach();
+//        mListener = null;
+//
+//       Log.i("tag", "onDetach 호출");
+//    }
 
     @Override
     public void reload() {
-
+        connectKids();
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+    public void connectKids() {
+        // 통신해서 데이터를 불러온다.
+        ArrayList<Kid> kids = new ArrayList<>();
+
+        kids.add(new Kid("이미정", 25, "여", 160, 00, true));
+        kids.add(new Kid("이미주", 25, "여", 180, 00, false));
+        adapter.setKids(kids);
+        adapter.notifyDataSetChanged();
     }
+
+//    public interface OnFragmentInteractionListener {
+//        // TODO: Update argument type and name
+//        void onFragmentInteraction(Uri uri);
+//    }
 }

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -27,6 +28,8 @@ public class JoinActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_join);
 
+
+        Log.i("err", "join start");
         presenter = new JoinPresenterlmpl(this);
         initView();
     }
@@ -52,7 +55,8 @@ public class JoinActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void close() {
-        close();
+        Log.i("err", "join end");
+        finish();
     }
 
     @Override
@@ -62,6 +66,7 @@ public class JoinActivity extends AppCompatActivity implements View.OnClickListe
         okDialog.setOkListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.i("err", "join success");
                 JoinActivity.this.close();
                 okDialog.dismiss();
             }
