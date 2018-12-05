@@ -1,5 +1,6 @@
 package com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,6 +13,7 @@ import com.kt.iotheroes.kidscafesolution.Model.Kid;
 import com.kt.iotheroes.kidscafesolution.R;
 import com.kt.iotheroes.kidscafesolution.TabActivity.BottomTabActivity;
 import com.kt.iotheroes.kidscafesolution.TabActivity.ParentFragment.TabParentFragment;
+import com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids.DetailActivity.KidDetailActivity;
 
 import java.util.ArrayList;
 
@@ -64,6 +66,8 @@ public class Tab1KidsFargment extends TabParentFragment {
                 public void onClick(View view) {
                     // 아이 상세 페이지로 이동
                     Toast.makeText(getContext(), "아이 상세 페이지로 이동!", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getActivity(), KidDetailActivity.class);
+                    startActivity(intent);
                 }
             });
             recyclerView.setAdapter(adapter);

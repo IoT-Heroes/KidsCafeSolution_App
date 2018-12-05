@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/kid_info_height"
+    android:background="@color/colorWhite"
+    style="@style/cell">
+
+    <TextView
+        android:id="@+id/text_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="키즈카페 이용 현황"
+        android:textSize="@dimen/kid_info_name_text"
+        android:textStyle="bold"
+        android:textColor="@color/colorText"
+        android:layout_alignTop="@+id/linear_info"/>
+
+    <LinearLayout
+        android:id="@+id/layout_time_info"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_below="@+id/text_title">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="입장 시간"
+                android:textSize="@dimen/kid_info_time_key_text"
+                android:layout_marginBottom="2dp"/>
+            <TextView
+                android:id="@+id/text_entrance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/kid_info_time_value_text"
+                android:textColor="@color/colorText"
+                android:text="입장 시간" />
+        </LinearLayout>
+        <view
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/space_small"
+            android:layout_marginBottom="@dimen/space_small"/>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="퇴장 시간"
+                android:textSize="@dimen/kid_info_time_key_text"
+                android:layout_marginBottom="2dp"/>
+            <TextView
+                android:id="@+id/text_exit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/kid_info_time_value_text"
+                android:textColor="@color/colorText"
+                android:text="입장 시간" />
+        </LinearLayout>
+        <view
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/space_small"
+            android:layout_marginBottom="@dimen/space_small"/>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="이용 금액"
+                android:textSize="@dimen/kid_info_time_key_text"
+                android:layout_marginBottom="2dp"/>
+            <TextView
+                android:id="@+id/text_cost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/kid_info_time_value_text"
+                android:textColor="@color/colorText"
+                android:text="입장 시간" />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>
