@@ -13,4 +13,6 @@
         android:scrollbars="vertical"
         android:background="@color/colorBackground" />
 
+    <include android:id="@+id/indicator" layout="@layout/view_loading_indicator"/>
+
 </android.support.design.widget.CoordinatorLayout>
