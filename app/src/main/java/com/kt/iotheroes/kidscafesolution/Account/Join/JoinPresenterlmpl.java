@@ -32,7 +32,7 @@ public class JoinPresenterlmpl implements JoinContract.JoinPresenter {
 
     @Override
     public void onJoinBtnSelected(String id, String pw, String phone) {
-        user = new User(id, pw, phone);
+        user = new User(id, pw);
 
         Log.i("connect", "id : " + id + " , pw : " + pw + ", phone : " + phone);
 
@@ -58,6 +58,7 @@ public class JoinPresenterlmpl implements JoinContract.JoinPresenter {
                     @Override
                     public void onError(@NonNull Throwable e) {
                         e.printStackTrace();
+                        Log.e("connect", e.getMessage());
                         Log.i("connect", "join 실패");
                         view.presentDialog("회원가입에 실패하셨어요.");
                     }

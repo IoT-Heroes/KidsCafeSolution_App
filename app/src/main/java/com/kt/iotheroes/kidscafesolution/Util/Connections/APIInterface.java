@@ -4,8 +4,6 @@ import com.kt.iotheroes.kidscafesolution.Model.User;
 
 import io.reactivex.Observable;
 import retrofit2.http.Body;
-import retrofit2.http.FormUrlEncoded;
-import retrofit2.http.Headers;
 import retrofit2.http.POST;
 
 /**
@@ -28,8 +26,7 @@ Retrofit을 Rx로 사용하는 이유
  */
 public interface APIInterface {
 
-    @FormUrlEncoded
-    @Headers({ "Content-Type: application/json;charset=UTF-8"})
-    @POST("/user/management/insert")
+//    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @POST("/heroes/user/management/insert")
     Observable<Response<User>> join(@Body User user);
 }
