@@ -13,34 +13,24 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-            <view
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/space_small" />
+            <!--<view-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="@dimen/space_small" />-->
             <include layout="@layout/kid_content_info"></include>
-            <view
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/space_small"/>
+            <!--<view-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="@dimen/space_small"/>-->
             <include layout="@layout/kid_content_eatable_food"></include>
-            <view
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/space_small"/>
+            <!--<view-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="@dimen/space_small"/>-->
             <LinearLayout
                 android:id="@+id/layout_band_relative_info"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-                <!--<include layout="@layout/kid_content_time"/>-->
-                <view
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/space_small"/>
                 <include layout="@layout/kid_content_activity"/>
-                <view
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/space_small"/>
                 <include layout="@layout/kid_content_pulse"/>
-                <view
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/space_small"/>
                 <include layout="@layout/kid_content_visited_zone"/>
             </LinearLayout>
         </LinearLayout>

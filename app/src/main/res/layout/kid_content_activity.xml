@@ -2,11 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorWhite"
-    android:paddingRight="@dimen/kid_info_horizontal_margin"
-    android:paddingLeft="@dimen/kid_info_horizontal_margin"
-    android:layout_marginTop="@dimen/space_small"
-    android:layout_marginBottom="@dimen/space_small">
+    style="@style/cell">
 
     <TextView
         android:id="@+id/text_title"
