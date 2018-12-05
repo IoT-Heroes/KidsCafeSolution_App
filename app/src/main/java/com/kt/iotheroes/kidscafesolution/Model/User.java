@@ -11,21 +11,26 @@ public class User {
     @SerializedName("id")
     private String id;
 
-    @SerializedName("pw")
+    @SerializedName("name")
+    private String name;
 
+    @SerializedName("password")
     private String pw;
-    @SerializedName("phone")
+
+    @SerializedName("phoneNumber")
     private String phone;
 
     public User(String id, String pw) {
         this.id = id;
         this.pw = pw;
+        this.name = "이미정";
     }
 
     public User(String id, String pw, String phone) {
         this.id = id;
         this.pw = pw;
         this.phone = phone;
+        this.name = "이미정";
     }
 
     public String getId() {

@@ -34,6 +34,8 @@ public class JoinPresenterlmpl implements JoinContract.JoinPresenter {
     public void onJoinBtnSelected(String id, String pw, String phone) {
         user = new User(id, pw, phone);
 
+        Log.i("connect", "id : " + id + " , pw : " + pw + ", phone : " + phone);
+
         APIClient.getClient().join(user)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

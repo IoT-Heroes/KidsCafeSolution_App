@@ -14,7 +14,7 @@ public class APIClient {
 
     private static Retrofit retrofit = null;
     // TODO : url넣기
-    private static final String url = "http://192.168.0.4:8080/heroes";
+    private static final String url = "http://192.168.0.4:8080/heroes/";
 
     // getClient는 Retrofit 인터페이스를 설정할 때 마다 호출 됨
     public static APIInterface getClient() {
