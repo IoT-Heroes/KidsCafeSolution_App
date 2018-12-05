@@ -39,5 +39,7 @@
 
     <!--kid_activity-->
     <dimen name="kid_info_activity_graph_size">120dp</dimen>
-    <dimen name="kid_info_activity_circle_size">20dp</dimen>
+
+    <!--kid visit zone-->
+    <dimen name="kid_info_small_circle">20dp</dimen>
 </resources>

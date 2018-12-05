@@ -26,4 +26,12 @@
         <item name="android:paddingBottom">@dimen/space_small</item>
     </style>
 
+    <!--visit room viewholder-->
+    <style name="viewholder_visited_zone">
+        <item name="android:paddingLeft">@dimen/space_large</item>
+        <item name="android:paddingRight">@dimen/space_large</item>
+        <item name="android:paddingTop">@dimen/space_small</item>
+        <item name="android:paddingBottom">@dimen/space_small</item>
+    </style>
+
 </resources>

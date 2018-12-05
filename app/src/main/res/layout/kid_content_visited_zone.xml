@@ -15,4 +15,23 @@
         android:textColor="@color/colorText"
         android:layout_alignTop="@+id/linear_info"/>
 
+    <org.eazegraph.lib.charts.BarChart
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/chart_visit_zone"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:padding="10dp"
+        app:egFixedBarWidth="true"
+        app:egBarWidth="20dp"
+        app:egLegendHeight="40dp"
+        android:layout_below="@id/text_title"
+        android:layout_marginTop="@dimen/space_small"
+        android:layout_marginBottom="@dimen/space_small"/>
+
+    <ListView
+        android:id="@+id/list_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/chart_visit_zone"/>
+
 </RelativeLayout>
