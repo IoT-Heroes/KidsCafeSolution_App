@@ -1,5 +1,8 @@
 package com.kt.iotheroes.kidscafesolution.Model;
 
+import com.kt.iotheroes.kidscafesolution.Util.Connections.APIClient;
+import com.kt.iotheroes.kidscafesolution.Util.Connections.APIInterface;
+
 import java.io.Serializable;
 
 /**
@@ -9,6 +12,11 @@ import java.io.Serializable;
 public class User implements Serializable{
     private static User instance;
     private User () {}
+    private APIInterface api;
+
+    public User(APIInterface api) {
+        this.api = APIClient.getClient();
+    }
 
     public static User getInstance () {
         if (instance == null)
@@ -16,7 +24,7 @@ public class User implements Serializable{
         return instance;
     }
 
-    private String id;
+     String id;
     private String pw;
     private String phone;
 

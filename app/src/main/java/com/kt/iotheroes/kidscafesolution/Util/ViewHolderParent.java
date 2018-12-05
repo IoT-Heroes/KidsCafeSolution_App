@@ -13,5 +13,6 @@ public class ViewHolderParent extends RecyclerView.ViewHolder {
     public ViewHolderParent(View itemView) {
         super(itemView);
         container = itemView;
+
     }
 }

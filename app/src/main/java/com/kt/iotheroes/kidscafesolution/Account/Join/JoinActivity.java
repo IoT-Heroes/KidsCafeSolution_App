@@ -12,15 +12,17 @@ import android.widget.ImageView;
 
 import com.kt.iotheroes.kidscafesolution.Model.User;
 import com.kt.iotheroes.kidscafesolution.R;
+import com.kt.iotheroes.kidscafesolution.Util.Connections.APIClient;
+import com.kt.iotheroes.kidscafesolution.Util.Connections.APIInterface;
 import com.kt.iotheroes.kidscafesolution.Util.Dialog.OkDialog;
 
 public class JoinActivity extends AppCompatActivity implements View.OnClickListener, JoinContract.JoinView, TextWatcher {
 
-    EditText editId, editPw, editPwCheck, editPhone;
-    ImageView imgCheck;
-    Button btnJoin;
+    private EditText editId, editPw, editPwCheck, editPhone;
+    private ImageView imgCheck;
+    private Button btnJoin;
 
-    JoinContract.JoinPresenter presenter;
+    private JoinContract.JoinPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,15 +96,7 @@ public class JoinActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void beforeTextChanged(CharSequence charSequence, int start, int before, int count) {
-//        String pw = editPw.getText().toString();
-//        String pwCk = editPwCheck.getText().toString();
-//
-//        boolean same = pw.equals(pwCk);
-//
-//        if (same) checkImage(true);
-//        else checkImage(false);
-//
-//        presenter.setCheck(same);
+
     }
 
     @Override
