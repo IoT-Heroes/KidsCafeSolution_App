@@ -3,8 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="@dimen/kid_info_height"
     android:background="@color/colorWhite"
-    android:paddingRight="@dimen/space_large"
-    android:paddingLeft="@dimen/space_large">
+    android:paddingRight="@dimen/kid_info_horizontal_margin"
+    android:paddingLeft="@dimen/kid_info_horizontal_margin">
 
     <TextView
         android:id="@+id/text_name"
