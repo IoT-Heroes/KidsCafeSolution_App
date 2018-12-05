@@ -36,4 +36,8 @@
     <!--kid_eatable_food-->
     <dimen name="kid_info_time_key_text">12sp</dimen>
     <dimen name="kid_info_time_value_text">22sp</dimen>
+
+    <!--kid_activity-->
+    <dimen name="kid_info_activity_graph_size">120dp</dimen>
+    <dimen name="kid_info_activity_circle_size">20dp</dimen>
 </resources>

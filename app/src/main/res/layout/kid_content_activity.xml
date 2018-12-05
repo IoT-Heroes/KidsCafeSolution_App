@@ -14,4 +14,72 @@
         android:textColor="@color/colorText"
         android:layout_alignTop="@+id/linear_info"/>
 
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="vertical"-->
+        <!--android:layout_alignParentLeft="true"-->
+        <!--android:layout_alignBottom="@+id/graph_pulse"-->
+        <!--android:layout_below="@+id/text_title"-->
+        <!--android:layout_toLeftOf="@+id/graph_pulse"-->
+        <!--android:padding="@dimen/space_small">-->
+        <!--<RelativeLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="0dp"-->
+            <!--android:layout_weight="1">-->
+            <!--<ImageView-->
+                <!--android:layout_width="@dimen/kid_info_pulse_circle_size"-->
+                <!--android:layout_height="@dimen/kid_info_pulse_circle_size"-->
+                <!--android:background="@color/colorAccent"/>-->
+        <!--</RelativeLayout>-->
+    <!--</LinearLayout>-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/space_small"
+        android:layout_marginBottom="@dimen/space_small">
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+            <com.hookedonplay.decoviewlib.DecoView
+                android:id="@+id/graph_walk"
+                android:layout_width="@dimen/kid_info_activity_graph_size"
+                android:layout_height="@dimen/kid_info_activity_graph_size"
+                android:layout_margin="@dimen/space_large"/>
+            <TextView
+                android:id="@+id/text_walk"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/graph_walk"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:gravity="center"
+                android:text="걸음수 : "
+                android:textColor="@color/colorText"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+            <com.hookedonplay.decoviewlib.DecoView
+                android:id="@+id/graph_cal"
+                android:layout_width="@dimen/kid_info_activity_graph_size"
+                android:layout_height="@dimen/kid_info_activity_graph_size"
+                android:layout_margin="@dimen/space_large"/>
+            <TextView
+                android:id="@+id/text_cal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/graph_cal"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:gravity="center"
+                android:text="칼로리 : "
+                android:textColor="@color/colorText"/>
+        </RelativeLayout>
+    </LinearLayout>
+
 </RelativeLayout>
