@@ -1,6 +1,7 @@
 package com.kt.iotheroes.kidscafesolution.Account.Login;
 
 import com.kt.iotheroes.kidscafesolution.Model.User;
+import com.kt.iotheroes.kidscafesolution.Util.SharedManager.SharedManager;
 
 /**
  * Created by mijeong on 2018. 12. 3..
@@ -9,16 +10,21 @@ import com.kt.iotheroes.kidscafesolution.Model.User;
 public class LoginPresenterImpl implements LoginContract.LoginPresenter {
 
     private LoginContract.LoginView view;
-    private User model;
+    private User user;
 
     public LoginPresenterImpl(LoginActivity view) {
         this.view = view;
-        this.model = User.getInstance();
+        this.user = null;
     }
 
     public void onLoginBtnSelected(String id, String pw) {
-        boolean loginResult = model.login(id, pw);
-        if (loginResult) view.goToBottomTabActivity(model);
+        // TODO : Login 통신 구현
+        user = new User(id, pw);
+
+        if (id.equals("id") && pw.equals("pw")) {
+            SharedManager.getInstance().setUser(user);
+            view.goToBottomTabActivity();
+        }
         else view.presentDialog("로그인 실패하였습니다.");
     }
 }

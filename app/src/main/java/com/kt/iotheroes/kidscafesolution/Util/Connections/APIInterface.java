@@ -3,8 +3,9 @@ package com.kt.iotheroes.kidscafesolution.Util.Connections;
 import com.kt.iotheroes.kidscafesolution.Model.User;
 
 import io.reactivex.Observable;
+import retrofit2.http.Body;
 import retrofit2.http.FormUrlEncoded;
-import retrofit2.http.GET;
+import retrofit2.http.POST;
 
 /**
  * Created by mijeong on 2018. 12. 5..
@@ -27,6 +28,6 @@ Retrofit을 Rx로 사용하는 이유
 public interface APIInterface {
 
     @FormUrlEncoded
-    @GET("/user")
-    Observable<User> getUser();
+    @POST("/user")
+    Observable<Response<User>> join(@Body User user);
 }
