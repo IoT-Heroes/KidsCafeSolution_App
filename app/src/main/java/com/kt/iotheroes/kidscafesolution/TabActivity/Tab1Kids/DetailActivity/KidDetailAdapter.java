@@ -2,9 +2,19 @@ package com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids.DetailActivity;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import com.kt.iotheroes.kidscafesolution.R;
+import com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids.DetailActivity.Viewholders.KidAcitivityViewHolder;
+import com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids.DetailActivity.Viewholders.KidFoodViewHolder;
+import com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids.DetailActivity.Viewholders.KidInfoViewHolder;
+import com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids.DetailActivity.Viewholders.KidNoBandViewHolder;
+import com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids.DetailActivity.Viewholders.KidPulseViewHolder;
+import com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids.DetailActivity.Viewholders.KidTimeViewHolder;
+import com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids.DetailActivity.Viewholders.KidVisitZoneViewHolder;
 import com.kt.iotheroes.kidscafesolution.Util.Dialog.ViewHolderParent;
 
 /**
@@ -20,31 +30,43 @@ public class KidDetailAdapter extends RecyclerView.Adapter<ViewHolderParent> {
     private static final int TYPE_ITEM_VISIT_ZONE = 5;
     private static final int TYPE_ITEM_NO_BAND = 6;
 
-    public Context context;
-    public KidDetailActivity activity;
-    public LinearLayout indicator;
+    private Context context;
+    private KidDetailActivity activity;
+    private LinearLayout indicator;
+    private boolean wearingBand;
 
-    public KidDetailAdapter(Context mContext, KidDetailActivity mActivity, LinearLayout mIndicator) {
+    public KidDetailAdapter(Context mContext, KidDetailActivity mActivity, LinearLayout mIndicator, boolean wearingBand) {
         context = mContext;
         activity = mActivity;
         indicator = mIndicator;
+        this.wearingBand = wearingBand;
     }
 
     @Override
     public ViewHolderParent onCreateViewHolder(ViewGroup parent, int viewType) {
-//        if (viewType == TYPE_ITEM_INFO) {
-//            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.cell_taste_analyst_item_keyword, parent, false);
-//            return new AnalystKeywordViewHolder(v);
-//        } else if (viewType == TYPE_ITEM_TASTE) {
-//            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.cell_taste_analyst_item_taste, parent, false);
-//            return new AnalystTasteViewHolder(v);
-//        } else if (viewType == TYPE_ITEM_COUNTRY) {
-//            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.cell_taste_analyst_item_country, parent, false);
-//            return new AnalystCountryViewHolder(v);
-//        } else if (viewType == TYPE_ITEM_INGREDIENT) {
-//            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.cell_taste_analyst_item_ingredient, parent, false);
-//            return new AnalystIngredientViewHolder(v);
-//        }
+
+        if (viewType == TYPE_ITEM_INFO) {
+            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.kid_content_info, parent, false);
+            return new KidInfoViewHolder(v);
+        } else if (viewType == TYPE_ITEM_FOOD) {
+            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.kid_content_eatable_food, parent, false);
+            return new KidFoodViewHolder(v);
+        } else if (viewType == TYPE_ITEM_TIME && wearingBand) {
+            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.kid_content_time, parent, false);
+            return new KidTimeViewHolder(v);
+        } else if (viewType == TYPE_ITEM_ACTIVITY && wearingBand) {
+            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.kid_content_activity, parent, false);
+            return new KidAcitivityViewHolder(v);
+        } else if (viewType == TYPE_ITEM_PULSE && wearingBand) {
+            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.kid_content_pulse, parent, false);
+            return new KidPulseViewHolder(v);
+        } else if (viewType == TYPE_ITEM_VISIT_ZONE && wearingBand) {
+            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.kid_content_visited_zone, parent, false);
+            return new KidVisitZoneViewHolder(v);
+        } else if (viewType == TYPE_ITEM_NO_BAND && !wearingBand) {
+            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.kid_content_no_data, parent, false);
+            return new KidNoBandViewHolder(v);
+        }
         return null;
     }
 
@@ -94,6 +116,6 @@ public class KidDetailAdapter extends RecyclerView.Adapter<ViewHolderParent> {
 
     @Override
     public int getItemCount() {
-        return 6;
+        return wearingBand ? 5 : 3;
     }
 }
