@@ -29,7 +29,7 @@
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-                <include layout="@layout/kid_content_time"/>
+                <!--<include layout="@layout/kid_content_time"/>-->
                 <view
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/space_small"/>
