@@ -12,14 +12,14 @@ public interface JoinContract {
         void imageCheck(boolean check);
         void close();
 
-        void joinSuccess(User user);
-        void joinFail();
+        void actionSuccess(User user);
+        void presentDialog(String message);
+
     }
 
-    interface  JoinPresenter {
+    interface JoinPresenter {
         void onJoinBtnSelected(String id, String pw, String phone);
         boolean isCheck();
         void pwCheck(String pw1, String pw2);
     }
-
 }

@@ -17,11 +17,11 @@ import com.kt.iotheroes.kidscafesolution.Util.Dialog.OkDialog;
 
 public class JoinActivity extends AppCompatActivity implements View.OnClickListener, JoinContract.JoinView, TextWatcher {
 
-    EditText editId, editPw, editPwCheck, editPhone;
-    ImageView imgCheck;
-    Button btnJoin;
+    private EditText editId, editPw, editPwCheck, editPhone;
+    private ImageView imgCheck;
+    private Button btnJoin;
 
-    JoinContract.JoinPresenter presenter;
+    private JoinContract.JoinPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +60,7 @@ public class JoinActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
-    public void joinSuccess(final User user) {
+    public void actionSuccess(final User user) {
         final OkDialog okDialog = new OkDialog(this);
         okDialog.setMessage("회원가입에 성공했습니다!\n로그인 해주세요.");
         okDialog.setOkListener(new View.OnClickListener() {
@@ -75,11 +75,6 @@ public class JoinActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
-    public void joinFail() {
-        presentDialog("회원가입에 실패하셨어요.");
-    }
-
-    @Override
     public void onClick(View view) {
         String id = editId.getText().toString();
         String pw = editPw.getText().toString();
@@ -91,7 +86,8 @@ public class JoinActivity extends AppCompatActivity implements View.OnClickListe
         else presenter.onJoinBtnSelected(id, pw, phone);
     }
 
-    private void presentDialog(String s) {
+    @Override
+    public void presentDialog(String s) {
         OkDialog okDialog = new OkDialog(this);
         okDialog.setMessage(s);
         okDialog.show();
@@ -99,6 +95,7 @@ public class JoinActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void beforeTextChanged(CharSequence charSequence, int start, int before, int count) {
+
     }
 
     @Override

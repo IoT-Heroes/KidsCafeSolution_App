@@ -9,7 +9,6 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.kt.iotheroes.kidscafesolution.Account.Join.JoinActivity;
-import com.kt.iotheroes.kidscafesolution.Model.User;
 import com.kt.iotheroes.kidscafesolution.R;
 import com.kt.iotheroes.kidscafesolution.TabActivity.BottomTabActivity;
 import com.kt.iotheroes.kidscafesolution.Util.Dialog.OkDialog;
@@ -60,18 +59,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 
+    @Override
     public void presentDialog(String message) {
         final OkDialog okDialog = new OkDialog(this);
         okDialog.setMessage(message);
         okDialog.show();
     }
 
-    public void goToBottomTabActivity(User user) {
+    @Override
+    public void goToBottomTabActivity() {
         Intent intent = new Intent(LoginActivity.this, BottomTabActivity.class);
-        intent.putExtra("user", user);
-
-        Log.i("err", "goTo BottomActivity");
-
         startActivity(intent);
         finish();
     }
