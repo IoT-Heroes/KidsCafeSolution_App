@@ -15,4 +15,18 @@
         android:textColor="@color/colorText"
         android:layout_alignTop="@+id/linear_info"/>
 
+    <org.eazegraph.lib.charts.ValueLineChart
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/chart_pulse"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:egUseCubic="true"
+        app:egUseOverlapFill="true"
+        app:egCurveSmoothness="0.4"
+        app:egIndicatorLineColor="#FE6DA8"
+        app:egLegendHeight="40dp"
+        app:egShowStandardValue="true"
+        android:layout_below="@id/text_title"
+        android:layout_marginTop="@dimen/space_small"/>
+
 </RelativeLayout>
