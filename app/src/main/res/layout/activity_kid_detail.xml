@@ -30,6 +30,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <include layout="@layout/kid_content_time"/>
+                <view
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/space_small"/>
+                <include layout="@layout/kid_content_activity"/>
+                <view
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/space_small"/>
+                <include layout="@layout/kid_content_pulse"/>
+                <view
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/space_small"/>
+                <include layout="@layout/kid_content_visited_zone"/>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

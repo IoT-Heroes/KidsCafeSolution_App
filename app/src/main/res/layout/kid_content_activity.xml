@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorWhite"
+    android:paddingRight="@dimen/kid_info_horizontal_margin"
+    android:paddingLeft="@dimen/kid_info_horizontal_margin"
+    android:layout_marginTop="@dimen/space_small"
+    android:layout_marginBottom="@dimen/space_small">
+
+    <TextView
+        android:id="@+id/text_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="활동량"
+        android:textSize="@dimen/kid_info_name_text"
+        android:textStyle="bold"
+        android:textColor="@color/colorText"
+        android:layout_alignTop="@+id/linear_info"/>
+
+</RelativeLayout>
