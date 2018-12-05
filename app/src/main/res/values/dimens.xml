@@ -32,4 +32,8 @@
     <dimen name="kid_info_name_text">18sp</dimen>
     <dimen name="kid_info_band_height">20dp</dimen>
     <dimen name="kid_info_band_text">12sp</dimen>
+
+    <!--kid_eatable_food-->
+    <dimen name="kid_info_time_key_text">12sp</dimen>
+    <dimen name="kid_info_time_value_text">22sp</dimen>
 </resources>
