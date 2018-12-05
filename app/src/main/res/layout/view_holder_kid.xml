@@ -51,6 +51,7 @@
             android:layout_height="@dimen/kid_info_circle"
             android:gravity="center"
             android:background="@drawable/circle"
+            android:src="@drawable/woman"
             android:layout_marginRight="@dimen/space_small"/>
         <TextView
             android:id="@+id/text_height"
