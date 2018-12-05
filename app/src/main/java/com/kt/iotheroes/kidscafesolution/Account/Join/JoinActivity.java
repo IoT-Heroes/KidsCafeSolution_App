@@ -10,10 +10,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.kt.iotheroes.kidscafesolution.Model.User;
 import com.kt.iotheroes.kidscafesolution.R;
+import com.kt.iotheroes.kidscafesolution.Util.Connections.New.CSConnection;
+import com.kt.iotheroes.kidscafesolution.Util.Connections.New.ServiceGenerator;
 import com.kt.iotheroes.kidscafesolution.Util.Dialog.OkDialog;
+
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 public class JoinActivity extends AppCompatActivity implements View.OnClickListener, JoinContract.JoinView, TextWatcher {
 
@@ -80,10 +87,39 @@ public class JoinActivity extends AppCompatActivity implements View.OnClickListe
         String pw = editPw.getText().toString();
         String phone = editPhone.getText().toString();
 
-        if (id.isEmpty()) presentDialog("id를 입력해주세요.");
-        else if (phone.isEmpty()) presentDialog("전화번호를 입력해주세요.");
-        else if (!presenter.isCheck() || pw.isEmpty()) presentDialog("pw가 일치하지 않습니다.");
-        else presenter.onJoinBtnSelected(id, pw, phone);
+
+        connectTestCall();
+//        if (id.isEmpty()) presentDialog("id를 입력해주세요.");
+//        else if (phone.isEmpty()) presentDialog("전화번호를 입력해주세요.");
+//        else if (!presenter.isCheck() || pw.isEmpty()) presentDialog("pw가 일치하지 않습니다.");
+//        else presenter.onJoinBtnSelected(id, pw, phone);
+    }
+
+    void connectTestCall() {
+        CSConnection conn = ServiceGenerator.createService(CSConnection.class);
+        conn.getUser("LMJ")
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<Object>() {
+                    @Override
+                    public final void onCompleted() {
+                        Toast.makeText(getApplicationContext(), "complete", Toast.LENGTH_SHORT).show();
+                    }
+                    @Override
+                    public final void onError(Throwable e) {
+                        e.printStackTrace();
+                        Toast.makeText(getApplicationContext(), "error", Toast.LENGTH_SHORT).show();
+                    }
+                    @Override
+                    public final void onNext(Object response) {
+                        if (response != null) {
+                            Toast.makeText(getApplicationContext(), "success", Toast.LENGTH_SHORT).show();
+
+                        } else {
+                            Toast.makeText(getApplicationContext(), "error2", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
     }
 
     @Override
