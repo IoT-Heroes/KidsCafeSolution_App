@@ -1,11 +1,8 @@
 package com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,7 +24,7 @@ public class Tab1KidsFargment extends TabParentFragment {
     private RecyclerView.LayoutManager layoutManger;
     private KidsAdapter adapter;
 
-    private OnFragmentInteractionListener mListener;
+//    private OnFragmentInteractionListener mListener;
 
     public Tab1KidsFargment() {
         // Required empty public constructor
@@ -76,11 +73,11 @@ public class Tab1KidsFargment extends TabParentFragment {
     }
 
     // 버튼 클릭 리스트 아이템 클릭과 같은 특정 이벤트 발생 시 리스너 호출
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
+//    public void onButtonPressed(Uri uri) {
+//        if (mListener != null) {
+//            mListener.onFragmentInteraction(uri);
+//        }
+//    }
 
     /*
     onAttach, onDetach : 다른 외부 요소들과 통신 할 수 있는 리스너를 프래그먼트에 탈/부착
@@ -89,28 +86,28 @@ public class Tab1KidsFargment extends TabParentFragment {
     // Activity에 할당되었을 때 호출되며 인자로 Activity를 넘겨준다.
     //Activity에 이벤트 콜백을 설정 - 리스너 부착
     // onAttach -> onCreate -> onCreateView()
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-
-        Log.i("tag", "onAttach 호출");
-
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
+//    @Override
+//    public void onAttach(Context context) {
+//        super.onAttach(context);
+//
+//        Log.i("tag", "onAttach 호출");
+//
+//        if (context instanceof OnFragmentInteractionListener) {
+//            mListener = (OnFragmentInteractionListener) context;
+//        } else {
+//            throw new RuntimeException(context.toString()
+//                    + " must implement OnFragmentInteractionListener");
+//        }
+//    }
 
     // Fragment가 Activity로부터 할당이 제거될 때 호출 - 리스너 탈착
-   @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-
-       Log.i("tag", "onDetach 호출");
-    }
+//   @Override
+//    public void onDetach() {
+//        super.onDetach();
+//        mListener = null;
+//
+//       Log.i("tag", "onDetach 호출");
+//    }
 
     @Override
     public void reload() {
@@ -127,8 +124,8 @@ public class Tab1KidsFargment extends TabParentFragment {
         adapter.notifyDataSetChanged();
     }
 
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
-    }
+//    public interface OnFragmentInteractionListener {
+//        // TODO: Update argument type and name
+//        void onFragmentInteraction(Uri uri);
+//    }
 }
