@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.DatePicker;
 import android.widget.LinearLayout;
 
+import com.kt.iotheroes.kidscafesolution.Model.Food;
 import com.kt.iotheroes.kidscafesolution.Model.Kid;
 import com.kt.iotheroes.kidscafesolution.R;
 import com.kt.iotheroes.kidscafesolution.Util.ParentView.ViewHolderParent;
@@ -61,11 +62,25 @@ public class AddChildAdapter extends RecyclerView.Adapter<ViewHolderParent> {
         if (holder instanceof InputInfoViewHolder) {
             InputInfoViewHolder viewHolderParent = (InputInfoViewHolder)holder;
             // TODO : 생년월일 picker 생성은 나중에 - 일단 나이 그냥 보내기
+            int selectedRbId = viewHolderParent.radio_group.getCheckedRadioButtonId();
+            String sex = viewHolderParent.getSex(selectedRbId);
+            String name = viewHolderParent.getName();
+            int weight = viewHolderParent.getWeight();
+            int height = viewHolderParent.getHeight();
+            int age = viewHolderParent.getAge();
 
-
+            activity.setKidInputInfo(name, age, sex, height, weight);
         }
         else if (holder instanceof SelectInfoViewHolder) {
             SelectInfoViewHolder viewHolderParent = (SelectInfoViewHolder)holder;
+
+            List<Food> foods = new ArrayList<>();
+
+            // TODO : 현재 가데이터. 나중에 서버로부터 리스트 받아서 구현한 후 연동할 것
+            foods.add(new Food("f1"));
+            foods.add(new Food("f4"));
+
+            activity.setKidEatableFood(foods);
         }
     }
 

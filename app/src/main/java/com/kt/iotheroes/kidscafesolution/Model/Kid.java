@@ -28,6 +28,7 @@ public class Kid {
     @SerializedName("sex")
     String sex;
 
+    // 목표 활동량
     @SerializedName("targetActivityFigure")
     int targetActivityFigure;
 
@@ -77,13 +78,27 @@ public class Kid {
 
     public Kid() {}
 
-    public Kid(String name, int age, String sex, int height, int weight, boolean wearingBand) {
+    public void setName(String name) {
         this.name = name;
-        this.age = age;
-        this.sex = sex;
-        this.height = height;
-        this.weight = weight;
-        this.wearingBand = wearingBand;
     }
 
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    public void setWeight(int weight) {
+        this.weight = weight;
+    }
+
+    public void setEatableFoodList(List<Food> eatableFoodList) {
+        this.eatableFoodList = eatableFoodList;
+    }
 }

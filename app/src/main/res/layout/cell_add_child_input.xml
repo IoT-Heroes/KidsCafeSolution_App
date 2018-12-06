@@ -37,10 +37,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:text="생년월일"
+            android:text="나이"
             android:textColor="@color/colorText"/>
         <EditText
-            android:id="@+id/edit_birth"
+            android:id="@+id/edit_age"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="8"/>

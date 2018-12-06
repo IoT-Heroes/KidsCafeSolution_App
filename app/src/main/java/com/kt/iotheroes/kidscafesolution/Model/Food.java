@@ -15,4 +15,8 @@ public class Food {
 
     @SerializedName("name")
     String name;
+
+    public Food(String id) {
+        this.id = id;
+    }
 }
