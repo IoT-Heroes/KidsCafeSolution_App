@@ -32,9 +32,10 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".TabActivity.Tab1Kids.DetailActivity.KidDetailActivity" />
         <activity
-            android:name=".Setting.AddChildListActivity"
+            android:name=".TabActivity.Tab1Kids.AddChild.ListActivity.AddChildListActivity"
             android:label="@string/title_activity_add_child_list"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".TabActivity.Tab1Kids.AddChild.ListActivity.AddChildActivity"></activity>
     </application>
 
 </manifest>

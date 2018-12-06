@@ -31,11 +31,10 @@ dependencies {
 //    logging-interceptor는 반환된 모든 응답에 대해 로그 문자열을 생성합니다.
     //    retrofit 에서 받은 응답을 Observable 로 변환(retrofit과 같은 버전)
     //    rxjava
-    
 
     // 활동량 차트 lib
     // 기타 차트 lib
-    
+
     compile 'com.android.support:appcompat-v7:26.+'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.android.support:design:26.+'

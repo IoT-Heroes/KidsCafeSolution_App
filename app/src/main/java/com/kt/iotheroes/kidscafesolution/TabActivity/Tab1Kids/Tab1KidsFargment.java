@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.kt.iotheroes.kidscafesolution.Model.Kid;
-import com.kt.iotheroes.kidscafesolution.Setting.AddChildListActivity;
+import com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids.AddChild.ListActivity.AddChildListActivity;
 import com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids.DetailActivity.KidDetailActivity;
 import com.kt.iotheroes.kidscafesolution.Util.Dialog.OkDialog;
 import com.kt.iotheroes.kidscafesolution.Util.ParentView.KidList.KidsAdapter;

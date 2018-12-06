@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.kt.iotheroes.kidscafesolution.Setting.AddChildListActivity">
+    tools:context="com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids.AddChild.ListActivity.AddChildListActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -22,7 +22,7 @@
 
     <fragment
         android:id="@+id/fragment"
-        android:name="com.kt.iotheroes.kidscafesolution.Setting.AddChildListActivityFragment"
+        android:name="com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids.AddChild.ListActivity.AddChildListActivityFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
