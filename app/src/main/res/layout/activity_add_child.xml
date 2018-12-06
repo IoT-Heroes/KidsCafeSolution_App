@@ -19,6 +19,7 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:text="등록"
+        android:textColor="@color/colorWhite"
         android:textSize="@dimen/title_text_size"
         android:background="@drawable/button_large"
         android:layout_margin="@dimen/space_small"/>

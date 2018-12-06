@@ -31,8 +31,8 @@ public class AddChildAdapter extends RecyclerView.Adapter<ViewHolderParent> {
         this.activity = activity;
     }
 
-    public AddChildAdapter(AddChildActivity fragment, View.OnClickListener clickListener) {
-        this.activity = fragment;
+    public AddChildAdapter(AddChildActivity activity, View.OnClickListener clickListener) {
+        this.activity = activity;
         this.clickListener = clickListener;
     }
 
