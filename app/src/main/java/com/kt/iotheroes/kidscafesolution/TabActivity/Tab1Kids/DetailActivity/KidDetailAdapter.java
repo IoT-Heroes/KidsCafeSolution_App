@@ -79,6 +79,7 @@ public class KidDetailAdapter extends RecyclerView.Adapter<ViewHolderParent> {
     @Override
     public void onBindViewHolder(ViewHolderParent holder, final int position) {
 
+        // TODO : 데이터에 따라 initView 다르게 설정하기.
         if (holder instanceof KidInfoViewHolder) {
             KidInfoViewHolder viewHolderParent = (KidInfoViewHolder)holder;
             viewHolderParent.initViewHolder(kidInfo.kid);
