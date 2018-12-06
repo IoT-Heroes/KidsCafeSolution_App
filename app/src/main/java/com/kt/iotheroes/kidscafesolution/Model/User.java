@@ -20,6 +20,13 @@ public class User {
     @SerializedName("phoneNumber")
     private String phone;
 
+    // TODO : 나중에 관리자 권한 확인하는 용도, 가라 데이터 말고 확정되면 관련 부분 개발할 것
+    @SerializedName("isAuthor")
+    private String isAuthor;
+
+    @SerializedName("token")
+    private String token;
+
     public User(String id, String pw) {
         this.id = id;
         this.pw = pw;
@@ -32,19 +39,34 @@ public class User {
         this.name = "이미정";
     }
 
+    public User(String id, String name, String phone, String isAuthor) {
+        this.id = id;
+        this.name = name;
+        this.phone = phone;
+        this.isAuthor = isAuthor;
+    }
+
     public String getId() {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public String getName() {
+        return name;
     }
 
     public String getPw() {
         return pw;
     }
 
-    public void setPw(String pw) {
-        this.pw = pw;
+    public String getPhone() {
+        return phone;
+    }
+
+    public String getIsAuthor() {
+        return isAuthor;
+    }
+
+    public String getToken() {
+        return token;
     }
 }
