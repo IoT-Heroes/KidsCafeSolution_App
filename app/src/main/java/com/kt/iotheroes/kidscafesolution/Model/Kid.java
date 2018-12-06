@@ -75,6 +75,7 @@ public class Kid {
         return wearingBand;
     }
 
+    public Kid() {}
 
     public Kid(String name, int age, String sex, int height, int weight, boolean wearingBand) {
         this.name = name;

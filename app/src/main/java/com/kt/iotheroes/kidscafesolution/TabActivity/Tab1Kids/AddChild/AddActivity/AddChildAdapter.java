@@ -1,12 +1,15 @@
 package com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids.AddChild.AddActivity;
 
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.DatePicker;
 import android.widget.LinearLayout;
 
+import com.kt.iotheroes.kidscafesolution.Model.Kid;
 import com.kt.iotheroes.kidscafesolution.R;
 import com.kt.iotheroes.kidscafesolution.Util.ParentView.ViewHolderParent;
 
@@ -23,17 +26,12 @@ public class AddChildAdapter extends RecyclerView.Adapter<ViewHolderParent> {
 
     private Context context;
     private AddChildActivity activity;
-    private View.OnClickListener clickListener;
     private LinearLayout indicator;
     private List<String> foods = new ArrayList<>();
+    private Kid kid = new Kid();
 
     public AddChildAdapter(AddChildActivity activity) {
         this.activity = activity;
-    }
-
-    public AddChildAdapter(AddChildActivity activity, View.OnClickListener clickListener) {
-        this.activity = activity;
-        this.clickListener = clickListener;
     }
 
     public AddChildAdapter(Context mContext, AddChildActivity mActivity, LinearLayout mIndicator) {
@@ -60,14 +58,23 @@ public class AddChildAdapter extends RecyclerView.Adapter<ViewHolderParent> {
 
     @Override
     public void onBindViewHolder(ViewHolderParent holder, final int position) {
-
         if (holder instanceof InputInfoViewHolder) {
             InputInfoViewHolder viewHolderParent = (InputInfoViewHolder)holder;
+            // TODO : 생년월일 picker 생성은 나중에 - 일단 나이 그냥 보내기
+
+
         }
         else if (holder instanceof SelectInfoViewHolder) {
             SelectInfoViewHolder viewHolderParent = (SelectInfoViewHolder)holder;
         }
     }
+
+    private DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+
+        }
+    };
 
     @Override
     public int getItemViewType(int position) {
