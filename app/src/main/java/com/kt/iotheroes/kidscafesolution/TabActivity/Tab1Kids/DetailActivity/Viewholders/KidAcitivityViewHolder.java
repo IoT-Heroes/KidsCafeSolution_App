@@ -31,7 +31,11 @@ public class KidAcitivityViewHolder extends ViewHolderParent {
         graph_cal = (DecoView) itemView.findViewById(R.id.graph_cal);
         graph_walk = (DecoView) itemView.findViewById(R.id.graph_walk);
 
-        drawGraph(graph_walk);
+        int colorRedPink = Color.parseColor("#ff7473");
+        int colorSkyBlue = Color.parseColor("#47b8e0");
+
+        drawGraph(graph_walk, text_percent_walk, colorRedPink, 50);
+        drawGraph(graph_cal, text_percent_cal, colorSkyBlue, 30);
     }
 
     public void addProgressListener(@NonNull final SeriesItem seriesItem, @NonNull final TextView textView) {
@@ -49,18 +53,18 @@ public class KidAcitivityViewHolder extends ViewHolderParent {
         });
     }
 
-    public void drawGraph(DecoView graph) {
-        SeriesItem seriesItem1 = new SeriesItem.Builder(Color.argb(255, 64, 255, 64), Color.argb(255, 255, 0, 0))
+    public void drawGraph(DecoView graph, TextView textView, int color, int value) {
+        SeriesItem seriesItem = new SeriesItem.Builder(color)
                 .setRange(0, seriesMax, 0)
                 .setInitialVisibility(false)
-                .setLineWidth(50f)
+                .setLineWidth(40f)
                 .setCapRounded(true)
                 .setShowPointWhenEmpty(true)
                 .build();
 
-        int mSeriesIdx = graph.addSeries(seriesItem1);
-        addProgressListener(seriesItem1, text_percent_walk);
+        int mSeriesIdx = graph.addSeries(seriesItem);
+        addProgressListener(seriesItem, textView);
 
-        graph.addEvent(new DecoEvent.Builder(50).setIndex(mSeriesIdx).setDelay(500).build());
+        graph.addEvent(new DecoEvent.Builder(value).setIndex(mSeriesIdx).setDelay(500).build());
     }
 }
