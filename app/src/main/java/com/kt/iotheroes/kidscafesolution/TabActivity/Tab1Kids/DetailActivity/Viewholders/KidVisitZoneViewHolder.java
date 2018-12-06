@@ -4,7 +4,7 @@ import android.view.View;
 import android.widget.ListView;
 
 import com.kt.iotheroes.kidscafesolution.R;
-import com.kt.iotheroes.kidscafesolution.Util.Dialog.ViewHolderParent;
+import com.kt.iotheroes.kidscafesolution.Util.ParentView.ViewHolderParent;
 
 import org.eazegraph.lib.charts.BarChart;
 import org.eazegraph.lib.models.BarModel;

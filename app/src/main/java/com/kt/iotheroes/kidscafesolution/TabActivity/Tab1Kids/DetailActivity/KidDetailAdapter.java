@@ -16,7 +16,7 @@ import com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids.DetailActivity.Vie
 import com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids.DetailActivity.Viewholders.KidTimeViewHolder;
 import com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids.DetailActivity.Viewholders.KidVisitZoneViewHolder;
 import com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids.KidInfoViewHolder;
-import com.kt.iotheroes.kidscafesolution.Util.Dialog.ViewHolderParent;
+import com.kt.iotheroes.kidscafesolution.Util.ParentView.ViewHolderParent;
 
 /**
  * Created by mijeong on 2018. 12. 4..

@@ -1,4 +1,4 @@
-package com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids;
+package com.kt.iotheroes.kidscafesolution.Util.ParentView;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 
 import com.kt.iotheroes.kidscafesolution.Model.Kid;
 import com.kt.iotheroes.kidscafesolution.R;
+import com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids.KidInfoViewHolder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,11 +18,15 @@ import java.util.List;
 
 public class KidsAdapter extends RecyclerView.Adapter<KidInfoViewHolder> {
 
-    private Tab1KidsFargment fragment;
+    private KidsListFargment fragment;
     private View.OnClickListener clickListener;
     private List<Kid> mDatas = new ArrayList<>();
 
-    public KidsAdapter(Tab1KidsFargment fragment, View.OnClickListener clickListener) {
+    public KidsAdapter(KidsListFargment fragment) {
+        this.fragment = fragment;
+    }
+
+    public KidsAdapter(KidsListFargment fragment, View.OnClickListener clickListener) {
         this.fragment = fragment;
         this.clickListener = clickListener;
     }
@@ -38,7 +43,8 @@ public class KidsAdapter extends RecyclerView.Adapter<KidInfoViewHolder> {
 
     @Override
     public void onBindViewHolder(KidInfoViewHolder holder, int position) {
-        holder.container.setOnClickListener(clickListener);
+        if (clickListener != null)
+            holder.container.setOnClickListener(clickListener);
         holder.initViewHolder(mDatas.get(position));
     }
 

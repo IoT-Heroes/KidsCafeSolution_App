@@ -3,7 +3,7 @@ package com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids.DetailActivity.Vi
 import android.view.View;
 
 import com.kt.iotheroes.kidscafesolution.R;
-import com.kt.iotheroes.kidscafesolution.Util.Dialog.ViewHolderParent;
+import com.kt.iotheroes.kidscafesolution.Util.ParentView.ViewHolderParent;
 
 import org.eazegraph.lib.charts.ValueLineChart;
 import org.eazegraph.lib.models.ValueLinePoint;

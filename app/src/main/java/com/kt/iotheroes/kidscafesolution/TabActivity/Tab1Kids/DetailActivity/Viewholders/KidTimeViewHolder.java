@@ -4,7 +4,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.kt.iotheroes.kidscafesolution.R;
-import com.kt.iotheroes.kidscafesolution.Util.Dialog.ViewHolderParent;
+import com.kt.iotheroes.kidscafesolution.Util.ParentView.ViewHolderParent;
 
 /**
  * Created by mijeong on 2018. 12. 5..

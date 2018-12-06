@@ -2,23 +2,19 @@ package com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.kt.iotheroes.kidscafesolution.R;
-import com.kt.iotheroes.kidscafesolution.TabActivity.ParentFragment.TabParentFragment;
 import com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids.DetailActivity.KidDetailActivity;
+import com.kt.iotheroes.kidscafesolution.Util.ParentView.KidsAdapter;
+import com.kt.iotheroes.kidscafesolution.Util.ParentView.KidsListFargment;
 import com.kt.iotheroes.kidscafesolution.Util.SharedManager.SharedManager;
 
-public class Tab1KidsFargment extends TabParentFragment {
+public class Tab1KidsFargment extends KidsListFargment {
     private static final String NAVIGATION_ID = "navigationId";
 
-    private RecyclerView recyclerView;
-    private RecyclerView.LayoutManager layoutManger;
     private KidsAdapter adapter;
 
     public Tab1KidsFargment() {
@@ -37,21 +33,13 @@ public class Tab1KidsFargment extends TabParentFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_tab1_kids, container, false);
-        initView(view);
+        View view = super.onCreateView(inflater, container, savedInstanceState);
 
-        Toast.makeText(getContext(), "TEST!!!", Toast.LENGTH_SHORT).show();
+        initView(view);
         return view;
     }
 
     private void initView(View view) {
-        if (recyclerView == null) {
-            recyclerView = (RecyclerView)view.findViewById(R.id.recyclerView_kids);
-            recyclerView.setHasFixedSize(true);
-            layoutManger = new LinearLayoutManager(getActivity());
-            recyclerView.setLayoutManager(layoutManger);
-        }
-
         if (adapter == null) {
             adapter = new KidsAdapter(this, new View.OnClickListener() {
                 @Override
