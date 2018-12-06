@@ -9,13 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.kt.iotheroes.kidscafesolution.Model.Kid;
 import com.kt.iotheroes.kidscafesolution.R;
 import com.kt.iotheroes.kidscafesolution.TabActivity.BottomTabActivity;
 import com.kt.iotheroes.kidscafesolution.TabActivity.ParentFragment.TabParentFragment;
 import com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids.DetailActivity.KidDetailActivity;
-
-import java.util.ArrayList;
+import com.kt.iotheroes.kidscafesolution.Util.SharedManager.SharedManager;
 
 public class Tab1KidsFargment extends TabParentFragment {
     private static final String NAVIGATION_ID = "navigationId";
@@ -26,10 +24,7 @@ public class Tab1KidsFargment extends TabParentFragment {
     private RecyclerView.LayoutManager layoutManger;
     private KidsAdapter adapter;
 
-//    private OnFragmentInteractionListener mListener;
-
     public Tab1KidsFargment() {
-        // Required empty public constructor
     }
 
     //Fragment는 Bundle로 데이터 주고 받음
@@ -118,13 +113,22 @@ public class Tab1KidsFargment extends TabParentFragment {
     }
 
     public void connectKids() {
-        // 통신해서 데이터를 불러온다.
-        ArrayList<Kid> kids = new ArrayList<>();
+        // TODO : 아이가 없을 때는 자녀 등록 화면으로 유도한다.
+        if(SharedManager.getInstance().getUser().child.size() == 0) {
+            Toast.makeText(getContext(), "자녀가 없어요.", Toast.LENGTH_SHORT).show();
+        } else {
+            adapter.setKids(SharedManager.getInstance().getUser().child);
+            adapter.notifyDataSetChanged();
+        }
 
-        kids.add(new Kid("이미정", 25, "여", 160, 00, true));
-        kids.add(new Kid("이미주", 25, "여", 180, 00, false));
-        adapter.setKids(kids);
-        adapter.notifyDataSetChanged();
+
+        // 통신해서 데이터를 불러온다.
+//        ArrayList<Kid> kids = new ArrayList<>();
+//
+//        kids.add(new Kid("이미정", 25, "여", 160, 00, true));
+//        kids.add(new Kid("이미주", 25, "여", 180, 00, false));
+//        adapter.setKids(kids);
+//        adapter.notifyDataSetChanged();
     }
 
 //    public interface OnFragmentInteractionListener {

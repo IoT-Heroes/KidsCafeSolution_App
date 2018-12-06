@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import com.kt.iotheroes.kidscafesolution.Model.Kid;
 import com.kt.iotheroes.kidscafesolution.R;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by mijeong on 2018. 12. 4..
@@ -18,14 +18,14 @@ public class KidsAdapter extends RecyclerView.Adapter<KidInfoViewHolder> {
 
     private Tab1KidsFargment fragment;
     private View.OnClickListener clickListener;
-    private ArrayList<Kid> mDatas;
+    private List<Kid> mDatas;
 
     public KidsAdapter(Tab1KidsFargment fragment, View.OnClickListener clickListener) {
         this.fragment = fragment;
         this.clickListener = clickListener;
     }
 
-    public void setKids(ArrayList<Kid> kids) {
+    public void setKids(List<Kid> kids) {
         this.mDatas = kids;
     }
 

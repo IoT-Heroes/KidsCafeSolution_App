@@ -39,6 +39,9 @@ public class LoginPresenterImpl implements LoginContract.LoginPresenter {
                     @Override
                     public void onNext(@NonNull Response<User> userResponse) {
                         if (userResponse.getResult().equals(R.string.connection_success)) {
+                            if (userResponse.getData().child.size() == 0)
+                                Log.i("connect", "자녀 size 0개");
+
                             // pw값은 보관 X
                             if (!SharedManager.getInstance().setUser(userResponse.getData()))
                                 Log.i("connect", errMessage);

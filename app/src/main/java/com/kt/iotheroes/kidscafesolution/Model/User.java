@@ -3,6 +3,7 @@ package com.kt.iotheroes.kidscafesolution.Model;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by mijeong on 2018. 12. 3..
@@ -30,7 +31,7 @@ public class User {
     private String token;
 
     @SerializedName("child")
-    private ArrayList<Kid> child;
+    public List<Kid> child = new ArrayList<>();
 
     // 로그인 용
     public User(String id, String pw) {
@@ -70,7 +71,7 @@ public class User {
         return token;
     }
 
-    public ArrayList<Kid> getChild() {
-        return child;
-    }
+//    public ArrayList<Kid> getChild() {
+//        return child;
+//    }
 }
