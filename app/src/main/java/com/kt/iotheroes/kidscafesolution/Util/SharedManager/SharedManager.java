@@ -18,6 +18,7 @@ public class SharedManager {
         return user;
     }
 
+    // TODO : 로그인 결과 값이 담기기 때문에 pw는 없다.
     public boolean setUser(User user) {
         try {
             this.user = user;
