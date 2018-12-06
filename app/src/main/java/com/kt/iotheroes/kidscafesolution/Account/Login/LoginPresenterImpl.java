@@ -1,7 +1,17 @@
 package com.kt.iotheroes.kidscafesolution.Account.Login;
 
+import android.util.Log;
+
 import com.kt.iotheroes.kidscafesolution.Model.User;
+import com.kt.iotheroes.kidscafesolution.R;
+import com.kt.iotheroes.kidscafesolution.Util.Connections.APIClient;
+import com.kt.iotheroes.kidscafesolution.Util.Connections.Response;
 import com.kt.iotheroes.kidscafesolution.Util.SharedManager.SharedManager;
+
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.observers.DisposableObserver;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by mijeong on 2018. 12. 3..
@@ -18,13 +28,33 @@ public class LoginPresenterImpl implements LoginContract.LoginPresenter {
     }
 
     public void onLoginBtnSelected(String id, String pw) {
-        // TODO : Login 통신 구현
         user = new User(id, pw);
 
-        if (id.equals("id") && pw.equals("pw")) {
-            SharedManager.getInstance().setUser(user);
-            view.goToBottomTabActivity();
-        }
-        else view.presentDialog("로그인 실패하였습니다.");
+        APIClient.getClient().login(user)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<Response<User>>() {
+                    @Override
+                    public void onNext(@NonNull Response<User> userResponse) {
+                        if (userResponse.getResult().equals(R.string.connection_success))
+                            SharedManager.getInstance().setUser(userResponse.getData());
+                        else
+                            Log.i("connect", "login에 문제가 발생하였습니다.");
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        e.printStackTrace();
+                        Log.e("connect", e.getMessage());
+                        view.presentDialog("로그인 실패하였습니다.");
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        view.goToBottomTabActivity();
+                    }
+                });
+
+
     }
 }

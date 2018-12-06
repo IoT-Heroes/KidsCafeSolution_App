@@ -18,7 +18,7 @@ public interface JoinContract {
     }
 
     interface JoinPresenter {
-        void onJoinBtnSelected(String id, String pw, String phone);
+        void onJoinBtnSelected(String id, String pw, String phone, String name);
         boolean isCheck();
         void pwCheck(String pw1, String pw2);
     }

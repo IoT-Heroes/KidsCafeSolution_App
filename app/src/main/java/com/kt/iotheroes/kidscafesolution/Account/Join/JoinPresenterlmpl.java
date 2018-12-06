@@ -31,10 +31,8 @@ public class JoinPresenterlmpl implements JoinContract.JoinPresenter {
     }
 
     @Override
-    public void onJoinBtnSelected(String id, String pw, String phone) {
-        user = new User(id, pw);
-
-        Log.i("connect", "id : " + id + " , pw : " + pw + ", phone : " + phone);
+    public void onJoinBtnSelected(String id, String pw, String phone, String name) {
+        user = new User(id, pw, phone, name);
 
         APIClient.getClient().join(user)
                 .subscribeOn(Schedulers.io())
@@ -59,7 +57,6 @@ public class JoinPresenterlmpl implements JoinContract.JoinPresenter {
                     public void onError(@NonNull Throwable e) {
                         e.printStackTrace();
                         Log.e("connect", e.getMessage());
-                        Log.i("connect", "join 실패");
                         view.presentDialog("회원가입에 실패하셨어요.");
                     }
 
@@ -69,11 +66,6 @@ public class JoinPresenterlmpl implements JoinContract.JoinPresenter {
                         view.actionSuccess(user);
                     }
                 });
-
-// 가 데이터
-//        Boolean joinResult = join(id, pw, phone);
-//        if (joinResult) view.actionSuccess(user);
-//        else view.joinFail();
     }
 
     @Override

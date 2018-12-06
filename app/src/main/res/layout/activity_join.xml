@@ -32,6 +32,26 @@
                 android:singleLine="true"/>
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="@dimen/space_large">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NAME"
+                android:textSize="@dimen/highlight_text_size"
+                android:textStyle="bold"
+                android:layout_marginBottom="@dimen/space_small"/>
+            <EditText
+                android:id="@+id/edit_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="이름"
+                android:singleLine="true"/>
+        </LinearLayout>
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

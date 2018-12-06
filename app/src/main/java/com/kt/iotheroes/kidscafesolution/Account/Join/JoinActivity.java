@@ -17,7 +17,7 @@ import com.kt.iotheroes.kidscafesolution.Util.Dialog.OkDialog;
 
 public class JoinActivity extends AppCompatActivity implements View.OnClickListener, JoinContract.JoinView, TextWatcher {
 
-    private EditText editId, editPw, editPwCheck, editPhone;
+    private EditText editId, editPw, editPwCheck, editPhone, editName;
     private ImageView imgCheck;
     private Button btnJoin;
 
@@ -39,12 +39,13 @@ public class JoinActivity extends AppCompatActivity implements View.OnClickListe
         editPw = (EditText)findViewById(R.id.edit_pw);
         editPwCheck = (EditText)findViewById(R.id.edit_check_pw);
         editPhone = (EditText)findViewById(R.id.edit_phone);
+        editName = (EditText)findViewById(R.id.edit_name);
         imgCheck = (ImageView)findViewById(R.id.image_check);
         btnJoin = (Button)findViewById(R.id.button_join);
 
         btnJoin.setOnClickListener(this);
         editPwCheck.addTextChangedListener(this);
-        editPwCheck.addTextChangedListener(this);
+        editPw.addTextChangedListener(this);
     }
 
     @Override
@@ -79,11 +80,13 @@ public class JoinActivity extends AppCompatActivity implements View.OnClickListe
         String id = editId.getText().toString();
         String pw = editPw.getText().toString();
         String phone = editPhone.getText().toString();
+        String name = editName.getText().toString();
 
         if (id.isEmpty()) presentDialog("id를 입력해주세요.");
         else if (phone.isEmpty()) presentDialog("전화번호를 입력해주세요.");
+        else if (name.isEmpty()) presentDialog("이름을 입력해주세요.");
         else if (!presenter.isCheck() || pw.isEmpty()) presentDialog("pw가 일치하지 않습니다.");
-        else presenter.onJoinBtnSelected(id, pw, phone);
+        else presenter.onJoinBtnSelected(id, pw, phone, name);
     }
 
     @Override
