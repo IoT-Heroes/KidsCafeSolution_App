@@ -27,20 +27,22 @@ public class User {
     @SerializedName("token")
     private String token;
 
+    // 로그인 용
     public User(String id, String pw) {
         this.id = id;
         this.pw = pw;
     }
 
-    public User(String id, String pw, String phone) {
+    // 회원가입 용
+    public User(String id, String pw, String phone, String name) {
         this.id = id;
         this.pw = pw;
         this.phone = phone;
-        this.name = "이미정";
+        this.name = name;
     }
 
-    public User(String id, String name, String phone, String isAuthor) {
-        this.id = id;
+    // login시 추가 데이터 저장 부분
+    public User(String name, String phone, String isAuthor) {
         this.name = name;
         this.phone = phone;
         this.isAuthor = isAuthor;
