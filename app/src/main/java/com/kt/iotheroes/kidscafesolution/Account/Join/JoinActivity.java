@@ -42,7 +42,7 @@ public class JoinActivity extends AppCompatActivity implements View.OnClickListe
 
         btnJoin.setOnClickListener(this);
         editPwCheck.addTextChangedListener(this);
-        editPwCheck.addTextChangedListener(this);
+        editPw.addTextChangedListener(this);
     }
 
     @Override
