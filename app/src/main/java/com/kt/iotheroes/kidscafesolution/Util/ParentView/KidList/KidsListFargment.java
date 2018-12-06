@@ -1,4 +1,4 @@
-package com.kt.iotheroes.kidscafesolution.Util.ParentView;
+package com.kt.iotheroes.kidscafesolution.Util.ParentView.KidList;
 
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -51,27 +51,8 @@ public class KidsListFargment extends TabParentFragment {
             adapter = new KidsAdapter(this);
             recyclerView.setAdapter(adapter);
         }
-
-//        connectKids();
     }
 
     @Override
-    public void reload() {
-
-    }
-
-//    @Override
-//    public void reload() {
-//        connectKids();
-//    }
-//
-//    public void connectKids() {
-//        // TODO : 아이가 없을 때는 자녀 등록 화면으로 유도한다.
-//        if(SharedManager.getInstance().getUser().getChild().size() == 0) {
-//            Toast.makeText(getContext(), "자녀가 없어요.", Toast.LENGTH_SHORT).show();
-//        } else {
-//            adapter.setKids(SharedManager.getInstance().getUser().getChild());
-//        }
-//        adapter.notifyDataSetChanged();
-//    }
+    public void reload() {}
 }

@@ -8,8 +8,8 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids.DetailActivity.KidDetailActivity;
-import com.kt.iotheroes.kidscafesolution.Util.ParentView.KidsAdapter;
-import com.kt.iotheroes.kidscafesolution.Util.ParentView.KidsListFargment;
+import com.kt.iotheroes.kidscafesolution.Util.ParentView.KidList.KidsAdapter;
+import com.kt.iotheroes.kidscafesolution.Util.ParentView.KidList.KidsListFargment;
 import com.kt.iotheroes.kidscafesolution.Util.SharedManager.SharedManager;
 
 public class Tab1KidsFargment extends KidsListFargment {
