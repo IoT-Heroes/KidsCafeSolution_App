@@ -42,7 +42,7 @@ public class KidDetailActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManger);
 
         if (adapter == null) {
-            adapter = new KidDetailAdapter(getApplicationContext(), this, indicator, false);
+            adapter = new KidDetailAdapter(getApplicationContext(), this, indicator, true);
         }
         recyclerView.setAdapter(adapter);
     }

@@ -65,7 +65,6 @@ public class Tab1KidsFargment extends TabParentFragment {
                 @Override
                 public void onClick(View view) {
                     // 아이 상세 페이지로 이동
-                    Toast.makeText(getContext(), "아이 상세 페이지로 이동!", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(getActivity(), KidDetailActivity.class);
                     startActivity(intent);
                 }
