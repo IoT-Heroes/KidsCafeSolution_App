@@ -26,7 +26,9 @@ Retrofit을 Rx로 사용하는 이유
  */
 public interface APIInterface {
 
-//    @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @POST("/heroes/user/management/insert")
     Observable<Response<User>> join(@Body User user);
+
+    @POST("/heroes/user/management/login")
+    Observable<Response<User>> login(@Body User user);
 }

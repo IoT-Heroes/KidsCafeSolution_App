@@ -34,8 +34,6 @@ public class JoinPresenterlmpl implements JoinContract.JoinPresenter {
     public void onJoinBtnSelected(String id, String pw, String phone) {
         user = new User(id, pw);
 
-        Log.i("connect", "id : " + id + " , pw : " + pw + ", phone : " + phone);
-
         APIClient.getClient().join(user)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -69,11 +67,6 @@ public class JoinPresenterlmpl implements JoinContract.JoinPresenter {
                         view.actionSuccess(user);
                     }
                 });
-
-// 가 데이터
-//        Boolean joinResult = join(id, pw, phone);
-//        if (joinResult) view.actionSuccess(user);
-//        else view.joinFail();
     }
 
     @Override
