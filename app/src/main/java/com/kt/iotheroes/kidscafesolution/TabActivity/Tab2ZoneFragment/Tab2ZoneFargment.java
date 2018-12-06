@@ -41,7 +41,7 @@ public class Tab2ZoneFargment extends TabParentFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_tab2_zone_fargment, container, false);
+        return inflater.inflate(R.layout.fragment_tab2_zone, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event

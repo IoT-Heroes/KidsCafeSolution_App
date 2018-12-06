@@ -7,5 +7,7 @@
     <string name="title_kids">키즈</string>
     <string name="title_zone">놀이구역</string>
     <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_add_child_list">AddChildListActivity</string>
+    <string name="action_settings">Settings</string>
 
 </resources>

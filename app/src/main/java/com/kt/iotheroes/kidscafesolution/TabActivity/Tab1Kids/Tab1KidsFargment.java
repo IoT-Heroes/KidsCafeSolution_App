@@ -40,7 +40,7 @@ public class Tab1KidsFargment extends TabParentFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_tab1_kids_fargment, container, false);
+        View view = inflater.inflate(R.layout.fragment_tab1_kids, container, false);
         initView(view);
         return view;
     }

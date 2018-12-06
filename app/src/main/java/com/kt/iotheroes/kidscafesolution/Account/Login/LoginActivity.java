@@ -3,13 +3,12 @@ package com.kt.iotheroes.kidscafesolution.Account.Login;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.kt.iotheroes.kidscafesolution.Account.Join.JoinActivity;
 import com.kt.iotheroes.kidscafesolution.R;
+import com.kt.iotheroes.kidscafesolution.Setting.AddChildListActivity;
 import com.kt.iotheroes.kidscafesolution.TabActivity.BottomTabActivity;
 import com.kt.iotheroes.kidscafesolution.Util.Dialog.OkDialog;
 
@@ -53,7 +52,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                 break;
             case R.id.button_join :
-                Intent intent = new Intent(LoginActivity.this, JoinActivity.class);
+//                Intent intent = new Intent(LoginActivity.this, JoinActivity.class);
+                Intent intent = new Intent(LoginActivity.this, AddChildListActivity.class);
                 startActivity(intent);
                 break;
         }
