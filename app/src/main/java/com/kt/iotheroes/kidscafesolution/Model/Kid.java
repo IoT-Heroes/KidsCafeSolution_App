@@ -78,6 +78,15 @@ public class Kid {
 
     public Kid() {}
 
+    public Kid(String name, int age, String sex, int height, int weight, boolean wearingBand) {
+        this.name = name;
+        this.age = age;
+        this.sex = sex;
+        this.height = height;
+        this.weight = weight;
+        this.wearingBand = wearingBand;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -101,4 +110,6 @@ public class Kid {
     public void setEatableFoodList(List<Food> eatableFoodList) {
         this.eatableFoodList = eatableFoodList;
     }
+
+
 }
