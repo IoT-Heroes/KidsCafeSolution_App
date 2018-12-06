@@ -34,4 +34,10 @@
         <item name="android:paddingBottom">@dimen/space_small</item>
     </style>
 
+    <!-- LOADING INDICATOR -->
+    <style name="CircularProgress" parent="Theme.AppCompat.Light">
+        <item name="android:colorAccent">@color/colorBackground</item>
+        <item name="android:color">@color/colorBackground</item>
+    </style>
+
 </resources>

@@ -41,11 +41,6 @@
                 android:textColor="@color/colorText"
                 android:text="입장 시간" />
         </LinearLayout>
-        <view
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/space_small"
-            android:layout_marginBottom="@dimen/space_small"/>
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -66,11 +61,6 @@
                 android:textColor="@color/colorText"
                 android:text="입장 시간" />
         </LinearLayout>
-        <view
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/space_small"
-            android:layout_marginBottom="@dimen/space_small"/>
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"

@@ -6,6 +6,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.LinearLayout;
 
+import com.kt.iotheroes.kidscafesolution.Model.Kid;
+import com.kt.iotheroes.kidscafesolution.Model.KidInfo;
 import com.kt.iotheroes.kidscafesolution.R;
 
 public class KidDetailActivity extends AppCompatActivity {
@@ -22,6 +24,14 @@ public class KidDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_kid_detail);
 
         initView();
+        connectKidInfo();
+    }
+
+    private void connectKidInfo() {
+        KidInfo kidinfo = new KidInfo();
+        kidinfo.kid = new Kid("이미정", 25, "여", 160, 00, true);
+        adapter.setKidInfo(kidinfo);
+        adapter.notifyDataSetChanged();
     }
 
     private void initView() {
@@ -32,7 +42,8 @@ public class KidDetailActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManger);
 
         if (adapter == null) {
-            adapter = new KidDetailAdapter(getApplicationContext(), this, indicator, true);
+            adapter = new KidDetailAdapter(getApplicationContext(), this, indicator, false);
         }
+        recyclerView.setAdapter(adapter);
     }
 }

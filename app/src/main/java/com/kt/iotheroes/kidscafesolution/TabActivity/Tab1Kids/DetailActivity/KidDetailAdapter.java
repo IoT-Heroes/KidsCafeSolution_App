@@ -2,19 +2,21 @@ package com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids.DetailActivity;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import com.kt.iotheroes.kidscafesolution.Model.KidInfo;
 import com.kt.iotheroes.kidscafesolution.R;
 import com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids.DetailActivity.Viewholders.KidAcitivityViewHolder;
 import com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids.DetailActivity.Viewholders.KidFoodViewHolder;
-import com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids.DetailActivity.Viewholders.KidInfoViewHolder;
 import com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids.DetailActivity.Viewholders.KidNoBandViewHolder;
 import com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids.DetailActivity.Viewholders.KidPulseViewHolder;
 import com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids.DetailActivity.Viewholders.KidTimeViewHolder;
 import com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids.DetailActivity.Viewholders.KidVisitZoneViewHolder;
+import com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids.KidInfoViewHolder;
 import com.kt.iotheroes.kidscafesolution.Util.Dialog.ViewHolderParent;
 
 /**
@@ -35,6 +37,12 @@ public class KidDetailAdapter extends RecyclerView.Adapter<ViewHolderParent> {
     private LinearLayout indicator;
     private boolean wearingBand;
 
+    private KidInfo kidInfo;
+
+    public void setKidInfo(KidInfo kidInfo) {
+        this.kidInfo = kidInfo;
+    }
+
     public KidDetailAdapter(Context mContext, KidDetailActivity mActivity, LinearLayout mIndicator, boolean wearingBand) {
         context = mContext;
         activity = mActivity;
@@ -44,7 +52,6 @@ public class KidDetailAdapter extends RecyclerView.Adapter<ViewHolderParent> {
 
     @Override
     public ViewHolderParent onCreateViewHolder(ViewGroup parent, int viewType) {
-
         if (viewType == TYPE_ITEM_INFO) {
             View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.kid_content_info, parent, false);
             return new KidInfoViewHolder(v);
@@ -64,7 +71,7 @@ public class KidDetailAdapter extends RecyclerView.Adapter<ViewHolderParent> {
             View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.kid_content_visited_zone, parent, false);
             return new KidVisitZoneViewHolder(v);
         } else if (viewType == TYPE_ITEM_NO_BAND && !wearingBand) {
-            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.kid_content_no_data, parent, false);
+            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.kid_content_no_band, parent, false);
             return new KidNoBandViewHolder(v);
         }
         return null;
@@ -72,46 +79,46 @@ public class KidDetailAdapter extends RecyclerView.Adapter<ViewHolderParent> {
 
     @Override
     public void onBindViewHolder(ViewHolderParent holder, final int position) {
-//        if (holder instanceof AnalystKeywordViewHolder) {
-//            AnalystKeywordViewHolder viewHolderParent = (AnalystKeywordViewHolder)holder;
-//            viewHolderParent.initViewHolder(analyst, context);
-//        }
-//        else if (holder instanceof AnalystTasteViewHolder) {
-//            AnalystTasteViewHolder viewHolderParent = (AnalystTasteViewHolder)holder;
-//            viewHolderParent.initViewHolder(analyst, context);
-//        }
-//        else if (holder instanceof AnalystCountryViewHolder) {
-//            holder.container.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    mOnItemClickListener.onItemClick(v, position);
-//                }
-//            });
-//            AnalystCountryViewHolder viewHolderParent = (AnalystCountryViewHolder)holder;
-//            viewHolderParent.initViewHolder(analyst, context);
-//        }
-//        else if (holder instanceof AnalystIngredientViewHolder) {
-//            holder.container.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    mOnItemClickListener.onItemClick(v, position);
-//                }
-//            });
-//            AnalystIngredientViewHolder viewHolderParent = (AnalystIngredientViewHolder)holder;
-//        }
-    }
 
+        Log.i("recy", "onBindViewHolder position : " + position);
+
+
+        if (holder instanceof KidInfoViewHolder) {
+            KidInfoViewHolder viewHolderParent = (KidInfoViewHolder)holder;
+            viewHolderParent.initViewHolder(kidInfo.kid);
+
+            Log.i("recy", "onBindViewHolder KidInfoViewHolder");
+        }
+        else if (holder instanceof KidFoodViewHolder) {
+            KidFoodViewHolder viewHolderParent = (KidFoodViewHolder)holder;
+//            viewHolderParent.initViewHolder(analyst, context);
+        }
+        else if (holder instanceof KidTimeViewHolder) {
+            KidTimeViewHolder viewHolderParent = (KidTimeViewHolder)holder;
+//            viewHolderParent.initViewHolder(analyst, context);
+        }
+        else if (holder instanceof KidAcitivityViewHolder) {
+            KidAcitivityViewHolder viewHolderParent = (KidAcitivityViewHolder)holder;
+//            viewHolderParent.initViewHolder(analyst, context);
+        }
+        else if (holder instanceof KidPulseViewHolder) {
+            KidPulseViewHolder viewHolderParent = (KidPulseViewHolder)holder;
+//            viewHolderParent.initViewHolder(analyst, context);
+        }
+        else if (holder instanceof KidVisitZoneViewHolder) {
+            KidVisitZoneViewHolder viewHolderParent = (KidVisitZoneViewHolder)holder;
+//            viewHolderParent.initViewHolder(analyst, context);
+        }
+        else if (holder instanceof KidNoBandViewHolder) {
+            KidNoBandViewHolder viewHolderParent = (KidNoBandViewHolder)holder;
+//            viewHolderParent.initViewHolder(analyst, context);
+        }
+    }
     @Override
     public int getItemViewType(int position) {
-        return position;
-//        if (position == 0)
-//            return TYPE_ITEM_INFO;
-//        else if (position == 1)
-//            return TYPE_ITEM_TASTE;
-//        else if (position == 2)
-//            return TYPE_ITEM_COUNTRY;
-//        else
-//            return TYPE_ITEM_INGREDIENT;
+        if (!wearingBand && position == 2)
+            return TYPE_ITEM_NO_BAND;
+        else return position;
     }
 
     @Override

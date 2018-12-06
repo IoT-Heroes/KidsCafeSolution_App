@@ -14,7 +14,7 @@ import java.util.ArrayList;
  * Created by mijeong on 2018. 12. 4..
  */
 
-public class KidsAdapter extends RecyclerView.Adapter<KidsViewHolder> {
+public class KidsAdapter extends RecyclerView.Adapter<KidInfoViewHolder> {
 
     private Tab1KidsFargment fragment;
     private View.OnClickListener clickListener;
@@ -30,21 +30,15 @@ public class KidsAdapter extends RecyclerView.Adapter<KidsViewHolder> {
     }
 
     @Override
-    public KidsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public KidInfoViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.kid_content_info, parent, false);
-        return new KidsViewHolder(v);
+        return new KidInfoViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(KidsViewHolder holder, int position) {
+    public void onBindViewHolder(KidInfoViewHolder holder, int position) {
         holder.container.setOnClickListener(clickListener);
-
-        Kid kid = mDatas.get(position);
-        holder.text_name.setText(kid.getName());
-        holder.text_age.setText(kid.getAge() + "세");
-        holder.text_weight.setText(kid.getWeight() + "kg");
-        holder.text_height.setText(kid.getHeight() + "cm");
-        if (!kid.isWearingBand()) holder.text_band.setVisibility(View.GONE);
+        holder.initViewHolder(mDatas.get(position));
     }
 
     @Override

@@ -14,26 +14,6 @@
         android:textColor="@color/colorText"
         android:layout_alignTop="@+id/linear_info"/>
 
-    <!--<LinearLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:orientation="vertical"-->
-        <!--android:layout_alignParentLeft="true"-->
-        <!--android:layout_alignBottom="@+id/graph_pulse"-->
-        <!--android:layout_below="@+id/text_title"-->
-        <!--android:layout_toLeftOf="@+id/graph_pulse"-->
-        <!--android:padding="@dimen/space_small">-->
-        <!--<RelativeLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="0dp"-->
-            <!--android:layout_weight="1">-->
-            <!--<ImageView-->
-                <!--android:layout_width="@dimen/kid_info_pulse_circle_size"-->
-                <!--android:layout_height="@dimen/kid_info_pulse_circle_size"-->
-                <!--android:background="@color/colorAccent"/>-->
-        <!--</RelativeLayout>-->
-    <!--</LinearLayout>-->
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
