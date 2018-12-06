@@ -10,15 +10,12 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.kt.iotheroes.kidscafesolution.R;
-import com.kt.iotheroes.kidscafesolution.TabActivity.BottomTabActivity;
 import com.kt.iotheroes.kidscafesolution.TabActivity.ParentFragment.TabParentFragment;
 import com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids.DetailActivity.KidDetailActivity;
 import com.kt.iotheroes.kidscafesolution.Util.SharedManager.SharedManager;
 
 public class Tab1KidsFargment extends TabParentFragment {
     private static final String NAVIGATION_ID = "navigationId";
-
-    private BottomTabActivity tabActivity;
 
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManger;
@@ -42,16 +39,16 @@ public class Tab1KidsFargment extends TabParentFragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_tab1_kids, container, false);
         initView(view);
+
+        Toast.makeText(getContext(), "TEST!!!", Toast.LENGTH_SHORT).show();
         return view;
     }
 
     private void initView(View view) {
-        tabActivity = (BottomTabActivity)getActivity();
-
         if (recyclerView == null) {
             recyclerView = (RecyclerView)view.findViewById(R.id.recyclerView_kids);
             recyclerView.setHasFixedSize(true);
-            layoutManger = new LinearLayoutManager(tabActivity);
+            layoutManger = new LinearLayoutManager(getActivity());
             recyclerView.setLayoutManager(layoutManger);
         }
 

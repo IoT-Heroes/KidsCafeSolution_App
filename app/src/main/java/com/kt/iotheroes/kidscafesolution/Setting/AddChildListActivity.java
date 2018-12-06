@@ -7,13 +7,24 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import com.kt.iotheroes.kidscafesolution.Model.Kid;
+import com.kt.iotheroes.kidscafesolution.Model.User;
 import com.kt.iotheroes.kidscafesolution.R;
+import com.kt.iotheroes.kidscafesolution.Util.SharedManager.SharedManager;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class AddChildListActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        List<Kid> kids = new ArrayList<>();
+        kids.add(new Kid("ㅁ", 2, "ㅇ", 2, 2, true));
+        SharedManager.getInstance().setUser(new User(kids));
+
         setContentView(R.layout.activity_add_child_list);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

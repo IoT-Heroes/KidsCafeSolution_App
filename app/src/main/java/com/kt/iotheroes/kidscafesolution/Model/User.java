@@ -47,6 +47,10 @@ public class User {
         this.name = name;
     }
 
+    public User(List<Kid> child) {
+        this.child = child;
+    }
+
     public String getId() {
         return id;
     }
