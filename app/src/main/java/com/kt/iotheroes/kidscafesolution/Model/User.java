@@ -23,7 +23,6 @@ public class User {
     public User(String id, String pw) {
         this.id = id;
         this.pw = pw;
-        this.name = "이미정";
     }
 
     public User(String id, String pw, String phone) {
