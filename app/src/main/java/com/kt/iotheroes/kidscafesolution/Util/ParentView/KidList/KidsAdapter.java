@@ -31,6 +31,10 @@ public class KidsAdapter extends RecyclerView.Adapter<KidInfoViewHolder> {
         this.clickListener = clickListener;
     }
 
+    public void addData(Kid kid) {
+        mDatas.add(kid);
+    }
+
     public void setKids(List<Kid> kids) {
         this.mDatas = kids;
     }

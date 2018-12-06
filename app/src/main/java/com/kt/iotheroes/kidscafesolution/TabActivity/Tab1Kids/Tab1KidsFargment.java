@@ -5,12 +5,16 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
+import com.kt.iotheroes.kidscafesolution.Model.Kid;
+import com.kt.iotheroes.kidscafesolution.Setting.AddChildListActivity;
 import com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids.DetailActivity.KidDetailActivity;
+import com.kt.iotheroes.kidscafesolution.Util.Dialog.OkDialog;
 import com.kt.iotheroes.kidscafesolution.Util.ParentView.KidList.KidsAdapter;
 import com.kt.iotheroes.kidscafesolution.Util.ParentView.KidList.KidsListFargment;
 import com.kt.iotheroes.kidscafesolution.Util.SharedManager.SharedManager;
+
+import java.util.List;
 
 public class Tab1KidsFargment extends KidsListFargment {
     private static final String NAVIGATION_ID = "navigationId";
@@ -99,16 +103,26 @@ public class Tab1KidsFargment extends KidsListFargment {
 
     public void connectKids() {
         // TODO : 아이가 없을 때는 자녀 등록 화면으로 유도한다.
-        if(SharedManager.getInstance().getUser().getChild().size() == 0) {
-            Toast.makeText(getContext(), "자녀가 없어요.", Toast.LENGTH_SHORT).show();
+        List<Kid> kids = SharedManager.getInstance().getUser().getChild();
+        if(kids.size() == 0) {
+            presentDialog();
         } else {
-            adapter.setKids(SharedManager.getInstance().getUser().getChild());
+            adapter.setKids(kids);
         }
         adapter.notifyDataSetChanged();
     }
 
-//    public interface OnFragmentInteractionListener {
-//        // TODO: Update argument type and name
-//        void onFragmentInteraction(Uri uri);
-//    }
+    public void presentDialog() {
+        final OkDialog okDialog = new OkDialog(getContext());
+        okDialog.setMessage("등록된 자녀가 없습니다.\n자녀를 등록해주세요.");
+        okDialog.setOkListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), AddChildListActivity.class);
+                startActivity(intent);
+                okDialog.dismiss();
+            }
+        });
+        okDialog.show();
+    }
 }
