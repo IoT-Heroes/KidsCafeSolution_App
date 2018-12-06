@@ -118,17 +118,8 @@ public class Tab1KidsFargment extends TabParentFragment {
             Toast.makeText(getContext(), "자녀가 없어요.", Toast.LENGTH_SHORT).show();
         } else {
             adapter.setKids(SharedManager.getInstance().getUser().getChild());
-            adapter.notifyDataSetChanged();
         }
-
-
-        // 통신해서 데이터를 불러온다.
-//        ArrayList<Kid> kids = new ArrayList<>();
-//
-//        kids.add(new Kid("이미정", 25, "여", 160, 00, true));
-//        kids.add(new Kid("이미주", 25, "여", 180, 00, false));
-//        adapter.setKids(kids);
-//        adapter.notifyDataSetChanged();
+        adapter.notifyDataSetChanged();
     }
 
 //    public interface OnFragmentInteractionListener {
