@@ -79,7 +79,6 @@ public class KidDetailAdapter extends RecyclerView.Adapter<ViewHolderParent> {
     @Override
     public void onBindViewHolder(ViewHolderParent holder, final int position) {
 
-        // TODO : 데이터에 따라 initView 다르게 설정하기.
         if (holder instanceof KidInfoViewHolder) {
             KidInfoViewHolder viewHolderParent = (KidInfoViewHolder)holder;
             viewHolderParent.initViewHolder(kidInfo.kid);
@@ -95,12 +94,12 @@ public class KidDetailAdapter extends RecyclerView.Adapter<ViewHolderParent> {
         }
         else if (holder instanceof KidPulseViewHolder) {
             KidPulseViewHolder viewHolderParent = (KidPulseViewHolder)holder;
-//            viewHolderParent.initViewHolder()
         }
         else if (holder instanceof KidVisitZoneViewHolder) {
             KidVisitZoneViewHolder viewHolderParent = (KidVisitZoneViewHolder)holder;
         }
     }
+
     @Override
     public int getItemViewType(int position) {
         if (!wearingBand && position == 2)
