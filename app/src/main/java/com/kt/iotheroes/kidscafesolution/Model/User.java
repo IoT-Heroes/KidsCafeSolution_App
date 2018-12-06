@@ -69,4 +69,8 @@ public class User {
     public String getToken() {
         return token;
     }
+
+    public ArrayList<Kid> getChild() {
+        return child;
+    }
 }

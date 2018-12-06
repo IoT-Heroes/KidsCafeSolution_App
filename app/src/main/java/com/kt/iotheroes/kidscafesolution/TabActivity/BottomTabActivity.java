@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.MenuItem;
 
 import com.kt.iotheroes.kidscafesolution.R;
@@ -34,7 +33,6 @@ public class BottomTabActivity extends AppCompatActivity {
                     break;
             }
 
-            Log.i("tag", "click id : " + item.getItemId());
             return loadFragment(currentFragment);
         }
 
@@ -47,8 +45,6 @@ public class BottomTabActivity extends AppCompatActivity {
                     .beginTransaction()
                     .replace(R.id.content, fragment)
                     .commit();
-
-            Log.i("tag", "change id : " + fragment.getId());
 
             return true;
         }
