@@ -1,6 +1,9 @@
 package com.kt.iotheroes.kidscafesolution.Util.Connections;
 
+import com.kt.iotheroes.kidscafesolution.Model.Kid;
 import com.kt.iotheroes.kidscafesolution.Model.User;
+
+import java.util.List;
 
 import io.reactivex.Observable;
 import retrofit2.http.Body;
@@ -31,4 +34,7 @@ public interface APIInterface {
 
     @POST("/heroes/user/management/login")
     Observable<Response<User>> login(@Body User user);
+
+    @POST("/heroes/child/management/insert")
+    Observable<Response<Kid>> addChildList(@Body List<Kid> kids);
 }
