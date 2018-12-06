@@ -3,7 +3,6 @@ package com.kt.iotheroes.kidscafesolution.Account.Login;
 import android.util.Log;
 
 import com.kt.iotheroes.kidscafesolution.Model.User;
-import com.kt.iotheroes.kidscafesolution.R;
 import com.kt.iotheroes.kidscafesolution.Util.Connections.APIClient;
 import com.kt.iotheroes.kidscafesolution.Util.Connections.Response;
 import com.kt.iotheroes.kidscafesolution.Util.SharedManager.SharedManager;
@@ -38,8 +37,9 @@ public class LoginPresenterImpl implements LoginContract.LoginPresenter {
                 .subscribeWith(new DisposableObserver<Response<User>>() {
                     @Override
                     public void onNext(@NonNull Response<User> userResponse) {
-                        if (userResponse.getResult().equals(R.string.connection_success)) {
-                            if (userResponse.getData().child.size() == 0)
+
+                        if (userResponse.getResult().equals("success")) {
+                            if (userResponse.getData().getChild().size() == 0)
                                 Log.i("connect", "자녀 size 0개");
 
                             // pw값은 보관 X

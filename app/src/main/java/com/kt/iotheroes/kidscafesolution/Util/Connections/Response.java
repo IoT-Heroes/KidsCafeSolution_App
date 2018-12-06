@@ -1,13 +1,20 @@
 package com.kt.iotheroes.kidscafesolution.Util.Connections;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by mijeong on 2018. 12. 5..
  */
 
 public class Response<T> {
 
+    @SerializedName("result")
     private String result;
+
+    @SerializedName("message")
     private String message;
+
+    @SerializedName("data")
     private T data;
 
     public String getResult() {

@@ -3,7 +3,6 @@ package com.kt.iotheroes.kidscafesolution.Account.Join;
 import android.util.Log;
 
 import com.kt.iotheroes.kidscafesolution.Model.User;
-import com.kt.iotheroes.kidscafesolution.R;
 import com.kt.iotheroes.kidscafesolution.Util.Connections.APIClient;
 import com.kt.iotheroes.kidscafesolution.Util.Connections.Response;
 
@@ -45,7 +44,7 @@ public class JoinPresenterlmpl implements JoinContract.JoinPresenter {
                     @Override
                     public void onNext(@NonNull Response<User> userResponse) {
                         // TODO : result 결과 확인하는거 나중에 찜찜하면 response.data == null로 확인하기
-                        if (userResponse.getResult().equals(R.string.connection_success))
+                        if (userResponse.getResult().equals("success"))
                             user = userResponse.getData();
                         else
                             Log.i("connect", "join에 문제가 발생하였습니다.");

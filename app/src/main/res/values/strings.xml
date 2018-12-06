@@ -8,8 +8,4 @@
     <string name="title_zone">놀이구역</string>
     <string name="title_activity_login">LoginActivity</string>
 
-    <!--connection check string-->
-    <string name="connection_success">success</string>
-    <string name="connection_fail">fail</string>
-
 </resources>

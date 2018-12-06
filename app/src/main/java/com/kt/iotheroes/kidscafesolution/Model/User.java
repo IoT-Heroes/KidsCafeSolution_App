@@ -31,7 +31,7 @@ public class User {
     private String token;
 
     @SerializedName("child")
-    public List<Kid> child = new ArrayList<>();
+    private List<Kid> child = new ArrayList<>();
 
     // 로그인 용
     public User(String id, String pw) {
@@ -71,7 +71,7 @@ public class User {
         return token;
     }
 
-//    public ArrayList<Kid> getChild() {
-//        return child;
-//    }
+    public List<Kid> getChild() {
+        return child;
+    }
 }

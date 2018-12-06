@@ -114,10 +114,10 @@ public class Tab1KidsFargment extends TabParentFragment {
 
     public void connectKids() {
         // TODO : 아이가 없을 때는 자녀 등록 화면으로 유도한다.
-        if(SharedManager.getInstance().getUser().child.size() == 0) {
+        if(SharedManager.getInstance().getUser().getChild().size() == 0) {
             Toast.makeText(getContext(), "자녀가 없어요.", Toast.LENGTH_SHORT).show();
         } else {
-            adapter.setKids(SharedManager.getInstance().getUser().child);
+            adapter.setKids(SharedManager.getInstance().getUser().getChild());
             adapter.notifyDataSetChanged();
         }
 
