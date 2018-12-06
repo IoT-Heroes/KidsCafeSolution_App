@@ -109,6 +109,6 @@ public class KidDetailAdapter extends RecyclerView.Adapter<ViewHolderParent> {
 
     @Override
     public int getItemCount() {
-        return wearingBand ? 5 : 3;
+        return wearingBand ? 6 : 3;
     }
 }
