@@ -2,7 +2,6 @@ package com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids.DetailActivity;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -80,38 +79,24 @@ public class KidDetailAdapter extends RecyclerView.Adapter<ViewHolderParent> {
     @Override
     public void onBindViewHolder(ViewHolderParent holder, final int position) {
 
-        Log.i("recy", "onBindViewHolder position : " + position);
-
-
         if (holder instanceof KidInfoViewHolder) {
             KidInfoViewHolder viewHolderParent = (KidInfoViewHolder)holder;
             viewHolderParent.initViewHolder(kidInfo.kid);
-
-            Log.i("recy", "onBindViewHolder KidInfoViewHolder");
         }
         else if (holder instanceof KidFoodViewHolder) {
             KidFoodViewHolder viewHolderParent = (KidFoodViewHolder)holder;
-//            viewHolderParent.initViewHolder(analyst, context);
         }
         else if (holder instanceof KidTimeViewHolder) {
             KidTimeViewHolder viewHolderParent = (KidTimeViewHolder)holder;
-//            viewHolderParent.initViewHolder(analyst, context);
         }
         else if (holder instanceof KidAcitivityViewHolder) {
             KidAcitivityViewHolder viewHolderParent = (KidAcitivityViewHolder)holder;
-//            viewHolderParent.initViewHolder(analyst, context);
         }
         else if (holder instanceof KidPulseViewHolder) {
             KidPulseViewHolder viewHolderParent = (KidPulseViewHolder)holder;
-//            viewHolderParent.initViewHolder(analyst, context);
         }
         else if (holder instanceof KidVisitZoneViewHolder) {
             KidVisitZoneViewHolder viewHolderParent = (KidVisitZoneViewHolder)holder;
-//            viewHolderParent.initViewHolder(analyst, context);
-        }
-        else if (holder instanceof KidNoBandViewHolder) {
-            KidNoBandViewHolder viewHolderParent = (KidNoBandViewHolder)holder;
-//            viewHolderParent.initViewHolder(analyst, context);
         }
     }
     @Override

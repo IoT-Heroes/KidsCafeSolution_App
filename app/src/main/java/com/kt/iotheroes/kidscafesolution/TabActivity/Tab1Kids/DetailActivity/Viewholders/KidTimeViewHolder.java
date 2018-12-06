@@ -1,7 +1,9 @@
 package com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids.DetailActivity.Viewholders;
 
 import android.view.View;
+import android.widget.TextView;
 
+import com.kt.iotheroes.kidscafesolution.R;
 import com.kt.iotheroes.kidscafesolution.Util.Dialog.ViewHolderParent;
 
 /**
@@ -9,7 +11,14 @@ import com.kt.iotheroes.kidscafesolution.Util.Dialog.ViewHolderParent;
  */
 
 public class KidTimeViewHolder extends ViewHolderParent {
+
+    TextView text_entrance, text_exit, text_cost;
+
     public KidTimeViewHolder(View itemView) {
         super(itemView);
+
+        text_entrance = (TextView)itemView.findViewById(R.id.text_entrance);
+        text_exit = (TextView)itemView.findViewById(R.id.text_exit);
+        text_cost = (TextView)itemView.findViewById(R.id.text_cost);
     }
 }
