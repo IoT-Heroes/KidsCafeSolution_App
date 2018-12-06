@@ -2,6 +2,8 @@ package com.kt.iotheroes.kidscafesolution.Model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
+
 /**
  * Created by mijeong on 2018. 12. 3..
  */
@@ -27,6 +29,9 @@ public class User {
     @SerializedName("token")
     private String token;
 
+    @SerializedName("child")
+    private ArrayList<Kid> child;
+
     // 로그인 용
     public User(String id, String pw) {
         this.id = id;
@@ -39,13 +44,6 @@ public class User {
         this.pw = pw;
         this.phone = phone;
         this.name = name;
-    }
-
-    // login시 추가 데이터 저장 부분
-    public User(String name, String phone, String isAuthor) {
-        this.name = name;
-        this.phone = phone;
-        this.isAuthor = isAuthor;
     }
 
     public String getId() {

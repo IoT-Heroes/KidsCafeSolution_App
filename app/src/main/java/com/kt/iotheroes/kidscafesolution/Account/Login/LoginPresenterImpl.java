@@ -19,6 +19,8 @@ import io.reactivex.schedulers.Schedulers;
 
 public class LoginPresenterImpl implements LoginContract.LoginPresenter {
 
+    private final static String errMessage = "login에 문제가 발생하였습니다.";
+
     private LoginContract.LoginView view;
     private User user;
 
@@ -36,17 +38,20 @@ public class LoginPresenterImpl implements LoginContract.LoginPresenter {
                 .subscribeWith(new DisposableObserver<Response<User>>() {
                     @Override
                     public void onNext(@NonNull Response<User> userResponse) {
-                        if (userResponse.getResult().equals(R.string.connection_success))
-                            SharedManager.getInstance().setUser(userResponse.getData());
+                        if (userResponse.getResult().equals(R.string.connection_success)) {
+                            // pw값은 보관 X
+                            if (!SharedManager.getInstance().setUser(userResponse.getData()))
+                                Log.i("connect", errMessage);
+                        }
                         else
-                            Log.i("connect", "login에 문제가 발생하였습니다.");
+                            Log.i("connect", errMessage);
                     }
 
                     @Override
                     public void onError(@NonNull Throwable e) {
                         e.printStackTrace();
                         Log.e("connect", e.getMessage());
-                        view.presentDialog("로그인 실패하였습니다.");
+                        view.presentDialog(errMessage);
                     }
 
                     @Override
