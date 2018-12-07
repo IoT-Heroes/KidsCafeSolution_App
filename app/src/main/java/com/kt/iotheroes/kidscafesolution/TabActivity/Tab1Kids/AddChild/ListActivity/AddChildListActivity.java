@@ -5,15 +5,24 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 import com.kt.iotheroes.kidscafesolution.Model.Kid;
 import com.kt.iotheroes.kidscafesolution.R;
 import com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids.AddChild.AddActivity.AddChildActivity;
+import com.kt.iotheroes.kidscafesolution.Util.Connections.APIClient;
+import com.kt.iotheroes.kidscafesolution.Util.Connections.Response;
+import com.kt.iotheroes.kidscafesolution.Util.Dialog.OkDialog;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.observers.DisposableObserver;
+import io.reactivex.schedulers.Schedulers;
 
 public class AddChildListActivity extends AppCompatActivity {
     static final int PICK_CONTACT_REQUEST = 1;
@@ -36,6 +45,7 @@ public class AddChildListActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // TODO : 데이터 POST 구현
+                connectAddKid();
             }
         });
 
@@ -51,6 +61,37 @@ public class AddChildListActivity extends AppCompatActivity {
         });
 
         fragment = (AddChildListActivityFragment) getSupportFragmentManager().findFragmentById(R.id.fragment);
+    }
+
+    private void connectAddKid() {
+        APIClient.getClient().addChildList(kids)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<Response<List<Kid>>>() {
+                    @Override
+                    public void onNext(@NonNull Response<List<Kid>> userResponse) {
+                        if (userResponse.getResult().equals("success")) {
+
+                        }
+                        else
+                            Log.i("connect", "add Child 에 문제가 발생하였습니다.");
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        e.printStackTrace();
+                        Log.e("connect", e.getMessage());
+
+                        final OkDialog okDialog = new OkDialog(AddChildListActivity.this);
+                        okDialog.setMessage("쟈녀 추가에 실패하셨습니다.");
+                        okDialog.show();
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        finish();
+                    }
+                });
     }
 
     @Override

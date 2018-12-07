@@ -36,5 +36,5 @@ public interface APIInterface {
     Observable<Response<User>> login(@Body User user);
 
     @POST("/heroes/child/management/insert")
-    Observable<Response<Kid>> addChildList(@Body List<Kid> kids);
+    Observable<Response<List<Kid>>> addChildList(@Body List<Kid> kids);
 }

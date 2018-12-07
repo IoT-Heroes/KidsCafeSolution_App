@@ -74,20 +74,14 @@ public class AddChildActivity extends AppCompatActivity {
                     // 입력 정보 안 담겼을 경우
                     final OkDialog okDialog = new OkDialog(AddChildActivity.this);
                     okDialog.setMessage("입력 정보가 잘못되었어요.");
-                    okDialog.setOkListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            okDialog.dismiss();
-                        }
-                    });
                     okDialog.show();
                 }
 
 //                // 음식 담는다.
 //                // TODO : 현재 가데이터. 나중에 서버로부터 리스트 받아서 구현한 후 연동할 것
                 List<Food> foods = new ArrayList<>();
-                foods.add(new Food("f1"));
-                foods.add(new Food("f4"));
+                foods.add(new Food("F1"));
+                foods.add(new Food("F4"));
                 kid.setEatableFoodList(foods);
 
                 // 목록으로 데이터를 보낸다.
