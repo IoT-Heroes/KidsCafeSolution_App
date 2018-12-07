@@ -2,24 +2,25 @@ package com.kt.iotheroes.kidscafesolution.TabActivity.Tab2ZoneFragment;
 
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.kt.iotheroes.kidscafesolution.R;
 import com.kt.iotheroes.kidscafesolution.TabActivity.ParentFragment.TabParentFragment;
+import com.kt.iotheroes.kidscafesolution.TabActivity.Tab2ZoneFragment.Test.ZoneTabPagerAdapter;
 
 public class Tab2ZoneFargment extends TabParentFragment {
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String NAVIGATION_ID = "navigationId";
-
     private int navigationId;
-
     private OnFragmentInteractionListener mListener;
 
-    public Tab2ZoneFargment() {
-        // Required empty public constructor
-    }
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
+
+    public Tab2ZoneFargment() {}
 
     //Fragment는 Bundle로 데이터 주고 받음
     public static Tab2ZoneFargment newInstance(int id) {
@@ -41,7 +42,42 @@ public class Tab2ZoneFargment extends TabParentFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_tab2_zone, container, false);
+        View view = inflater.inflate(R.layout.fragment_tab2_zone, container, false);
+
+        initView(view);
+        return view;
+    }
+
+    private void initView(View view) {
+        tabLayout = (TabLayout)view.findViewById(R.id.tab_layout);
+
+        tabLayout.addTab(tabLayout.newTab().setText("지도"));
+        tabLayout.addTab(tabLayout.newTab().setText("목록"));
+        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+
+        viewPager = (ViewPager)view.findViewById(R.id.view_pager);
+
+        // TODO : Adpater만들기.
+        ZoneTabPagerAdapter pagerAdapter = new ZoneTabPagerAdapter(getChildFragmentManager());
+        viewPager.setAdapter(pagerAdapter);
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
     }
 
     // TODO: Rename method, update argument and hook method into UI event
