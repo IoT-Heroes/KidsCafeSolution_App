@@ -55,8 +55,6 @@ public class Tab1KidsFargment extends KidsListFargment {
             });
             recyclerView.setAdapter(adapter);
         }
-
-        connectKids();
     }
 
     // 버튼 클릭 리스트 아이템 클릭과 같은 특정 이벤트 발생 시 리스너 호출
@@ -102,7 +100,6 @@ public class Tab1KidsFargment extends KidsListFargment {
     }
 
     public void connectKids() {
-        // TODO : 아이가 없을 때는 자녀 등록 화면으로 유도한다.
         List<Kid> kids = SharedManager.getInstance().getUser().getChild();
         if(kids.size() == 0) {
             presentDialog();

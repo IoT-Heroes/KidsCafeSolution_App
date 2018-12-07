@@ -73,4 +73,11 @@ public class BottomTabActivity extends AppCompatActivity {
         fm.beginTransaction().add(R.id.content, fragments.get(0)).commit();
         currentFragment = fragments.get(0);
     }
+
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+
+        currentFragment.reload();
+    }
 }
