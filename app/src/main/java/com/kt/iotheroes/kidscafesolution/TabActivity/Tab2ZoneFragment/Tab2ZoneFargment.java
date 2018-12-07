@@ -3,6 +3,8 @@ package com.kt.iotheroes.kidscafesolution.TabActivity.Tab2ZoneFragment;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +12,8 @@ import android.view.ViewGroup;
 
 import com.kt.iotheroes.kidscafesolution.R;
 import com.kt.iotheroes.kidscafesolution.TabActivity.ParentFragment.TabParentFragment;
-import com.kt.iotheroes.kidscafesolution.TabActivity.Tab2ZoneFragment.Test.ZoneTabPagerAdapter;
+import com.kt.iotheroes.kidscafesolution.TabActivity.Tab2ZoneFragment.Test.Tab1Map.ZoneTab1MapFragment;
+import com.kt.iotheroes.kidscafesolution.TabActivity.Tab2ZoneFragment.Test.Tab2List.ZoneTab2ListFragment;
 
 public class Tab2ZoneFargment extends TabParentFragment {
     private static final String NAVIGATION_ID = "navigationId";
@@ -55,16 +58,14 @@ public class Tab2ZoneFargment extends TabParentFragment {
         tabLayout.addTab(tabLayout.newTab().setText("목록"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
-        viewPager = (ViewPager)view.findViewById(R.id.view_pager);
-
-        ZoneTabPagerAdapter pagerAdapter = new ZoneTabPagerAdapter(getFragmentManager());
-        viewPager.setAdapter(pagerAdapter);
-        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                viewPager.setCurrentItem(tab.getPosition());
+//                viewPager.setCurrentItem(tab.getPosition());
+                if (tab.getPosition() == 0)
+                    setChildFragment(new ZoneTab1MapFragment());
+                else
+                    setChildFragment(new ZoneTab2ListFragment());
             }
 
             @Override
@@ -77,6 +78,39 @@ public class Tab2ZoneFargment extends TabParentFragment {
 
             }
         });
+
+//        viewPager = (ViewPager)view.findViewById(R.id.view_pager);
+//
+//        ZoneTabPagerAdapter pagerAdapter = new ZoneTabPagerAdapter(getFragmentManager());
+//        viewPager.setAdapter(pagerAdapter);
+//        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+//
+//        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+//            @Override
+//            public void onTabSelected(TabLayout.Tab tab) {
+//                viewPager.setCurrentItem(tab.getPosition());
+//            }
+//
+//            @Override
+//            public void onTabUnselected(TabLayout.Tab tab) {
+//
+//            }
+//
+//            @Override
+//            public void onTabReselected(TabLayout.Tab tab) {
+//
+//            }
+//        });
+    }
+
+    private void setChildFragment(Fragment child) {
+        FragmentTransaction childFt = getChildFragmentManager().beginTransaction();
+
+        if (!child.isAdded()) {
+            childFt.replace(R.id.child_fragment_container, child);
+            childFt.addToBackStack(null);
+            childFt.commit();
+        }
     }
 
     // TODO: Rename method, update argument and hook method into UI event

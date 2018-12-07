@@ -14,15 +14,20 @@ import com.kt.iotheroes.kidscafesolution.TabActivity.Tab2ZoneFragment.Test.Tab2L
 public class ZoneTabPagerAdapter extends FragmentStatePagerAdapter {
     final static int FRAGMENT_SIZE = 2;
 
-    public ZoneTabPagerAdapter(FragmentManager fm) {
+    FragmentManager childFm;
+
+    public ZoneTabPagerAdapter(FragmentManager fm, FragmentManager childFm) {
         super(fm);
+        this.childFm = childFm;
     }
 
     @Override
     public Fragment getItem(int position) {
 
-        if (position == 0)
+        if (position == 0) {
+
             return new ZoneTab1MapFragment();
+        }
         else
             return new ZoneTab2ListFragment();
     }
