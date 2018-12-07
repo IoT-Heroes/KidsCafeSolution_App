@@ -14,7 +14,6 @@ import com.kt.iotheroes.kidscafesolution.Model.UsingZone;
 import com.kt.iotheroes.kidscafesolution.R;
 import com.kt.iotheroes.kidscafesolution.Util.Connections.APIClient;
 import com.kt.iotheroes.kidscafesolution.Util.Connections.Response;
-import com.kt.iotheroes.kidscafesolution.Util.TimeFormatter.TimeFormmater;
 
 import java.util.List;
 
@@ -32,6 +31,7 @@ public class KidDetailActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager layoutManger;
 
     private KidInfo kidInfo;
+    private Kid kid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +39,16 @@ public class KidDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_kid_detail);
 
         initView();
-        connectKidInfo();
+
+        kidInfo = new KidInfo();
+        kid = (Kid)getIntent().getSerializableExtra("kid");
+
+        kidInfo.setKid(kid);
+        if (kid.isWearingBand()) {
+            connectUsingZoneData();
+        }
+        adapter.setKidInfo(kidInfo);
+
         connectUsingZoneData();
         adapter.notifyDataSetChanged();
     }
@@ -53,16 +62,17 @@ public class KidDetailActivity extends AppCompatActivity {
 
 
     private void connectUsingZoneData() {
-        Log.i("zone", "kid_id" + kidInfo.getKid().getId());
-        Log.i("zone", "startDate" + TimeFormmater.getCurrentTime_UTC());
-        APIClient.getClient().getChildUsingZone("SANG_JUNIOR", "2018-12-07 08:06:25")
+        String kidId = kidInfo.getKid().getId();
+        String entranceDate = kidInfo.getKid().getVisitingRecord().getStartDate();
+
+        APIClient.getClient().getChildUsingZone(kidId, entranceDate)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new DisposableObserver<Response<List<UsingZone>>>() {
                     @Override
                     public void onNext(@NonNull Response<List<UsingZone>> userResponse) {
                         if (userResponse.getResult().equals("success")) {
-                            adapter.setZoneDatas(userResponse.getData());
+                            kidInfo.setZoneDatas(userResponse.getData());
                         }
                         else
                             Log.i("connect", "get child using zone 에 문제가 발생하였습니다.");
@@ -81,13 +91,6 @@ public class KidDetailActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "get child using zone 성공.", Toast.LENGTH_SHORT).show();
                     }
                 });
-    }
-
-    private void connectKidInfo() {
-        kidInfo = new KidInfo();
-
-        kidInfo.setKid((Kid)getIntent().getSerializableExtra("kid"));
-        adapter.setKidInfo(kidInfo);
     }
 
     private void initView() {

@@ -3,6 +3,7 @@ package com.kt.iotheroes.kidscafesolution.Util.Connections;
 import com.kt.iotheroes.kidscafesolution.Model.Kid;
 import com.kt.iotheroes.kidscafesolution.Model.User;
 import com.kt.iotheroes.kidscafesolution.Model.UsingZone;
+import com.kt.iotheroes.kidscafesolution.Model.VisitingRecord;
 
 import java.util.List;
 
@@ -44,4 +45,7 @@ public interface APIInterface {
 //    kid detail
     @GET("/heroes/statistics/childusingfrequency/select")
     Observable<Response<List<UsingZone>>> getChildUsingZone(@Query("childId") String childId, @Query("startDate") String startDate);
+
+    @GET("/heroes/visitingrecord/management/select")
+    Observable<Response<List<VisitingRecord>>> getChildVisitingRecords(@Query("childId") String childId);
 }
