@@ -21,4 +21,16 @@ public class Food implements Serializable{
     public Food(String id) {
         this.id = id;
     }
+
+    public String getCalorie() {
+        return calorie;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
 }

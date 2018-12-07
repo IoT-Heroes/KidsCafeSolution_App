@@ -3,7 +3,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="@dimen/space_large">
+    android:paddingTop="@dimen/space_large">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -121,5 +121,6 @@
         android:textColor="@color/colorText"
         android:textSize="@dimen/highlight_text_size"
         android:layout_marginTop="@dimen/space_large"
+        android:layout_marginBottom="@dimen/space_small"
         android:textStyle="bold" />
 </LinearLayout>

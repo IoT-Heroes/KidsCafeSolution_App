@@ -18,6 +18,7 @@ import com.kt.iotheroes.kidscafesolution.Util.Connections.Response;
 import com.kt.iotheroes.kidscafesolution.Util.Dialog.OkDialog;
 import com.kt.iotheroes.kidscafesolution.Util.SharedManager.SharedManager;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,7 +48,6 @@ public class AddChildListActivity extends AppCompatActivity {
         button_ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO : 데이터 POST 구현
                 connectAddKid();
             }
         });
@@ -60,6 +60,7 @@ public class AddChildListActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(AddChildListActivity.this, AddChildActivity.class);
+                intent.putExtra("foodList", (Serializable) foodList);
                 startActivityForResult(intent, PICK_CONTACT_REQUEST);
             }
         });

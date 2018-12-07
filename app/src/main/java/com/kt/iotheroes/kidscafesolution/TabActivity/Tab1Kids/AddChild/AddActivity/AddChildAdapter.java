@@ -31,7 +31,7 @@ public class AddChildAdapter extends RecyclerView.Adapter<ViewHolderParent> {
     private Context context;
     private AddChildActivity activity;
     private LinearLayout indicator;
-    private List<String> foods = new ArrayList<>();
+    private List<Food> foods = new ArrayList<>();
     private Map<Integer, String> inputs = new HashMap<>();
 
     public Map<Integer, String> getInputs() {
@@ -43,7 +43,7 @@ public class AddChildAdapter extends RecyclerView.Adapter<ViewHolderParent> {
         inputs.put(R.id.radio_group, "W");
     }
 
-    public void setFoods(List<String> foods) {
+    public void setFoods(List<Food> foods) {
         this.foods = foods;
     }
 
@@ -73,8 +73,7 @@ public class AddChildAdapter extends RecyclerView.Adapter<ViewHolderParent> {
         else if (holder instanceof SelectInfoViewHolder) {
             SelectInfoViewHolder viewHolderParent = (SelectInfoViewHolder)holder;
 
-            List<Food> foods = new ArrayList<>();
-
+            viewHolderParent.setText_food(foods.get(position - 1).getName());
         }
     }
 

@@ -27,6 +27,7 @@ public class AddChildActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager layoutManger;
 
     private Kid kid;
+    private List<Food> foodList;
 
     public void setKidInputInfo(String name, int age, String sex, int height, int weight) {
         kid.setName(name);
@@ -42,6 +43,7 @@ public class AddChildActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_child);
 
         kid = new Kid();
+        foodList = (List<Food>) getIntent().getSerializableExtra("foodList");
 
         initView();
     }
@@ -57,6 +59,8 @@ public class AddChildActivity extends AppCompatActivity {
             adapter = new AddChildAdapter(this);
         }
         recyclerView.setAdapter(adapter);
+
+        adapter.setFoods(foodList);
         adapter.notifyDataSetChanged();
 
         button_add.setOnClickListener(new View.OnClickListener() {

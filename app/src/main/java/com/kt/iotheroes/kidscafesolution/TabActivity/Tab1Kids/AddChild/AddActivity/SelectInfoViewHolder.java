@@ -22,4 +22,8 @@ public class SelectInfoViewHolder extends ViewHolderParent {
         text_food = (TextView) itemView.findViewById(R.id.text_food);
         checkBox = (CheckBox) itemView.findViewById(R.id.check_box);
     }
+
+    public void setText_food(String string) {
+        text_food.setText(string);
+    }
 }
