@@ -2,13 +2,14 @@ package com.kt.iotheroes.kidscafesolution.Model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by mijeong on 2018. 12. 4..
  */
 
-public class Kid {
+public class Kid implements Serializable {
 
     @SerializedName("id")
     String id;

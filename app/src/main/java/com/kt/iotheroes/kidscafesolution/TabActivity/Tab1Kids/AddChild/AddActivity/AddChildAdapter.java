@@ -1,21 +1,22 @@
 package com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids.AddChild.AddActivity;
 
-import android.app.DatePickerDialog;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.DatePicker;
 import android.widget.LinearLayout;
 
 import com.kt.iotheroes.kidscafesolution.Model.Food;
-import com.kt.iotheroes.kidscafesolution.Model.Kid;
 import com.kt.iotheroes.kidscafesolution.R;
 import com.kt.iotheroes.kidscafesolution.Util.ParentView.ViewHolderParent;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by mijeong on 2018. 12. 4..
@@ -25,11 +26,22 @@ public class AddChildAdapter extends RecyclerView.Adapter<ViewHolderParent> {
     private static final int TYPE_ITEM_INPUT = 0;
     private static final int TYPE_ITEM_CHECKLIST = 1;
 
+    // input Type
+    private static final int TYPE_INPUT_NAME = 0;
+    private static final int TYPE_INPUT_AGE = 1;
+    private static final int TYPE_INPUT_HEIGHT = 2;
+    private static final int TYPE_INPUT_WEIGHT = 3;
+
     private Context context;
     private AddChildActivity activity;
     private LinearLayout indicator;
     private List<String> foods = new ArrayList<>();
-    private Kid kid = new Kid();
+//    private String[] inputs = new String[4];
+    private Map<Integer, String> inputs = new HashMap<>();
+
+    public Map<Integer, String> getInputs() {
+        return inputs;
+    }
 
     public AddChildAdapter(AddChildActivity activity) {
         this.activity = activity;
@@ -61,35 +73,38 @@ public class AddChildAdapter extends RecyclerView.Adapter<ViewHolderParent> {
     public void onBindViewHolder(ViewHolderParent holder, final int position) {
         if (holder instanceof InputInfoViewHolder) {
             InputInfoViewHolder viewHolderParent = (InputInfoViewHolder)holder;
-            // TODO : 생년월일 picker 생성은 나중에 - 일단 나이 그냥 보내기
-            int selectedRbId = viewHolderParent.radio_group.getCheckedRadioButtonId();
-            String sex = viewHolderParent.getSex(selectedRbId);
-            String name = viewHolderParent.getName();
-            int weight = viewHolderParent.getWeight();
-            int height = viewHolderParent.getHeight();
-            int age = viewHolderParent.getAge();
 
-            activity.setKidInputInfo(name, age, sex, height, weight);
+            viewHolderParent.edit_name.addTextChangedListener(editListener(R.id.edit_name));
+            viewHolderParent.edit_age.addTextChangedListener(editListener(R.id.edit_age));
+            viewHolderParent.edit_height.addTextChangedListener(editListener(R.id.edit_height));
+            viewHolderParent.edit_weight.addTextChangedListener(editListener(R.id.edit_weight));
         }
         else if (holder instanceof SelectInfoViewHolder) {
             SelectInfoViewHolder viewHolderParent = (SelectInfoViewHolder)holder;
 
             List<Food> foods = new ArrayList<>();
 
-            // TODO : 현재 가데이터. 나중에 서버로부터 리스트 받아서 구현한 후 연동할 것
-            foods.add(new Food("f1"));
-            foods.add(new Food("f4"));
-
-            activity.setKidEatableFood(foods);
         }
     }
 
-    private DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
-        @Override
-        public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+    public TextWatcher editListener(final int type) {
+        return new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int start, int before, int count) {
 
-        }
-    };
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int start, int count, int after) {
+                inputs.put(type, charSequence.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        };
+    }
 
     @Override
     public int getItemViewType(int position) {
@@ -102,4 +117,6 @@ public class AddChildAdapter extends RecyclerView.Adapter<ViewHolderParent> {
     public int getItemCount() {
         return 1 + foods.size();
     }
+
+
 }

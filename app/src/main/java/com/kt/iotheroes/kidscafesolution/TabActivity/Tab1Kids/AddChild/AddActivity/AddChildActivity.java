@@ -7,11 +7,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 
-import com.kt.iotheroes.kidscafesolution.Model.Food;
 import com.kt.iotheroes.kidscafesolution.Model.Kid;
 import com.kt.iotheroes.kidscafesolution.R;
+import com.kt.iotheroes.kidscafesolution.Util.Dialog.OkDialog;
 
-import java.util.List;
+import java.util.Map;
 
 public class AddChildActivity extends AppCompatActivity {
 
@@ -29,10 +29,6 @@ public class AddChildActivity extends AppCompatActivity {
         kid.setSex(sex);
         kid.setHeight(height);
         kid.setWeight(weight);
-    }
-
-    public void setKidEatableFood(List<Food> eatableFoodList) {
-        kid.setEatableFoodList(eatableFoodList);
     }
 
     @Override
@@ -61,7 +57,41 @@ public class AddChildActivity extends AppCompatActivity {
         button_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO : POST 통신 구현
+                // 정보 담는다.
+                Map<Integer, String> inputs = adapter.getInputs();
+                try {
+                    String name = inputs.get(R.id.edit_name);
+                    int age = Integer.parseInt(inputs.get(R.id.edit_age));
+                    int height = Integer.parseInt(inputs.get(R.id.edit_height));
+                    int weight = Integer.parseInt(inputs.get(R.id.edit_weight));
+                    setKidInputInfo(name, age, "M", height, weight);
+                } catch (Exception e) {
+                    // 입력 정보 안 담겼을 경우
+                    final OkDialog okDialog = new OkDialog(getApplicationContext());
+                    okDialog.setMessage("모든 정보를 입력해주세요.");
+                    okDialog.setOkListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            okDialog.dismiss();
+                        }
+                    });
+                    okDialog.show();
+                }
+
+
+
+
+//                // 음식 담는다.
+//                // TODO : 현재 가데이터. 나중에 서버로부터 리스트 받아서 구현한 후 연동할 것
+//                List<Food> foods = new ArrayList<>();
+//                foods.add(new Food("f1"));
+//                foods.add(new Food("f4"));
+//                kid.setEatableFoodList(foods);
+//
+//                // 목록으로 데이터를 보낸다.
+//                Intent intent = new Intent();
+//                intent.putExtra("data", kid);
+//                finish();
             }
         });
     }

@@ -7,10 +7,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import com.kt.iotheroes.kidscafesolution.Model.Kid;
 import com.kt.iotheroes.kidscafesolution.R;
 import com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids.AddChild.AddActivity.AddChildActivity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class AddChildListActivity extends AppCompatActivity {
+    static final int PICK_CONTACT_REQUEST = 1;
+
+    List<Kid> kids;
+    AddChildListActivityFragment fragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,14 +28,27 @@ public class AddChildListActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        kids = new ArrayList<>();
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(AddChildListActivity.this, AddChildActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent, PICK_CONTACT_REQUEST);
             }
         });
+
+        fragment = (AddChildListActivityFragment) getSupportFragmentManager().findFragmentById(R.id.fragment);
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == PICK_CONTACT_REQUEST) {
+            kids.add((Kid) data.getSerializableExtra("data"));
+            fragment.reload();
+        }
+    }
 }
