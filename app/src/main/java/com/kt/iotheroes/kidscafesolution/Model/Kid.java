@@ -24,7 +24,7 @@ public class Kid implements Serializable {
     String name;
 
     @SerializedName("isBandWearing")
-    String isBandWearing;
+    Boolean isBandWearing;
 
     @SerializedName("sex")
     String sex;
@@ -76,8 +76,8 @@ public class Kid implements Serializable {
         return weight;
     }
 
-    public boolean isWearingBand() {
-        return wearingBand;
+    public Boolean isBandWearing() {
+        return isBandWearing;
     }
 
     public Kid() {}
@@ -88,6 +88,7 @@ public class Kid implements Serializable {
         this.sex = sex;
         this.height = height;
         this.weight = weight;
+        // TODO : 여기 나중에 다 false로 초기화 시킬 것
         this.wearingBand = wearingBand;
     }
 
@@ -118,6 +119,4 @@ public class Kid implements Serializable {
     public void setEatableFoodList(List<Food> eatableFoodList) {
         this.eatableFoodList = eatableFoodList;
     }
-
-
 }
