@@ -80,8 +80,8 @@ public class AddChildActivity extends AppCompatActivity {
                 // user_id 넣기
                 kid.setUserId(SharedManager.getInstance().getUser().getId());
 
-//                // 음식 담는다.
-//                // TODO : 현재 가데이터. 나중에 서버로부터 리스트 받아서 구현한 후 연동할 것
+                // 음식 담는다.
+                // TODO : 현재 가데이터. 나중에 서버로부터 리스트 받아서 구현한 후 연동할 것
                 List<Food> foods = new ArrayList<>();
                 foods.add(new Food("F1"));
                 foods.add(new Food("F4"));

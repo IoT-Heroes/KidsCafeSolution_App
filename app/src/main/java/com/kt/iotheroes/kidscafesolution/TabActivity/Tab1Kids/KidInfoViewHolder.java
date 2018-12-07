@@ -32,6 +32,8 @@ public class KidInfoViewHolder extends ViewHolderParent {
         text_age.setText(kid.getAge() + "세");
         text_weight.setText(kid.getWeight() + "kg");
         text_height.setText(kid.getHeight() + "cm");
+
+//        image_sex.setImageDrawable(kid.getSex().equals("W") ? R.drawable.woman : R.drawable.man);
         if (!kid.isWearingBand()) text_band.setVisibility(View.GONE);
     }
 }
