@@ -44,7 +44,7 @@ public class KidDetailActivity extends AppCompatActivity {
         kid = (Kid)getIntent().getSerializableExtra("kid");
 
         kidInfo.setKid(kid);
-        if (kid.isWearingBand()) {
+        if (kid.isBandWearing()) {
             connectUsingZoneData();
         }
         adapter.setKidInfo(kidInfo);

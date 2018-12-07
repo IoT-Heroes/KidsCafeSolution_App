@@ -84,7 +84,7 @@ public class Kid implements Serializable {
         return visitingRecord;
     }
 
-    public boolean isWearingBand() {
+    public Boolean isBandWearing() {
         return isBandWearing;
     }
 
@@ -96,6 +96,7 @@ public class Kid implements Serializable {
         this.sex = sex;
         this.height = height;
         this.weight = weight;
+        // TODO : 여기 나중에 다 false로 초기화 시킬 것
         this.isBandWearing = wearingBand;
     }
 

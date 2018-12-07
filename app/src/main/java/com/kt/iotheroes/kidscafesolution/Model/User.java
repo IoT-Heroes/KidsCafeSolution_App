@@ -89,7 +89,7 @@ public class User {
         for (Kid c : child) {
             final Kid kid = c;
             // band 연결 아이 데이터의 경우에는 visiting record도 가져온다.
-            if (kid.isWearingBand()) {
+            if (kid.isBandWearing()) {
                 APIClient.getClient().getChildVisitingRecords(kid.getId())
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
@@ -99,6 +99,7 @@ public class User {
                                 if (userResponse.getResult().equals("success")) {
                                     // 최근 값만 가져온다.
                                     kid.setVisitingRecord(userResponse.getData().get(0));
+                                    Log.i("connect", kid.getName() + "의 startDate : " + kid.getVisitingRecord().getStartDate());
                                 }
                                 else
                                     Log.i("connect", "get child visiting record 에 문제가 발생하였습니다.");
