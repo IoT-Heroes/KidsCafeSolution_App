@@ -29,7 +29,8 @@ public class KidDetailActivity extends AppCompatActivity {
 
     private void connectKidInfo() {
         KidInfo kidinfo = new KidInfo();
-        kidinfo.kid = new Kid("이미정", 25, "여", 160, 00, true);
+
+        kidinfo.setKid((Kid)getIntent().getSerializableExtra("kid"));
         adapter.setKidInfo(kidinfo);
         adapter.notifyDataSetChanged();
     }

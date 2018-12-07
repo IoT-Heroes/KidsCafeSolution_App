@@ -6,4 +6,8 @@ package com.kt.iotheroes.kidscafesolution.Model;
 
 public class KidInfo {
     public Kid kid;
+
+    public void setKid(Kid kid) {
+        this.kid = kid;
+    }
 }
