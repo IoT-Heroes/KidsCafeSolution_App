@@ -91,6 +91,10 @@ public class Kid implements Serializable {
         this.wearingBand = wearingBand;
     }
 
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
     public void setName(String name) {
         this.name = name;
     }

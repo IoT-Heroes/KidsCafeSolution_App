@@ -47,10 +47,6 @@ public class User {
         this.name = name;
     }
 
-    public User(List<Kid> child) {
-        this.child = child;
-    }
-
     public String getId() {
         return id;
     }
@@ -77,5 +73,9 @@ public class User {
 
     public List<Kid> getChild() {
         return child;
+    }
+
+    public void setChild(List<Kid> child) {
+        this.child = child;
     }
 }

@@ -1,6 +1,9 @@
 package com.kt.iotheroes.kidscafesolution.Util.SharedManager;
 
+import com.kt.iotheroes.kidscafesolution.Model.Kid;
 import com.kt.iotheroes.kidscafesolution.Model.User;
+
+import java.util.List;
 
 /**
  * Created by mijeong on 2018. 12. 5..
@@ -22,6 +25,16 @@ public class SharedManager {
     public boolean setUser(User user) {
         try {
             this.user = user;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+    public boolean setKids(List<Kid> kids) {
+        try {
+            this.user.setChild(kids);
         } catch (Exception e) {
             e.printStackTrace();
             return false;

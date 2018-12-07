@@ -39,6 +39,7 @@ public class AddChildListActivityFragment extends KidsListFargment {
     }
 
     public void reload(List<Kid> kids) {
+        adapter.setKids(kids);
         adapter.notifyDataSetChanged();
     }
 }

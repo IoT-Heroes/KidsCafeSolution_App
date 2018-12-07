@@ -15,6 +15,7 @@ import com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids.AddChild.AddActivi
 import com.kt.iotheroes.kidscafesolution.Util.Connections.APIClient;
 import com.kt.iotheroes.kidscafesolution.Util.Connections.Response;
 import com.kt.iotheroes.kidscafesolution.Util.Dialog.OkDialog;
+import com.kt.iotheroes.kidscafesolution.Util.SharedManager.SharedManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -71,7 +72,8 @@ public class AddChildListActivity extends AppCompatActivity {
                     @Override
                     public void onNext(@NonNull Response<List<Kid>> userResponse) {
                         if (userResponse.getResult().equals("success")) {
-
+                            if (!SharedManager.getInstance().setKids(userResponse.getData()))
+                                Log.i("connect", "add Child 에 문제가 발생하였습니다.");
                         }
                         else
                             Log.i("connect", "add Child 에 문제가 발생하였습니다.");
