@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.kt.iotheroes.kidscafesolution.Model.Food;
 import com.kt.iotheroes.kidscafesolution.Model.Kid;
 import com.kt.iotheroes.kidscafesolution.R;
 import com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids.AddChild.AddActivity.AddChildActivity;
@@ -29,6 +30,7 @@ public class AddChildListActivity extends AppCompatActivity {
     static final int PICK_CONTACT_REQUEST = 1;
 
     List<Kid> kids;
+    List<Food> foodList;
     AddChildListActivityFragment fragment;
 
     private Button button_ok;
@@ -51,6 +53,7 @@ public class AddChildListActivity extends AppCompatActivity {
         });
 
         kids = new ArrayList<>();
+        getFoodList();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -93,6 +96,31 @@ public class AddChildListActivity extends AppCompatActivity {
                     public void onComplete() {
                         finish();
                     }
+                });
+    }
+
+    private void getFoodList() {
+        APIClient.getClient().getFoodList()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<Response<List<Food>>>() {
+                    @Override
+                    public void onNext(@NonNull Response<List<Food>> userResponse) {
+                        if (userResponse.getResult().equals("success")) {
+                            foodList = userResponse.getData();
+                        }
+                        else
+                            Log.i("connect", "get FoodList 에 문제가 발생하였습니다.");
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        e.printStackTrace();
+                        Log.e("connect", e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {}
                 });
     }
 
