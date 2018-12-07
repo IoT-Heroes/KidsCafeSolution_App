@@ -38,6 +38,6 @@ public class KidInfoViewHolder extends ViewHolderParent {
     }
 
     public void setSexImage(Drawable image) {
-        image_sex.setImageDrawgable(image);
+        image_sex.setImageDrawable(image);
     }
 }
