@@ -56,6 +56,10 @@ public class Kid implements Serializable {
 
     boolean wearingBand;
 
+    public String getId() {
+        return id;
+    }
+
     public String getName() {
         return name;
     }
@@ -118,6 +122,4 @@ public class Kid implements Serializable {
     public void setEatableFoodList(List<Food> eatableFoodList) {
         this.eatableFoodList = eatableFoodList;
     }
-
-
 }

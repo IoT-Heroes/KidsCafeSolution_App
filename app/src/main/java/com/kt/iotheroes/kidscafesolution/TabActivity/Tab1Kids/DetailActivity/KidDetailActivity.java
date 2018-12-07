@@ -14,6 +14,7 @@ import com.kt.iotheroes.kidscafesolution.Model.UsingZone;
 import com.kt.iotheroes.kidscafesolution.R;
 import com.kt.iotheroes.kidscafesolution.Util.Connections.APIClient;
 import com.kt.iotheroes.kidscafesolution.Util.Connections.Response;
+import com.kt.iotheroes.kidscafesolution.Util.TimeFormatter.TimeFormmater;
 
 import java.util.List;
 
@@ -30,6 +31,8 @@ public class KidDetailActivity extends AppCompatActivity {
     private KidDetailAdapter adapter;
     private RecyclerView.LayoutManager layoutManger;
 
+    private KidInfo kidInfo;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,8 +44,18 @@ public class KidDetailActivity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
     }
 
+
+/*
+ zone data 입장 시간 넣어주어야 함.
+ 입장시간 -> child_visiting_record 으로 부터 가져와야 함.
+ 앱에서는 방문 기록은 필요 없으니, 상세 페이지 호출 시 최초 한번만 가져온다. (저장된 값 없을 경우에만)
+ */
+
+
     private void connectUsingZoneData() {
-        APIClient.getClient().getChildUsingZone("SANG_JUNIOR", "2018-12-07")
+        Log.i("zone", "kid_id" + kidInfo.getKid().getId());
+        Log.i("zone", "startDate" + TimeFormmater.getCurrentTime_UTC());
+        APIClient.getClient().getChildUsingZone("SANG_JUNIOR", "2018-12-07 08:06:25")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new DisposableObserver<Response<List<UsingZone>>>() {
@@ -71,10 +84,10 @@ public class KidDetailActivity extends AppCompatActivity {
     }
 
     private void connectKidInfo() {
-        KidInfo kidinfo = new KidInfo();
+        kidInfo = new KidInfo();
 
-        kidinfo.setKid((Kid)getIntent().getSerializableExtra("kid"));
-        adapter.setKidInfo(kidinfo);
+        kidInfo.setKid((Kid)getIntent().getSerializableExtra("kid"));
+        adapter.setKidInfo(kidInfo);
     }
 
     private void initView() {

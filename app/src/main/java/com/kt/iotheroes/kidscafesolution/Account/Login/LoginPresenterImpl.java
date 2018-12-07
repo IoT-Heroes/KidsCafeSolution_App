@@ -1,11 +1,16 @@
 package com.kt.iotheroes.kidscafesolution.Account.Login;
 
-import com.kt.iotheroes.kidscafesolution.Model.Kid;
+import android.support.annotation.NonNull;
+import android.util.Log;
+
 import com.kt.iotheroes.kidscafesolution.Model.User;
+import com.kt.iotheroes.kidscafesolution.Util.Connections.APIClient;
+import com.kt.iotheroes.kidscafesolution.Util.Connections.Response;
 import com.kt.iotheroes.kidscafesolution.Util.SharedManager.SharedManager;
 
-import java.util.ArrayList;
-import java.util.List;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.observers.DisposableObserver;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by mijeong on 2018. 12. 3..
@@ -31,39 +36,39 @@ public class LoginPresenterImpl implements LoginContract.LoginPresenter {
 
     public void onLoginBtnSelected(String id, String pw) {
         user = new User(id, pw);
-        List<Kid> kids = new ArrayList<>();
-        kids.add(new Kid("aa", 1, "W", 2, 2, true));
-        kids.add(new Kid("bb", 2, "M", 2, 3, false));
-        user.setChild(kids);
-        demoLogin(user);
+//        List<Kid> kids = new ArrayList<>();
+//        kids.add(new Kid("aa", 1, "W", 2, 2, true));
+//        kids.add(new Kid("bb", 2, "M", 2, 3, false));
+//        user.setChild(kids);
+//        demoLogin(user);
 
-//        APIClient.getClient().login(user)
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribeWith(new DisposableObserver<Response<User>>() {
-//                    @Override
-//                    public void onNext(@NonNull Response<User> userResponse) {
-//
-//                        if (userResponse.getResult().equals("success")) {
-//                            // pw값은 보관 X
-//                            if (!SharedManager.getInstance().setUser(userResponse.getData()))
-//                                Log.i("connect", errMessage);
-//                        }
-//                        else
-//                            Log.i("connect", errMessage);
-//                    }
-//
-//                    @Override
-//                    public void onError(@NonNull Throwable e) {
-//                        e.printStackTrace();
-//                        Log.e("connect", e.getMessage());
-//                        view.presentDialog(errMessage);
-//                    }
-//
-//                    @Override
-//                    public void onComplete() {
-//                        view.goToBottomTabActivity();
-//                    }
-//                });
+        APIClient.getClient().login(user)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<Response<User>>() {
+                    @Override
+                    public void onNext(@NonNull Response<User> userResponse) {
+
+                        if (userResponse.getResult().equals("success")) {
+                            // pw값은 보관 X
+                            if (!SharedManager.getInstance().setUser(userResponse.getData()))
+                                Log.i("connect", errMessage);
+                        }
+                        else
+                            Log.i("connect", errMessage);
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        e.printStackTrace();
+                        Log.e("connect", e.getMessage());
+                        view.presentDialog(errMessage);
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        view.goToBottomTabActivity();
+                    }
+                });
     }
 }
