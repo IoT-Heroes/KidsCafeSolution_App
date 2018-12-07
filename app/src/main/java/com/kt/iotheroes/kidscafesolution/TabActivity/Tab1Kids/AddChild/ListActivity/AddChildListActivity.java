@@ -6,6 +6,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
 
 import com.kt.iotheroes.kidscafesolution.Model.Kid;
 import com.kt.iotheroes.kidscafesolution.R;
@@ -20,6 +21,8 @@ public class AddChildListActivity extends AppCompatActivity {
     List<Kid> kids;
     AddChildListActivityFragment fragment;
 
+    private Button button_ok;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +30,14 @@ public class AddChildListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_child_list);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        button_ok = (Button)toolbar.findViewById(R.id.button_ok);
+        button_ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // TODO : 데이터 POST 구현
+            }
+        });
 
         kids = new ArrayList<>();
 
