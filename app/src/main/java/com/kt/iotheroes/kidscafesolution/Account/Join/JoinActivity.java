@@ -67,7 +67,7 @@ public class JoinActivity extends AppCompatActivity implements View.OnClickListe
         okDialog.setOkListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                JoinActivity.this.close();
+                JoinActivity.this.finish();
                 okDialog.dismiss();
             }
         });

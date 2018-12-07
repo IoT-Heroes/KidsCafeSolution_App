@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.kt.iotheroes.kidscafesolution.Account.Join.JoinActivity;
 import com.kt.iotheroes.kidscafesolution.Model.Food;
 import com.kt.iotheroes.kidscafesolution.Model.Kid;
 import com.kt.iotheroes.kidscafesolution.R;
@@ -95,7 +96,16 @@ public class AddChildListActivity extends AppCompatActivity {
 
                     @Override
                     public void onComplete() {
-                        finish();
+                        final OkDialog okDialog = new OkDialog(AddChildListActivity.this);
+                        okDialog.setMessage("쟈녀가 추가되었습니다!");
+                        okDialog.setOkListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                AddChildListActivity.this.finish();
+                                okDialog.dismiss();
+                            }
+                        });
+                        okDialog.show();
                     }
                 });
     }
