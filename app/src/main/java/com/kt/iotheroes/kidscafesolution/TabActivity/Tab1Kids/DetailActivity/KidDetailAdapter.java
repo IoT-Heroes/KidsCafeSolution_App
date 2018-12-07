@@ -81,7 +81,8 @@ public class KidDetailAdapter extends RecyclerView.Adapter<ViewHolderParent> {
 
         if (holder instanceof KidInfoViewHolder) {
             KidInfoViewHolder viewHolderParent = (KidInfoViewHolder)holder;
-            viewHolderParent.initViewHolder(kidInfo.kid);
+            viewHolderParent.initViewHolder(kidInfo.getKid());
+            viewHolderParent.setSexImage(activity.getResources().getDrawable(kidInfo.getKid().getSex().equals("W") ? R.drawable.woman : R.drawable.man));
         }
         else if (holder instanceof KidFoodViewHolder) {
             KidFoodViewHolder viewHolderParent = (KidFoodViewHolder)holder;
