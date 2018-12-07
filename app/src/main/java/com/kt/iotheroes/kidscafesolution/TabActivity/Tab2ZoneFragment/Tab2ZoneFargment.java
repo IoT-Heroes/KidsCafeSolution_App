@@ -57,8 +57,7 @@ public class Tab2ZoneFargment extends TabParentFragment {
 
         viewPager = (ViewPager)view.findViewById(R.id.view_pager);
 
-        // TODO : Adpater만들기.
-        ZoneTabPagerAdapter pagerAdapter = new ZoneTabPagerAdapter(getChildFragmentManager());
+        ZoneTabPagerAdapter pagerAdapter = new ZoneTabPagerAdapter(getFragmentManager());
         viewPager.setAdapter(pagerAdapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
