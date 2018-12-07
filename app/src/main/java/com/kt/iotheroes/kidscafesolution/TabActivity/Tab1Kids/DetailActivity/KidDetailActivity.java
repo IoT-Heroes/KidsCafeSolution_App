@@ -38,18 +38,16 @@ public class KidDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kid_detail);
 
-        initView();
-
         kidInfo = new KidInfo();
         kid = (Kid)getIntent().getSerializableExtra("kid");
-
         kidInfo.setKid(kid);
+
+        initView();
         if (kid.isBandWearing()) {
             connectUsingZoneData();
         }
         adapter.setKidInfo(kidInfo);
 
-        connectUsingZoneData();
         adapter.notifyDataSetChanged();
     }
 
@@ -101,7 +99,7 @@ public class KidDetailActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManger);
 
         if (adapter == null) {
-            adapter = new KidDetailAdapter(getApplicationContext(), this, indicator, true);
+            adapter = new KidDetailAdapter(getApplicationContext(), this, indicator, kid.isBandWearing());
         }
         recyclerView.setAdapter(adapter);
     }

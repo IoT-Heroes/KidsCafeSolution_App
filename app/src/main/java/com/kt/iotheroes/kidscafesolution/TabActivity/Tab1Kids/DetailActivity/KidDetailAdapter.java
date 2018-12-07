@@ -87,16 +87,16 @@ public class KidDetailAdapter extends RecyclerView.Adapter<ViewHolderParent> {
         else if (holder instanceof KidFoodViewHolder) {
             KidFoodViewHolder viewHolderParent = (KidFoodViewHolder)holder;
         }
-        else if (holder instanceof KidTimeViewHolder) {
+        else if (wearingBand && holder instanceof KidTimeViewHolder) {
             KidTimeViewHolder viewHolderParent = (KidTimeViewHolder)holder;
         }
-        else if (holder instanceof KidAcitivityViewHolder) {
+        else if (wearingBand && holder instanceof KidAcitivityViewHolder) {
             KidAcitivityViewHolder viewHolderParent = (KidAcitivityViewHolder)holder;
         }
-        else if (holder instanceof KidPulseViewHolder) {
+        else if (wearingBand && holder instanceof KidPulseViewHolder) {
             KidPulseViewHolder viewHolderParent = (KidPulseViewHolder)holder;
         }
-        else if (holder instanceof KidVisitZoneViewHolder) {
+        else if (wearingBand && holder instanceof KidVisitZoneViewHolder) {
             KidVisitZoneViewHolder viewHolderParent = (KidVisitZoneViewHolder)holder;
             viewHolderParent.initViewHolder(kidInfo.getZoneDatas());
         }

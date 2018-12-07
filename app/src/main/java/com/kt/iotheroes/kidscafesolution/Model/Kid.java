@@ -131,4 +131,8 @@ public class Kid implements Serializable {
     public void setVisitingRecord(VisitingRecord visitingRecord) {
         this.visitingRecord = visitingRecord;
     }
+
+    public void setBandWearing(Boolean bandWearing) {
+        isBandWearing = bandWearing;
+    }
 }
