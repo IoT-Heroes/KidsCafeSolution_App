@@ -13,6 +13,7 @@ import com.kt.iotheroes.kidscafesolution.TabActivity.ParentFragment.TabParentFra
 import com.kt.iotheroes.kidscafesolution.TabActivity.Tab2ZoneFragment.Test.Tab1Map.ZoneTab1MapFragment;
 import com.kt.iotheroes.kidscafesolution.TabActivity.Tab2ZoneFragment.Test.Tab2List.ZoneTab2ListFragment;
 
+// TODO : fragment parent버전 만들고 adapter로 화면 전환 관리하기
 public class Tab2ZoneFargment extends TabParentFragment {
     private static final String NAVIGATION_ID = "navigationId";
     private int navigationId;
