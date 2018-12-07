@@ -1,6 +1,7 @@
 package com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids.AddChild.AddActivity;
 
 import android.content.Context;
+import android.support.annotation.IdRes;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -8,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.RadioGroup;
 
 import com.kt.iotheroes.kidscafesolution.Model.Food;
 import com.kt.iotheroes.kidscafesolution.R;
@@ -26,17 +28,10 @@ public class AddChildAdapter extends RecyclerView.Adapter<ViewHolderParent> {
     private static final int TYPE_ITEM_INPUT = 0;
     private static final int TYPE_ITEM_CHECKLIST = 1;
 
-    // input Type
-    private static final int TYPE_INPUT_NAME = 0;
-    private static final int TYPE_INPUT_AGE = 1;
-    private static final int TYPE_INPUT_HEIGHT = 2;
-    private static final int TYPE_INPUT_WEIGHT = 3;
-
     private Context context;
     private AddChildActivity activity;
     private LinearLayout indicator;
     private List<String> foods = new ArrayList<>();
-//    private String[] inputs = new String[4];
     private Map<Integer, String> inputs = new HashMap<>();
 
     public Map<Integer, String> getInputs() {
@@ -45,12 +40,7 @@ public class AddChildAdapter extends RecyclerView.Adapter<ViewHolderParent> {
 
     public AddChildAdapter(AddChildActivity activity) {
         this.activity = activity;
-    }
-
-    public AddChildAdapter(Context mContext, AddChildActivity mActivity, LinearLayout mIndicator) {
-        context = mContext;
-        activity = mActivity;
-        indicator = mIndicator;
+        inputs.put(R.id.radio_group, "W");
     }
 
     public void setFoods(List<String> foods) {
@@ -78,6 +68,7 @@ public class AddChildAdapter extends RecyclerView.Adapter<ViewHolderParent> {
             viewHolderParent.edit_age.addTextChangedListener(editListener(R.id.edit_age));
             viewHolderParent.edit_height.addTextChangedListener(editListener(R.id.edit_height));
             viewHolderParent.edit_weight.addTextChangedListener(editListener(R.id.edit_weight));
+            viewHolderParent.radio_group.setOnCheckedChangeListener(radioListener);
         }
         else if (holder instanceof SelectInfoViewHolder) {
             SelectInfoViewHolder viewHolderParent = (SelectInfoViewHolder)holder;
@@ -87,7 +78,8 @@ public class AddChildAdapter extends RecyclerView.Adapter<ViewHolderParent> {
         }
     }
 
-    public TextWatcher editListener(final int type) {
+    // editText 데이터 받아올 리스너
+    private TextWatcher editListener(final int type) {
         return new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int start, int before, int count) {
@@ -105,6 +97,18 @@ public class AddChildAdapter extends RecyclerView.Adapter<ViewHolderParent> {
             }
         };
     }
+
+    // radioGroup 데이터 받아올 리스너
+    private RadioGroup.OnCheckedChangeListener radioListener = new RadioGroup.OnCheckedChangeListener() {
+        @Override
+        public void onCheckedChanged(RadioGroup radioGroup, @IdRes int i) {
+            if (i == R.id.radio_btn_girl)
+                inputs.put(R.id.radio_group, "W");
+            else
+                inputs.put(R.id.radio_group, "M");
+        }
+    };
+
 
     @Override
     public int getItemViewType(int position) {

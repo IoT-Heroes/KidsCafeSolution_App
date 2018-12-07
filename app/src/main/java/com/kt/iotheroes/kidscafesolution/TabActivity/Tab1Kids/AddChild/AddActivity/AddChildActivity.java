@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.kt.iotheroes.kidscafesolution.Model.Kid;
 import com.kt.iotheroes.kidscafesolution.R;
@@ -64,11 +65,13 @@ public class AddChildActivity extends AppCompatActivity {
                     int age = Integer.parseInt(inputs.get(R.id.edit_age));
                     int height = Integer.parseInt(inputs.get(R.id.edit_height));
                     int weight = Integer.parseInt(inputs.get(R.id.edit_weight));
-                    setKidInputInfo(name, age, "M", height, weight);
+                    String sex = inputs.get(R.id.radio_group);
+                    setKidInputInfo(name, age, sex, height, weight);
+                    Toast.makeText(getApplicationContext(), sex, Toast.LENGTH_SHORT).show();
                 } catch (Exception e) {
                     // 입력 정보 안 담겼을 경우
-                    final OkDialog okDialog = new OkDialog(getApplicationContext());
-                    okDialog.setMessage("모든 정보를 입력해주세요.");
+                    final OkDialog okDialog = new OkDialog(AddChildActivity.this);
+                    okDialog.setMessage("입력 정보가 잘못되었어요.");
                     okDialog.setOkListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
