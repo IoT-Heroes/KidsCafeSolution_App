@@ -7,4 +7,12 @@ package com.kt.iotheroes.kidscafesolution.Model;
 public class UsingZone {
     private int count;
     private String zoneName;
+
+    public int getCount() {
+        return count;
+    }
+
+    public String getZoneName() {
+        return zoneName;
+    }
 }

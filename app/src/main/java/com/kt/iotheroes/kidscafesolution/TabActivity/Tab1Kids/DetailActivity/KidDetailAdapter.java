@@ -106,6 +106,7 @@ public class KidDetailAdapter extends RecyclerView.Adapter<ViewHolderParent> {
         }
         else if (holder instanceof KidVisitZoneViewHolder) {
             KidVisitZoneViewHolder viewHolderParent = (KidVisitZoneViewHolder)holder;
+            viewHolderParent.initViewHolder(zoneDatas);
         }
     }
 
