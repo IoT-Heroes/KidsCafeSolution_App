@@ -25,19 +25,18 @@ public class BottomTabActivity extends AppCompatActivity {
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            TabParentFragment beforeFm = currentFragment;
 
             switch (item.getItemId()) {
                 case R.id.navigation_kids:
-                    loadFragment(fragments.get(0));
                     currentFragment = fragments.get(0);
                     break;
                 case R.id.navigation_zone:
-                    loadFragment(fragments.get(1));
                     currentFragment = fragments.get(1);
                     break;
             }
 
-            return loadFragment(currentFragment);
+            return loadFragment(beforeFm);
         }
 
     };
@@ -45,13 +44,13 @@ public class BottomTabActivity extends AppCompatActivity {
     /*
     transaction : 액티비티에 커밋한 변경 내용의 집합
      */
-    //switching fragment
-    private boolean loadFragment(TabParentFragment newFragment) {
+    private boolean loadFragment(TabParentFragment beforeFragment) {
         //switching fragment
-        if (newFragment != null) {
+        if (currentFragment != null) {
             getSupportFragmentManager()
                     .beginTransaction()
-                    .hide(currentFragment).show(newFragment).commit();
+                    .hide(beforeFragment).show(currentFragment).commit();
+            currentFragment.reload();
 
             return true;
         }
@@ -75,9 +74,10 @@ public class BottomTabActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onPostResume() {
-        super.onPostResume();
+    protected void onResume() {
+        super.onResume();
 
+        // TODO : 자녀 등록 후 리스트 반영되는지 확인
         currentFragment.reload();
     }
 }
