@@ -1,4 +1,4 @@
-package com.kt.iotheroes.kidscafesolution.TabActivity.Tab2ZoneFragment.Test.Tab2List.dummy;
+package com.kt.iotheroes.kidscafesolution.TabActivity.Tab2ZoneFragment.Tab2List.dummy;
 
 import java.util.ArrayList;
 import java.util.HashMap;
