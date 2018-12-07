@@ -49,7 +49,10 @@ public class KidsAdapter extends RecyclerView.Adapter<KidInfoViewHolder> {
     public void onBindViewHolder(KidInfoViewHolder holder, int position) {
         if (clickListener != null)
             holder.container.setOnClickListener(clickListener);
-        holder.initViewHolder(mDatas.get(position));
+
+        Kid kid = mDatas.get(position);
+        holder.initViewHolder(kid);
+        holder.setSexImage(fragment.getResources().getDrawable(kid.getSex().equals("W") ? R.drawable.woman : R.drawable.man));
     }
 
     @Override

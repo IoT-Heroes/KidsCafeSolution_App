@@ -1,5 +1,6 @@
 package com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids;
 
+import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -33,7 +34,10 @@ public class KidInfoViewHolder extends ViewHolderParent {
         text_weight.setText(kid.getWeight() + "kg");
         text_height.setText(kid.getHeight() + "cm");
 
-//        image_sex.setImageDrawable(kid.getSex().equals("W") ? R.drawable.woman : R.drawable.man);
         if (!kid.isWearingBand()) text_band.setVisibility(View.GONE);
+    }
+
+    public void setSexImage(Drawable image) {
+        image_sex.setImageDrawable(image);
     }
 }
