@@ -36,6 +36,9 @@ public class Kid implements Serializable {
     @SerializedName("age")
     int age;
 
+    @SerializedName("birth")
+    String birth;
+
     @SerializedName("height")
     int height;
 

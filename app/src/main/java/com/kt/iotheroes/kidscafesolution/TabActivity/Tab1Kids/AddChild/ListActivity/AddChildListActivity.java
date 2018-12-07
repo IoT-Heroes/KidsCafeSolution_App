@@ -6,6 +6,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Toast;
 
 import com.kt.iotheroes.kidscafesolution.Model.Kid;
 import com.kt.iotheroes.kidscafesolution.R;
@@ -46,8 +47,9 @@ public class AddChildListActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (resultCode == PICK_CONTACT_REQUEST) {
+        if (resultCode == RESULT_OK && requestCode == PICK_CONTACT_REQUEST) {
             kids.add((Kid) data.getSerializableExtra("data"));
+            Toast.makeText(getApplicationContext(), kids.get(0).getName(), Toast.LENGTH_SHORT).show();
             fragment.reload();
         }
     }
