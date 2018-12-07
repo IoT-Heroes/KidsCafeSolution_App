@@ -8,6 +8,7 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 
@@ -36,6 +37,15 @@ public class AddChildAdapter extends RecyclerView.Adapter<ViewHolderParent> {
 
     public Map<Integer, String> getInputs() {
         return inputs;
+    }
+
+    public List<Food> getSelectedFoods() {
+        List<Food> selectedFoods = new ArrayList<>();
+        for (Food food : foods) {
+            if (food.isChecked())
+                selectedFoods.add(food);
+        }
+        return selectedFoods;
     }
 
     public AddChildAdapter(AddChildActivity activity) {
@@ -73,7 +83,14 @@ public class AddChildAdapter extends RecyclerView.Adapter<ViewHolderParent> {
         else if (holder instanceof SelectInfoViewHolder) {
             SelectInfoViewHolder viewHolderParent = (SelectInfoViewHolder)holder;
 
-            viewHolderParent.setText_food(foods.get(position - 1).getName());
+            viewHolderParent.text_food.setText(foods.get(position - 1).getName());
+            viewHolderParent.checkBox.setOnClickListener(new CheckBox.OnClickListener() {
+
+                @Override
+                public void onClick(View view) {
+                    foods.get(position - 1).setChecked(((CheckBox)view).isChecked());
+                }
+            });
         }
     }
 
@@ -107,7 +124,6 @@ public class AddChildAdapter extends RecyclerView.Adapter<ViewHolderParent> {
                 inputs.put(R.id.radio_group, "M");
         }
     };
-
 
     @Override
     public int getItemViewType(int position) {

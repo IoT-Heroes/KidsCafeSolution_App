@@ -13,17 +13,13 @@ import com.kt.iotheroes.kidscafesolution.Util.ParentView.ViewHolderParent;
 
 public class SelectInfoViewHolder extends ViewHolderParent {
 
-    private TextView text_food;
-    private CheckBox checkBox;
+    public TextView text_food;
+    public CheckBox checkBox;
 
     public SelectInfoViewHolder(View itemView) {
         super(itemView);
 
         text_food = (TextView) itemView.findViewById(R.id.text_food);
         checkBox = (CheckBox) itemView.findViewById(R.id.check_box);
-    }
-
-    public void setText_food(String string) {
-        text_food.setText(string);
     }
 }
