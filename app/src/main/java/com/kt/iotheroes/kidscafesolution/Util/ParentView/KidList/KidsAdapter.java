@@ -19,16 +19,16 @@ import java.util.List;
 public class KidsAdapter extends RecyclerView.Adapter<KidInfoViewHolder> {
 
     private KidsListFargment fragment;
-    private View.OnClickListener clickListener;
+    private OnItemClickListener onItemClickListener;
     private List<Kid> mDatas = new ArrayList<>();
 
     public KidsAdapter(KidsListFargment fragment) {
         this.fragment = fragment;
     }
 
-    public KidsAdapter(KidsListFargment fragment, View.OnClickListener clickListener) {
+    public KidsAdapter(KidsListFargment fragment, OnItemClickListener onItemClickListener) {
         this.fragment = fragment;
-        this.clickListener = clickListener;
+        this.onItemClickListener = onItemClickListener;
     }
 
     public void addData(Kid kid) {
@@ -39,6 +39,10 @@ public class KidsAdapter extends RecyclerView.Adapter<KidInfoViewHolder> {
         this.mDatas = kids;
     }
 
+    public interface OnItemClickListener {
+        void onItemClick(View view, int position);
+    }
+
     @Override
     public KidInfoViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.kid_content_info, parent, false);
@@ -46,9 +50,14 @@ public class KidsAdapter extends RecyclerView.Adapter<KidInfoViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(KidInfoViewHolder holder, int position) {
-        if (clickListener != null)
-            holder.container.setOnClickListener(clickListener);
+    public void onBindViewHolder(KidInfoViewHolder holder, final int position) {
+        if (onItemClickListener != null)
+            holder.container.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onItemClickListener.onItemClick(view, position);
+                }
+            });
 
         Kid kid = mDatas.get(position);
         holder.initViewHolder(kid);

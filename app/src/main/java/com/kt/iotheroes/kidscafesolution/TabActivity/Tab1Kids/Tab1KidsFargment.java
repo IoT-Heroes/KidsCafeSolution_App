@@ -45,11 +45,11 @@ public class Tab1KidsFargment extends KidsListFargment {
 
     private void initView(View view) {
         if (adapter == null) {
-            adapter = new KidsAdapter(this, new View.OnClickListener() {
+            adapter = new KidsAdapter(this, new KidsAdapter.OnItemClickListener() {
                 @Override
-                public void onClick(View view) {
-                    // 아이 상세 페이지로 이동
+                public void onItemClick(View view, int position) {
                     Intent intent = new Intent(getActivity(), KidDetailActivity.class);
+                    intent.putExtra("kid", SharedManager.getInstance().getUser().getChild().get(position));
                     startActivity(intent);
                 }
             });
