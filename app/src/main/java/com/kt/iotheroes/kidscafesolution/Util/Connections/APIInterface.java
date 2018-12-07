@@ -2,12 +2,15 @@ package com.kt.iotheroes.kidscafesolution.Util.Connections;
 
 import com.kt.iotheroes.kidscafesolution.Model.Kid;
 import com.kt.iotheroes.kidscafesolution.Model.User;
+import com.kt.iotheroes.kidscafesolution.Model.UsingZone;
 
 import java.util.List;
 
 import io.reactivex.Observable;
 import retrofit2.http.Body;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 /**
  * Created by mijeong on 2018. 12. 5..
@@ -37,4 +40,8 @@ public interface APIInterface {
 
     @POST("/heroes/child/management/insert")
     Observable<Response<List<Kid>>> addChildList(@Body List<Kid> kids);
+
+//    kid detail
+    @GET("/heroes/statistics/childusingfrequency/select")
+    Observable<Response<List<UsingZone>>> getChildUsingZone(@Query("childId") String childId, @Query("startDate") String startDate);
 }

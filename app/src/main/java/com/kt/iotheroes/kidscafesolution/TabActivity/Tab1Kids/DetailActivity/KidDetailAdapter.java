@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.kt.iotheroes.kidscafesolution.Model.KidInfo;
+import com.kt.iotheroes.kidscafesolution.Model.UsingZone;
 import com.kt.iotheroes.kidscafesolution.R;
 import com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids.DetailActivity.Viewholders.KidAcitivityViewHolder;
 import com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids.DetailActivity.Viewholders.KidFoodViewHolder;
@@ -17,6 +18,8 @@ import com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids.DetailActivity.Vie
 import com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids.DetailActivity.Viewholders.KidVisitZoneViewHolder;
 import com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids.KidInfoViewHolder;
 import com.kt.iotheroes.kidscafesolution.Util.ParentView.ViewHolderParent;
+
+import java.util.List;
 
 /**
  * Created by mijeong on 2018. 12. 4..
@@ -37,9 +40,14 @@ public class KidDetailAdapter extends RecyclerView.Adapter<ViewHolderParent> {
     private boolean wearingBand;
 
     private KidInfo kidInfo;
+    private List<UsingZone> zoneDatas;
 
     public void setKidInfo(KidInfo kidInfo) {
         this.kidInfo = kidInfo;
+    }
+
+    public void setZoneDatas(List<UsingZone> zoneDatas) {
+        this.zoneDatas = zoneDatas;
     }
 
     public KidDetailAdapter(Context mContext, KidDetailActivity mActivity, LinearLayout mIndicator, boolean wearingBand) {
