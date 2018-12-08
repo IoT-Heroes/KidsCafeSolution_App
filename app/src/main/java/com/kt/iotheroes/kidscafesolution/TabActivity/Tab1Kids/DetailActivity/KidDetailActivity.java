@@ -23,6 +23,10 @@ import io.reactivex.annotations.NonNull;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
 
+/*
+이 부분 가라데이터라서 제대로 작동 안하는 것 처럼 보이는 것들 있음
+ */
+
 public class KidDetailActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
@@ -54,11 +58,13 @@ public class KidDetailActivity extends AppCompatActivity {
     }
 
     private void connectPulseData() {
-//        String kidId = kidInfo.getKid().getId();
-//        String entranceDate = kidInfo.getKid().getVisitingRecord().getStartDate();
-//        String entranceDate = kidInfo.getKid().getVisitingRecord().getStartDate();
+        String kidId = kidInfo.getKid().getId();
+        String startDate = kidInfo.getKid().getVisitingRecord().getStartDate();
+        String endDate = kidInfo.getKid().getVisitingRecord().getStartDate();
+        String batchType = "M"; // 나는 분이라서 M, 시면 H
 
-        APIClient.getClient().getChildPulse("SANG_JUNIOR", "2018-12-07", "2018-12-08", "M")
+        // 가라 데이터 : "SANG_JUNIOR", "2018-12-07", "2018-12-08", "M"
+        APIClient.getClient().getChildPulse(kidId, startDate, endDate, batchType)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new DisposableObserver<Response<List<Pulse>>>() {
@@ -85,12 +91,6 @@ public class KidDetailActivity extends AppCompatActivity {
                     }
                 });
     }
-
-/*
- zone data 입장 시간 넣어주어야 함.
- 입장시간 -> child_visiting_record 으로 부터 가져와야 함.
- 앱에서는 방문 기록은 필요 없으니, 상세 페이지 호출 시 최초 한번만 가져온다. (저장된 값 없을 경우에만)
- */
 
     private void connectUsingZoneData() {
         String kidId = kidInfo.getKid().getId();
