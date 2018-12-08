@@ -8,11 +8,24 @@ import java.util.List;
  */
 
 public class KidInfo implements Serializable{
+    // cal 계산에 필요한 값
+    final static float kidMetVal = 3.0f;
+    final static float standartMetVal = 4.0f;
+    final static float airVal = 3.5f;
+    final static float moveVal = 5f;
+
     private Kid kid;
     private List<UsingZone> zoneDatas;
     private List<KidStatic> pulseDatas;
     private List<KidStatic> activityDatas;
-    private int totalWalk;
+
+    class ActivityTotal {
+        float kidTotalData;
+        float standartData;
+    }
+
+    private ActivityTotal walk;
+    private ActivityTotal cal;
 
     public Kid getKid() {
         return kid;
@@ -43,12 +56,36 @@ public class KidInfo implements Serializable{
     }
 
     public void setActivityDatas(List<KidStatic> activityDatas) {
+        ActivityTotal walk = new ActivityTotal();
+
+        // 표준 걸음 수 계산 = max 값은 개별 활동량 데이터 수 x 최대 값 (maximum)
+        walk.standartData = activityDatas.size() * activityDatas.get(0).getMaximum();
+        // 아이 누적 걸음 수 계산
         for (KidStatic activity : activityDatas)
-            totalWalk += activity.getAverage();
+            walk.kidTotalData += activity.getAverage();
+        this.walk = walk;
+
+        /*
+        칼로리 계산
+        공식 및 기준 정리 : https://github.com/IoT-Heroes/KidsCafeSolution_App/issues/2
+         */
+
+        ActivityTotal cal = new ActivityTotal();
+        // TODO : 1에 분 계산해서 넣을 것
+        // 표준 칼로리 소모량 계산
+        cal.standartData = moveVal * (standartMetVal * (airVal * kid.getWeight() * 1));
+        // 아이 칼로리 소모량 계산
+        cal.kidTotalData = moveVal * (kidMetVal * (airVal * kid.getWeight() * 1));
+        this.cal = cal;
+
         this.activityDatas = activityDatas;
     }
 
-    public int getTotalWalk() {
-        return totalWalk;
+    public ActivityTotal getWalk() {
+        return walk;
+    }
+
+    public ActivityTotal getCal() {
+        return cal;
     }
 }

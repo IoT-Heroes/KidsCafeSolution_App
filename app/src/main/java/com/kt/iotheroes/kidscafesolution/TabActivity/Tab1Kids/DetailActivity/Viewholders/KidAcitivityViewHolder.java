@@ -8,11 +8,9 @@ import android.widget.TextView;
 import com.hookedonplay.decoviewlib.DecoView;
 import com.hookedonplay.decoviewlib.charts.SeriesItem;
 import com.hookedonplay.decoviewlib.events.DecoEvent;
-import com.kt.iotheroes.kidscafesolution.Model.KidStatic;
+import com.kt.iotheroes.kidscafesolution.Model.KidInfo;
 import com.kt.iotheroes.kidscafesolution.R;
 import com.kt.iotheroes.kidscafesolution.Util.ParentView.ViewHolderParent;
-
-import java.util.List;
 
 /**
  * Created by mijeong on 2018. 12. 5..
@@ -49,7 +47,7 @@ public class KidAcitivityViewHolder extends ViewHolderParent {
         });
     }
 
-    public void drawGraph(DecoView graph, TextView textView, int color, int value, int seriesMax) {
+    public void drawGraph(DecoView graph, TextView textView, int color, float value, int seriesMax) {
         SeriesItem seriesItem = new SeriesItem.Builder(color)
                 .setRange(0, seriesMax, 0)
                 .setInitialVisibility(false)
@@ -64,15 +62,15 @@ public class KidAcitivityViewHolder extends ViewHolderParent {
         graph.addEvent(new DecoEvent.Builder(value).setIndex(mSeriesIdx).setDelay(500).build());
     }
 
-    public void initViewHolder(int totalWalk, List<KidStatic> activityDatas) {
+    public void initViewHolder(KidInfo kidInfo) {
         // max 값은 개별 활동량 데이터 수 x 최대 값 (maximum)
-        int seriesMax = activityDatas.size() * activityDatas.get(0).getMaximum();
+        int seriesMax = kidInfo.getActivityDatas().size() * kidInfo.getActivityDatas().get(0).getMaximum();
         int colorRedPink = Color.parseColor("#ff7473");
         int colorSkyBlue = Color.parseColor("#47b8e0");
 
         // 누적 걸음수를 표시한다.
-        drawGraph(graph_walk, text_percent_walk, colorRedPink, totalWalk, seriesMax);
-        // TODO : 누적 칼로리 소비량 - 계산식 정해서 정의하기
-        drawGraph(graph_cal, text_percent_cal, colorSkyBlue, 30, seriesMax);
+        drawGraph(graph_walk, text_percent_walk, colorRedPink, kidInfo.getTotalWalk(), seriesMax);
+        // 누적 칼로리 소모량을 표시한다.
+        drawGraph(graph_cal, text_percent_cal, colorSkyBlue, kidInfo.getTotalCal(), seriesMax);
     }
 }
