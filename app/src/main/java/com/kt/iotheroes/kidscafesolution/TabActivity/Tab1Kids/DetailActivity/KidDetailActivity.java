@@ -60,7 +60,7 @@ public class KidDetailActivity extends AppCompatActivity {
     private void connectPulseData() {
         String kidId = kidInfo.getKid().getId();
         String startDate = kidInfo.getKid().getVisitingRecord().getStartDate();
-        String endDate = kidInfo.getKid().getVisitingRecord().getStartDate();
+        String endDate = kidInfo.getKid().getVisitingRecord().getEndDate();
         String batchType = "M"; // 나는 분이라서 M, 시면 H
 
         // 가라 데이터 : "SANG_JUNIOR", "2018-12-07", "2018-12-08", "M"
