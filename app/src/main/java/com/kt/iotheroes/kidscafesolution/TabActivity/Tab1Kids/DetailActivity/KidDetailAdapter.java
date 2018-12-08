@@ -76,6 +76,14 @@ public class KidDetailAdapter extends RecyclerView.Adapter<ViewHolderParent> {
         return null;
     }
 
+    /*
+     - 바인딩 문제 발생 : 데이터 받아오기 전 onBindViewHolder가 호출되어 데이터 바인딩이 제대로 되지 않는 문제 발생
+     - 임시 해결 : 데이터 호출을 각각 하고 받아올 때 마다 notifyDataSetChanged 호출
+     데이터 확인 후, null이 아닐 경우에만 initViewholder 호출
+     - TODO : g
+     데이터가 작아 보이는데 문제 없지만, 현재는 너무 비효율적이다.
+      */
+
     @Override
     public void onBindViewHolder(ViewHolderParent holder, final int position) {
 
@@ -92,15 +100,18 @@ public class KidDetailAdapter extends RecyclerView.Adapter<ViewHolderParent> {
         }
         else if (wearingBand && holder instanceof KidAcitivityViewHolder) {
             KidAcitivityViewHolder viewHolderParent = (KidAcitivityViewHolder)holder;
-            viewHolderParent.initViewHolder(kidInfo.getTotalWalk(), kidInfo.getActivityDatas());
+            if (kidInfo.getActivityDatas() != null)
+                viewHolderParent.initViewHolder(kidInfo.getTotalWalk(), kidInfo.getActivityDatas());
         }
         else if (wearingBand && holder instanceof KidPulseViewHolder) {
             KidPulseViewHolder viewHolderParent = (KidPulseViewHolder)holder;
-            viewHolderParent.initViewHolder(kidInfo.getPulseDatas());
+            if (kidInfo.getPulseDatas() != null)
+                viewHolderParent.initViewHolder(kidInfo.getPulseDatas());
         }
         else if (wearingBand && holder instanceof KidVisitZoneViewHolder) {
             KidVisitZoneViewHolder viewHolderParent = (KidVisitZoneViewHolder)holder;
-            viewHolderParent.initViewHolder(kidInfo.getZoneDatas());
+            if (kidInfo.getZoneDatas() != null)
+                viewHolderParent.initViewHolder(kidInfo.getZoneDatas());
         }
     }
 

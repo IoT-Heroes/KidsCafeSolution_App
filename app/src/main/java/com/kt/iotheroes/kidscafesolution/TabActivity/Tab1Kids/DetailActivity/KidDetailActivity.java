@@ -49,8 +49,8 @@ public class KidDetailActivity extends AppCompatActivity {
 
         initView();
         if (kid.isBandWearing()) {
-//            connectUsingZoneData();
-//            connectPulseData();
+            connectUsingZoneData();
+            connectPulseData();
             connectActivityData();
         }
         adapter.setKidInfo(kidInfo);
@@ -88,6 +88,7 @@ public class KidDetailActivity extends AppCompatActivity {
 
                     @Override
                     public void onComplete() {
+                        adapter.notifyDataSetChanged();
                     }
                 });
     }
@@ -122,6 +123,7 @@ public class KidDetailActivity extends AppCompatActivity {
 
                     @Override
                     public void onComplete() {
+                        adapter.notifyDataSetChanged();
                     }
                 });
     }
@@ -153,6 +155,7 @@ public class KidDetailActivity extends AppCompatActivity {
 
                     @Override
                     public void onComplete() {
+                        adapter.notifyDataSetChanged();
                     }
                 });
     }
