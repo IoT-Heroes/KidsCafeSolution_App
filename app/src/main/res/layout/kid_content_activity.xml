@@ -87,12 +87,12 @@
         android:layout_below="@id/text_title"
         android:padding="@dimen/space_small">
         <com.hookedonplay.decoviewlib.DecoView
-            android:id="@+id/graph_cal"
+            android:id="@+id/graph"
             android:layout_width="@dimen/kid_info_activity_graph_size"
             android:layout_height="@dimen/kid_info_activity_graph_size"
             android:layout_centerHorizontal="true"/>
         <TextView
-            android:id="@+id/text_percent_cal"
+            android:id="@+id/text_percent"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/kid_info_activity_graph_size"
             android:text="00%"

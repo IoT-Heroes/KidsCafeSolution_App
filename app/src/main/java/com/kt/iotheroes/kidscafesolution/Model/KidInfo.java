@@ -19,21 +19,9 @@ public class KidInfo implements Serializable{
     private List<KidStatic> pulseDatas;
     private List<KidStatic> activityDatas;
 
-    public class ActivityTotal {
-        private float kidTotalData;
-        private float standartData;
-
-        public float getKidTotalData() {
-            return kidTotalData;
-        }
-
-        public float getStandartData() {
-            return standartData;
-        }
-    }
-
-    private ActivityTotal walk;
-    private ActivityTotal cal;
+    private int kidTotalWalk;
+    private int kidGoalWalk;
+    private int calorie;
 
     public Kid getKid() {
         return kid;
@@ -64,36 +52,32 @@ public class KidInfo implements Serializable{
     }
 
     public void setActivityDatas(List<KidStatic> activityDatas) {
-        ActivityTotal walk = new ActivityTotal();
-
         // 표준 걸음 수 계산 = max 값은 개별 활동량 데이터 수 x 최대 값 (maximum)
-        walk.standartData = activityDatas.size() * activityDatas.get(0).getMaximum();
+        kidGoalWalk = activityDatas.size() * activityDatas.get(0).getMaximum();
         // 아이 누적 걸음 수 계산
         for (KidStatic activity : activityDatas)
-            walk.kidTotalData += activity.getAverage();
-        this.walk = walk;
+            kidTotalWalk += activity.getAverage();
 
         /*
         칼로리 계산
         공식 및 기준 정리 : https://github.com/IoT-Heroes/KidsCafeSolution_App/issues/2
          */
-
-        ActivityTotal cal = new ActivityTotal();
-        // TODO : Issue에 맞게 문제 해결!!!
-        // 표준 칼로리 소모량 계산
-        cal.standartData = moveVal * (standartMetVal * (airVal * kid.getWeight() * 1));
-        // 아이 칼로리 소모량 계산
-        cal.kidTotalData = moveVal * (kidMetVal * (airVal * kid.getWeight() * 1));
-        this.cal = cal;
+        // 아이 칼로리 소모량 계산 (그냥 int값으로..)
+        // TODO : 1을 몇 분 놀았는지로 변경
+        calorie = (int) (moveVal * (kidMetVal * (airVal * kid.getWeight() * 1)));
 
         this.activityDatas = activityDatas;
     }
 
-    public ActivityTotal getWalk() {
-        return walk;
+    public int getKidTotalWalk() {
+        return kidTotalWalk;
     }
 
-    public ActivityTotal getCal() {
-        return cal;
+    public int getKidGoalWalk() {
+        return kidGoalWalk;
+    }
+
+    public float getCalorie() {
+        return calorie;
     }
 }

@@ -20,16 +20,17 @@ public class KidAcitivityViewHolder extends ViewHolderParent {
 
     private static final String format = "%.0f%%";
 
-    private TextView text_percent_walk, text_percent_cal;
-    private DecoView graph_walk, graph_cal;
+    private TextView text_kid_walk, text_walk_goal, text_kid_cal, text_percent;
+    private DecoView graph;
 
     public KidAcitivityViewHolder(View itemView) {
         super(itemView);
 
-        text_percent_walk = (TextView) itemView.findViewById(R.id.text_percent_walk);
-        text_percent_cal = (TextView) itemView.findViewById(R.id.text_percent_cal);
-        graph_cal = (DecoView) itemView.findViewById(R.id.graph_cal);
-        graph_walk = (DecoView) itemView.findViewById(R.id.graph_walk);
+        text_kid_walk = (TextView) itemView.findViewById(R.id.text_kid_walk);
+        text_walk_goal = (TextView) itemView.findViewById(R.id.text_walk_goal);
+        text_kid_cal = (TextView) itemView.findViewById(R.id.text_kid_cal);
+        text_percent = (TextView) itemView.findViewById(R.id.text_percent);
+        graph = (DecoView) itemView.findViewById(R.id.graph);
     }
 
     public void addProgressListener(@NonNull final SeriesItem seriesItem, @NonNull final TextView textView) {
@@ -47,8 +48,8 @@ public class KidAcitivityViewHolder extends ViewHolderParent {
         });
     }
 
-    public void drawGraph(DecoView graph, TextView textView, int color, float value, float seriesMax) {
-        SeriesItem seriesItem = new SeriesItem.Builder(color)
+    public void drawGraph(float value, float seriesMax) {
+        SeriesItem seriesItem = new SeriesItem.Builder(Color.parseColor("#ff7473"))
                 .setRange(0, seriesMax, 0)
                 .setInitialVisibility(false)
                 .setLineWidth(40f)
@@ -57,19 +58,17 @@ public class KidAcitivityViewHolder extends ViewHolderParent {
                 .build();
 
         int mSeriesIdx = graph.addSeries(seriesItem);
-        addProgressListener(seriesItem, textView);
+        addProgressListener(seriesItem, text_percent);
 
         graph.addEvent(new DecoEvent.Builder(value).setIndex(mSeriesIdx).setDelay(500).build());
     }
 
-    public void initViewHolder(KidInfo.ActivityTotal walk, KidInfo.ActivityTotal cal) {
-        // max 값은 개별 활동량 데이터 수 x 최대 값 (maximum)
-        int colorRedPink = Color.parseColor("#ff7473");
-        int colorSkyBlue = Color.parseColor("#47b8e0");
-
+    public void initViewHolder(KidInfo kidInfo) {
         // 누적 걸음수를 표시한다.
-        drawGraph(graph_walk, text_percent_walk, colorRedPink, walk.getKidTotalData(), walk.getStandartData());
+        drawGraph(kidInfo.getKidTotalWalk(), kidInfo.getKidGoalWalk());
         // 누적 칼로리 소모량을 표시한다.
-        drawGraph(graph_cal, text_percent_cal, colorSkyBlue, cal.getKidTotalData(), cal.getStandartData());
+        text_kid_walk.setText("자녀 걸음 수 : " + kidInfo.getKidTotalWalk());
+        text_walk_goal.setText("목표 걸음 수 : " + kidInfo.getKidGoalWalk());
+        text_kid_cal.setText("소모 칼로리 : " + kidInfo.getCalorie() + "kcal");
     }
 }
