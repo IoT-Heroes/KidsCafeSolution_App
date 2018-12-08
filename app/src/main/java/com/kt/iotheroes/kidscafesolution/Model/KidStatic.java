@@ -4,7 +4,7 @@ package com.kt.iotheroes.kidscafesolution.Model;
  * Created by mijeong on 2018. 12. 8..
  */
 
-public class Pulse {
+public class KidStatic {
     private int average;
     private int maximum;
     private int minimum;

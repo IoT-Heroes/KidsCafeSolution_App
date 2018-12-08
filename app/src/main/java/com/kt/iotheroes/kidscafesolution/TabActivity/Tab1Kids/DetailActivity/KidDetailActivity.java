@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 import com.kt.iotheroes.kidscafesolution.Model.Kid;
 import com.kt.iotheroes.kidscafesolution.Model.KidInfo;
-import com.kt.iotheroes.kidscafesolution.Model.Pulse;
+import com.kt.iotheroes.kidscafesolution.Model.KidStatic;
 import com.kt.iotheroes.kidscafesolution.Model.UsingZone;
 import com.kt.iotheroes.kidscafesolution.R;
 import com.kt.iotheroes.kidscafesolution.Util.Connections.APIClient;
@@ -51,10 +51,46 @@ public class KidDetailActivity extends AppCompatActivity {
         if (kid.isBandWearing()) {
             connectUsingZoneData();
             connectPulseData();
+            connectActivityData();
         }
         adapter.setKidInfo(kidInfo);
 
         adapter.notifyDataSetChanged();
+    }
+
+    private void connectActivityData() {
+        String kidId = kidInfo.getKid().getId();
+        String startDate = kidInfo.getKid().getVisitingRecord().getStartDate();
+        String endDate = kidInfo.getKid().getVisitingRecord().getEndDate();
+        String batchType = "H"; // 나는 시간이라서 H, 날이면 D
+
+        // 가라 데이터 : "SANG_JUNIOR", "2018-12-07", "2018-12-08", "M"
+        APIClient.getClient().getChildActivity(kidId, startDate, endDate, batchType)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<Response<List<KidStatic>>>() {
+                    @Override
+                    public void onNext(@NonNull Response<List<KidStatic>> userResponse) {
+                        if (userResponse.getResult().equals("success")) {
+                            kidInfo.setPulseDatas(userResponse.getData());
+                        }
+                        else
+                            Log.i("connect", "get child activity 에 문제가 발생하였습니다.");
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        e.printStackTrace();
+                        Log.e("connect", e.getMessage());
+
+                        Toast.makeText(getApplicationContext(), "get child activity에 문제가 발생하였습니다.", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        Toast.makeText(getApplicationContext(), "get child activity 성공.", Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 
     private void connectPulseData() {
@@ -67,9 +103,9 @@ public class KidDetailActivity extends AppCompatActivity {
         APIClient.getClient().getChildPulse(kidId, startDate, endDate, batchType)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(new DisposableObserver<Response<List<Pulse>>>() {
+                .subscribeWith(new DisposableObserver<Response<List<KidStatic>>>() {
                     @Override
-                    public void onNext(@NonNull Response<List<Pulse>> userResponse) {
+                    public void onNext(@NonNull Response<List<KidStatic>> userResponse) {
                         if (userResponse.getResult().equals("success")) {
                             kidInfo.setPulseDatas(userResponse.getData());
                         }
@@ -87,7 +123,6 @@ public class KidDetailActivity extends AppCompatActivity {
 
                     @Override
                     public void onComplete() {
-                        Toast.makeText(getApplicationContext(), "get child pulse 성공.", Toast.LENGTH_SHORT).show();
                     }
                 });
     }
@@ -119,10 +154,11 @@ public class KidDetailActivity extends AppCompatActivity {
 
                     @Override
                     public void onComplete() {
-                        Toast.makeText(getApplicationContext(), "get child using zone 성공.", Toast.LENGTH_SHORT).show();
                     }
                 });
     }
+
+
 
     private void initView() {
         indicator = (LinearLayout)findViewById(R.id.indicator);

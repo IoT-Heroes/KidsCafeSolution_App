@@ -2,7 +2,7 @@ package com.kt.iotheroes.kidscafesolution.Util.Connections;
 
 import com.kt.iotheroes.kidscafesolution.Model.Food;
 import com.kt.iotheroes.kidscafesolution.Model.Kid;
-import com.kt.iotheroes.kidscafesolution.Model.Pulse;
+import com.kt.iotheroes.kidscafesolution.Model.KidStatic;
 import com.kt.iotheroes.kidscafesolution.Model.User;
 import com.kt.iotheroes.kidscafesolution.Model.UsingZone;
 import com.kt.iotheroes.kidscafesolution.Model.VisitingRecord;
@@ -55,5 +55,8 @@ public interface APIInterface {
     Observable<Response<List<VisitingRecord>>> getChildVisitingRecords(@Query("childId") String childId);
 
     @GET("/heroes/statistics/childpulse/select")
-    Observable<Response<List<Pulse>>> getChildPulse(@Query("childId") String childId, @Query("startDate") String startDate, @Query("endDate") String endDate, @Query("batchType") String batchType);
+    Observable<Response<List<KidStatic>>> getChildPulse(@Query("childId") String childId, @Query("startDate") String startDate, @Query("endDate") String endDate, @Query("batchType") String batchType);
+
+    @GET("/heroes/statistics/childactivity/select")
+    Observable<Response<List<KidStatic>>> getChildActivity(@Query("childId") String childId, @Query("startDate") String startDate, @Query("endDate") String endDate, @Query("batchType") String batchType);
 }
