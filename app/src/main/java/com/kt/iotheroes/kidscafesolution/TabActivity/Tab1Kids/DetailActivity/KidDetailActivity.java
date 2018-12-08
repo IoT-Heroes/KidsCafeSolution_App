@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.kt.iotheroes.kidscafesolution.Model.Kid;
 import com.kt.iotheroes.kidscafesolution.Model.KidInfo;
+import com.kt.iotheroes.kidscafesolution.Model.Pulse;
 import com.kt.iotheroes.kidscafesolution.Model.UsingZone;
 import com.kt.iotheroes.kidscafesolution.R;
 import com.kt.iotheroes.kidscafesolution.Util.Connections.APIClient;
@@ -45,19 +46,51 @@ public class KidDetailActivity extends AppCompatActivity {
         initView();
         if (kid.isBandWearing()) {
             connectUsingZoneData();
+            connectPulseData();
         }
         adapter.setKidInfo(kidInfo);
 
         adapter.notifyDataSetChanged();
     }
 
+    private void connectPulseData() {
+//        String kidId = kidInfo.getKid().getId();
+//        String entranceDate = kidInfo.getKid().getVisitingRecord().getStartDate();
+//        String entranceDate = kidInfo.getKid().getVisitingRecord().getStartDate();
+
+        APIClient.getClient().getChildPulse("SANG_JUNIOR", "2018-12-07", "2018-12-08", "M")
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<Response<List<Pulse>>>() {
+                    @Override
+                    public void onNext(@NonNull Response<List<Pulse>> userResponse) {
+                        if (userResponse.getResult().equals("success")) {
+                            kidInfo.setPulseDatas(userResponse.getData());
+                        }
+                        else
+                            Log.i("connect", "get child pulse 에 문제가 발생하였습니다.");
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        e.printStackTrace();
+                        Log.e("connect", e.getMessage());
+
+                        Toast.makeText(getApplicationContext(), "get child pulse에 문제가 발생하였습니다.", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        Toast.makeText(getApplicationContext(), "get child pulse 성공.", Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
 
 /*
  zone data 입장 시간 넣어주어야 함.
  입장시간 -> child_visiting_record 으로 부터 가져와야 함.
  앱에서는 방문 기록은 필요 없으니, 상세 페이지 호출 시 최초 한번만 가져온다. (저장된 값 없을 경우에만)
  */
-
 
     private void connectUsingZoneData() {
         String kidId = kidInfo.getKid().getId();

@@ -10,6 +10,7 @@ import java.util.List;
 public class KidInfo implements Serializable{
     private Kid kid;
     private List<UsingZone> zoneDatas;
+    private List<Pulse> pulseDatas;
 
     public Kid getKid() {
         return kid;
@@ -25,5 +26,13 @@ public class KidInfo implements Serializable{
 
     public void setZoneDatas(List<UsingZone> zoneDatas) {
         this.zoneDatas = zoneDatas;
+    }
+
+    public List<Pulse> getPulseDatas() {
+        return pulseDatas;
+    }
+
+    public void setPulseDatas(List<Pulse> pulseDatas) {
+        this.pulseDatas = pulseDatas;
     }
 }

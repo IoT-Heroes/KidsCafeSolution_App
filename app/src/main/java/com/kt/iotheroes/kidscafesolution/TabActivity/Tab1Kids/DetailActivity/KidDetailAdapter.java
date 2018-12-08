@@ -95,6 +95,7 @@ public class KidDetailAdapter extends RecyclerView.Adapter<ViewHolderParent> {
         }
         else if (wearingBand && holder instanceof KidPulseViewHolder) {
             KidPulseViewHolder viewHolderParent = (KidPulseViewHolder)holder;
+            viewHolderParent.initViewHolder(kidInfo.getPulseDatas());
         }
         else if (wearingBand && holder instanceof KidVisitZoneViewHolder) {
             KidVisitZoneViewHolder viewHolderParent = (KidVisitZoneViewHolder)holder;
