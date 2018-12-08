@@ -12,6 +12,7 @@ public class KidInfo implements Serializable{
     private List<UsingZone> zoneDatas;
     private List<KidStatic> pulseDatas;
     private List<KidStatic> activityDatas;
+    private int totalWalk;
 
     public Kid getKid() {
         return kid;
@@ -43,5 +44,11 @@ public class KidInfo implements Serializable{
 
     public void setActivityDatas(List<KidStatic> activityDatas) {
         this.activityDatas = activityDatas;
+        for (KidStatic activity : activityDatas)
+            totalWalk += activity.getAverage();
+    }
+
+    public int getTotalWalk() {
+        return totalWalk;
     }
 }

@@ -49,8 +49,8 @@ public class KidDetailActivity extends AppCompatActivity {
 
         initView();
         if (kid.isBandWearing()) {
-            connectUsingZoneData();
-            connectPulseData();
+//            connectUsingZoneData();
+//            connectPulseData();
             connectActivityData();
         }
         adapter.setKidInfo(kidInfo);
@@ -58,7 +58,7 @@ public class KidDetailActivity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
     }
 
-    private void connectActivityData() {
+    private synchronized void connectActivityData() {
         String kidId = kidInfo.getKid().getId();
         String startDate = kidInfo.getKid().getVisitingRecord().getStartDate();
         String endDate = kidInfo.getKid().getVisitingRecord().getEndDate();
@@ -72,7 +72,7 @@ public class KidDetailActivity extends AppCompatActivity {
                     @Override
                     public void onNext(@NonNull Response<List<KidStatic>> userResponse) {
                         if (userResponse.getResult().equals("success")) {
-                            kidInfo.setPulseDatas(userResponse.getData());
+                            kidInfo.setActivityDatas(userResponse.getData());
                         }
                         else
                             Log.i("connect", "get child activity 에 문제가 발생하였습니다.");
@@ -88,7 +88,6 @@ public class KidDetailActivity extends AppCompatActivity {
 
                     @Override
                     public void onComplete() {
-                        Toast.makeText(getApplicationContext(), "get child activity 성공.", Toast.LENGTH_SHORT).show();
                     }
                 });
     }
