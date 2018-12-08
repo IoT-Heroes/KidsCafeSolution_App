@@ -5,6 +5,7 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="activity_join_space">35dp</dimen>
 
+    <dimen name="space_little">5dp</dimen>
     <dimen name="space_small">10dp</dimen>
     <dimen name="space_medium">20dp</dimen>
     <dimen name="space_large">30dp</dimen>

@@ -67,8 +67,8 @@ public class KidAcitivityViewHolder extends ViewHolderParent {
         // 누적 걸음수를 표시한다.
         drawGraph(kidInfo.getKidTotalWalk(), kidInfo.getKidGoalWalk());
         // 누적 칼로리 소모량을 표시한다.
-        text_kid_walk.setText("자녀 걸음 수 : " + kidInfo.getKidTotalWalk());
-        text_walk_goal.setText("목표 걸음 수 : " + kidInfo.getKidGoalWalk());
-        text_kid_cal.setText("소모 칼로리 : " + kidInfo.getCalorie() + "kcal");
+        text_kid_walk.setText(kidInfo.getKidTotalWalk() + "걸음");
+        text_walk_goal.setText(kidInfo.getKidGoalWalk() + "걸음");
+        text_kid_cal.setText(kidInfo.getCalorie() + "kcal");
     }
 }
