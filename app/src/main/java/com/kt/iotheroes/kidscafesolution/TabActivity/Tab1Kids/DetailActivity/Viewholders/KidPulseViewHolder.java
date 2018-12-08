@@ -20,6 +20,7 @@ import java.util.List;
 
 public class KidPulseViewHolder extends ViewHolderParent {
 
+    private final static int GraphCount = 12;
     ValueLineChart pulseChart;
 
     public KidPulseViewHolder(View itemView) {
@@ -34,17 +35,17 @@ public class KidPulseViewHolder extends ViewHolderParent {
 
         // 최근 10개만 보여주기
         int getDataSize = pulseDatas.size();
-        int setSize = 10 > getDataSize ? getDataSize : 10;
+        int setSize = GraphCount > getDataSize ? getDataSize : GraphCount;
 
-        // 처음과 끝이 그래프 상에서 잘 안보여서 0으로 해주었음
-        series.addPoint(new ValueLinePoint("", 0));
+        // 처음과 끝이 그래프 상에서 잘 안보여서 0으로 해주었음 -> 그것도 이상해서 원래대로
+//        series.addPoint(new ValueLinePoint("", 0));
         for (int i = getDataSize - setSize; i < getDataSize; i++) {
             Pulse pulse = pulseDatas.get(i);
             Date date = TimeFormmater.getDateFromString(pulse.getDate());
             String time = TimeFormmater.getTime(date);
             series.addPoint(new ValueLinePoint(time, pulse.getAverage()));
         }
-        series.addPoint(new ValueLinePoint("", 0));
+//        series.addPoint(new ValueLinePoint("", 0));
 
         pulseChart.addSeries(series);
         pulseChart.startAnimation();
