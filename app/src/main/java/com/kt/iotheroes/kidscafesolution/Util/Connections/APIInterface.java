@@ -2,7 +2,10 @@ package com.kt.iotheroes.kidscafesolution.Util.Connections;
 
 import com.kt.iotheroes.kidscafesolution.Model.Food;
 import com.kt.iotheroes.kidscafesolution.Model.Kid;
+import com.kt.iotheroes.kidscafesolution.Model.Pulse;
 import com.kt.iotheroes.kidscafesolution.Model.User;
+import com.kt.iotheroes.kidscafesolution.Model.UsingZone;
+import com.kt.iotheroes.kidscafesolution.Model.VisitingRecord;
 
 import java.util.List;
 
@@ -10,6 +13,7 @@ import io.reactivex.Observable;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 /**
  * Created by mijeong on 2018. 12. 5..
@@ -42,4 +46,14 @@ public interface APIInterface {
 
     @GET("/heroes/data/food/select")
     Observable<Response<List<Food>>> getFoodList();
+
+//    kid detail
+    @GET("/heroes/statistics/childusingfrequency/select")
+    Observable<Response<List<UsingZone>>> getChildUsingZone(@Query("childId") String childId, @Query("startDate") String startDate);
+
+    @GET("/heroes/visitingrecord/management/select")
+    Observable<Response<List<VisitingRecord>>> getChildVisitingRecords(@Query("childId") String childId);
+
+    @GET("/heroes/statistics/childpulse/select")
+    Observable<Response<List<Pulse>>> getChildPulse(@Query("childId") String childId, @Query("startDate") String startDate, @Query("endDate") String endDate, @Query("batchType") String batchType);
 }

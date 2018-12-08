@@ -1,11 +1,16 @@
 package com.kt.iotheroes.kidscafesolution.Model;
 
+import java.io.Serializable;
+import java.util.List;
+
 /**
  * Created by mijeong on 2018. 12. 6..
  */
 
-public class KidInfo {
+public class KidInfo implements Serializable{
     private Kid kid;
+    private List<UsingZone> zoneDatas;
+    private List<Pulse> pulseDatas;
 
     public Kid getKid() {
         return kid;
@@ -13,5 +18,21 @@ public class KidInfo {
 
     public void setKid(Kid kid) {
         this.kid = kid;
+    }
+
+    public List<UsingZone> getZoneDatas() {
+        return zoneDatas;
+    }
+
+    public void setZoneDatas(List<UsingZone> zoneDatas) {
+        this.zoneDatas = zoneDatas;
+    }
+
+    public List<Pulse> getPulseDatas() {
+        return pulseDatas;
+    }
+
+    public void setPulseDatas(List<Pulse> pulseDatas) {
+        this.pulseDatas = pulseDatas;
     }
 }

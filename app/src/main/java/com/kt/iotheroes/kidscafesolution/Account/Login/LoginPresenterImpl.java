@@ -36,7 +36,6 @@ public class LoginPresenterImpl implements LoginContract.LoginPresenter {
 
     public void onLoginBtnSelected(String id, String pw) {
         user = new User(id, pw);
-
 //        List<Kid> kids = new ArrayList<>();
 //        kids.add(new Kid("aa", 1, "W", 2, 2, true));
 //        kids.add(new Kid("bb", 2, "M", 2, 3, false));
