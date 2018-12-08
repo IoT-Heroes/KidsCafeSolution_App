@@ -19,9 +19,17 @@ public class KidInfo implements Serializable{
     private List<KidStatic> pulseDatas;
     private List<KidStatic> activityDatas;
 
-    class ActivityTotal {
-        float kidTotalData;
-        float standartData;
+    public class ActivityTotal {
+        private float kidTotalData;
+        private float standartData;
+
+        public float getKidTotalData() {
+            return kidTotalData;
+        }
+
+        public float getStandartData() {
+            return standartData;
+        }
     }
 
     private ActivityTotal walk;

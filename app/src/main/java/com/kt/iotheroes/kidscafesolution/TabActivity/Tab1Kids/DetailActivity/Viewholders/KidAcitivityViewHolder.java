@@ -47,7 +47,7 @@ public class KidAcitivityViewHolder extends ViewHolderParent {
         });
     }
 
-    public void drawGraph(DecoView graph, TextView textView, int color, float value, int seriesMax) {
+    public void drawGraph(DecoView graph, TextView textView, int color, float value, float seriesMax) {
         SeriesItem seriesItem = new SeriesItem.Builder(color)
                 .setRange(0, seriesMax, 0)
                 .setInitialVisibility(false)
@@ -62,15 +62,14 @@ public class KidAcitivityViewHolder extends ViewHolderParent {
         graph.addEvent(new DecoEvent.Builder(value).setIndex(mSeriesIdx).setDelay(500).build());
     }
 
-    public void initViewHolder(KidInfo kidInfo) {
+    public void initViewHolder(KidInfo.ActivityTotal walk, KidInfo.ActivityTotal cal) {
         // max 값은 개별 활동량 데이터 수 x 최대 값 (maximum)
-        int seriesMax = kidInfo.getActivityDatas().size() * kidInfo.getActivityDatas().get(0).getMaximum();
         int colorRedPink = Color.parseColor("#ff7473");
         int colorSkyBlue = Color.parseColor("#47b8e0");
 
         // 누적 걸음수를 표시한다.
-        drawGraph(graph_walk, text_percent_walk, colorRedPink, kidInfo.getTotalWalk(), seriesMax);
+        drawGraph(graph_walk, text_percent_walk, colorRedPink, walk.getKidTotalData(), walk.getStandartData());
         // 누적 칼로리 소모량을 표시한다.
-        drawGraph(graph_cal, text_percent_cal, colorSkyBlue, kidInfo.getTotalCal(), seriesMax);
+        drawGraph(graph_cal, text_percent_cal, colorSkyBlue, cal.getKidTotalData(), cal.getStandartData());
     }
 }
