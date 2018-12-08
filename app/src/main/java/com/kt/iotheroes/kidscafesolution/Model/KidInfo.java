@@ -43,9 +43,9 @@ public class KidInfo implements Serializable{
     }
 
     public void setActivityDatas(List<KidStatic> activityDatas) {
-        this.activityDatas = activityDatas;
         for (KidStatic activity : activityDatas)
             totalWalk += activity.getAverage();
+        this.activityDatas = activityDatas;
     }
 
     public int getTotalWalk() {
