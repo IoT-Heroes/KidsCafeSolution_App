@@ -6,11 +6,11 @@
     android:background="@color/colorWhite"
     style="@style/viewholder_visited_zone"
     android:gravity="center_vertical">
-    <View
+    <ImageView
         android:id="@+id/view_color"
         android:layout_width="@dimen/kid_info_small_circle"
         android:layout_height="@dimen/kid_info_small_circle"
-        android:background="@color/colorAccent"/>
+        android:src="@drawable/circle"/>
     <TextView
         android:id="@+id/text_room_name"
         android:layout_width="0dp"

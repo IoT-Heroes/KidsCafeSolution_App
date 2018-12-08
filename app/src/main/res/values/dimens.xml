@@ -6,6 +6,7 @@
     <dimen name="activity_join_space">35dp</dimen>
 
     <dimen name="space_small">10dp</dimen>
+    <dimen name="space_medium">20dp</dimen>
     <dimen name="space_large">30dp</dimen>
 
     <!--text-->
@@ -38,8 +39,8 @@
     <dimen name="kid_info_time_value_text">22sp</dimen>
 
     <!--kid_activity-->
-    <dimen name="kid_info_activity_graph_size">120dp</dimen>
+    <dimen name="kid_info_activity_graph_size">160dp</dimen>
 
     <!--kid visit zone-->
-    <dimen name="kid_info_small_circle">20dp</dimen>
+    <dimen name="kid_info_small_circle">15dp</dimen>
 </resources>

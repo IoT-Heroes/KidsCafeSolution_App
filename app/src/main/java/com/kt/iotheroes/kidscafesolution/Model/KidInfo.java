@@ -79,7 +79,7 @@ public class KidInfo implements Serializable{
          */
 
         ActivityTotal cal = new ActivityTotal();
-        // TODO : 1에 분 계산해서 넣을 것
+        // TODO : Issue에 맞게 문제 해결!!!
         // 표준 칼로리 소모량 계산
         cal.standartData = moveVal * (standartMetVal * (airVal * kid.getWeight() * 1));
         // 아이 칼로리 소모량 계산
