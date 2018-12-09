@@ -25,7 +25,8 @@ public class KidVisitZoneCellViewHolder extends ViewHolderParent {
         text_room_count = (TextView)itemView.findViewById(R.id.text_room_count);
     }
 
-    public void initViewHolder(UsingZone zoneData) {
+    public void initViewHolder(UsingZone zoneData, int color) {
+        image_color.setColorFilter(color);
         text_room_name.setText(zoneData.getZoneName());
         text_room_count.setText(zoneData.getCount() + "회");
     }

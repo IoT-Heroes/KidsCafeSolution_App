@@ -122,7 +122,8 @@ public class KidDetailAdapter extends RecyclerView.Adapter<ViewHolderParent> {
         }
         else if (holder instanceof KidVisitZoneCellViewHolder) {
             KidVisitZoneCellViewHolder viewHolderParent = (KidVisitZoneCellViewHolder)holder;
-            viewHolderParent.initViewHolder(kidInfo.getZoneDatas().get(position - TYPE_ITEM_VISIT_ZONE_CELL));
+            int i = position - TYPE_ITEM_VISIT_ZONE_CELL;
+            viewHolderParent.initViewHolder(kidInfo.getZoneDatas().get(i), visited_bar_color[i % kidInfo.getZoneDatas().size()]);
         }
     }
 
@@ -144,10 +145,5 @@ public class KidDetailAdapter extends RecyclerView.Adapter<ViewHolderParent> {
             return 6;
         else
             return 3;
-    }
-
-    private int getVisitedBarIdx (int position) {
-        int i = position - TYPE_ITEM_VISIT_ZONE_CELL;
-        return i % kidInfo.getZoneDatas().size();
     }
 }
