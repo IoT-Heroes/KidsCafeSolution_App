@@ -68,4 +68,6 @@ public class KidsAdapter extends RecyclerView.Adapter<KidInfoViewHolder> {
     public int getItemCount() {
         return mDatas.size();
     }
+
+
 }

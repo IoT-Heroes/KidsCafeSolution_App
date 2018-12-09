@@ -30,7 +30,7 @@
     <!--kidInfo-->
     <dimen name="kid_info_height">100dp</dimen>
     <dimen name="kid_info_horizontal_margin">20dp</dimen>
-    <dimen name="kid_info_circle">55dp</dimen>
+    <dimen name="kid_info_circle">60dp</dimen>
     <dimen name="kid_info_name_text">18sp</dimen>
     <dimen name="kid_info_band_height">20dp</dimen>
     <dimen name="kid_info_band_text">12sp</dimen>
