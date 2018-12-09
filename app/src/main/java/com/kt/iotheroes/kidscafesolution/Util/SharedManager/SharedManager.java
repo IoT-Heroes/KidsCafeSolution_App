@@ -11,10 +11,8 @@ import com.kt.iotheroes.kidscafesolution.Util.Connections.Response;
 
 import java.util.List;
 
-import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
-import io.reactivex.functions.Function;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
 
@@ -106,23 +104,10 @@ public class SharedManager {
     }
 
     public List<Zone> getZonelist() {
-        if (zonelist == null) {
-            synchronized (this) {
-                zonelist = connectZoneList();
-            }
-        }
         return zonelist;
     }
 
-    public Observable<List<Zone>> connectZoneList() {
-        return APIClient.getClient().getZoneList()
-                .map(new Function<Response<List<Zone>>, List<Zone>>() {
-                    @Override
-                    public List<Zone> apply(@NonNull Response<List<Zone>> listResponse) throws Exception {
-                        return listResponse.getData();
-                    }
-                })
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
+    public void setZonelist(List<Zone> zonelist) {
+        this.zonelist = zonelist;
     }
 }
