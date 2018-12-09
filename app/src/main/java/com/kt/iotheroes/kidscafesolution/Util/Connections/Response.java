@@ -1,5 +1,6 @@
 package com.kt.iotheroes.kidscafesolution.Util.Connections;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 /**
@@ -15,6 +16,7 @@ public class Response<T> {
     private String message;
 
     @SerializedName("data")
+    @Expose
     private T data;
 
     public String getResult() {

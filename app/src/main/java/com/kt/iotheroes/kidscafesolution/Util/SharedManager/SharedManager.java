@@ -11,8 +11,10 @@ import com.kt.iotheroes.kidscafesolution.Util.Connections.Response;
 
 import java.util.List;
 
+import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
+import io.reactivex.functions.Function;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
 
@@ -103,61 +105,24 @@ public class SharedManager {
         return true;
     }
 
-//    public List<Zone> getZoneList() {
-//        if (zonelist == null) {
-//            synchronized (SharedManager.class) {
-//                connectZoneList();
-//                if (zonelist == null)
-//                    try {
-//                        wait();
-//                    } catch (InterruptedException e) {
-//                        e.printStackTrace();
-//                    }
-//            }
-//        }
-//        return zonelist;
-//    }
-
-    public List<Zone> getZoneList() {
+    public List<Zone> getZonelist() {
         if (zonelist == null) {
             synchronized (this) {
-                connectZoneList();
-                if (zonelist == null) {
-                    try {
-                        wait();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-                return zonelist;
+                zonelist = connectZoneList();
             }
-        } else
-            return zonelist;
+        }
+        return zonelist;
     }
 
-    private synchronized void connectZoneList() {
-        APIClient.getClient().getZoneList()
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.computation())
-                .subscribeWith(new DisposableObserver<Response<List<Zone>>>() {
+    public Observable<List<Zone>> connectZoneList() {
+        return APIClient.getClient().getZoneList()
+                .map(new Function<Response<List<Zone>>, List<Zone>>() {
                     @Override
-                    public void onNext(@NonNull Response<List<Zone>> userResponse) {
-                        if (userResponse.getResult().equals("success")) {
-                            zonelist = userResponse.getData();
-                        } else
-                            Log.i("connect", "get zone List 에 문제가 발생하였습니다.");
+                    public List<Zone> apply(@NonNull Response<List<Zone>> listResponse) throws Exception {
+                        return listResponse.getData();
                     }
-
-                    @Override
-                    public void onError(@NonNull Throwable e) {
-                        e.printStackTrace();
-                        Log.e("connect", e.getMessage());
-                    }
-
-                    @Override
-                    public void onComplete() {
-                        notify();
-                    }
-                });
+                })
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
     }
 }
