@@ -34,7 +34,7 @@ public class KidFoodViewHolder extends ViewHolderParent {
         if (flowlayout.getChildCount() == 0) {
             for (Food food : eatableFoodList) {
                 ViewGroup.MarginLayoutParams lp = new ViewGroup.MarginLayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                lp.setMargins(dip2px(context, 10), 0, dip2px(context, 10), dip2px(context, 10));
+                lp.setMargins(dip2px(context, 10), 0, dip2px(context, 10), dip2px(context, 5));
 
                 TextView tv = new TextView(context);
                 tv.setPadding(dip2px(context, 15), 0, dip2px(context, 15), 0);

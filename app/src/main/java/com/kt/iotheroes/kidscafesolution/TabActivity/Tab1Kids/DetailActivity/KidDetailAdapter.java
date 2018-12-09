@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
-import com.kt.iotheroes.kidscafesolution.Model.Food;
 import com.kt.iotheroes.kidscafesolution.Model.KidInfo;
 import com.kt.iotheroes.kidscafesolution.R;
 import com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids.DetailActivity.Viewholders.KidAcitivityViewHolder;
@@ -19,9 +18,6 @@ import com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids.DetailActivity.Vie
 import com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids.DetailActivity.Viewholders.KidVisitZoneViewHolder;
 import com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids.KidInfoViewHolder;
 import com.kt.iotheroes.kidscafesolution.Util.ParentView.ViewHolderParent;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by mijeong on 2018. 12. 4..
@@ -105,15 +101,7 @@ public class KidDetailAdapter extends RecyclerView.Adapter<ViewHolderParent> {
         }
         else if (holder instanceof KidFoodViewHolder) {
             KidFoodViewHolder viewHolderParent = (KidFoodViewHolder)holder;
-//            viewHolderParent.initViewHolder(context, kidInfo.getKid().getEatableFoodList());
-            List<Food> test = new ArrayList<>();
-            test.add(new Food("d", "aaaaaa"));
-            test.add(new Food("d", "aaaaaa"));
-            test.add(new Food("d", "aaaaaa"));
-            test.add(new Food("d", "aaaaaa"));
-            test.add(new Food("d", "aaaaaa"));
-            test.add(new Food("d", "aaaaaa"));
-            viewHolderParent.initViewHolder(context, test);
+            viewHolderParent.initViewHolder(context, kidInfo.getKid().getEatableFoodList());
         }
         else if (holder instanceof KidTimeViewHolder) {
             KidTimeViewHolder viewHolderParent = (KidTimeViewHolder)holder;
