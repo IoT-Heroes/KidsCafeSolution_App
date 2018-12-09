@@ -5,7 +5,9 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="activity_join_space">35dp</dimen>
 
+    <dimen name="space_little">5dp</dimen>
     <dimen name="space_small">10dp</dimen>
+    <dimen name="space_medium">20dp</dimen>
     <dimen name="space_large">30dp</dimen>
 
     <!--text-->
@@ -28,7 +30,7 @@
     <!--kidInfo-->
     <dimen name="kid_info_height">100dp</dimen>
     <dimen name="kid_info_horizontal_margin">20dp</dimen>
-    <dimen name="kid_info_circle">55dp</dimen>
+    <dimen name="kid_info_circle">60dp</dimen>
     <dimen name="kid_info_name_text">18sp</dimen>
     <dimen name="kid_info_band_height">20dp</dimen>
     <dimen name="kid_info_band_text">12sp</dimen>
@@ -38,8 +40,8 @@
     <dimen name="kid_info_time_value_text">22sp</dimen>
 
     <!--kid_activity-->
-    <dimen name="kid_info_activity_graph_size">120dp</dimen>
+    <dimen name="kid_info_activity_graph_size">160dp</dimen>
 
     <!--kid visit zone-->
-    <dimen name="kid_info_small_circle">20dp</dimen>
+    <dimen name="kid_info_small_circle">15dp</dimen>
 </resources>

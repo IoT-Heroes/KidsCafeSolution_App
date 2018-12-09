@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.kt.iotheroes.kidscafesolution.Account.Join.JoinActivity;
+import com.kt.iotheroes.kidscafesolution.Model.Food;
 import com.kt.iotheroes.kidscafesolution.Model.Kid;
 import com.kt.iotheroes.kidscafesolution.R;
 import com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids.AddChild.AddActivity.AddChildActivity;
@@ -17,6 +19,7 @@ import com.kt.iotheroes.kidscafesolution.Util.Connections.Response;
 import com.kt.iotheroes.kidscafesolution.Util.Dialog.OkDialog;
 import com.kt.iotheroes.kidscafesolution.Util.SharedManager.SharedManager;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +32,7 @@ public class AddChildListActivity extends AppCompatActivity {
     static final int PICK_CONTACT_REQUEST = 1;
 
     List<Kid> kids;
+    List<Food> foodList;
     AddChildListActivityFragment fragment;
 
     private Button button_ok;
@@ -45,18 +49,19 @@ public class AddChildListActivity extends AppCompatActivity {
         button_ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO : 데이터 POST 구현
                 connectAddKid();
             }
         });
 
         kids = new ArrayList<>();
+        getFoodList();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(AddChildListActivity.this, AddChildActivity.class);
+                intent.putExtra("foodList", (Serializable) foodList);
                 startActivityForResult(intent, PICK_CONTACT_REQUEST);
             }
         });
@@ -91,8 +96,42 @@ public class AddChildListActivity extends AppCompatActivity {
 
                     @Override
                     public void onComplete() {
-                        finish();
+                        final OkDialog okDialog = new OkDialog(AddChildListActivity.this);
+                        okDialog.setMessage("쟈녀가 추가되었습니다!");
+                        okDialog.setOkListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                AddChildListActivity.this.finish();
+                                okDialog.dismiss();
+                            }
+                        });
+                        okDialog.show();
                     }
+                });
+    }
+
+    private void getFoodList() {
+        APIClient.getClient().getFoodList()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<Response<List<Food>>>() {
+                    @Override
+                    public void onNext(@NonNull Response<List<Food>> userResponse) {
+                        if (userResponse.getResult().equals("success")) {
+                            foodList = userResponse.getData();
+                        }
+                        else
+                            Log.i("connect", "get FoodList 에 문제가 발생하였습니다.");
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        e.printStackTrace();
+                        Log.e("connect", e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {}
                 });
     }
 

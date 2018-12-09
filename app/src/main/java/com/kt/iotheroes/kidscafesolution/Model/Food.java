@@ -10,15 +10,42 @@ import java.io.Serializable;
 
 public class Food implements Serializable{
     @SerializedName("calorie")
-    String calorie;
+    private String calorie;
 
     @SerializedName("id")
-    String id;
+    private String id;
 
     @SerializedName("name")
-    String name;
+    private String name;
+
+    private boolean checked = false;
 
     public Food(String id) {
         this.id = id;
+    }
+
+    public Food(String id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public String getCalorie() {
+        return calorie;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public boolean isChecked() {
+        return checked;
+    }
+
+    public void setChecked(boolean checked) {
+        this.checked = checked;
     }
 }

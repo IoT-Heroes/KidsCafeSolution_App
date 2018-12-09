@@ -8,6 +8,7 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 
@@ -31,11 +32,20 @@ public class AddChildAdapter extends RecyclerView.Adapter<ViewHolderParent> {
     private Context context;
     private AddChildActivity activity;
     private LinearLayout indicator;
-    private List<String> foods = new ArrayList<>();
+    private List<Food> foods = new ArrayList<>();
     private Map<Integer, String> inputs = new HashMap<>();
 
     public Map<Integer, String> getInputs() {
         return inputs;
+    }
+
+    public List<Food> getSelectedFoods() {
+        List<Food> selectedFoods = new ArrayList<>();
+        for (Food food : foods) {
+            if (food.isChecked())
+                selectedFoods.add(food);
+        }
+        return selectedFoods;
     }
 
     public AddChildAdapter(AddChildActivity activity) {
@@ -43,7 +53,7 @@ public class AddChildAdapter extends RecyclerView.Adapter<ViewHolderParent> {
         inputs.put(R.id.radio_group, "W");
     }
 
-    public void setFoods(List<String> foods) {
+    public void setFoods(List<Food> foods) {
         this.foods = foods;
     }
 
@@ -73,8 +83,14 @@ public class AddChildAdapter extends RecyclerView.Adapter<ViewHolderParent> {
         else if (holder instanceof SelectInfoViewHolder) {
             SelectInfoViewHolder viewHolderParent = (SelectInfoViewHolder)holder;
 
-            List<Food> foods = new ArrayList<>();
+            viewHolderParent.text_food.setText(foods.get(position - 1).getName());
+            viewHolderParent.checkBox.setOnClickListener(new CheckBox.OnClickListener() {
 
+                @Override
+                public void onClick(View view) {
+                    foods.get(position - 1).setChecked(((CheckBox)view).isChecked());
+                }
+            });
         }
     }
 
@@ -108,7 +124,6 @@ public class AddChildAdapter extends RecyclerView.Adapter<ViewHolderParent> {
                 inputs.put(R.id.radio_group, "M");
         }
     };
-
 
     @Override
     public int getItemViewType(int position) {

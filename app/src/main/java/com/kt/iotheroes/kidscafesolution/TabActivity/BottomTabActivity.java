@@ -27,19 +27,18 @@ public class BottomTabActivity extends AppCompatActivity implements ZoneTab2List
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            TabParentFragment beforeFm = currentFragment;
 
             switch (item.getItemId()) {
                 case R.id.navigation_kids:
-                    loadFragment(fragments.get(0));
                     currentFragment = fragments.get(0);
                     break;
                 case R.id.navigation_zone:
-                    loadFragment(fragments.get(1));
                     currentFragment = fragments.get(1);
                     break;
             }
 
-            return loadFragment(currentFragment);
+            return loadFragment(beforeFm);
         }
 
     };
@@ -47,13 +46,13 @@ public class BottomTabActivity extends AppCompatActivity implements ZoneTab2List
     /*
     transaction : 액티비티에 커밋한 변경 내용의 집합
      */
-    //switching fragment
-    private boolean loadFragment(TabParentFragment newFragment) {
+    private boolean loadFragment(TabParentFragment beforeFragment) {
         //switching fragment
-        if (newFragment != null) {
+        if (currentFragment != null) {
             getSupportFragmentManager()
                     .beginTransaction()
-                    .hide(currentFragment).show(newFragment).commit();
+                    .hide(beforeFragment).show(currentFragment).commit();
+            currentFragment.reload();
 
             return true;
         }
@@ -76,9 +75,12 @@ public class BottomTabActivity extends AppCompatActivity implements ZoneTab2List
         currentFragment = fragments.get(0);
     }
 
-    // 지도 목록 fragment 연동을 위해 implements
     @Override
-    public void onListFragmentInteraction(DummyContent.DummyItem item) {
+    public void onListFragmentInteraction(DummyContent.DummyItem item) { }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        currentFragment.reload();
     }
 }

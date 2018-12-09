@@ -24,7 +24,7 @@ public class Kid implements Serializable {
     String name;
 
     @SerializedName("isBandWearing")
-    String isBandWearing;
+    Boolean isBandWearing;
 
     @SerializedName("sex")
     String sex;
@@ -54,7 +54,11 @@ public class Kid implements Serializable {
     @SerializedName("cafeVisitingRecord")
     List<CafeVisitingRecord> cafeVisitingRecord;
 
-    boolean wearingBand;
+    VisitingRecord visitingRecord;
+
+    public String getId() {
+        return id;
+    }
 
     public String getName() {
         return name;
@@ -76,8 +80,16 @@ public class Kid implements Serializable {
         return weight;
     }
 
-    public boolean isWearingBand() {
-        return wearingBand;
+    public VisitingRecord getVisitingRecord() {
+        return visitingRecord;
+    }
+
+    public Boolean isBandWearing() {
+        return isBandWearing;
+    }
+
+    public List<Food> getEatableFoodList() {
+        return eatableFoodList;
     }
 
     public Kid() {}
@@ -88,7 +100,8 @@ public class Kid implements Serializable {
         this.sex = sex;
         this.height = height;
         this.weight = weight;
-        this.wearingBand = wearingBand;
+        // TODO : 여기 나중에 다 false로 초기화 시킬 것
+        this.isBandWearing = wearingBand;
     }
 
     public void setUserId(String userId) {
@@ -119,5 +132,11 @@ public class Kid implements Serializable {
         this.eatableFoodList = eatableFoodList;
     }
 
+    public void setVisitingRecord(VisitingRecord visitingRecord) {
+        this.visitingRecord = visitingRecord;
+    }
 
+    public void setBandWearing(Boolean bandWearing) {
+        isBandWearing = bandWearing;
+    }
 }

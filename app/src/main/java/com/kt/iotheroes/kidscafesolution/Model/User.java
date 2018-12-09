@@ -75,7 +75,11 @@ public class User {
         return child;
     }
 
-    public void setChild(List<Kid> child) {
+    public void setChild(final List<Kid> child) {
         this.child = child;
+    }
+
+    public void upDateChild(int i, Kid kid) {
+        this.child.set(i, kid);
     }
 }

@@ -8,6 +8,7 @@ import android.widget.TextView;
 import com.hookedonplay.decoviewlib.DecoView;
 import com.hookedonplay.decoviewlib.charts.SeriesItem;
 import com.hookedonplay.decoviewlib.events.DecoEvent;
+import com.kt.iotheroes.kidscafesolution.Model.KidInfo;
 import com.kt.iotheroes.kidscafesolution.R;
 import com.kt.iotheroes.kidscafesolution.Util.ParentView.ViewHolderParent;
 
@@ -17,25 +18,19 @@ import com.kt.iotheroes.kidscafesolution.Util.ParentView.ViewHolderParent;
 
 public class KidAcitivityViewHolder extends ViewHolderParent {
 
-    private static final float seriesMax = 100f;
     private static final String format = "%.0f%%";
 
-    private TextView text_percent_walk, text_percent_cal;
-    private DecoView graph_walk, graph_cal;
+    private TextView text_kid_walk, text_walk_goal, text_kid_cal, text_percent;
+    private DecoView graph;
 
     public KidAcitivityViewHolder(View itemView) {
         super(itemView);
 
-        text_percent_walk = (TextView) itemView.findViewById(R.id.text_percent_walk);
-        text_percent_cal = (TextView) itemView.findViewById(R.id.text_percent_cal);
-        graph_cal = (DecoView) itemView.findViewById(R.id.graph_cal);
-        graph_walk = (DecoView) itemView.findViewById(R.id.graph_walk);
-
-        int colorRedPink = Color.parseColor("#ff7473");
-        int colorSkyBlue = Color.parseColor("#47b8e0");
-
-        drawGraph(graph_walk, text_percent_walk, colorRedPink, 50);
-        drawGraph(graph_cal, text_percent_cal, colorSkyBlue, 30);
+        text_kid_walk = (TextView) itemView.findViewById(R.id.text_kid_walk);
+        text_walk_goal = (TextView) itemView.findViewById(R.id.text_walk_goal);
+        text_kid_cal = (TextView) itemView.findViewById(R.id.text_kid_cal);
+        text_percent = (TextView) itemView.findViewById(R.id.text_percent);
+        graph = (DecoView) itemView.findViewById(R.id.graph);
     }
 
     public void addProgressListener(@NonNull final SeriesItem seriesItem, @NonNull final TextView textView) {
@@ -53,8 +48,8 @@ public class KidAcitivityViewHolder extends ViewHolderParent {
         });
     }
 
-    public void drawGraph(DecoView graph, TextView textView, int color, int value) {
-        SeriesItem seriesItem = new SeriesItem.Builder(color)
+    public void drawGraph(float value, float seriesMax) {
+        SeriesItem seriesItem = new SeriesItem.Builder(Color.parseColor("#ff7473"))
                 .setRange(0, seriesMax, 0)
                 .setInitialVisibility(false)
                 .setLineWidth(40f)
@@ -63,8 +58,17 @@ public class KidAcitivityViewHolder extends ViewHolderParent {
                 .build();
 
         int mSeriesIdx = graph.addSeries(seriesItem);
-        addProgressListener(seriesItem, textView);
+        addProgressListener(seriesItem, text_percent);
 
         graph.addEvent(new DecoEvent.Builder(value).setIndex(mSeriesIdx).setDelay(500).build());
+    }
+
+    public void initViewHolder(KidInfo kidInfo) {
+        // 누적 걸음수를 표시한다.
+        drawGraph(kidInfo.getKidTotalWalk(), kidInfo.getKidGoalWalk());
+        // 누적 칼로리 소모량을 표시한다.
+        text_kid_walk.setText(kidInfo.getKidTotalWalk() + "걸음");
+        text_walk_goal.setText(kidInfo.getKidGoalWalk() + "걸음");
+        text_kid_cal.setText(kidInfo.getCalorie() + "kcal");
     }
 }

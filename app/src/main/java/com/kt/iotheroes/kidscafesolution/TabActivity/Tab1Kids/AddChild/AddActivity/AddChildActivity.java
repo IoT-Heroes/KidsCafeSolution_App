@@ -14,7 +14,6 @@ import com.kt.iotheroes.kidscafesolution.R;
 import com.kt.iotheroes.kidscafesolution.Util.Dialog.OkDialog;
 import com.kt.iotheroes.kidscafesolution.Util.SharedManager.SharedManager;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -27,6 +26,7 @@ public class AddChildActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager layoutManger;
 
     private Kid kid;
+    private List<Food> foodList;
 
     public void setKidInputInfo(String name, int age, String sex, int height, int weight) {
         kid.setName(name);
@@ -42,6 +42,7 @@ public class AddChildActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_child);
 
         kid = new Kid();
+        foodList = (List<Food>) getIntent().getSerializableExtra("foodList");
 
         initView();
     }
@@ -57,6 +58,8 @@ public class AddChildActivity extends AppCompatActivity {
             adapter = new AddChildAdapter(this);
         }
         recyclerView.setAdapter(adapter);
+
+        adapter.setFoods(foodList);
         adapter.notifyDataSetChanged();
 
         button_add.setOnClickListener(new View.OnClickListener() {
@@ -82,10 +85,11 @@ public class AddChildActivity extends AppCompatActivity {
 
                 // 음식 담는다.
                 // TODO : 현재 가데이터. 나중에 서버로부터 리스트 받아서 구현한 후 연동할 것
-                List<Food> foods = new ArrayList<>();
-                foods.add(new Food("F1"));
-                foods.add(new Food("F4"));
-                kid.setEatableFoodList(foods);
+//                List<Food> foods = new ArrayList<>();
+//                foods.add(new Food("F1"));
+//                foods.add(new Food("F4"));
+//                kid.setEatableFoodList(foods);
+                kid.setEatableFoodList(adapter.getSelectedFoods());
 
                 // 목록으로 데이터를 보낸다.
                 Intent intent = new Intent();
