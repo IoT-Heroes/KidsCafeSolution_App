@@ -33,6 +33,8 @@ public class KidDetailAdapter extends RecyclerView.Adapter<ViewHolderParent> {
     private static final int TYPE_ITEM_VISIT_ZONE_CELL = 6;
     private static final int TYPE_ITEM_NO_BAND = 7;
 
+    final static int[] visited_bar_color = new int[]{0xFF123456, 0xFF343456, 0xFF563456, 0xFF873F56, 0xFF56B7F1, 0xFF343456, 0xFF1FF4AC, 0xFF1BA4E6};
+
     private Context context;
     private KidDetailActivity activity;
     private LinearLayout indicator;
@@ -116,7 +118,7 @@ public class KidDetailAdapter extends RecyclerView.Adapter<ViewHolderParent> {
         else if (holder instanceof KidVisitZoneViewHolder) {
             KidVisitZoneViewHolder viewHolderParent = (KidVisitZoneViewHolder)holder;
             if (kidInfo.getZoneDatas() != null)
-                viewHolderParent.initViewHolder(kidInfo.getZoneDatas());
+                viewHolderParent.initViewHolder(kidInfo.getZoneDatas(), visited_bar_color);
         }
         else if (holder instanceof KidVisitZoneCellViewHolder) {
             KidVisitZoneCellViewHolder viewHolderParent = (KidVisitZoneCellViewHolder)holder;
@@ -142,5 +144,10 @@ public class KidDetailAdapter extends RecyclerView.Adapter<ViewHolderParent> {
             return 6;
         else
             return 3;
+    }
+
+    private int getVisitedBarIdx (int position) {
+        int i = position - TYPE_ITEM_VISIT_ZONE_CELL;
+        return i % kidInfo.getZoneDatas().size();
     }
 }

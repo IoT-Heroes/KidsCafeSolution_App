@@ -17,8 +17,6 @@ import java.util.List;
 
 public class KidVisitZoneViewHolder extends ViewHolderParent {
 
-    final static int[] color = new int[]{0xFF563456, 0xFF873F56, 0xFF343456};
-
     BarChart visitZoneChart;
 
     public KidVisitZoneViewHolder(View itemView) {
@@ -27,12 +25,12 @@ public class KidVisitZoneViewHolder extends ViewHolderParent {
         visitZoneChart = (BarChart)itemView.findViewById(R.id.chart_visit_zone);
     }
 
-    public void initViewHolder(List<UsingZone> zoneDatas) {
+    public void initViewHolder(List<UsingZone> zoneDatas, int[] colors) {
         int colorIdx = 0;
 
         for (UsingZone data : zoneDatas) {
-            visitZoneChart.addBar(new BarModel(data.getCount(), color[colorIdx]));
-            if (++colorIdx == color.length)
+            visitZoneChart.addBar(new BarModel(data.getCount(), colors[colorIdx]));
+            if (++colorIdx == colors.length)
                 colorIdx = 0;
         }
 
