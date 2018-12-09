@@ -7,11 +7,11 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
+import com.kt.iotheroes.kidscafesolution.Model.Zone;
 import com.kt.iotheroes.kidscafesolution.R;
 import com.kt.iotheroes.kidscafesolution.TabActivity.ParentFragment.TabParentFragment;
 import com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids.Tab1KidsFargment;
 import com.kt.iotheroes.kidscafesolution.TabActivity.Tab2ZoneFragment.Tab2List.ZoneTab2ListFragment;
-import com.kt.iotheroes.kidscafesolution.TabActivity.Tab2ZoneFragment.Tab2List.dummy.DummyContent;
 import com.kt.iotheroes.kidscafesolution.TabActivity.Tab2ZoneFragment.Tab2ZoneFargment;
 
 import java.util.ArrayList;
@@ -76,7 +76,7 @@ public class BottomTabActivity extends AppCompatActivity implements ZoneTab2List
     }
 
     @Override
-    public void onListFragmentInteraction(DummyContent.DummyItem item) { }
+    public void onListFragmentInteraction(Zone item) { }
 
     @Override
     protected void onResume() {

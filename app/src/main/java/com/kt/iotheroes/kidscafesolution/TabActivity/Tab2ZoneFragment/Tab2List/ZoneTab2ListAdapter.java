@@ -6,22 +6,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.kt.iotheroes.kidscafesolution.Model.Zone;
 import com.kt.iotheroes.kidscafesolution.R;
-import com.kt.iotheroes.kidscafesolution.TabActivity.Tab2ZoneFragment.Tab2List.dummy.DummyContent.DummyItem;
 
 import java.util.List;
 
-/**
- * {@link RecyclerView.Adapter} that can display a {@link DummyItem} and makes a call to the
- * specified {@link ZoneTab2ListFragment.OnListFragmentInteractionListener}.
- * TODO: Replace the implementation with code for your data type.
- */
 public class ZoneTab2ListAdapter extends RecyclerView.Adapter<ZoneTab2ListAdapter.ViewHolder> {
 
-    private final List<DummyItem> mValues;
+    private final List<Zone> mValues;
     private final ZoneTab2ListFragment.OnListFragmentInteractionListener mListener;
 
-    public ZoneTab2ListAdapter(List<DummyItem> items, ZoneTab2ListFragment.OnListFragmentInteractionListener listener) {
+    public ZoneTab2ListAdapter(List<Zone> items, ZoneTab2ListFragment.OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }
@@ -36,8 +31,8 @@ public class ZoneTab2ListAdapter extends RecyclerView.Adapter<ZoneTab2ListAdapte
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
-        holder.mIdView.setText(mValues.get(position).id);
-        holder.mContentView.setText(mValues.get(position).content);
+        holder.mIdView.setText(mValues.get(position).getId());
+        holder.mContentView.setText(mValues.get(position).getName());
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,7 +55,7 @@ public class ZoneTab2ListAdapter extends RecyclerView.Adapter<ZoneTab2ListAdapte
         public final View mView;
         public final TextView mIdView;
         public final TextView mContentView;
-        public DummyItem mItem;
+        public Zone mItem;
 
         public ViewHolder(View view) {
             super(view);

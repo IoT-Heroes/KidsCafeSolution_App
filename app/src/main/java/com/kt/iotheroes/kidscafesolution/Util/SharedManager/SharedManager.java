@@ -34,8 +34,9 @@ public class SharedManager {
             // static method 동기화는 SharedManager 객체를 기준으로 이루어짐
             // JVM 안에 클래스 객체는 클래스 당 하나만 존재할 수 있으므로, 같은 클래스에 대해서는 오직 한 쓰레드만 동기화된 스태틱 메소드를 실행할 수 있다.
             synchronized (SharedManager.class) {
-                if (single == null)
+                if (single == null) {
                     single = new SharedManager();
+                }
             }
         }
         return single;
@@ -102,20 +103,42 @@ public class SharedManager {
         return true;
     }
 
-    public List<Zone> getList() {
+//    public List<Zone> getZoneList() {
+//        if (zonelist == null) {
+//            synchronized (SharedManager.class) {
+//                connectZoneList();
+//                if (zonelist == null)
+//                    try {
+//                        wait();
+//                    } catch (InterruptedException e) {
+//                        e.printStackTrace();
+//                    }
+//            }
+//        }
+//        return zonelist;
+//    }
+
+    public List<Zone> getZoneList() {
         if (zonelist == null) {
-            synchronized (SharedManager.class) {
-                if (zonelist == null)
-                    connectZoneList();
+            synchronized (this) {
+                connectZoneList();
+                if (zonelist == null) {
+                    try {
+                        wait();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+                return zonelist;
             }
-        }
-        return zonelist;
+        } else
+            return zonelist;
     }
 
-    private void connectZoneList() {
+    private synchronized void connectZoneList() {
         APIClient.getClient().getZoneList()
-                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.computation())
                 .subscribeWith(new DisposableObserver<Response<List<Zone>>>() {
                     @Override
                     public void onNext(@NonNull Response<List<Zone>> userResponse) {
@@ -133,6 +156,7 @@ public class SharedManager {
 
                     @Override
                     public void onComplete() {
+                        notify();
                     }
                 });
     }

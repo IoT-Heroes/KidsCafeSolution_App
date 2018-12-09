@@ -10,8 +10,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.kt.iotheroes.kidscafesolution.Model.Zone;
 import com.kt.iotheroes.kidscafesolution.R;
-import com.kt.iotheroes.kidscafesolution.TabActivity.Tab2ZoneFragment.Tab2List.dummy.DummyContent;
+import com.kt.iotheroes.kidscafesolution.Util.SharedManager.SharedManager;
 
 /**
  * A fragment representing a list of Items.
@@ -67,7 +68,7 @@ public class ZoneTab2ListFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new ZoneTab2ListAdapter(DummyContent.ITEMS, mListener));
+            recyclerView.setAdapter(new ZoneTab2ListAdapter(SharedManager.getInstance().getZoneList(), mListener));
         }
         return view;
     }
@@ -102,6 +103,6 @@ public class ZoneTab2ListFragment extends Fragment {
      */
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onListFragmentInteraction(DummyContent.DummyItem item);
+        void onListFragmentInteraction(Zone item);
     }
 }
