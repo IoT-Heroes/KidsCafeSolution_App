@@ -14,12 +14,6 @@ import com.kt.iotheroes.kidscafesolution.Model.Zone;
 import com.kt.iotheroes.kidscafesolution.R;
 import com.kt.iotheroes.kidscafesolution.Util.SharedManager.SharedManager;
 
-/**
- * A fragment representing a list of Items.
- * <p/>
- * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
- * interface.
- */
 public class ZoneTab2ListFragment extends Fragment {
 
     private static final String ARG_COLUMN_COUNT = "column-count";

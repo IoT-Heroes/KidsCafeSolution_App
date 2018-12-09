@@ -6,6 +6,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.kt.iotheroes.kidscafesolution.Model.Zone;
 import com.kt.iotheroes.kidscafesolution.R;
@@ -76,7 +77,10 @@ public class BottomTabActivity extends AppCompatActivity implements ZoneTab2List
     }
 
     @Override
-    public void onListFragmentInteraction(Zone item) { }
+    public void onListFragmentInteraction(Zone item) {
+        Toast.makeText(getApplicationContext(), item.getName(), Toast.LENGTH_SHORT).show();
+        // TODO : zone detail 구현 (3순위)
+    }
 
     @Override
     protected void onResume() {
