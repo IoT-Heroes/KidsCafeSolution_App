@@ -11,7 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.kt.iotheroes.kidscafesolution.Model.VisitingRecord;
 import com.kt.iotheroes.kidscafesolution.Model.Zone;
 import com.kt.iotheroes.kidscafesolution.R;
 import com.kt.iotheroes.kidscafesolution.Util.Connections.APIClient;
@@ -20,13 +19,10 @@ import com.kt.iotheroes.kidscafesolution.Util.SharedManager.SharedManager;
 
 import java.util.List;
 
-import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
-import io.reactivex.functions.Function;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
-import io.reactivex.subscribers.DefaultSubscriber;
 
 /**
  * A fragment representing a list of Items.
@@ -40,6 +36,8 @@ public class ZoneTab2ListFragment extends Fragment {
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
     private ZoneTab2ListAdapter adapter;
+    private RecyclerView recyclerView;
+
     private List<Zone> zoneList;
 
     @SuppressWarnings("unused")
@@ -68,7 +66,7 @@ public class ZoneTab2ListFragment extends Fragment {
         //Set the adapter
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
-            final RecyclerView recyclerView = (RecyclerView) view;
+            recyclerView = (RecyclerView) view;
             if (mColumnCount <= 1) {
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
             } else {
@@ -77,29 +75,7 @@ public class ZoneTab2ListFragment extends Fragment {
 
             zoneList = SharedManager.getInstance().getZonelist();
             if (zoneList == null) {
-                connectZoneList()
-                        .subscribeWith(new DisposableObserver<Response<List<Zone>>>() {
-                            @Override
-                            public void onNext(@NonNull Response<List<Zone>> userResponse) {
-                                if (userResponse.getResult().equals("success")) {
-                                    zoneList = userResponse.getData();
-                                    SharedManager.getInstance().setZonelist(zoneList);
-                                } else
-                                    Log.i("connect", "get child visiting record 에 문제가 발생하였습니다.");
-                            }
-
-                            @Override
-                            public void onError(@NonNull Throwable e) {
-                                e.printStackTrace();
-                                Log.e("connect", e.getMessage());
-                            }
-
-                            @Override
-                            public void onComplete() {
-                                adapter = new ZoneTab2ListAdapter(zoneList, mListener);
-                                recyclerView.setAdapter(adapter);
-                            }
-                        });
+                connectZoneList();
             }
         }
         return view;
@@ -123,30 +99,37 @@ public class ZoneTab2ListFragment extends Fragment {
         mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p/>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
     public interface OnListFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onListFragmentInteraction(Zone item);
     }
 
-    public Observable<List<Zone>> connectZoneList() {
-        return APIClient.getClient().getZoneList()
-                .map(new Function<Response<List<Zone>>, List<Zone>>() {
-                    @Override
-                    public List<Zone> apply(@NonNull Response<List<Zone>> listResponse) throws Exception {
-                        return listResponse.getData();
-                    }
-                })
+    public void connectZoneList() {
+        APIClient.getClient().getZoneList()
                 .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<Response<List<Zone>>>() {
+                    @Override
+                    public void onNext(@NonNull Response<List<Zone>> userResponse) {
+                        if (userResponse.getResult().equals("success")) {
+                            if (userResponse.getData().size() > 0) {
+                                zoneList = userResponse.getData();
+                                SharedManager.getInstance().setZonelist(zoneList);
+                            }
+                        } else
+                            Log.i("connect", "get zone list 에 문제가 발생하였습니다.");
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        e.printStackTrace();
+                        Log.e("connect", e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        adapter = new ZoneTab2ListAdapter(zoneList, mListener);
+                        recyclerView.setAdapter(adapter);
+                    }
+                });
     }
 }
