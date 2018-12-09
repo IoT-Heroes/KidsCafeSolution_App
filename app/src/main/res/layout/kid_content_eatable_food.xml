@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/kid_info_height"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
     style="@style/cell">
 
     <TextView
@@ -12,5 +13,14 @@
         android:textSize="@dimen/kid_info_name_text"
         android:textStyle="bold"
         android:textColor="@color/colorText"
-        android:layout_alignTop="@+id/linear_info"/>
-</RelativeLayout>
+        android:layout_alignTop="@+id/linear_info"
+        android:layout_marginBottom="@dimen/space_small"/>
+    <cn.lankton.flowlayout.FlowLayout
+        android:id="@+id/flowlayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+    </cn.lankton.flowlayout.FlowLayout>
+
+</LinearLayout>

@@ -88,6 +88,10 @@ public class Kid implements Serializable {
         return isBandWearing;
     }
 
+    public List<Food> getEatableFoodList() {
+        return eatableFoodList;
+    }
+
     public Kid() {}
 
     public Kid(String name, int age, String sex, int height, int weight, boolean wearingBand) {
