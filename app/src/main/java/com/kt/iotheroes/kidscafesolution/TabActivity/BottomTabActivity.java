@@ -76,6 +76,7 @@ public class BottomTabActivity extends AppCompatActivity implements ZoneTab2List
         currentFragment = fragments.get(0);
     }
 
+    // 지도 목록 fragment 연동을 위해 implements
     @Override
     public void onListFragmentInteraction(DummyContent.DummyItem item) {
 
