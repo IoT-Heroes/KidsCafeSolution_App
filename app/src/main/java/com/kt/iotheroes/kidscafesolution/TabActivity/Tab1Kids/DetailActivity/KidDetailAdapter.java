@@ -14,6 +14,7 @@ import com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids.DetailActivity.Vie
 import com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids.DetailActivity.Viewholders.KidNoBandViewHolder;
 import com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids.DetailActivity.Viewholders.KidPulseViewHolder;
 import com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids.DetailActivity.Viewholders.KidTimeViewHolder;
+import com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids.DetailActivity.Viewholders.KidVisitZoneCellViewHolder;
 import com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids.DetailActivity.Viewholders.KidVisitZoneViewHolder;
 import com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids.KidInfoViewHolder;
 import com.kt.iotheroes.kidscafesolution.Util.ParentView.ViewHolderParent;
@@ -29,7 +30,8 @@ public class KidDetailAdapter extends RecyclerView.Adapter<ViewHolderParent> {
     private static final int TYPE_ITEM_ACTIVITY = 3;
     private static final int TYPE_ITEM_PULSE = 4;
     private static final int TYPE_ITEM_VISIT_ZONE = 5;
-    private static final int TYPE_ITEM_NO_BAND = 6;
+    private static final int TYPE_ITEM_VISIT_ZONE_CELL = 6;
+    private static final int TYPE_ITEM_NO_BAND = 7;
 
     private Context context;
     private KidDetailActivity activity;
@@ -69,6 +71,9 @@ public class KidDetailAdapter extends RecyclerView.Adapter<ViewHolderParent> {
         } else if (viewType == TYPE_ITEM_VISIT_ZONE && wearingBand) {
             View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.kid_content_visited_zone, parent, false);
             return new KidVisitZoneViewHolder(v);
+        } else if (viewType == TYPE_ITEM_VISIT_ZONE_CELL && wearingBand) {
+            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.kid_content_visited_zone_cell, parent, false);
+            return new KidVisitZoneCellViewHolder(v);
         } else if (viewType == TYPE_ITEM_NO_BAND && !wearingBand) {
             View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.kid_content_no_band, parent, false);
             return new KidNoBandViewHolder(v);
@@ -95,23 +100,27 @@ public class KidDetailAdapter extends RecyclerView.Adapter<ViewHolderParent> {
         else if (holder instanceof KidFoodViewHolder) {
             KidFoodViewHolder viewHolderParent = (KidFoodViewHolder)holder;
         }
-        else if (wearingBand && holder instanceof KidTimeViewHolder) {
+        else if (holder instanceof KidTimeViewHolder) {
             KidTimeViewHolder viewHolderParent = (KidTimeViewHolder)holder;
         }
-        else if (wearingBand && holder instanceof KidAcitivityViewHolder) {
+        else if (holder instanceof KidAcitivityViewHolder) {
             KidAcitivityViewHolder viewHolderParent = (KidAcitivityViewHolder)holder;
             if (kidInfo.getActivityDatas() != null)
                 viewHolderParent.initViewHolder(kidInfo);
         }
-        else if (wearingBand && holder instanceof KidPulseViewHolder) {
+        else if (holder instanceof KidPulseViewHolder) {
             KidPulseViewHolder viewHolderParent = (KidPulseViewHolder)holder;
             if (kidInfo.getPulseDatas() != null)
                 viewHolderParent.initViewHolder(kidInfo.getPulseDatas());
         }
-        else if (wearingBand && holder instanceof KidVisitZoneViewHolder) {
+        else if (holder instanceof KidVisitZoneViewHolder) {
             KidVisitZoneViewHolder viewHolderParent = (KidVisitZoneViewHolder)holder;
             if (kidInfo.getZoneDatas() != null)
                 viewHolderParent.initViewHolder(kidInfo.getZoneDatas());
+        }
+        else if (holder instanceof KidVisitZoneCellViewHolder) {
+            KidVisitZoneCellViewHolder viewHolderParent = (KidVisitZoneCellViewHolder)holder;
+            viewHolderParent.initViewHolder(kidInfo.getZoneDatas().get(position - TYPE_ITEM_VISIT_ZONE_CELL));
         }
     }
 
@@ -119,11 +128,19 @@ public class KidDetailAdapter extends RecyclerView.Adapter<ViewHolderParent> {
     public int getItemViewType(int position) {
         if (!wearingBand && position == 2)
             return TYPE_ITEM_NO_BAND;
-        else return position;
+        else if (position >= 6)
+            return TYPE_ITEM_VISIT_ZONE_CELL;
+        else
+            return position;
     }
 
     @Override
     public int getItemCount() {
-        return wearingBand ? 6 : 3;
+        if (wearingBand && kidInfo.getZoneDatas() != null)
+            return 6 + kidInfo.getZoneDatas().size();
+        else if (wearingBand)
+            return 6;
+        else
+            return 3;
     }
 }
