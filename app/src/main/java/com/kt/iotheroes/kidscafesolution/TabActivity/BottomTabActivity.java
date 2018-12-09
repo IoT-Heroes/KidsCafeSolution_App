@@ -10,11 +10,13 @@ import android.view.MenuItem;
 import com.kt.iotheroes.kidscafesolution.R;
 import com.kt.iotheroes.kidscafesolution.TabActivity.ParentFragment.TabParentFragment;
 import com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids.Tab1KidsFargment;
+import com.kt.iotheroes.kidscafesolution.TabActivity.Tab2ZoneFragment.Tab2List.ZoneTab2ListFragment;
+import com.kt.iotheroes.kidscafesolution.TabActivity.Tab2ZoneFragment.Tab2List.dummy.DummyContent;
 import com.kt.iotheroes.kidscafesolution.TabActivity.Tab2ZoneFragment.Tab2ZoneFargment;
 
 import java.util.ArrayList;
 
-public class BottomTabActivity extends AppCompatActivity {
+public class BottomTabActivity extends AppCompatActivity implements ZoneTab2ListFragment.OnListFragmentInteractionListener{
 
     private ArrayList<TabParentFragment> fragments = new ArrayList<>();
     private FragmentManager fm = getSupportFragmentManager();
@@ -72,5 +74,10 @@ public class BottomTabActivity extends AppCompatActivity {
         fm.beginTransaction().add(R.id.content, fragments.get(1)).hide(fragments.get(1)).commit();
         fm.beginTransaction().add(R.id.content, fragments.get(0)).commit();
         currentFragment = fragments.get(0);
+    }
+
+    @Override
+    public void onListFragmentInteraction(DummyContent.DummyItem item) {
+
     }
 }

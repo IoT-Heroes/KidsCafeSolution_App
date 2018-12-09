@@ -13,11 +13,14 @@ import com.kt.iotheroes.kidscafesolution.TabActivity.ParentFragment.TabParentFra
 import com.kt.iotheroes.kidscafesolution.TabActivity.Tab2ZoneFragment.Tab1Map.ZoneTab1MapFragment;
 import com.kt.iotheroes.kidscafesolution.TabActivity.Tab2ZoneFragment.Tab2List.ZoneTab2ListFragment;
 
+import java.util.ArrayList;
+
 // TODO : fragment parent버전 만들고 adapter로 화면 전환 관리하기
-public class Tab2ZoneFargment extends TabParentFragment {
+public class Tab2ZoneFargment extends TabParentFragment  {
     private static final String NAVIGATION_ID = "navigationId";
     private int navigationId;
 
+    private ArrayList<Fragment> fragments = new ArrayList<>();
     private TabLayout tabLayout;
 
     public Tab2ZoneFargment() {}
@@ -37,6 +40,9 @@ public class Tab2ZoneFargment extends TabParentFragment {
         if (getArguments() != null) {
             navigationId = getArguments().getInt(NAVIGATION_ID);
         }
+
+        fragments.add(new ZoneTab1MapFragment());
+        fragments.add(ZoneTab2ListFragment.newInstance(1));
     }
 
     @Override
@@ -55,16 +61,13 @@ public class Tab2ZoneFargment extends TabParentFragment {
         tabLayout.addTab(tabLayout.newTab().setText("목록"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
-        FragmentTransaction childFt = getChildFragmentManager().beginTransaction();
+        final FragmentTransaction childFt = getChildFragmentManager().beginTransaction();
         childFt.add(R.id.child_fragment_container, new ZoneTab1MapFragment()).commit();
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                if (tab.getPosition() == 0)
-                    setChildFragment(new ZoneTab1MapFragment());
-                else
-                    setChildFragment(new ZoneTab2ListFragment());
+                setChildFragment(fragments.get(tab.getPosition()));
             }
 
             @Override
