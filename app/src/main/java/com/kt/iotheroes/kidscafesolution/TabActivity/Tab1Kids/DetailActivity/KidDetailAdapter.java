@@ -106,8 +106,8 @@ public class KidDetailAdapter extends RecyclerView.Adapter<ViewHolderParent> {
             viewHolderParent.initViewHolder(kidInfo.getZoneDatas());
         }
         else if (holder instanceof KidVisitZoneCellViewHolder) {
-            KidVisitZoneViewHolder viewHolderParent = (KidVisitZoneViewHolder)holder;
-            viewHolderParent.initViewHolder(kidInfo.getZoneDatas());
+            KidVisitZoneCellViewHolder viewHolderParent = (KidVisitZoneCellViewHolder)holder;
+            viewHolderParent.initViewHolder(kidInfo.getZoneDatas().get(position - TYPE_ITEM_VISIT_ZONE_CELL));
         }
     }
 
@@ -123,6 +123,11 @@ public class KidDetailAdapter extends RecyclerView.Adapter<ViewHolderParent> {
 
     @Override
     public int getItemCount() {
-        return wearingBand ? 6 : 3;
+        if (wearingBand && kidInfo.getZoneDatas() != null)
+            return 6 + kidInfo.getZoneDatas().size();
+        else if (wearingBand)
+            return 6;
+        else
+            return 3;
     }
 }
