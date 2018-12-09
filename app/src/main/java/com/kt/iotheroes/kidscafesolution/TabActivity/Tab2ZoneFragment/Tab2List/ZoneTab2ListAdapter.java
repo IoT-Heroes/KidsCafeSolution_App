@@ -13,8 +13,12 @@ import java.util.List;
 
 public class ZoneTab2ListAdapter extends RecyclerView.Adapter<ZoneTab2ListAdapter.ViewHolder> {
 
-    private final List<Zone> mValues;
+    private List<Zone> mValues;
     private final ZoneTab2ListFragment.OnListFragmentInteractionListener mListener;
+
+    public void setmValues(List<Zone> mValues) {
+        this.mValues = mValues;
+    }
 
     public ZoneTab2ListAdapter(List<Zone> items, ZoneTab2ListFragment.OnListFragmentInteractionListener listener) {
         mValues = items;

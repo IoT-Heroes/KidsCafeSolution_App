@@ -6,23 +6,13 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.kt.iotheroes.kidscafesolution.Model.Zone;
 import com.kt.iotheroes.kidscafesolution.R;
-import com.kt.iotheroes.kidscafesolution.Util.Connections.APIClient;
-import com.kt.iotheroes.kidscafesolution.Util.Connections.Response;
 import com.kt.iotheroes.kidscafesolution.Util.SharedManager.SharedManager;
-
-import java.util.List;
-
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.annotations.NonNull;
-import io.reactivex.observers.DisposableObserver;
-import io.reactivex.schedulers.Schedulers;
 
 /**
  * A fragment representing a list of Items.
@@ -37,17 +27,6 @@ public class ZoneTab2ListFragment extends Fragment {
     private OnListFragmentInteractionListener mListener;
     private ZoneTab2ListAdapter adapter;
     private RecyclerView recyclerView;
-
-    private List<Zone> zoneList;
-
-    @SuppressWarnings("unused")
-    public static ZoneTab2ListFragment newInstance(int columnCount) {
-        ZoneTab2ListFragment fragment = new ZoneTab2ListFragment();
-        Bundle args = new Bundle();
-        args.putInt(ARG_COLUMN_COUNT, columnCount);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -73,10 +52,7 @@ public class ZoneTab2ListFragment extends Fragment {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
 
-            zoneList = SharedManager.getInstance().getZonelist();
-            if (zoneList == null) {
-                connectZoneList();
-            }
+            recyclerView.setAdapter(new ZoneTab2ListAdapter(SharedManager.getInstance().getZonelist(), mListener));
         }
         return view;
     }
@@ -101,35 +77,5 @@ public class ZoneTab2ListFragment extends Fragment {
 
     public interface OnListFragmentInteractionListener {
         void onListFragmentInteraction(Zone item);
-    }
-
-    public void connectZoneList() {
-        APIClient.getClient().getZoneList()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(new DisposableObserver<Response<List<Zone>>>() {
-                    @Override
-                    public void onNext(@NonNull Response<List<Zone>> userResponse) {
-                        if (userResponse.getResult().equals("success")) {
-                            if (userResponse.getData().size() > 0) {
-                                zoneList = userResponse.getData();
-                                SharedManager.getInstance().setZonelist(zoneList);
-                            }
-                        } else
-                            Log.i("connect", "get zone list 에 문제가 발생하였습니다.");
-                    }
-
-                    @Override
-                    public void onError(@NonNull Throwable e) {
-                        e.printStackTrace();
-                        Log.e("connect", e.getMessage());
-                    }
-
-                    @Override
-                    public void onComplete() {
-                        adapter = new ZoneTab2ListAdapter(zoneList, mListener);
-                        recyclerView.setAdapter(adapter);
-                    }
-                });
     }
 }
