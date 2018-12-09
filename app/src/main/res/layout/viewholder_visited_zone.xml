@@ -6,11 +6,11 @@
     android:background="@color/colorWhite"
     style="@style/viewholder_visited_zone"
     android:gravity="center_vertical">
-    <View
-        android:id="@+id/view_color"
+    <ImageView
+        android:id="@+id/image_color"
         android:layout_width="@dimen/kid_info_small_circle"
         android:layout_height="@dimen/kid_info_small_circle"
-        android:background="@color/colorAccent"/>
+        android:src="@drawable/circle"/>
     <TextView
         android:id="@+id/text_room_name"
         android:layout_width="0dp"
@@ -20,7 +20,7 @@
         android:textColor="@color/colorText"
         android:layout_marginLeft="20dp"/>
     <TextView
-        android:id="@+id/text_room_rate"
+        android:id="@+id/text_room_count"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="2"
