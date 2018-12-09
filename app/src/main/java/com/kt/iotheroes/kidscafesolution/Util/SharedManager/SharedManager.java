@@ -5,6 +5,7 @@ import android.util.Log;
 import com.kt.iotheroes.kidscafesolution.Model.Kid;
 import com.kt.iotheroes.kidscafesolution.Model.User;
 import com.kt.iotheroes.kidscafesolution.Model.VisitingRecord;
+import com.kt.iotheroes.kidscafesolution.Model.Zone;
 import com.kt.iotheroes.kidscafesolution.Util.Connections.APIClient;
 import com.kt.iotheroes.kidscafesolution.Util.Connections.Response;
 
@@ -25,7 +26,20 @@ public class SharedManager {
      */
     private volatile static SharedManager single;
 
-    private User user;
+    private volatile User user;
+    private volatile List<Zone> zonelist;
+
+    public static SharedManager getInstance() {
+        if (single == null) {
+            // static method 동기화는 SharedManager 객체를 기준으로 이루어짐
+            // JVM 안에 클래스 객체는 클래스 당 하나만 존재할 수 있으므로, 같은 클래스에 대해서는 오직 한 쓰레드만 동기화된 스태틱 메소드를 실행할 수 있다.
+            synchronized (SharedManager.class) {
+                if (single == null)
+                    single = new SharedManager();
+            }
+        }
+        return single;
+    }
 
     public User getUser() {
         return user;
@@ -88,15 +102,38 @@ public class SharedManager {
         return true;
     }
 
-    public static SharedManager getInstance() {
-        if (single == null) {
-            // static method 동기화는 SharedManager 객체를 기준으로 이루어짐
-            // JVM 안에 클래스 객체는 클래스 당 하나만 존재할 수 있으므로, 같은 클래스에 대해서는 오직 한 쓰레드만 동기화된 스태틱 메소드를 실행할 수 있다.
+    public List<Zone> getList() {
+        if (zonelist == null) {
             synchronized (SharedManager.class) {
-                if (single == null)
-                    single = new SharedManager();
+                if (zonelist == null)
+                    connectZoneList();
             }
         }
-        return single;
+        return zonelist;
+    }
+
+    private void connectZoneList() {
+        APIClient.getClient().getZoneList()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<Response<List<Zone>>>() {
+                    @Override
+                    public void onNext(@NonNull Response<List<Zone>> userResponse) {
+                        if (userResponse.getResult().equals("success")) {
+                            zonelist = userResponse.getData();
+                        } else
+                            Log.i("connect", "get zone List 에 문제가 발생하였습니다.");
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        e.printStackTrace();
+                        Log.e("connect", e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                    }
+                });
     }
 }

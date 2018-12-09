@@ -58,7 +58,7 @@ public class KidDetailActivity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
     }
 
-    private synchronized void connectActivityData() {
+    private void connectActivityData() {
         String kidId = kidInfo.getKid().getId();
         String startDate = kidInfo.getKid().getVisitingRecord().getStartDate();
         String endDate = kidInfo.getKid().getVisitingRecord().getEndDate();

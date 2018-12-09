@@ -6,6 +6,7 @@ import com.kt.iotheroes.kidscafesolution.Model.KidStatic;
 import com.kt.iotheroes.kidscafesolution.Model.User;
 import com.kt.iotheroes.kidscafesolution.Model.UsingZone;
 import com.kt.iotheroes.kidscafesolution.Model.VisitingRecord;
+import com.kt.iotheroes.kidscafesolution.Model.Zone;
 
 import java.util.List;
 
@@ -59,4 +60,7 @@ public interface APIInterface {
 
     @GET("/heroes/statistics/childactivity/select")
     Observable<Response<List<KidStatic>>> getChildActivity(@Query("childId") String childId, @Query("startDate") String startDate, @Query("endDate") String endDate, @Query("batchType") String batchType);
+
+    @GET("/heroes/zone/management/select")
+    Observable<Response<List<Zone>>> getZoneList();
 }
