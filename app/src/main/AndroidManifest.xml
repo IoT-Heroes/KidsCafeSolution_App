@@ -38,6 +38,18 @@
         <activity android:name=".TabActivity.Tab1Kids.AddChild.AddActivity.AddChildActivity" />
         <activity android:name=".Settings.SettingsActivity"
             android:label="@string/action_settings"></activity>
+
+        <!--gcm-->
+        <service android:name=".Util.GCM.GCMIntentService"/>
+
+        <receiver android:name=".Util.GCM.GcmBroadcastReceiver"
+            android:permission="com.google.android.c2dm.permission.SEND" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+                <category android:name="com.kt.iotheroes.kidscafesolution" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

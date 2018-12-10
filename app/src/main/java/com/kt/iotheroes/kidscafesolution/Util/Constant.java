@@ -10,4 +10,5 @@ public class Constant {
 
 //    iot makers
     public static final String IOT_MAKERS_APP_ID = "qDRoabljx8SD4IFK";
+    public static final String GCM_INTENT_SERVICE_NAME = "GigaIoT";
 }
