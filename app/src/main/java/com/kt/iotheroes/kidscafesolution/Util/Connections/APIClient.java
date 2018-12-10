@@ -1,5 +1,7 @@
 package com.kt.iotheroes.kidscafesolution.Util.Connections;
 
+import com.kt.iotheroes.kidscafesolution.Util.Constant.Constant;
+
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -14,7 +16,7 @@ public class APIClient {
 
     private static Retrofit retrofit = null;
     // TODO : url넣기
-    private static final String url = "http://220.94.248.34:8080";
+    private static final String url = Constant.SERVER_URI;
 
     // getClient는 Retrofit 인터페이스를 설정할 때 마다 호출 됨
     public static APIInterface getClient() {

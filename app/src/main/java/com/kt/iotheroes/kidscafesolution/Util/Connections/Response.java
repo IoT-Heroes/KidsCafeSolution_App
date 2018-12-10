@@ -8,6 +8,7 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class Response<T> {
+    public String responseCode;
 
     @SerializedName("result")
     private String result;

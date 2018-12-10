@@ -63,4 +63,5 @@ public interface APIInterface {
 
     @GET("/heroes/zone/management/select")
     Observable<Response<List<Zone>>> getZoneList();
+
 }

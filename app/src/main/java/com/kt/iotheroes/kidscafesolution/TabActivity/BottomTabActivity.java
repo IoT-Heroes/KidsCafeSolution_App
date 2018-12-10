@@ -1,5 +1,6 @@
 package com.kt.iotheroes.kidscafesolution.TabActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 
 import com.kt.iotheroes.kidscafesolution.Model.Zone;
 import com.kt.iotheroes.kidscafesolution.R;
+import com.kt.iotheroes.kidscafesolution.Settings.SettingsActivity;
 import com.kt.iotheroes.kidscafesolution.TabActivity.ParentFragment.TabParentFragment;
 import com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids.Tab1KidsFargment;
 import com.kt.iotheroes.kidscafesolution.TabActivity.Tab2ZoneFragment.Tab2List.ZoneTab2ListFragment;
@@ -103,8 +105,8 @@ public class BottomTabActivity extends AppCompatActivity implements ZoneTab2List
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_settings:
-                // TODO : setting 화면 이동
-                Toast.makeText(getApplicationContext(), "settings", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(BottomTabActivity.this, SettingsActivity.class);
+                startActivity(intent);
                 return true;
             case android.R.id.home: // ar
                 // TODO : AR 연동

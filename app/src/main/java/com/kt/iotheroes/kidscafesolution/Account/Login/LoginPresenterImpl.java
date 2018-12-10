@@ -2,10 +2,14 @@ package com.kt.iotheroes.kidscafesolution.Account.Login;
 
 import android.util.Log;
 
+import com.kt.gigaiot_sdk.data.EventLog;
 import com.kt.iotheroes.kidscafesolution.Model.User;
 import com.kt.iotheroes.kidscafesolution.Util.Connections.APIClient;
 import com.kt.iotheroes.kidscafesolution.Util.Connections.Response;
+import com.kt.iotheroes.kidscafesolution.Util.IoTMakers.IoTMakersAPI;
 import com.kt.iotheroes.kidscafesolution.Util.SharedManager.SharedManager;
+
+import java.util.ArrayList;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
@@ -22,6 +26,7 @@ public class LoginPresenterImpl implements LoginContract.LoginPresenter {
 
     private LoginContract.LoginView view;
     private User user;
+    private ArrayList<EventLog> mArrayEventLogs;
 
     public LoginPresenterImpl(LoginActivity view) {
         this.view = view;
@@ -37,7 +42,11 @@ public class LoginPresenterImpl implements LoginContract.LoginPresenter {
     public void onLoginBtnSelected(String id, String pw) {
         user = new User(id, pw);
 //        demoLogin(user);
+        new IoTMakersAPI.GetSvcTgtTask().execute();
+        connectLogin();
+    }
 
+    private void connectLogin() {
         APIClient.getClient().login(user)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
