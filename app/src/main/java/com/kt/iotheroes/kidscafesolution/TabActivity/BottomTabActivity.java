@@ -103,9 +103,11 @@ public class BottomTabActivity extends AppCompatActivity implements ZoneTab2List
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_settings:
+                // TODO : setting 화면 이동
                 Toast.makeText(getApplicationContext(), "settings", Toast.LENGTH_SHORT).show();
                 return true;
             case android.R.id.home: // ar
+                // TODO : AR 연동
                 Toast.makeText(getApplicationContext(), "ar", Toast.LENGTH_SHORT).show();
                 return true;
             default:
