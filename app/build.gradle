@@ -53,5 +53,7 @@ dependencies {
     compile 'com.github.blackfizz:eazegraph:1.2.2@aar'
     compile 'com.nineoldandroids:library:2.4.0'
     compile 'cn.lankton:flowlayout:3.1.0'
+    compile 'com.google.android.gms:play-services-gcm:7.5.0'
+
     testCompile 'junit:junit:4.12'
 }
