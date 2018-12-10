@@ -16,7 +16,7 @@ public class PushSessionDeleteTask extends AsyncTask<Void, Void, Void> {
     PreferenceManager preferenceManager;
 
     public PushSessionDeleteTask(Context context) {
-        this.preferenceManager = PreferenceManager.getInstance(context);
+        this.preferenceManager = PreferenceManager.getInstance();
     }
 
     @Override

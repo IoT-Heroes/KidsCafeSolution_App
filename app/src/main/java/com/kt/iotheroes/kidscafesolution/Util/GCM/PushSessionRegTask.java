@@ -1,6 +1,5 @@
 package com.kt.iotheroes.kidscafesolution.Util.GCM;
 
-import android.content.Context;
 import android.os.AsyncTask;
 
 import com.kt.gigaiot_sdk.PushApi;
@@ -20,10 +19,6 @@ public class PushSessionRegTask extends AsyncTask<Void, Void, Void> {
 
     PreferenceManager preferenceManager;
     private ArrayList<SvcTgt> mArraySvcTgt;
-
-    public PushSessionRegTask(Context context) {
-        this.preferenceManager = PreferenceManager.getInstance(context);
-    }
 
     @Override
     protected Void doInBackground(Void... params) {

@@ -27,6 +27,8 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
+        PreferenceManager.getInstance().init(getApplicationContext());
+
         // iot makers 플랫폼 로그인
         new LoginTask().execute();
     }
@@ -60,8 +62,8 @@ public class SplashActivity extends AppCompatActivity {
             }
 
             if (result != null && result.getResponseCode().equals(ApiConstants.CODE_OK)) {
-                PreferenceManager.getInstance(getApplicationContext()).setAccessToken(result.getAccessToken());
-                PreferenceManager.getInstance(getApplicationContext()).setMemberSeq(result.getMbrSeq());
+                PreferenceManager.getInstance().setAccessToken(result.getAccessToken());
+                PreferenceManager.getInstance().setMemberSeq(result.getMbrSeq());
 
                 // login 화면으로 이동
                 new Handler().postDelayed(new Runnable() {

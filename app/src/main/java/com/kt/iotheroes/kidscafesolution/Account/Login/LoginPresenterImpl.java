@@ -1,16 +1,13 @@
 package com.kt.iotheroes.kidscafesolution.Account.Login;
 
-import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
-import com.kt.gigaiot_sdk.SvcTgtApi;
 import com.kt.gigaiot_sdk.data.EventLog;
-import com.kt.gigaiot_sdk.data.SvcTgtApiResponse;
-import com.kt.gigaiot_sdk.network.ApiConstants;
 import com.kt.iotheroes.kidscafesolution.Model.User;
 import com.kt.iotheroes.kidscafesolution.Util.Connections.APIClient;
 import com.kt.iotheroes.kidscafesolution.Util.Connections.Response;
+import com.kt.iotheroes.kidscafesolution.Util.IoTMakers.IoTMakersAPI;
 import com.kt.iotheroes.kidscafesolution.Util.SharedManager.SharedManager;
 
 import java.util.ArrayList;
@@ -45,40 +42,8 @@ public class LoginPresenterImpl implements LoginContract.LoginPresenter {
     public void onLoginBtnSelected(String id, String pw) {
         user = new User(id, pw);
 //        demoLogin(user);
-
-//        connectLogin();
-        new GetSvcTgtTask().execute();
-    }
-
-    private class GetSvcTgtTask extends AsyncTask<Void, Void, SvcTgtApiResponse> {
-
-        @Override
-        protected SvcTgtApiResponse doInBackground(Void... params) {
-
-            try{
-                SvcTgtApi svcTgtApi = new SvcTgtApi(view.getPreferenceManager().getAccessToken());
-                return svcTgtApi.getSvcTgtSeqList("lmjing");
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(SvcTgtApiResponse result) {
-
-            if (result != null && result.getResponseCode().equals(ApiConstants.CODE_OK)) {
-
-                Log.i("tt","k");
-
-            } else if (result != null && result.getResponseCode().equals(ApiConstants.CODE_NG) && result.getMessage().equals("Unauthorized")) {
-
-                Log.i("tt","k2");
-            }
-
-        }
+        new IoTMakersAPI.GetSvcTgtTask().execute();
+        connectLogin();
     }
 
     private void connectLogin() {

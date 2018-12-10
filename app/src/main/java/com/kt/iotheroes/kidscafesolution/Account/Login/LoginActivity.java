@@ -31,7 +31,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_login);
 
         presenter = new LoginPresenterImpl(this);
-        preferenceManager = PreferenceManager.getInstance(getApplicationContext());
+        preferenceManager = PreferenceManager.getInstance();
 
         initView();
     }

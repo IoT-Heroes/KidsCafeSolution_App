@@ -34,7 +34,7 @@ public class GetGcmRegIdTask extends AsyncTask<Void, Void, String> {
             e.printStackTrace();
         }
 
-        PreferenceManager.getInstance(context).setGcmRegID(regId);
+        PreferenceManager.getInstance().setGcmRegID(regId);
 
         return regId;
     }

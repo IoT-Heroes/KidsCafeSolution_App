@@ -13,20 +13,21 @@ public class PreferenceManager {
     private final static String PREF_GCM_REG_ID = "pref.gcm_regid";
     private final static String PREF_ACCESS_TOKEN = "pref.access_token";
     public static final String PREF_ACCOUNT_MEMBER_SEQ = "pref.account_mbrseq";
+    public static final String PREF_SERVICE_TgtSeq = "pref.service_TgtSeq"; // 서비스 대상 일련번호
 
     private volatile static PreferenceManager single;
     private static SharedPreferences prefs;
     private SharedPreferences.Editor editor;
 
-    public PreferenceManager(Context context) {
+    public void init(Context context) {
         prefs = context.getSharedPreferences(PREF_NAME, context.MODE_PRIVATE);
         editor = prefs.edit();
     }
 
-    public static PreferenceManager getInstance(Context context) {
+    public static PreferenceManager getInstance() {
         if (single == null) {
             synchronized (PreferenceManager.class) {
-                single = new PreferenceManager(context);
+                single = new PreferenceManager();
             }
         }
         return single;
@@ -56,6 +57,15 @@ public class PreferenceManager {
 
     public void setMemberSeq(String token) {
         editor.putString(PREF_ACCOUNT_MEMBER_SEQ, token);
+        editor.commit();
+    }
+
+    public String getService_TgtSeq() {
+        return prefs.getString(PREF_SERVICE_TgtSeq, null);
+    }
+
+    public void setService_TgtSeq(String mbrld) {
+        editor.putString(PREF_SERVICE_TgtSeq, mbrld);
         editor.commit();
     }
 }
