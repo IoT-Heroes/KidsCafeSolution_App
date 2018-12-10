@@ -35,7 +35,8 @@
             android:name=".TabActivity.Tab1Kids.AddChild.ListActivity.AddChildListActivity"
             android:label="@string/title_activity_add_child_list"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".TabActivity.Tab1Kids.AddChild.AddActivity.AddChildActivity"></activity>
+        <activity android:name=".TabActivity.Tab1Kids.AddChild.AddActivity.AddChildActivity" />
+        <activity android:name=".Settings.SettingsActivity"></activity>
     </application>
 
 </manifest>
