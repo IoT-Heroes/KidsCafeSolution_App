@@ -4,7 +4,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 
 import com.kt.gigaiot_sdk.PushApi;
-import com.kt.iotheroes.kidscafesolution.Util.Constant;
+import com.kt.iotheroes.kidscafesolution.Util.Constant.Constant;
 import com.kt.iotheroes.kidscafesolution.Util.SharedManager.PreferenceManager;
 import com.kt.gigaiot_sdk.data.PushTypePair;
 

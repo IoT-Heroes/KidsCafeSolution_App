@@ -1,6 +1,6 @@
 package com.kt.iotheroes.kidscafesolution.Util.Connections;
 
-import com.kt.iotheroes.kidscafesolution.Util.Constant;
+import com.kt.iotheroes.kidscafesolution.Util.Constant.Constant;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;

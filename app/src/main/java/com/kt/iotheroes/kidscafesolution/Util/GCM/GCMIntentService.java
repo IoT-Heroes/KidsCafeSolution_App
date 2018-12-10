@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.os.PowerManager;
 import android.support.annotation.Nullable;
 
-import com.kt.iotheroes.kidscafesolution.Util.Constant;
+import com.kt.iotheroes.kidscafesolution.Util.Constant.Constant;
 
 /**
  * Created by mijeong on 2018. 12. 10..
