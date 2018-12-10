@@ -34,7 +34,8 @@ public class PreferenceManager {
     }
 
     public String getGcmRegID() {
-        return prefs.getString(PREF_GCM_REG_ID, null);
+        String test = prefs.getString(PREF_GCM_REG_ID, null);
+        return test;
     }
 
     public void setGcmRegID(String id) {

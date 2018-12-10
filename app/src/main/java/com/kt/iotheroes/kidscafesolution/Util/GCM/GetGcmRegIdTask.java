@@ -16,10 +16,8 @@ import java.io.IOException;
 public class GetGcmRegIdTask extends AsyncTask<Void, Void, String> {
 
     private GoogleCloudMessaging mGcm;
-    private Context context;
 
     public GetGcmRegIdTask(Context context) {
-        this.context = context;
         this.mGcm = GoogleCloudMessaging.getInstance(context);
     }
 

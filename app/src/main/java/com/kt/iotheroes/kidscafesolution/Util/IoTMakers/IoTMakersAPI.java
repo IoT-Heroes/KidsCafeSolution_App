@@ -1,7 +1,6 @@
 package com.kt.iotheroes.kidscafesolution.Util.IoTMakers;
 
 import android.os.AsyncTask;
-import android.util.Log;
 
 import com.kt.gigaiot_sdk.PushApi;
 import com.kt.gigaiot_sdk.SvcTgtApi;
@@ -19,8 +18,6 @@ import java.util.ArrayList;
  */
 
 public class IoTMakersAPI {
-
-    private volatile static IoTMakersAPI single;
 
     private final static String TAG = "IoTMakersAPI";
 
@@ -51,7 +48,7 @@ public class IoTMakersAPI {
 
                 new PushSessionRegTask().execute();
             } else if (result != null && result.getResponseCode().equals(ApiConstants.CODE_NG) && result.getMessage().equals("Unauthorized")) {
-                Log.i(TAG, "서비스가 없습니다.");
+                new PushSessionDeleteTask().execute();
             }
 
         }
@@ -69,7 +66,18 @@ public class IoTMakersAPI {
 
             PushApi pushApi = new PushApi(PreferenceManager.getInstance().getAccessToken());
             pushApi.gcmSessionRegistration(PreferenceManager.getInstance().getMemberSeq(),
-                    PreferenceManager.getInstance().getGcmRegID(), Constant.IOT_MAKERS_APP_ID, pushTypePairs);
+                    Constant.IOT_MAKERS_APP_ID, PreferenceManager.getInstance().getGcmRegID(), pushTypePairs);
+            return null;
+        }
+    }
+
+    public static class PushSessionDeleteTask extends AsyncTask<Void, Void, Void> {
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            PushApi pushApi = new PushApi(PreferenceManager.getInstance().getAccessToken());
+            pushApi.gcmSessionDelete(PreferenceManager.getInstance().getGcmRegID());
+
             return null;
         }
     }
