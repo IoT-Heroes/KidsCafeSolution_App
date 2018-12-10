@@ -75,6 +75,10 @@ public class BottomTabActivity extends AppCompatActivity implements ZoneTab2List
         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        // 액션바 왼쪽(홈 버튼) 생성 - android.R.id.home
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.vr);
+
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
@@ -98,11 +102,11 @@ public class BottomTabActivity extends AppCompatActivity implements ZoneTab2List
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.action_ar:
-                Toast.makeText(getApplicationContext(), "AR", Toast.LENGTH_SHORT).show();
-                return true;
             case R.id.action_settings:
                 Toast.makeText(getApplicationContext(), "settings", Toast.LENGTH_SHORT).show();
+                return true;
+            case android.R.id.home: // ar
+                Toast.makeText(getApplicationContext(), "ar", Toast.LENGTH_SHORT).show();
                 return true;
             default:
                 super.onOptionsItemSelected(item);
