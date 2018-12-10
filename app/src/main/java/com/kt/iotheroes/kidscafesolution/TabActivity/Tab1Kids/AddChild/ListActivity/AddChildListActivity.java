@@ -8,8 +8,8 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
-import com.kt.iotheroes.kidscafesolution.Account.Join.JoinActivity;
 import com.kt.iotheroes.kidscafesolution.Model.Food;
 import com.kt.iotheroes.kidscafesolution.Model.Kid;
 import com.kt.iotheroes.kidscafesolution.R;
@@ -17,6 +17,7 @@ import com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids.AddChild.AddActivi
 import com.kt.iotheroes.kidscafesolution.Util.Connections.APIClient;
 import com.kt.iotheroes.kidscafesolution.Util.Connections.Response;
 import com.kt.iotheroes.kidscafesolution.Util.Dialog.OkDialog;
+import com.kt.iotheroes.kidscafesolution.Util.Loadings.LoadingUtil;
 import com.kt.iotheroes.kidscafesolution.Util.SharedManager.SharedManager;
 
 import java.io.Serializable;
@@ -34,6 +35,8 @@ public class AddChildListActivity extends AppCompatActivity {
     List<Kid> kids;
     List<Food> foodList;
     AddChildListActivityFragment fragment;
+    LinearLayout indicator;
+    FloatingActionButton fab;
 
     private Button button_ok;
 
@@ -42,8 +45,48 @@ public class AddChildListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_add_child_list);
+
+        initView();
+
+        kids = new ArrayList<>();
+        getFoodList();
+    }
+
+    private void getFoodList() {
+        LoadingUtil.startLoading(indicator);
+        APIClient.getClient().getFoodList()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<Response<List<Food>>>() {
+                    @Override
+                    public void onNext(@NonNull Response<List<Food>> userResponse) {
+                        if (userResponse.getResult().equals("success")) {
+                            foodList = userResponse.getData();
+                        }
+                        else
+                            Log.i("connect", "get FoodList 에 문제가 발생하였습니다.");
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        e.printStackTrace();
+                        Log.e("connect", e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        LoadingUtil.stopLoading(indicator);
+                        // 다 받아오면 floating button을 그려준다.
+                        fab.show();
+                    }
+                });
+    }
+
+    private void initView() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        indicator = (LinearLayout)findViewById(R.id.indicator);
 
         button_ok = (Button)toolbar.findViewById(R.id.button_ok);
         button_ok.setOnClickListener(new View.OnClickListener() {
@@ -53,10 +96,7 @@ public class AddChildListActivity extends AppCompatActivity {
             }
         });
 
-        kids = new ArrayList<>();
-        getFoodList();
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -65,6 +105,10 @@ public class AddChildListActivity extends AppCompatActivity {
                 startActivityForResult(intent, PICK_CONTACT_REQUEST);
             }
         });
+        // 통신이 완료되기 전까지 띄우지 않는다.
+        fab.hide();
+        // 데이터가 없을 경우 ok 버튼을 띄우지 않는다.
+        button_ok.setVisibility(View.GONE);
 
         fragment = (AddChildListActivityFragment) getSupportFragmentManager().findFragmentById(R.id.fragment);
     }
@@ -110,31 +154,6 @@ public class AddChildListActivity extends AppCompatActivity {
                 });
     }
 
-    private void getFoodList() {
-        APIClient.getClient().getFoodList()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(new DisposableObserver<Response<List<Food>>>() {
-                    @Override
-                    public void onNext(@NonNull Response<List<Food>> userResponse) {
-                        if (userResponse.getResult().equals("success")) {
-                            foodList = userResponse.getData();
-                        }
-                        else
-                            Log.i("connect", "get FoodList 에 문제가 발생하였습니다.");
-                    }
-
-                    @Override
-                    public void onError(@NonNull Throwable e) {
-                        e.printStackTrace();
-                        Log.e("connect", e.getMessage());
-                    }
-
-                    @Override
-                    public void onComplete() {}
-                });
-    }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -142,6 +161,9 @@ public class AddChildListActivity extends AppCompatActivity {
         if (resultCode == RESULT_OK && requestCode == PICK_CONTACT_REQUEST) {
             kids.add((Kid) data.getSerializableExtra("data"));
             fragment.reload(kids);
+
+            if (kids.size() > 0)
+                button_ok.setVisibility(View.VISIBLE);
         }
     }
 }

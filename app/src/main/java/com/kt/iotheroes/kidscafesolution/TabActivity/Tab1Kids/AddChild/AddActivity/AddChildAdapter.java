@@ -136,6 +136,4 @@ public class AddChildAdapter extends RecyclerView.Adapter<ViewHolderParent> {
     public int getItemCount() {
         return 1 + foods.size();
     }
-
-
 }

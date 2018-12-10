@@ -33,4 +33,6 @@
         android:background="@color/colorPrimary"
         app:srcCompat="@android:drawable/ic_input_add" />
 
+    <include android:id="@+id/indicator" layout="@layout/view_loading_indicator"/>
+
 </android.support.design.widget.CoordinatorLayout>
