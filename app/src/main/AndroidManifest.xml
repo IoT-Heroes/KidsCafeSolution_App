@@ -23,7 +23,7 @@
         </activity>
         <activity
             android:name=".TabActivity.BottomTabActivity"
-            android:label="@string/title_activity_tab" />
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Account.Login.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar" />

@@ -8,12 +8,13 @@
     android:orientation="vertical"
     tools:context="com.kt.iotheroes.kidscafesolution.TabActivity.BottomTabActivity">
 
+    <include layout="@layout/toolbar_main" android:id="@+id/cs_toolbar" />
+
     <FrameLayout
         android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        >
+        android:layout_weight="1">
 
     </FrameLayout>
 
