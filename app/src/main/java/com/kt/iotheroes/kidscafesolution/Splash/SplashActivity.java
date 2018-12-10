@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
@@ -13,10 +14,18 @@ import com.kt.gigaiot_sdk.GigaIotOAuth;
 import com.kt.gigaiot_sdk.data.GiGaIotOAuthResponse;
 import com.kt.gigaiot_sdk.network.ApiConstants;
 import com.kt.iotheroes.kidscafesolution.Account.Login.LoginActivity;
+import com.kt.iotheroes.kidscafesolution.Model.Test;
 import com.kt.iotheroes.kidscafesolution.R;
+import com.kt.iotheroes.kidscafesolution.Util.Connections.APIClient;
+import com.kt.iotheroes.kidscafesolution.Util.Connections.Response;
 import com.kt.iotheroes.kidscafesolution.Util.Constant.Constant;
 import com.kt.iotheroes.kidscafesolution.Util.GCM.GetGcmRegIdTask;
 import com.kt.iotheroes.kidscafesolution.Util.SharedManager.PreferenceManager;
+
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.observers.DisposableObserver;
+import io.reactivex.schedulers.Schedulers;
 
 
 public class SplashActivity extends AppCompatActivity {
@@ -27,8 +36,35 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
+        test();
         // iot makers 플랫폼 로그인
-        new LoginTask().execute();
+//        new LoginTask().execute();
+    }
+
+    private void test() {
+        APIClient.getClient().testIoTMakers("lmjingD1544424714703")
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<Response<Test>>() {
+                    @Override
+                    public void onNext(@NonNull Response<Test> userResponse) {
+                        if (userResponse.responseCode.equals("OK")) {
+                            Toast.makeText(getApplicationContext(), userResponse.getData().getTotal(), Toast.LENGTH_SHORT).show();
+                        } else
+                            Log.i("connect", "get zone list 에 문제가 발생하였습니다.");
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        e.printStackTrace();
+                        Log.e("connect", e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
     }
 
     private class LoginTask extends AsyncTask<Void, Void, GiGaIotOAuthResponse> {

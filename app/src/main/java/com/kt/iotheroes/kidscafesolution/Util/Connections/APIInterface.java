@@ -3,6 +3,7 @@ package com.kt.iotheroes.kidscafesolution.Util.Connections;
 import com.kt.iotheroes.kidscafesolution.Model.Food;
 import com.kt.iotheroes.kidscafesolution.Model.Kid;
 import com.kt.iotheroes.kidscafesolution.Model.KidStatic;
+import com.kt.iotheroes.kidscafesolution.Model.Test;
 import com.kt.iotheroes.kidscafesolution.Model.User;
 import com.kt.iotheroes.kidscafesolution.Model.UsingZone;
 import com.kt.iotheroes.kidscafesolution.Model.VisitingRecord;
@@ -14,6 +15,7 @@ import io.reactivex.Observable;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 /**
@@ -63,4 +65,8 @@ public interface APIInterface {
 
     @GET("/heroes/zone/management/select")
     Observable<Response<List<Zone>>> getZoneList();
+
+    // iot makers
+    @GET("/api/v1/device/{deviceId}/deviceEvents")
+    Observable<Response<Test>> testIoTMakers(@Path("deviceId") String deviceId);
 }

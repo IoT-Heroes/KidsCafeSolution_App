@@ -16,7 +16,7 @@ public class APIClient {
 
     private static Retrofit retrofit = null;
     // TODO : url넣기
-    private static final String url = Constant.SERVER_URI;
+    private static final String url = Constant.IOT_MAKERS_URI;
 
     // getClient는 Retrofit 인터페이스를 설정할 때 마다 호출 됨
     public static APIInterface getClient() {
