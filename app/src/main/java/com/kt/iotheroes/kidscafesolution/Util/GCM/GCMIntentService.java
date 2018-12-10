@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.PowerManager;
 import android.support.annotation.Nullable;
+import android.util.Log;
 
 import com.kt.iotheroes.kidscafesolution.Util.Constant.Constant;
 
@@ -41,6 +42,8 @@ public class GCMIntentService extends IntentService {
 
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
-
+        Log.d(TAG, "GCMIntentService.onHandleIntent()  GCM onHandleIntent");
+        Log.d(TAG, "intent : " + intent.toString());
+        Log.d(TAG, "intent : " + intent);
     }
 }

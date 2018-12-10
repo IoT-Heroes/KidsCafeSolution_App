@@ -4,9 +4,10 @@ import android.content.Context;
 import android.os.AsyncTask;
 
 import com.kt.gigaiot_sdk.PushApi;
+import com.kt.gigaiot_sdk.data.PushTypePair;
+import com.kt.gigaiot_sdk.data.SvcTgt;
 import com.kt.iotheroes.kidscafesolution.Util.Constant.Constant;
 import com.kt.iotheroes.kidscafesolution.Util.SharedManager.PreferenceManager;
-import com.kt.gigaiot_sdk.data.PushTypePair;
 
 import java.util.ArrayList;
 
@@ -18,6 +19,7 @@ import java.util.ArrayList;
 public class PushSessionRegTask extends AsyncTask<Void, Void, Void> {
 
     PreferenceManager preferenceManager;
+    private ArrayList<SvcTgt> mArraySvcTgt;
 
     public PushSessionRegTask(Context context) {
         this.preferenceManager = PreferenceManager.getInstance(context);
@@ -28,8 +30,8 @@ public class PushSessionRegTask extends AsyncTask<Void, Void, Void> {
 
         ArrayList<PushTypePair> pushTypePairs = new ArrayList<>();
 
-        pushTypePairs.add(new PushTypePair("서비스 대상 일련번호", PushApi.PUSH_MSG_TYPE_COLLECT));
-        pushTypePairs.add(new PushTypePair("서비스 대상 일련번호", PushApi.PUSH_MSG_TYPE_OUTBREAK));
+        pushTypePairs.add(new PushTypePair(mArraySvcTgt.get(0).getSvcTgtSeq(), PushApi.PUSH_MSG_TYPE_COLLECT));
+        pushTypePairs.add(new PushTypePair(mArraySvcTgt.get(0).getSvcTgtSeq(), PushApi.PUSH_MSG_TYPE_OUTBREAK));
 
         PushApi pushApi = new PushApi(preferenceManager.getAccessToken());
         pushApi.gcmSessionRegistration(preferenceManager.getMemberSeq(),

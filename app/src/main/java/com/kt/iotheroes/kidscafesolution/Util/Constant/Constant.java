@@ -12,10 +12,10 @@ public class Constant {
 
 //    iot makers
     public static final String IOT_MAKERS_URI = "https://iotmakers.kt.com:443";
-    public static final String IOT_MAKERS_APP_ID = "qDRoabljx8SD4IFK"; // 앱 인증을 위한 앱 구분 ID
-    public static final String IOT_MAKERS_APP_SECRET = "g6sZDXRZOnq7Fk8l"; // 앱 인증을 위한 앱 구분 PW
-    public static final String IOT_MAKERS_OAUTH_ID = "lmjing"; // iot makers 사용자 id
-    public static final String IOT_MAKERS_OAUTH_PW = "lmj10150556!"; // iot makers 사용자 pw
+    public static final String IOT_MAKERS_APP_ID = "YOkVU8rBEXliilVZ"; // 앱 인증을 위한 앱 구분 ID
+    public static final String IOT_MAKERS_APP_SECRET = "dubgBOpbtsPGnYc7"; // 앱 인증을 위한 앱 구분 PW
+    public static final String IOT_MAKERS_OAUTH_ID = "lockandlock1"; // iot makers 사용자 id
+    public static final String IOT_MAKERS_OAUTH_PW = "1q2w3e4r!"; // iot makers 사용자 pw
 
     public static final String GCM_INTENT_SERVICE_NAME = "GigaIoT";
 }
