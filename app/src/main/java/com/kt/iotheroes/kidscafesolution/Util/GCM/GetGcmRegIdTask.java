@@ -4,18 +4,22 @@ import android.content.Context;
 import android.os.AsyncTask;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
+import com.kt.iotheroes.kidscafesolution.Util.SharedManager.PreferenceManager;
 
 import java.io.IOException;
 
 /**
  * Created by mijeong on 2018. 12. 10..
+ * 구글 GCM 서버에 어플리케이션이 어떤 메시지를 수신하는지 알린다.
  */
 
 public class GetGcmRegIdTask extends AsyncTask<Void, Void, String> {
 
     private GoogleCloudMessaging mGcm;
+    private Context context;
 
     public GetGcmRegIdTask(Context context) {
+        this.context = context;
         this.mGcm = GoogleCloudMessaging.getInstance(context);
     }
 
@@ -30,8 +34,8 @@ public class GetGcmRegIdTask extends AsyncTask<Void, Void, String> {
             e.printStackTrace();
         }
 
-        // TODO : preference에 저장
+        PreferenceManager.getInstance(context).setGcmRegID(regId);
 
-        return null;
+        return regId;
     }
 }

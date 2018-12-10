@@ -56,4 +56,5 @@ dependencies {
     compile 'com.google.android.gms:play-services-gcm:7.5.0'
 
     testCompile 'junit:junit:4.12'
+    compile project(path: ':iotmakers_sdk_android')
 }
