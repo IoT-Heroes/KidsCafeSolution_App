@@ -43,7 +43,7 @@ public class LoginPresenterImpl implements LoginContract.LoginPresenter {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new DisposableObserver<Response<User>>() {
                     @Override
-                    public void onNext(@NonNull Response<User> userResponse) {
+                    public void onNext(@NongNull Response<User> userResponse) {
 
                         if (userResponse.getResult().equals("success")) {
                             // pw값은 보관 X
