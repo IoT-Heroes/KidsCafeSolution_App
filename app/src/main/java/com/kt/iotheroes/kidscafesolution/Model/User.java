@@ -23,9 +23,8 @@ public class User {
     @SerializedName("phoneNumber")
     private String phone;
 
-    // TODO : 나중에 관리자 권한 확인하는 용도, 가라 데이터 말고 확정되면 관련 부분 개발할 것
     @SerializedName("isAuthor")
-    private String isAuthor;
+    private Boolean isAuthor;
 
     @SerializedName("token")
     private String token;
@@ -63,7 +62,7 @@ public class User {
         return phone;
     }
 
-    public String getIsAuthor() {
+    public Boolean getIsAuthor() {
         return isAuthor;
     }
 
