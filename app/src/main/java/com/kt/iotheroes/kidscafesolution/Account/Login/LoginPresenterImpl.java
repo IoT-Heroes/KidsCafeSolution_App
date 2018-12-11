@@ -42,7 +42,6 @@ public class LoginPresenterImpl implements LoginContract.LoginPresenter {
     public void onLoginBtnSelected(String id, String pw) {
         user = new User(id, pw);
 //        demoLogin(user);
-        new IoTMakersAPI.GetSvcTgtTask().execute();
         connectLogin();
     }
 
@@ -73,6 +72,7 @@ public class LoginPresenterImpl implements LoginContract.LoginPresenter {
                     @Override
                     public void onComplete() {
                         view.goToBottomTabActivity();
+                        new IoTMakersAPI.GetSvcTgtTask().execute();
                     }
                 });
     }

@@ -29,6 +29,7 @@ public class SplashActivity extends AppCompatActivity {
 
         PreferenceManager.getInstance().init(getApplicationContext());
 
+//        new IoTMakersAPI.PushSessionDeleteTask().execute();
         // iot makers 플랫폼 로그인
         new LoginTask().execute();
     }
