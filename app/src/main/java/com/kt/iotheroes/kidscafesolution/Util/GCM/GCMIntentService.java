@@ -19,9 +19,12 @@ import com.kt.gigaiot_sdk.PushApi;
 import com.kt.iotheroes.kidscafesolution.R;
 import com.kt.iotheroes.kidscafesolution.Splash.SplashActivity;
 import com.kt.iotheroes.kidscafesolution.Util.Constant.Constant;
+import com.kt.iotheroes.kidscafesolution.Util.Dialog.OkDialog;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+import java.util.Set;
 
 /**
  * Created by mijeong on 2018. 12. 10..
@@ -128,6 +131,12 @@ public class GCMIntentService extends IntentService {
      */
     private void handleMessage(Context context, Intent intent){
         Log.d(TAG, "GCMIntentService.handleMessage()  GCM handleMessage");
+//        Log 원래 IoT Makers 코드
+        Set<String> keys = intent.getExtras().keySet();
+        for(String key : keys){
+            Log.d(TAG, "GCM Key : " + key);
+            Log.d(TAG, "GCM Value : " + intent.getExtras().get(key));
+        }
 
         String recvMsg = intent.getStringExtra("message");
         int type = 0;
@@ -141,18 +150,15 @@ public class GCMIntentService extends IntentService {
             if (type == 3) { // 이벤트 발생 데이터만 노티를 띄워준다. D
                 message = objJson.getString("message");
                 sendIntent(context, message);
+            } else if (type == 1) {
+                // TEST 용 (PUSH 수시로 받기 위해서)
+                message = objJson.getString("message");
+                sendIntent(context, message);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        // 원래 IoT Makers 코드
-//        Set<String> keys = intent.getExtras().keySet();
-//        for(String key : keys){
-//            Log.d(TAG, "GCM Key : " + key);
-//            Log.d(TAG, "GCM Value : " + intent.getExtras().get(key));
-//        }
-//        sendIntent(context, intent);
     }
 
     /**
@@ -195,6 +201,10 @@ public class GCMIntentService extends IntentService {
             int notiID = Integer.parseInt(evetId.substring(evetId.length() - 6), evetId.length());
             sendNotification(notiID, title, description);
             // dialog를 띄워준다. (UNLOCK일때)
+            final OkDialog okDialog = new OkDialog(context);
+            okDialog.
+            okDialog.setMessage("입력 정보가 잘못되었어요.");
+            okDialog.show();
         } catch (Exception e) {
             e.printStackTrace();
         }
