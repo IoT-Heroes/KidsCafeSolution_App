@@ -38,6 +38,7 @@ public class GCMIntentService extends IntentService {
 //    iot makers event id
     private static final String EVENT_ID_TEMP = "001PTL001D10005609";
     private static final String EVENT_ID_HUMID = "001PTL001D10005469";
+    private static final String EVENT_ID_CALL = "001PTL001D10005620";
 
     private static PowerManager.WakeLock sWakeLock;
     private static final Object LOCK = GCMIntentService.class;
@@ -184,6 +185,9 @@ public class GCMIntentService extends IntentService {
                     break;
                 case EVENT_ID_HUMID :
                     description = deviceModelId + "놀이구역의 현재 습도는 " + value + "입니다.";
+                    break;
+                case EVENT_ID_CALL :
+                    description = deviceModelId + "에서 관리자를 호출 했습니다.";
                     break;
             }
 
