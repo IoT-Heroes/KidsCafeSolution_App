@@ -20,6 +20,8 @@ import com.kt.iotheroes.kidscafesolution.R;
 import com.kt.iotheroes.kidscafesolution.Splash.SplashActivity;
 import com.kt.iotheroes.kidscafesolution.Util.Constant.Constant;
 import com.kt.iotheroes.kidscafesolution.Util.Dialog.PushDialog;
+import com.kt.iotheroes.kidscafesolution.Util.SharedManager.PrefManager;
+import com.kt.iotheroes.kidscafesolution.Util.SharedManager.SharedManager;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -180,12 +182,13 @@ public class GCMIntentService extends IntentService {
             String description = "";
 
             // 이벤트 구별
-            if (evetId.equals(getString(R.string.EVENT_ID_TEMP)))
+            if (evetId.equals(getString(R.string.EVENT_ID_TEMP)) && PrefManager.getInstance().getPushTemp())
                 description = deviceModelId + "놀이구역의 현재 온도는 " + value + "입니다.";
-            else if(evetId.equals(getString(R.string.EVENT_ID_HUMID)))
+            else if(evetId.equals(getString(R.string.EVENT_ID_HUMID)) && PrefManager.getInstance().getPushHumid())
                 description = deviceModelId + "놀이구역의 현재 습도는 " + value + "입니다.";
-            else if (evetId.equals(getString(R.string.EVENT_ID_CALL)))
+            else if (evetId.equals(getString(R.string.EVENT_ID_CALL)) && SharedManager.getInstance().getUser().getIsAuthor() && PrefManager.getInstance().getPushAdminCall())
                 description = deviceModelId + "에서 관리자를 호출 했습니다.";
+            else return;
 
             // notification을 띄워준다. (LOCK일 때는)
             int notiID = Integer.parseInt(evetId.substring(evetId.length() - 6), evetId.length());
