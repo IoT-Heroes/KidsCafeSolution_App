@@ -181,6 +181,7 @@ public class GCMIntentService extends IntentService {
             String evetId = objJson.getString("evetId"); // evetId 형식 : 001PTL001D10005609
             String description = "";
 
+            // TODO : 권한 제어 테스트
             // 이벤트 구별
             if (evetId.equals(getString(R.string.EVENT_ID_TEMP)) && PrefManager.getInstance().getPushTemp())
                 description = deviceModelId + "놀이구역의 현재 온도는 " + value + "입니다.";
