@@ -137,7 +137,7 @@ public class GCMIntentService extends IntentService {
 
             // 01 : 수집 데이터, 03 : 발생 데이터
             type = objJson.getInt("type");
-            if (type == 3) { // 이벤트 발생 데이터만 노티를 띄워준다.
+            if (type == 3) { // 이벤트 발생 데이터만 노티를 띄워준다. D
                 message = objJson.getString("message");
                 sendIntent(context, message);
             }
