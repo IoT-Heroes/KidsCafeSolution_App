@@ -43,13 +43,13 @@ public class SharedManager {
         return single;
     }
 
-    public User getUser() {
+    public synchronized User getUser() {
         return user;
     }
 
     // TODO : 로그인 결과 값이 담기기 때문에 pw는 없다.
     // visiting record가 호출되지 않았을 때 false를 리턴한다.
-    public boolean setUser(final User user) {
+    public synchronized boolean setUser(final User user) {
         try {
             this.user = user;
 

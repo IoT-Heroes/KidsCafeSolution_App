@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.kt.iotheroes.kidscafesolution.Model.Zone;
@@ -29,6 +30,7 @@ public class BottomTabActivity extends AppCompatActivity implements ZoneTab2List
     private ArrayList<TabParentFragment> fragments = new ArrayList<>();
     private FragmentManager fm = getSupportFragmentManager();
     TabParentFragment currentFragment;
+    private LinearLayout indicator;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -73,11 +75,15 @@ public class BottomTabActivity extends AppCompatActivity implements ZoneTab2List
         setContentView(R.layout.activity_bottom_tab);
 
         initView();
+
+        // TODO : visitingRecord 호출 다 되기 전까지 indicator 돌리기.
     }
 
     private void initView() {
         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        indicator = (LinearLayout)findViewById(R.id.indicator);
 
         // 액션바 왼쪽(홈 버튼) 생성 - android.R.id.home
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

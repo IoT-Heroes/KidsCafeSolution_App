@@ -31,4 +31,6 @@
         android:background="?android:attr/windowBackground"
         app:menu="@menu/navigation" />
 
+    <include android:id="@+id/indicator" layout="@layout/view_loading_indicator"/>
+
 </LinearLayout>
