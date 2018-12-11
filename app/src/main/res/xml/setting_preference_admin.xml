@@ -5,19 +5,19 @@
         <PreferenceScreen
             android:key="zoneCondition"
             android:title="쾌적도 알림"
-            android:summary="온도 사용 중, 습도 사용 중">
+            android:summary="모두 사용 중">
             <SwitchPreference
-                android:key="temperature"
+                android:key="@string/EVENT_ID_TEMP"
                 android:title="온도 알림"
                 android:defaultValue="true"
                 android:summary="00도 이상일 때 알려줍니다." />
             <SwitchPreference
-                android:key="humid"
+                android:key="@string/EVENT_ID_HUMID"
                 android:defaultValue="true"
                 android:title="습도 알림"/>
         </PreferenceScreen>
         <SwitchPreference
-            android:key="adminCall"
+            android:key="@string/EVENT_ID_CALL"
             android:defaultValue="true"
             android:title="관리자 호출"/>
     </PreferenceCategory>

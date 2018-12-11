@@ -3,12 +3,12 @@ package com.kt.iotheroes.kidscafesolution.Settings.Parent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceFragment;
-import android.preference.PreferenceManager;
 import android.preference.PreferenceScreen;
 import android.support.annotation.Nullable;
 import android.widget.BaseAdapter;
 
 import com.kt.iotheroes.kidscafesolution.R;
+import com.kt.iotheroes.kidscafesolution.Util.SharedManager.PrefManager;
 
 /**
  * Created by mijeong on 2018. 12. 11..
@@ -16,7 +16,6 @@ import com.kt.iotheroes.kidscafesolution.R;
 
 public class ParentSettingsFragment extends PreferenceFragment {
 
-    SharedPreferences prefs;
     PreferenceScreen zoneConditionPreference, endTimePreference;
 
     @Override
@@ -27,58 +26,59 @@ public class ParentSettingsFragment extends PreferenceFragment {
         zoneConditionPreference = (PreferenceScreen)findPreference("zoneCondition");
         endTimePreference = (PreferenceScreen)findPreference("endTime");
 
-        prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        setZoneConditionTextSummary();
+        setEndTimeTextSummary();
 
-        if(prefs.getBoolean("temperature", true)){
-            zoneConditionPreference.setSummary("온도 사용 중");
-        }
-        if(prefs.getBoolean("humid", true)){
-            String str = zoneConditionPreference.getSummary().toString();
-            if (str.length() > 0)
-                str += ", ";
-            zoneConditionPreference.setSummary(str + "습도 사용 중");
-        }
+        PrefManager.getInstance().setChangeListener(prefListener);
+    }
 
-        if(prefs.getBoolean("before10minute", true)){
-            endTimePreference.setSummary("10분 전 안내");
-        }
-        if(prefs.getBoolean("exact", true)){
-            String str = endTimePreference.getSummary().toString();
-            if (str.length() > 0)
-                str += ", ";
-            endTimePreference.setSummary(str + "정각 안내");
-        }
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
 
-        prefs.registerOnSharedPreferenceChangeListener(prefListener);
+    private void setEndTimeTextSummary() {
+        int endTimePCnt = 0;
+        if(PrefManager.getInstance().getPushEndBefore10()){
+            endTimePCnt++;
+        }
+        if(PrefManager.getInstance().getPushEndExact()){
+            endTimePCnt++;
+        }
+        setTextSummary(endTimePCnt, endTimePreference);
+    }
 
+    private void setZoneConditionTextSummary() {
+        int zoneConditionCnt = 0;
+        if(PrefManager.getInstance().getPushTemp()){
+            zoneConditionCnt++;
+        }
+        if(PrefManager.getInstance().getPushHumid()){
+            zoneConditionCnt++;
+        }
+        setTextSummary(zoneConditionCnt, zoneConditionPreference);
+    }
+
+    private void setTextSummary(int cnt, PreferenceScreen preferenceScreen) {
+        if (cnt == 2)
+            preferenceScreen.setSummary("모두 사용 중");
+        else if (cnt == 1)
+            preferenceScreen.setSummary("일부 사용 중");
+        else
+            preferenceScreen.setSummary("사용 안함");
     }
 
     SharedPreferences.OnSharedPreferenceChangeListener prefListener = new SharedPreferences.OnSharedPreferenceChangeListener() {
         @Override
         public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-            if(key.equals("temperature")){
 
-                String zoneConditionText;
-                zoneConditionText = prefs.getBoolean("temperature", true) ? "온도 사용 중" : "";
-
-                if(prefs.getBoolean("humid", true)){
-                    zoneConditionText = zoneConditionText.length() > 0 ? "모두 사용" : "습도 사용 중";
-                }else{
-                    zoneConditionText += zoneConditionText.length() > 0 ? "" : "사용 안함";
-                }
-                zoneConditionPreference.setSummary(zoneConditionText);
-
-                String endTimeText;
-                endTimeText = prefs.getBoolean("before10minute", true) ? "온도 사용 중" : "";
-
-                if(prefs.getBoolean("exact", true)){
-                    endTimeText = endTimeText.length() > 0 ? "모두 사용" : "습도 사용 중";
-                }else{
-                    endTimeText += endTimeText.length() > 0 ? "" : "사용 안함";
-                }
-                endTimePreference.setSummary(endTimeText);
-
-                //2뎁스 PreferenceScreen 내부에서 발생한 환경설정 내용을 2뎁스 PreferenceScreen에 적용하기 위한 소스
+            if (key.equals(getString(R.string.EVENT_ID_TEMP)) || key.equals(getString(R.string.EVENT_ID_HUMID))) {
+                // zoneConditionPreference text 변경
+                setZoneConditionTextSummary();
+                ((BaseAdapter)getPreferenceScreen().getRootAdapter()).notifyDataSetChanged();
+            }else if (key.equals(getString(R.string.EVENT_ID_END_EXACT)) || key.equals(getString(R.string.EVENT_ID_END_BEFORE10))) {
+                // endTimePreference text 변경
+                setZoneConditionTextSummary();
                 ((BaseAdapter)getPreferenceScreen().getRootAdapter()).notifyDataSetChanged();
             }
 

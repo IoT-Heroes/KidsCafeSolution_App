@@ -9,7 +9,7 @@ import com.kt.gigaiot_sdk.data.SvcTgt;
 import com.kt.gigaiot_sdk.data.SvcTgtApiResponse;
 import com.kt.gigaiot_sdk.network.ApiConstants;
 import com.kt.iotheroes.kidscafesolution.Util.Constant.Constant;
-import com.kt.iotheroes.kidscafesolution.Util.SharedManager.PreferenceManager;
+import com.kt.iotheroes.kidscafesolution.Util.SharedManager.PrefManager;
 
 import java.util.ArrayList;
 
@@ -27,7 +27,7 @@ public class IoTMakersAPI {
         protected SvcTgtApiResponse doInBackground(Void... params) {
 
             try{
-                SvcTgtApi svcTgtApi = new SvcTgtApi(PreferenceManager.getInstance().getAccessToken());
+                SvcTgtApi svcTgtApi = new SvcTgtApi(PrefManager.getInstance().getAccessToken());
                 return svcTgtApi.getSvcTgtSeqList(Constant.IOT_MAKERS_OAUTH_ID);
 
             } catch (Exception e) {
@@ -44,7 +44,7 @@ public class IoTMakersAPI {
 
                 ArrayList<SvcTgt> mArraySvcTgt = result.getSvcTgts();
                 // 서비스 대상의 일련번호를 저장한다.
-                PreferenceManager.getInstance().setService_TgtSeq(mArraySvcTgt.get(0).getSvcTgtSeq());
+                PrefManager.getInstance().setService_TgtSeq(mArraySvcTgt.get(0).getSvcTgtSeq());
 
                 new PushSessionRegTask().execute();
             } else if (result != null && result.getResponseCode().equals(ApiConstants.CODE_NG) && result.getMessage().equals("Unauthorized")) {
@@ -61,12 +61,12 @@ public class IoTMakersAPI {
 
             ArrayList<PushTypePair> pushTypePairs = new ArrayList<>();
 
-            pushTypePairs.add(new PushTypePair(PreferenceManager.getInstance().getService_TgtSeq(), PushApi.PUSH_MSG_TYPE_COLLECT));
-            pushTypePairs.add(new PushTypePair(PreferenceManager.getInstance().getService_TgtSeq(), PushApi.PUSH_MSG_TYPE_OUTBREAK));
+            pushTypePairs.add(new PushTypePair(PrefManager.getInstance().getService_TgtSeq(), PushApi.PUSH_MSG_TYPE_COLLECT));
+            pushTypePairs.add(new PushTypePair(PrefManager.getInstance().getService_TgtSeq(), PushApi.PUSH_MSG_TYPE_OUTBREAK));
 
-            PushApi pushApi = new PushApi(PreferenceManager.getInstance().getAccessToken());
-            pushApi.gcmSessionRegistration(PreferenceManager.getInstance().getMemberSeq(),
-                    Constant.IOT_MAKERS_APP_ID, PreferenceManager.getInstance().getGcmRegID(), pushTypePairs);
+            PushApi pushApi = new PushApi(PrefManager.getInstance().getAccessToken());
+            pushApi.gcmSessionRegistration(PrefManager.getInstance().getMemberSeq(),
+                    Constant.IOT_MAKERS_APP_ID, PrefManager.getInstance().getGcmRegID(), pushTypePairs);
             return null;
         }
     }
@@ -75,8 +75,8 @@ public class IoTMakersAPI {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            PushApi pushApi = new PushApi(PreferenceManager.getInstance().getAccessToken());
-            pushApi.gcmSessionDelete(PreferenceManager.getInstance().getGcmRegID());
+            PushApi pushApi = new PushApi(PrefManager.getInstance().getAccessToken());
+            pushApi.gcmSessionDelete(PrefManager.getInstance().getGcmRegID());
 
             return null;
         }

@@ -178,18 +178,14 @@ public class GCMIntentService extends IntentService {
 
             String evetId = objJson.getString("evetId"); // evetId 형식 : 001PTL001D10005609
             String description = "";
+
             // 이벤트 구별
-            switch (evetId) {
-                case Constant.EVENT_ID_TEMP :
-                    description = deviceModelId + "놀이구역의 현재 온도는 " + value + "입니다.";
-                    break;
-                case Constant.EVENT_ID_HUMID :
-                    description = deviceModelId + "놀이구역의 현재 습도는 " + value + "입니다.";
-                    break;
-                case Constant.EVENT_ID_CALL :
-                    description = deviceModelId + "에서 관리자를 호출 했습니다.";
-                    break;
-            }
+            if (evetId.equals(getString(R.string.EVENT_ID_TEMP)))
+                description = deviceModelId + "놀이구역의 현재 온도는 " + value + "입니다.";
+            else if(evetId.equals(getString(R.string.EVENT_ID_HUMID)))
+                description = deviceModelId + "놀이구역의 현재 습도는 " + value + "입니다.";
+            else if (evetId.equals(getString(R.string.EVENT_ID_CALL)))
+                description = deviceModelId + "에서 관리자를 호출 했습니다.";
 
             // notification을 띄워준다. (LOCK일 때는)
             int notiID = Integer.parseInt(evetId.substring(evetId.length() - 6), evetId.length());
