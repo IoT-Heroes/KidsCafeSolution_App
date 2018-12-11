@@ -25,7 +25,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.Set;
-
 /**
  * Created by mijeong on 2018. 12. 10..
  * BroadcastReceiver가 받은 메세지를 처리하는 역할
@@ -37,11 +36,6 @@ public class GCMIntentService extends IntentService {
 
     private static final String TAG = GCMIntentService.class.getSimpleName();
     private static final String CHANNEL_ID = GCMIntentService.class.getSimpleName();
-
-//    iot makers event id
-    private static final String EVENT_ID_TEMP = "001PTL001D10005609";
-    private static final String EVENT_ID_HUMID = "001PTL001D10005469";
-    private static final String EVENT_ID_CALL = "001PTL001D10005620";
 
     private static PowerManager.WakeLock sWakeLock;
     private static final Object LOCK = GCMIntentService.class;
@@ -186,13 +180,13 @@ public class GCMIntentService extends IntentService {
             String description = "";
             // 이벤트 구별
             switch (evetId) {
-                case EVENT_ID_TEMP :
+                case Constant.EVENT_ID_TEMP :
                     description = deviceModelId + "놀이구역의 현재 온도는 " + value + "입니다.";
                     break;
-                case EVENT_ID_HUMID :
+                case Constant.EVENT_ID_HUMID :
                     description = deviceModelId + "놀이구역의 현재 습도는 " + value + "입니다.";
                     break;
-                case EVENT_ID_CALL :
+                case Constant.EVENT_ID_CALL :
                     description = deviceModelId + "에서 관리자를 호출 했습니다.";
                     break;
             }
@@ -201,6 +195,7 @@ public class GCMIntentService extends IntentService {
             int notiID = Integer.parseInt(evetId.substring(evetId.length() - 6), evetId.length());
             sendNotification(notiID, title, description);
             // dialog를 띄워준다. (UNLOCK일때)
+            // TODO : dialog 뜨는지 테스트! (해당 화면에 제대로 뜨는지)
             final PushDialog dialog = new PushDialog(context);
             dialog.setMessage(title, description);
             dialog.show();

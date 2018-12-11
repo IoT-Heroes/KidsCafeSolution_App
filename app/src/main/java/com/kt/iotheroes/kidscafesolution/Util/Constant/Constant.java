@@ -18,4 +18,9 @@ public class Constant {
     public static final String IOT_MAKERS_OAUTH_PW = "1q2w3e4r!"; // iot makers 사용자 pw
 
     public static final String GCM_INTENT_SERVICE_NAME = "GigaIoT";
+
+    //    iot makers event id
+    public static final String EVENT_ID_TEMP = "001PTL001D10005609";
+    public static final String EVENT_ID_HUMID = "001PTL001D10005469";
+    public static final String EVENT_ID_CALL = "001PTL001D10005620";
 }
