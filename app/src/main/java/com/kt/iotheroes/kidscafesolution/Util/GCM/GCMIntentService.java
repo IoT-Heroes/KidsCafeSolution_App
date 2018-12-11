@@ -1,5 +1,6 @@
 package com.kt.iotheroes.kidscafesolution.Util.GCM;
 
+import android.app.AlertDialog;
 import android.app.IntentService;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -13,13 +14,13 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.util.Log;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.kt.gigaiot_sdk.PushApi;
 import com.kt.iotheroes.kidscafesolution.R;
 import com.kt.iotheroes.kidscafesolution.Splash.SplashActivity;
 import com.kt.iotheroes.kidscafesolution.Util.Constant.Constant;
-import com.kt.iotheroes.kidscafesolution.Util.Dialog.PushDialog;
 import com.kt.iotheroes.kidscafesolution.Util.SharedManager.PrefManager;
 import com.kt.iotheroes.kidscafesolution.Util.SharedManager.SharedManager;
 
@@ -171,6 +172,7 @@ public class GCMIntentService extends IntentService {
             evetNm : 이벤트 명
             collectSourceEvents(이벤트 데이터 배열) - attributes(관련 디바이스의 값)
              */
+
             String title = objJson.getString("evetNm");
             JSONArray collectSourceEvents = objJson.getJSONArray("collectSourceEvents");
             String[] deviceModelIdText = collectSourceEvents.getJSONObject(0).getString("deviceModelId").split("_"); // 형식 : mbr_1000006334_zone1
@@ -196,13 +198,29 @@ public class GCMIntentService extends IntentService {
             sendNotification(notiID, title, description);
             // dialog를 띄워준다. (UNLOCK일때)
             // TODO : dialog 뜨는지 테스트! (해당 화면에 제대로 뜨는지)
-            final PushDialog dialog = new PushDialog(context);
-            dialog.setMessage(title, description);
-            dialog.show();
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Test dialog");
+            AlertDialog alert = builder.create();
+            alert.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+            alert.show();
+
+            //현재 액티비티 알아내기
+//            ActivityManager activityManager = (ActivityManager) context.getSystemService(context.ACTIVITY_SERVICE);
+//            List<ActivityManager.RunningTaskInfo> info;
+//            info = activityManager.getRunningTasks(1);
+//            ActivityManager.RunningTaskInfo topActivity = info.get(0);
+
+//            final PushDialog dialog = new PushDialog(context);
+//            dialog.setMessage(title, description);
+//            dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+//            dialog.show();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
+
 
     /**
      * 실제 디바에스에 GCM으로부터 받은 메세지를 알려주는 함수이다. 디바이스 Notification Center에 나타난다.
