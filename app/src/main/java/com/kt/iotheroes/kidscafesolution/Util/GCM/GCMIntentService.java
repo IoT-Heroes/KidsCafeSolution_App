@@ -19,7 +19,7 @@ import com.kt.gigaiot_sdk.PushApi;
 import com.kt.iotheroes.kidscafesolution.R;
 import com.kt.iotheroes.kidscafesolution.Splash.SplashActivity;
 import com.kt.iotheroes.kidscafesolution.Util.Constant.Constant;
-import com.kt.iotheroes.kidscafesolution.Util.Dialog.OkDialog;
+import com.kt.iotheroes.kidscafesolution.Util.Dialog.PushDialog;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -201,10 +201,9 @@ public class GCMIntentService extends IntentService {
             int notiID = Integer.parseInt(evetId.substring(evetId.length() - 6), evetId.length());
             sendNotification(notiID, title, description);
             // dialog를 띄워준다. (UNLOCK일때)
-            final OkDialog okDialog = new OkDialog(context);
-            okDialog.
-            okDialog.setMessage("입력 정보가 잘못되었어요.");
-            okDialog.show();
+            final PushDialog dialog = new PushDialog(context);
+            dialog.setMessage(title, description);
+            dialog.show();
         } catch (Exception e) {
             e.printStackTrace();
         }

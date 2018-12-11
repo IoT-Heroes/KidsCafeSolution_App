@@ -6,6 +6,18 @@
     android:gravity="center"
     android:padding="@dimen/dialog_padding">
     <TextView
+        android:id="@+id/text_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxHeight="100dp"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:text="알림"
+        android:textSize="@dimen/title_text_size"
+        android:shadowColor="@color/colorText"
+        android:textStyle="bold"
+        android:layout_alignParentTop="true"/>
+    <TextView
         android:id="@+id/text_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -13,8 +25,9 @@
         android:layout_centerHorizontal="true"
         android:gravity="center"
         android:text="message"
-        android:layout_alignParentTop="true"
+        android:layout_marginTop="@dimen/space_small"
         android:layout_above="@+id/button_ok"
+        android:layout_below="@id/text_title"
         android:layout_marginBottom="@dimen/space_small"/>
     <Button
         android:id="@+id/button_ok"
