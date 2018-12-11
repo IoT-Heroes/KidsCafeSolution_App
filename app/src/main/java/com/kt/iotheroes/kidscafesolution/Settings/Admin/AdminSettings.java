@@ -1,4 +1,4 @@
-package com.kt.iotheroes.kidscafesolution.Settings;
+package com.kt.iotheroes.kidscafesolution.Settings.Admin;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -14,7 +14,7 @@ import com.kt.iotheroes.kidscafesolution.R;
  * Created by mijeong on 2018. 12. 11..
  */
 
-public class ParentSettings extends PreferenceFragment {
+public class AdminSettings extends PreferenceFragment {
 
     SharedPreferences prefs;
     PreferenceScreen zoneConditionPreference, endTimePreference;
@@ -23,7 +23,7 @@ public class ParentSettings extends PreferenceFragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        addPreferencesFromResource(R.xml.setting_preference);
+        addPreferencesFromResource(R.xml.setting_preference_admin);
         zoneConditionPreference = (PreferenceScreen)findPreference("zoneCondition");
         endTimePreference = (PreferenceScreen)findPreference("endTime");
 

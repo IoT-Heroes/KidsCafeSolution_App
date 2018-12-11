@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.kt.iotheroes.kidscafesolution.Settings.SettingsActivity">
+    tools:context="com.kt.iotheroes.kidscafesolution.Settings.Parent.SettingsParentActivity">
 <fragment
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/settings_fragment"
-    android:name="com.kt.iotheroes.kidscafesolution.Settings.ParentSettings"/>
+    android:name="com.kt.iotheroes.kidscafesolution.Settings.Parent.ParentSettings"/>
 </android.support.design.widget.CoordinatorLayout>
