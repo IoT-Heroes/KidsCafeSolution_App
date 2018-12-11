@@ -129,7 +129,7 @@ public class GCMIntentService extends IntentService {
         Set<String> keys = intent.getExtras().keySet();
         for(String key : keys){
             Log.d(TAG, "GCM Key : " + key);
-            Log.d(TAG, "GCM Value : " + intent.getExtras().getString(key));
+            Log.d(TAG, "GCM Value : " + intent.getExtras().get(key));
         }
         sendIntent(context, intent);
     }

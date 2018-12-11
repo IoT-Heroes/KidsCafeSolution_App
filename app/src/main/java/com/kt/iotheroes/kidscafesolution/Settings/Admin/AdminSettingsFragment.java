@@ -1,4 +1,4 @@
-package com.kt.iotheroes.kidscafesolution.Settings.Parent;
+package com.kt.iotheroes.kidscafesolution.Settings.Admin;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -14,7 +14,7 @@ import com.kt.iotheroes.kidscafesolution.R;
  * Created by mijeong on 2018. 12. 11..
  */
 
-public class ParentSettings extends PreferenceFragment {
+public class AdminSettingsFragment extends PreferenceFragment {
 
     SharedPreferences prefs;
     PreferenceScreen zoneConditionPreference, endTimePreference;
@@ -23,7 +23,7 @@ public class ParentSettings extends PreferenceFragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        addPreferencesFromResource(R.xml.setting_preference_parent);
+        addPreferencesFromResource(R.xml.setting_preference_admin);
         zoneConditionPreference = (PreferenceScreen)findPreference("zoneCondition");
         endTimePreference = (PreferenceScreen)findPreference("endTime");
 
@@ -37,16 +37,6 @@ public class ParentSettings extends PreferenceFragment {
             if (str.length() > 0)
                 str += ", ";
             zoneConditionPreference.setSummary(str + "습도 사용 중");
-        }
-
-        if(prefs.getBoolean("before10minute", true)){
-            endTimePreference.setSummary("10분 전 안내");
-        }
-        if(prefs.getBoolean("exact", true)){
-            String str = endTimePreference.getSummary().toString();
-            if (str.length() > 0)
-                str += ", ";
-            endTimePreference.setSummary(str + "정각 안내");
         }
 
         prefs.registerOnSharedPreferenceChangeListener(prefListener);
@@ -67,16 +57,6 @@ public class ParentSettings extends PreferenceFragment {
                     zoneConditionText += zoneConditionText.length() > 0 ? "" : "사용 안함";
                 }
                 zoneConditionPreference.setSummary(zoneConditionText);
-
-                String endTimeText;
-                endTimeText = prefs.getBoolean("before10minute", true) ? "온도 사용 중" : "";
-
-                if(prefs.getBoolean("exact", true)){
-                    endTimeText = endTimeText.length() > 0 ? "모두 사용" : "습도 사용 중";
-                }else{
-                    endTimeText += endTimeText.length() > 0 ? "" : "사용 안함";
-                }
-                endTimePreference.setSummary(endTimeText);
 
                 //2뎁스 PreferenceScreen 내부에서 발생한 환경설정 내용을 2뎁스 PreferenceScreen에 적용하기 위한 소스
                 ((BaseAdapter)getPreferenceScreen().getRootAdapter()).notifyDataSetChanged();
