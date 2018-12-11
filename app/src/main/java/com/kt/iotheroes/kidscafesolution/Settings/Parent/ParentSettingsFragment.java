@@ -32,11 +32,6 @@ public class ParentSettingsFragment extends PreferenceFragment {
         PrefManager.getInstance().setChangeListener(prefListener);
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-    }
-
     private void setEndTimeTextSummary() {
         int endTimePCnt = 0;
         if(PrefManager.getInstance().getPushEndBefore10()){
