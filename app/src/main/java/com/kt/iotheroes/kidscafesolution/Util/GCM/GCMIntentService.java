@@ -57,8 +57,6 @@ public class GCMIntentService extends IntentService {
         // TODO : 부모 -> 퇴장시간 알림
         // TODO : 관리자 -> 알바생 호출,
 
-
-
         try{
             final Context context = getApplicationContext();
             String action = intent.getAction();
@@ -150,6 +148,11 @@ public class GCMIntentService extends IntentService {
             JSONObject objJson = new JSONObject(recvMsg);
 
             type = objJson.getString("type");
+            /*
+            evetId : 이벤트 id
+            evetNm : 이벤트 명
+            collectSourceEvents(이벤트 데이터 배열) - attributes(관련 디바이스의 값)
+             */
             message = objJson.getString("message");
 
         } catch (Exception e) {
