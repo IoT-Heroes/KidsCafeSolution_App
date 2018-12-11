@@ -3,9 +3,11 @@ package com.kt.iotheroes.kidscafesolution.Util.GCM;
 import android.app.IntentService;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Handler;
 import android.os.PowerManager;
 import android.support.annotation.Nullable;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.kt.gigaiot_sdk.PushApi;
 import com.kt.iotheroes.kidscafesolution.Util.Constant.Constant;
@@ -51,6 +53,12 @@ public class GCMIntentService extends IntentService {
         Log.d(TAG, "intent : " + intent.toString());
         Log.d(TAG, "intent : " + intent);
 
+        // TODO : 공통 -> 놀이구역 쾌적도 알림
+        // TODO : 부모 -> 퇴장시간 알림
+        // TODO : 관리자 -> 알바생 호출,
+
+
+
         try{
             final Context context = getApplicationContext();
             String action = intent.getAction();
@@ -63,7 +71,7 @@ public class GCMIntentService extends IntentService {
             } else if(action.equals("com.google.android.c2dm.intent.RECEIVE")){
 
 
-				/*new Handler(getMainLooper()).post(new Runnable() {
+				new Handler(getMainLooper()).post(new Runnable() {
 
 					@Override
 					public void run() {
@@ -71,7 +79,7 @@ public class GCMIntentService extends IntentService {
 						Toast.makeText(GCMIntentService.this, "GCM push received!!", Toast.LENGTH_LONG).show();
 
 					}
-				});*/
+				});
 
                 handleMessage(context, intent);
             }
