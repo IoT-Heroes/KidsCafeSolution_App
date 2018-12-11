@@ -8,6 +8,7 @@ import com.kt.iotheroes.kidscafesolution.Model.User;
 import com.kt.iotheroes.kidscafesolution.Util.Connections.APIClient;
 import com.kt.iotheroes.kidscafesolution.Util.Connections.Response;
 import com.kt.iotheroes.kidscafesolution.Util.IoTMakers.IoTMakersAPI;
+import com.kt.iotheroes.kidscafesolution.Util.SharedManager.PrefManager;
 import com.kt.iotheroes.kidscafesolution.Util.SharedManager.SharedManager;
 
 import java.util.ArrayList;
@@ -57,6 +58,11 @@ public class LoginPresenterImpl implements LoginContract.LoginPresenter {
                             // pw값은 보관 X
                             if (!SharedManager.getInstance().setUser(userResponse.getData()))
                                 Log.i("connect", errMessage);
+
+                            if (userResponse.getData().getIsAuthor())
+                                PrefManager.getInstance().initAdminPush();
+                            else
+                                PrefManager.getInstance().initParentPush();
                         }
                         else
                             Log.i("connect", errMessage);

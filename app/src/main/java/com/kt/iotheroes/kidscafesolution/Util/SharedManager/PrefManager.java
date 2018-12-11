@@ -103,4 +103,22 @@ public class PrefManager {
     public void setChangeListener(SharedPreferences.OnSharedPreferenceChangeListener changeListener) {
         prefs.registerOnSharedPreferenceChangeListener(changeListener);
     }
+
+    public void initAdminPush() {
+        editor.putBoolean(context.getString(R.string.EVENT_ID_END_EXACT), false);
+        editor.putBoolean(context.getString(R.string.EVENT_ID_END_BEFORE10), false);
+        editor.putBoolean(context.getString(R.string.EVENT_ID_CALL), true);
+        editor.putBoolean(context.getString(R.string.EVENT_ID_TEMP), true);
+        editor.putBoolean(context.getString(R.string.EVENT_ID_HUMID), true);
+        editor.commit();
+    }
+
+    public void initParentPush() {
+        editor.putBoolean(context.getString(R.string.EVENT_ID_END_EXACT), true);
+        editor.putBoolean(context.getString(R.string.EVENT_ID_END_BEFORE10), true);
+        editor.putBoolean(context.getString(R.string.EVENT_ID_CALL), false);
+        editor.putBoolean(context.getString(R.string.EVENT_ID_TEMP), true);
+        editor.putBoolean(context.getString(R.string.EVENT_ID_HUMID), true);
+        editor.commit();
+    }
 }
