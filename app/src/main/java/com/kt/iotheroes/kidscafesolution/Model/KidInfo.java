@@ -52,6 +52,9 @@ public class KidInfo implements Serializable{
     }
 
     public void setActivityDatas(List<KidStatic> activityDatas) {
+        // TODO : 원래는 이런경우 없는데, 지금 가데이터라 버그 막아 놓기 위해서 임시방편
+        if (activityDatas.size() == 0) return;
+
         // 표준 걸음 수 계산 = max 값은 개별 활동량 데이터 수 x 최대 값 (maximum)
         kidGoalWalk = activityDatas.size() * activityDatas.get(0).getMaximum();
         // 아이 누적 걸음 수 계산

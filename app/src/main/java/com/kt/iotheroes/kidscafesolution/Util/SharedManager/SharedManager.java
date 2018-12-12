@@ -28,6 +28,7 @@ public class SharedManager {
 
     private volatile User user;
     private volatile List<Zone> zonelist;
+    public static boolean finishVisitingRecord = false;
 
     public static SharedManager getInstance() {
         if (single == null) {
@@ -42,12 +43,13 @@ public class SharedManager {
         return single;
     }
 
-    public User getUser() {
+    public synchronized User getUser() {
         return user;
     }
 
     // TODO : 로그인 결과 값이 담기기 때문에 pw는 없다.
-    public boolean setUser(final User user) {
+    // visiting record가 호출되지 않았을 때 false를 리턴한다.
+    public synchronized boolean setUser(final User user) {
         try {
             this.user = user;
 
@@ -82,6 +84,7 @@ public class SharedManager {
                                 public void onComplete() {
                                     // visiting 정보를 추가한 아이를 업데이트 한다.
                                     user.upDateChild(finalI, kid);
+                                    finishVisitingRecord = true;
                                 }
                             });
                 }
@@ -90,7 +93,8 @@ public class SharedManager {
             e.printStackTrace();
             return false;
         }
-        return true;
+
+        return finishVisitingRecord;
     }
 
     public boolean setKids(List<Kid> kids) {
