@@ -4,7 +4,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
-import com.kt.iotheroes.kidscafesolution.Util.SharedManager.PreferenceManager;
+import com.kt.iotheroes.kidscafesolution.Util.SharedManager.PrefManager;
 
 import java.io.IOException;
 
@@ -32,7 +32,7 @@ public class GetGcmRegIdTask extends AsyncTask<Void, Void, String> {
             e.printStackTrace();
         }
 
-        PreferenceManager.getInstance().setGcmRegID(regId);
+        PrefManager.getInstance().setGcmRegID(regId);
 
         return regId;
     }

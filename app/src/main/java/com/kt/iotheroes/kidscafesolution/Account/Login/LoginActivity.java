@@ -11,7 +11,7 @@ import com.kt.iotheroes.kidscafesolution.Account.Join.JoinActivity;
 import com.kt.iotheroes.kidscafesolution.R;
 import com.kt.iotheroes.kidscafesolution.TabActivity.BottomTabActivity;
 import com.kt.iotheroes.kidscafesolution.Util.Dialog.OkDialog;
-import com.kt.iotheroes.kidscafesolution.Util.SharedManager.PreferenceManager;
+import com.kt.iotheroes.kidscafesolution.Util.SharedManager.PrefManager;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener, LoginContract.LoginView {
 
@@ -19,9 +19,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private Button btnLogin, btnJoin;
 
     private LoginPresenterImpl presenter;
-    private PreferenceManager preferenceManager;
+    private PrefManager preferenceManager;
 
-    public PreferenceManager getPreferenceManager() {
+    public PrefManager getPreferenceManager() {
         return preferenceManager;
     }
 
@@ -31,7 +31,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_login);
 
         presenter = new LoginPresenterImpl(this);
-        preferenceManager = PreferenceManager.getInstance();
+        preferenceManager = PrefManager.getInstance();
 
         initView();
     }

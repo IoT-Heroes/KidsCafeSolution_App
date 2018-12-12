@@ -14,11 +14,13 @@ import android.widget.Toast;
 
 import com.kt.iotheroes.kidscafesolution.Model.Zone;
 import com.kt.iotheroes.kidscafesolution.R;
-import com.kt.iotheroes.kidscafesolution.Settings.SettingsActivity;
+import com.kt.iotheroes.kidscafesolution.Settings.Admin.SettingsAdminActivity;
+import com.kt.iotheroes.kidscafesolution.Settings.Parent.SettingsParentActivity;
 import com.kt.iotheroes.kidscafesolution.TabActivity.ParentFragment.TabParentFragment;
 import com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids.Tab1KidsFargment;
 import com.kt.iotheroes.kidscafesolution.TabActivity.Tab2ZoneFragment.Tab2List.ZoneTab2ListFragment;
 import com.kt.iotheroes.kidscafesolution.TabActivity.Tab2ZoneFragment.Tab2ZoneFargment;
+import com.kt.iotheroes.kidscafesolution.Util.SharedManager.SharedManager;
 
 import java.util.ArrayList;
 
@@ -105,9 +107,7 @@ public class BottomTabActivity extends AppCompatActivity implements ZoneTab2List
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_settings:
-                Intent intent = new Intent(BottomTabActivity.this, SettingsActivity.class);
-                startActivity(intent);
-                return true;
+                return moveToSettingActivity();
             case android.R.id.home: // ar
                 // TODO : AR 연동
                 Toast.makeText(getApplicationContext(), "ar", Toast.LENGTH_SHORT).show();
@@ -116,6 +116,13 @@ public class BottomTabActivity extends AppCompatActivity implements ZoneTab2List
                 super.onOptionsItemSelected(item);
         }
         return false;
+    }
+
+    private boolean moveToSettingActivity() {
+        Intent intent = new Intent(BottomTabActivity.this,
+                SharedManager.getInstance().getUser().getIsAuthor() ? SettingsAdminActivity.class : SettingsParentActivity.class);
+        startActivity(intent);
+        return true;
     }
 
     @Override

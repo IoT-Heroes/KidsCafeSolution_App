@@ -13,4 +13,13 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <!--iot makers push event-->
+    <string name="EVENT_ID_TEMP">001PTL001D10005609</string>
+    <string name="EVENT_ID_HUMID">001PTL001D10005469</string>
+    <string name="EVENT_ID_CALL">001PTL001D10005620</string>
+    <string name="EVENT_ID_END_BEFORE10">push.endTime.before10minute</string>
+    <string name="EVENT_ID_END_EXACT">push.endTime.exact</string>
+
+    <!--<string name="PreferenceScreen_CNT_TEMP">push.cnt.temp</string>-->
+    <!--<string name="PreferenceScreen_CNT_END">push.cnt.endTime</string>-->
 </resources>

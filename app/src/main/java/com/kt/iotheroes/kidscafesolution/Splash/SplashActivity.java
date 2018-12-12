@@ -16,7 +16,7 @@ import com.kt.iotheroes.kidscafesolution.Account.Login.LoginActivity;
 import com.kt.iotheroes.kidscafesolution.R;
 import com.kt.iotheroes.kidscafesolution.Util.Constant.Constant;
 import com.kt.iotheroes.kidscafesolution.Util.GCM.GetGcmRegIdTask;
-import com.kt.iotheroes.kidscafesolution.Util.SharedManager.PreferenceManager;
+import com.kt.iotheroes.kidscafesolution.Util.SharedManager.PrefManager;
 
 
 public class SplashActivity extends AppCompatActivity {
@@ -27,8 +27,9 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        PreferenceManager.getInstance().init(getApplicationContext());
+        PrefManager.getInstance().init(getApplicationContext());
 
+//        new IoTMakersAPI.PushSessionDeleteTask().execute();
         // iot makers 플랫폼 로그인
         new LoginTask().execute();
     }
@@ -62,8 +63,8 @@ public class SplashActivity extends AppCompatActivity {
             }
 
             if (result != null && result.getResponseCode().equals(ApiConstants.CODE_OK)) {
-                PreferenceManager.getInstance().setAccessToken(result.getAccessToken());
-                PreferenceManager.getInstance().setMemberSeq(result.getMbrSeq());
+                PrefManager.getInstance().setAccessToken(result.getAccessToken());
+                PrefManager.getInstance().setMemberSeq(result.getMbrSeq());
 
                 // login 화면으로 이동
                 new Handler().postDelayed(new Runnable() {

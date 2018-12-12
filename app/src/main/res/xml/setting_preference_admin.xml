@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--부모 화면-->
+    <PreferenceCategory android:title="알림 설정">
+        <PreferenceScreen
+            android:key="zoneCondition"
+            android:title="쾌적도 알림"
+            android:summary="모두 사용 중">
+            <SwitchPreference
+                android:key="@string/EVENT_ID_TEMP"
+                android:title="온도 알림"
+                android:defaultValue="true"
+                android:summary="00도 이상일 때 알려줍니다." />
+            <SwitchPreference
+                android:key="@string/EVENT_ID_HUMID"
+                android:defaultValue="true"
+                android:title="습도 알림"/>
+        </PreferenceScreen>
+        <SwitchPreference
+            android:key="@string/EVENT_ID_CALL"
+            android:defaultValue="true"
+            android:title="관리자 호출"/>
+    </PreferenceCategory>
+
+</PreferenceScreen>

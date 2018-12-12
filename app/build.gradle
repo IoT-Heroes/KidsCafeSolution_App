@@ -36,7 +36,7 @@ dependencies {
     // eatable food List
     
 
-    compile 'com.android.support:appcompat-v7:26.+'
+//    compile 'com.android.support:appcompat-v7:26.+'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.android.support:design:26.+'
     compile 'com.android.support:support-vector-drawable:26.+'

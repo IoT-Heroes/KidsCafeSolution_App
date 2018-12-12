@@ -6,7 +6,7 @@ package com.kt.iotheroes.kidscafesolution.Util.Constant;
 
 public class Constant {
 //    connections
-    public static final String SERVER_URI = "http://220.94.248.34:8080";
+    public static final String SERVER_URI = "http://192.168.0.4:7080";
     public static final String SERVER_IP = "220.94.248.34";
     public static final int SERVER_PORT = 8080;
 
@@ -18,4 +18,9 @@ public class Constant {
     public static final String IOT_MAKERS_OAUTH_PW = "1q2w3e4r!"; // iot makers 사용자 pw
 
     public static final String GCM_INTENT_SERVICE_NAME = "GigaIoT";
+
+    //    iot makers event id
+//    public static final String EVENT_ID_TEMP = "001PTL001D10005609";
+//    public static final String EVENT_ID_HUMID = "001PTL001D10005469";
+//    public static final String EVENT_ID_CALL = "001PTL001D10005620";
 }
