@@ -166,7 +166,6 @@ public class GCMIntentService extends IntentService {
         Log.d(TAG, "GCMIntentService.sendIntent()  #### GCM sendIntent");
         try {
             JSONObject objJson = new JSONObject(message);
-
             /*
             evetId : 이벤트 id
             evetNm : 이벤트 명

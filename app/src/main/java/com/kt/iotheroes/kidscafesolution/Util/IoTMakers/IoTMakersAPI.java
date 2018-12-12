@@ -58,7 +58,6 @@ public class IoTMakersAPI {
 
         @Override
         protected Void doInBackground(Void... params) {
-
             ArrayList<PushTypePair> pushTypePairs = new ArrayList<>();
 
             pushTypePairs.add(new PushTypePair(PrefManager.getInstance().getService_TgtSeq(), PushApi.PUSH_MSG_TYPE_COLLECT));
