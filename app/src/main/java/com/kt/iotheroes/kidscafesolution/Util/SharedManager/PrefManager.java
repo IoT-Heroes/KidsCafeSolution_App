@@ -13,6 +13,7 @@ import com.kt.iotheroes.kidscafesolution.R;
 public class PrefManager {
     private final static String PREF_NAME = "iotHeroes.pref";
 
+    private final static String PREF_USER_ID = "pref.user_id";
     private final static String PREF_GCM_REG_ID = "pref.gcm_regid";
     private final static String PREF_ACCESS_TOKEN = "pref.access_token";
     public static final String PREF_ACCOUNT_MEMBER_SEQ = "pref.account_mbrseq";
@@ -41,6 +42,20 @@ public class PrefManager {
 
     public static SharedPreferences getPrefs() {
         return prefs;
+    }
+
+    public String getUserID() {
+        return prefs.getString(PREF_USER_ID, null);
+    }
+
+    public void setUserID(String id) {
+        editor.putString(PREF_USER_ID, id);
+        editor.commit();
+    }
+
+    public void logout() {
+        editor.remove(PREF_USER_ID);
+        editor.commit();
     }
 
     public String getGcmRegID() {

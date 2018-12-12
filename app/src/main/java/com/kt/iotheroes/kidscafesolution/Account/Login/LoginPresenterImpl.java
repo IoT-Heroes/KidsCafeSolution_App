@@ -59,6 +59,8 @@ public class LoginPresenterImpl implements LoginContract.LoginPresenter {
                             if (!SharedManager.getInstance().setUser(userResponse.getData()))
                                 Log.i("connect", errMessage);
 
+                            PrefManager.getInstance().setUserID(userResponse.getData().getId());
+
                             if (userResponse.getData().getIsAuthor())
                                 PrefManager.getInstance().initAdminPush();
                             else
