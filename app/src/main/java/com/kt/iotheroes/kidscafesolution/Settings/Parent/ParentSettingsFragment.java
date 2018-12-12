@@ -1,12 +1,16 @@
 package com.kt.iotheroes.kidscafesolution.Settings.Parent;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
+import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceScreen;
 import android.support.annotation.Nullable;
 import android.widget.BaseAdapter;
 
+import com.kt.iotheroes.kidscafesolution.Account.Login.LoginActivity;
 import com.kt.iotheroes.kidscafesolution.R;
 import com.kt.iotheroes.kidscafesolution.Util.SharedManager.PrefManager;
 
@@ -17,6 +21,7 @@ import com.kt.iotheroes.kidscafesolution.Util.SharedManager.PrefManager;
 public class ParentSettingsFragment extends PreferenceFragment {
 
     PreferenceScreen zoneConditionPreference, endTimePreference;
+    Preference logOutButton;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -30,6 +35,26 @@ public class ParentSettingsFragment extends PreferenceFragment {
         setEndTimeTextSummary();
 
         PrefManager.getInstance().setChangeListener(prefListener);
+
+        logOutButton = findPreference(getString(R.string.AUTO_LOGIN));
+        logOutButton.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+// login 화면으로 이동
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Intent intent = new Intent(getActivity(), LoginActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                        getActivity().finish();
+                    }
+                }, 1000);
+                return true;
+            }
+        });
     }
 
     private void setEndTimeTextSummary() {
@@ -75,6 +100,8 @@ public class ParentSettingsFragment extends PreferenceFragment {
                 // endTimePreference text 변경
                 setZoneConditionTextSummary();
                 ((BaseAdapter)getPreferenceScreen().getRootAdapter()).notifyDataSetChanged();
+            }else if (key.equals(getString(R.string.AUTO_LOGIN))) {
+
             }
 
         }

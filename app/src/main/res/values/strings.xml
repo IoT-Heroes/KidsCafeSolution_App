@@ -20,6 +20,8 @@
     <string name="EVENT_ID_END_BEFORE10">push.endTime.before10minute</string>
     <string name="EVENT_ID_END_EXACT">push.endTime.exact</string>
 
+    <string name="AUTO_LOGIN">autoLogin</string>
+
     <!--<string name="PreferenceScreen_CNT_TEMP">push.cnt.temp</string>-->
     <!--<string name="PreferenceScreen_CNT_END">push.cnt.endTime</string>-->
 </resources>

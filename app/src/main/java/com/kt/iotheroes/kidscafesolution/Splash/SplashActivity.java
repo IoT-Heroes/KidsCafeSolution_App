@@ -81,15 +81,6 @@ public class SplashActivity extends AppCompatActivity {
                 PrefManager.getInstance().setAccessToken(result.getAccessToken());
                 PrefManager.getInstance().setMemberSeq(result.getMbrSeq());
 
-                // login 화면으로 이동
-//                new Handler().postDelayed(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
-//                        startActivity(intent);
-//                        finish();
-//                    }
-//                }, 1000);
                 if (PrefManager.getInstance().getUserID() != null) {
                     connectLogin();
                 } else {

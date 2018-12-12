@@ -21,5 +21,9 @@
             android:defaultValue="true"
             android:title="관리자 호출"/>
     </PreferenceCategory>
+    <Preference
+        android:key="@string/AUTO_LOGIN"
+        android:defaultValue="true"
+        android:title="로그아웃"/>
 
 </PreferenceScreen>

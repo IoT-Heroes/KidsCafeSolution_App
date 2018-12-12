@@ -54,7 +54,7 @@ public class PrefManager {
     }
 
     public void logout() {
-        editor.remove(PREF_USER_ID);
+        editor.clear();
         editor.commit();
     }
 
