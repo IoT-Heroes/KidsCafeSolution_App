@@ -6,8 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.kt.iotheroes.kidscafesolution.Model.Kid;
-import com.kt.iotheroes.kidscafesolution.Util.ParentView.KidList.KidsAdapter;
-import com.kt.iotheroes.kidscafesolution.Util.ParentView.KidList.KidsListFargment;
+import com.kt.iotheroes.kidscafesolution.ParentView.KidList.KidsAdapter;
+import com.kt.iotheroes.kidscafesolution.ParentView.KidList.KidsListFargment;
 
 import java.util.List;
 

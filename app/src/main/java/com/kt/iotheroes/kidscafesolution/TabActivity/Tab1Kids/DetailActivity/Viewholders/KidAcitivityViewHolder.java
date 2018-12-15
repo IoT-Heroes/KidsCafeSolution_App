@@ -10,7 +10,7 @@ import com.hookedonplay.decoviewlib.charts.SeriesItem;
 import com.hookedonplay.decoviewlib.events.DecoEvent;
 import com.kt.iotheroes.kidscafesolution.Model.KidInfo;
 import com.kt.iotheroes.kidscafesolution.R;
-import com.kt.iotheroes.kidscafesolution.Util.ParentView.ViewHolderParent;
+import com.kt.iotheroes.kidscafesolution.ParentView.ViewHolderParent;
 
 /**
  * Created by mijeong on 2018. 12. 5..

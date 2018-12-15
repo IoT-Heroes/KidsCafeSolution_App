@@ -1,4 +1,4 @@
-package com.kt.iotheroes.kidscafesolution.Util.ParentView;
+package com.kt.iotheroes.kidscafesolution.ParentView;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;

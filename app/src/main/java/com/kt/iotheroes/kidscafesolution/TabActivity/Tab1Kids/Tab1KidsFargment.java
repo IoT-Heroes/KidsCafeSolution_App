@@ -10,8 +10,8 @@ import com.kt.iotheroes.kidscafesolution.Model.Kid;
 import com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids.AddChild.ListActivity.AddChildListActivity;
 import com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids.DetailActivity.KidDetailActivity;
 import com.kt.iotheroes.kidscafesolution.Util.Dialog.OkDialog;
-import com.kt.iotheroes.kidscafesolution.Util.ParentView.KidList.KidsAdapter;
-import com.kt.iotheroes.kidscafesolution.Util.ParentView.KidList.KidsListFargment;
+import com.kt.iotheroes.kidscafesolution.ParentView.KidList.KidsAdapter;
+import com.kt.iotheroes.kidscafesolution.ParentView.KidList.KidsListFargment;
 import com.kt.iotheroes.kidscafesolution.Util.SharedManager.SharedManager;
 
 import java.util.List;

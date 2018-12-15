@@ -1,4 +1,4 @@
-package com.kt.iotheroes.kidscafesolution.Util.ParentView.KidList;
+package com.kt.iotheroes.kidscafesolution.ParentView.KidList;
 
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;

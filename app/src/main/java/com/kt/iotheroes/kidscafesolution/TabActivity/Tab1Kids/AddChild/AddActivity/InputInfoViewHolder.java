@@ -1,13 +1,11 @@
 package com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids.AddChild.AddActivity;
 
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 
 import com.kt.iotheroes.kidscafesolution.R;
-import com.kt.iotheroes.kidscafesolution.Util.ParentView.ViewHolderParent;
+import com.kt.iotheroes.kidscafesolution.ParentView.ViewHolderParent;
 
 /**
  * Created by mijeong on 2018. 12. 5..
