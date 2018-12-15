@@ -44,9 +44,12 @@ public class SplashActivity extends AppCompatActivity {
 
 //        new IoTMakersAPI.PushSessionDeleteTask().execute();
         // iot makers 플랫폼 로그인
+
+
+        PrefManager.getInstance().logout();
         new LoginTask().execute();
 
-//        connectLogin();
+//        connectAutoLogin();
     }
 
     private class LoginTask extends AsyncTask<Void, Void, GiGaIotOAuthResponse> {
@@ -82,7 +85,7 @@ public class SplashActivity extends AppCompatActivity {
                 PrefManager.getInstance().setMemberSeq(result.getMbrSeq());
 
                 if (PrefManager.getInstance().getUserID() != null) {
-                    connectLogin();
+                    connectAutoLogin();
                 } else {
                     new Handler().postDelayed(new Runnable() {
                         @Override
@@ -106,7 +109,7 @@ public class SplashActivity extends AppCompatActivity {
         }
     }
 
-    private void connectLogin() {
+    private void connectAutoLogin() {
         APIClient.getClient().getUSer(PrefManager.getInstance().getUserID())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

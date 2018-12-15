@@ -12,6 +12,7 @@ import android.widget.BaseAdapter;
 
 import com.kt.iotheroes.kidscafesolution.Account.Login.LoginActivity;
 import com.kt.iotheroes.kidscafesolution.R;
+import com.kt.iotheroes.kidscafesolution.Util.IoTMakers.IoTMakersAPI;
 import com.kt.iotheroes.kidscafesolution.Util.SharedManager.PrefManager;
 
 /**
@@ -42,6 +43,8 @@ public class AdminSettingsFragment extends PreferenceFragment {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
+                        new IoTMakersAPI.PushSessionDeleteTask().execute();
+
                         Intent intent = new Intent(getActivity(), LoginActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
