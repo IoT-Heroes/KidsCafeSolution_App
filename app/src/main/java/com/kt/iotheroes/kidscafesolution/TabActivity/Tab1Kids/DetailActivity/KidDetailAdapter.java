@@ -129,7 +129,7 @@ public class KidDetailAdapter extends RecyclerView.Adapter<ViewHolderParent> {
         else if (holder instanceof KidNoBandViewHolder) {
             KidNoBandViewHolder viewHolderParent = (KidNoBandViewHolder)holder;
             int i = position - TYPE_ITEM_VISIT_ZONE_CELL;
-            viewHolderParent.initViewHolder(activity);
+            viewHolderParent.initViewHolder(activity, kidInfo.getKid().getId());
         }
     }
 
