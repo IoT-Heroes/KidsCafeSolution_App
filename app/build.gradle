@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 
+// 시연을 진행할 휴대폰이 26이므로 27이 아닌 26으로 진행한다.
 android {
     compileSdkVersion 26
     buildToolsVersion "26.0.1"
@@ -36,7 +37,7 @@ dependencies {
     // eatable food List
     
 
-//    compile 'com.android.support:appcompat-v7:26.+'
+    compile 'com.android.support:appcompat-v7:26.+'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.android.support:design:26.+'
     compile 'com.android.support:support-vector-drawable:26.+'
