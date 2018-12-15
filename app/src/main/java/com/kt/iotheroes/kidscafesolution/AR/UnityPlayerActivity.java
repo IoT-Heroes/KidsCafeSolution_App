@@ -34,7 +34,7 @@ public class UnityPlayerActivity extends Activity
      * unity로 부터 밴드 id를 전송 받는다.
      * @param id : band id
      */
-    public void SetBandId(String id)
+    public void setBandId(String id)
     {
         // TODO : 서버와의 통신 구현 후 성공 시 다이얼로그 띄워주기
         Toast.makeText(getApplicationContext(), id, Toast.LENGTH_SHORT).show();
