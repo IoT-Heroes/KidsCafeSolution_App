@@ -29,6 +29,11 @@ public class UnityPlayerActivity extends Activity
         kidId = getIntent().getStringExtra("kidId");
     }
 
+    public void CallAndroid(String msg) {
+        String meesage = msg;
+        UnityPlayer.UnitySendMessage("AndroidGate", "CallUnity", meesage);
+    }
+
     //
     /**
      * unity로 부터 밴드 id를 전송 받는다.
@@ -37,7 +42,7 @@ public class UnityPlayerActivity extends Activity
     public void setBandId(String id)
     {
         // TODO : 서버와의 통신 구현 후 성공 시 다이얼로그 띄워주기
-        Toast.makeText(getApplicationContext(), id, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this.getApplicationContext(), id, Toast.LENGTH_SHORT).show();
     }
 
     /**
