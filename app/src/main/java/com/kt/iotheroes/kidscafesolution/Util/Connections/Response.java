@@ -20,6 +20,9 @@ public class Response<T> {
     @Expose
     private T data;
 
+    @SerializedName("status")
+    private int status;
+
     public String getResult() {
         return result;
     }
@@ -42,5 +45,9 @@ public class Response<T> {
 
     public void setData(T data) {
         this.data = data;
+    }
+
+    public int getStatus() {
+        return status;
     }
 }

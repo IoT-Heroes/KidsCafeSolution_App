@@ -4,13 +4,22 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.Window;
 import android.widget.Toast;
 
+import com.kt.iotheroes.kidscafesolution.Model.VisitingRecord;
 import com.kt.iotheroes.kidscafesolution.R;
+import com.kt.iotheroes.kidscafesolution.Util.Connections.APIClient;
+import com.kt.iotheroes.kidscafesolution.Util.Connections.Response;
 import com.unity3d.player.UnityPlayer;
+
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.observers.DisposableObserver;
+import io.reactivex.schedulers.Schedulers;
 
 public class UnityPlayerActivity extends Activity
 {
@@ -48,11 +57,14 @@ public class UnityPlayerActivity extends Activity
 
     /**
      * unity로 부터 밴드 id를 전송 받는다.
+     * 키즈밴드 등록화면에서 마커가 인식되었을 때 호출되는 함수이다.
+     * 받은 데이터를 서버에 전송해 아이-밴드를 맵핑 시킨다.
      * @param id : band id
      */
     public void setBandId(String id) {
         // TODO : 서버와의 통신 구현 후 성공 시 다이얼로그 띄워주기
-        Toast.makeText(this.getApplicationContext(), id, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this.getApplicationContext(), id, Toast.LENGTH_SHORT).show();
+        connectBand(id);
     }
 
     /**
@@ -67,6 +79,36 @@ public class UnityPlayerActivity extends Activity
          * @param parameter : 함수의 파라미터에 넣어줄 값
          */
         UnityPlayer.UnitySendMessage("AndroidGate", "SetKidId", kidId);
+    }
+
+    private void connectBand(String bandId) {
+        VisitingRecord sendData = new VisitingRecord();
+        sendData.setBandDeviceId(bandId);
+        sendData.setChildId(kidId);
+
+        APIClient.getClient().connectBand(sendData)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<Response<VisitingRecord>>() {
+                    @Override
+                    public void onNext(@NonNull Response<VisitingRecord> userResponse) {
+                        if (userResponse.getStatus() == 2001) { // success
+                            Toast.makeText(getApplicationContext(), "성공!!!!", Toast.LENGTH_SHORT).show();
+                        }
+                        else
+                            Log.i("connect", "키즈밴드 연결에 문제가 발생하였습니다.");
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        e.printStackTrace();
+                        Log.e("connect", e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                    }
+                });
     }
 
     @Override protected void onNewIntent(Intent intent)

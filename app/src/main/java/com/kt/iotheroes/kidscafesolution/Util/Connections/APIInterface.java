@@ -45,13 +45,15 @@ public interface APIInterface {
     @POST("/heroes/child/management/insert")
     Observable<Response<List<Kid>>> addChildList(@Body List<Kid> kids);
 
+    @POST("/heroes/visitingrecord/management")
+    Observable<Response<VisitingRecord>> connectBand(@Body VisitingRecord visitingRecord);
+
     @GET("/heroes/data/food/select")
     Observable<Response<List<Food>>> getFoodList();
 
     @GET("/heroes/user/management/select")
     Observable<Response<List<User>>> getUSer(@Query("id") String id);
 
-//    kid detail
     @GET("/heroes/statistics/childusingfrequency/select")
     Observable<Response<List<UsingZone>>> getChildUsingZone(@Query("childId") String childId, @Query("startDate") String startDate);
 

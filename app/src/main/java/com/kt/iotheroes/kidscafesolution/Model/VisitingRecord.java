@@ -10,9 +10,18 @@ public class VisitingRecord implements Serializable{
     private String startDate;
     private String endDate;
     private String bandDeviceId;
+    private String childId;
     private int amountPrice;
     private int amountRest;
     private int usingTime;
+
+    public void setBandDeviceId(String bandDeviceId) {
+        this.bandDeviceId = bandDeviceId;
+    }
+
+    public void setChildId(String childId) {
+        this.childId = childId;
+    }
 
     public String getStartDate() {
         return startDate;
@@ -24,6 +33,10 @@ public class VisitingRecord implements Serializable{
 
     public String getBandDeviceId() {
         return bandDeviceId;
+    }
+
+    public String getChildId() {
+        return childId;
     }
 
     public int getAmountPrice() {
