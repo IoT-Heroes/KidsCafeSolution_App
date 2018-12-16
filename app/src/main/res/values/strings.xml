@@ -24,4 +24,8 @@
 
     <!--<string name="PreferenceScreen_CNT_TEMP">push.cnt.temp</string>-->
     <!--<string name="PreferenceScreen_CNT_END">push.cnt.endTime</string>-->
+
+    <!--ar page-->
+    <string name="AR_INFO">ar_info</string>
+    <string name="AR_CONNECT">ar_connect</string>
 </resources>

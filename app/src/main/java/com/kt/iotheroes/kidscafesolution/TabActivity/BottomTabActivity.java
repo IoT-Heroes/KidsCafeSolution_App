@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.kt.iotheroes.kidscafesolution.AR.UnityPlayerActivity;
 import com.kt.iotheroes.kidscafesolution.Model.Zone;
 import com.kt.iotheroes.kidscafesolution.R;
 import com.kt.iotheroes.kidscafesolution.Settings.Admin.SettingsAdminActivity;
@@ -115,13 +116,18 @@ public class BottomTabActivity extends AppCompatActivity implements ZoneTab2List
             case R.id.action_settings:
                 return moveToSettingActivity();
             case android.R.id.home: // ar
-                // TODO : AR 연동
-                Toast.makeText(getApplicationContext(), "ar", Toast.LENGTH_SHORT).show();
-                return true;
+                return moveToARActivity();
             default:
                 super.onOptionsItemSelected(item);
         }
         return false;
+    }
+
+    private boolean moveToARActivity() {
+        Intent intent = new Intent(BottomTabActivity.this, UnityPlayerActivity.class);
+        intent.putExtra("page", getString(R.string.AR_INFO));
+        startActivity(intent);
+        return true;
     }
 
     private boolean moveToSettingActivity() {
