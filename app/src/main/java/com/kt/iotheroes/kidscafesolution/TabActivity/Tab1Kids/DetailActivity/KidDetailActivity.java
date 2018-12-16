@@ -194,7 +194,9 @@ public class KidDetailActivity extends AppCompatActivity {
             // 키즈 밴드 연결 성공 시 visitingRecord 갱신해준다.
             VisitingRecord visitingRecord = (VisitingRecord) data.getSerializableExtra("visitingRecord");
             kid.setVisitingRecord(visitingRecord);
+            // kid 정보 변경에 따른 다른 데이터 동기화 처리
             SharedManager.getInstance().getUser().upDateChild(kidIdx, kid);
+            kidInfo.setKid(kid);
             reload();
         }
     }

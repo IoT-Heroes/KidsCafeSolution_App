@@ -99,11 +99,11 @@ public class UnityPlayerActivity extends Activity
                 .subscribeWith(new DisposableObserver<Response<VisitingRecord>>() {
                     @Override
                     public void onNext(@NonNull Response<VisitingRecord> userResponse) {
-                        if (userResponse.getStatus() == 2001) { // success
+                        if (userResponse.getState() == 2001) { // success
                             Toast.makeText(getApplicationContext(), "성공!!!!", Toast.LENGTH_SHORT).show();
                             showSuccessDialog(userResponse.getData());
                         }
-                        else if (userResponse.getStatus() == 4000)
+                        else if (userResponse.getState() == 4000)
                             showAlreadyRentBandDialog();
                         else
                             Log.e("connect", "밴드 등록에 문제 발생");
@@ -138,9 +138,15 @@ public class UnityPlayerActivity extends Activity
     }
 
     private void showAlreadyRentBandDialog() {
-        connectStatus = true;
         final OkDialog okDialog = new OkDialog(this);
         okDialog.setMessage("이미 연결되어 있는 밴드입니다.");
+        okDialog.setOkListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                connectStatus = true;
+                okDialog.dismiss();
+            }
+        });
         okDialog.show();
     }
 
