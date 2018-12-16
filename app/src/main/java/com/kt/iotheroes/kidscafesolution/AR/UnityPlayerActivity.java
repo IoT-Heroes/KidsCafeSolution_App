@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Toast;
 
-import com.kt.iotheroes.kidscafesolution.Account.Join.JoinActivity;
 import com.kt.iotheroes.kidscafesolution.Model.VisitingRecord;
 import com.kt.iotheroes.kidscafesolution.R;
 import com.kt.iotheroes.kidscafesolution.Util.Connections.APIClient;
@@ -98,8 +97,10 @@ public class UnityPlayerActivity extends Activity
                         if (userResponse.getStatus() == 2001) { // success
                             Toast.makeText(getApplicationContext(), "성공!!!!", Toast.LENGTH_SHORT).show();
                         }
+                        else if (userResponse.getStatus() == 4000)
+                            showAlreadyRentBandDialog();
                         else
-                            Log.i("connect", "키즈밴드 연결에 문제가 발생하였습니다.");
+                            Log.e("connect", "밴드 등록에 문제 발생");
                     }
 
                     @Override
@@ -125,6 +126,12 @@ public class UnityPlayerActivity extends Activity
                 okDialog.dismiss();
             }
         });
+        okDialog.show();
+    }
+
+    private void showAlreadyRentBandDialog() {
+        final OkDialog okDialog = new OkDialog(this);
+        okDialog.setMessage("이미 연결되어 있는 밴드입니다.");
         okDialog.show();
     }
 
