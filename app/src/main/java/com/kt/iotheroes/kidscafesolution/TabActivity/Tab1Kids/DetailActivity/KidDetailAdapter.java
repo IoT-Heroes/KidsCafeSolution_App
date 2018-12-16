@@ -18,6 +18,7 @@ import com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids.DetailActivity.Vie
 import com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids.DetailActivity.Viewholders.KidVisitZoneViewHolder;
 import com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids.KidInfoViewHolder;
 import com.kt.iotheroes.kidscafesolution.ParentView.ViewHolderParent;
+import com.kt.iotheroes.kidscafesolution.Util.Loadings.LoadingUtil;
 
 /**
  * Created by mijeong on 2018. 12. 4..
@@ -42,8 +43,9 @@ public class KidDetailAdapter extends RecyclerView.Adapter<ViewHolderParent> {
 
     private KidInfo kidInfo;
 
-    public void setKidInfo(KidInfo kidInfo) {
+    public void setKidInfo(KidInfo kidInfo, LinearLayout indicator) {
         this.kidInfo = kidInfo;
+        LoadingUtil.stopLoading(indicator);
     }
 
     public KidDetailAdapter(Context mContext, KidDetailActivity mActivity, LinearLayout mIndicator, boolean wearingBand) {

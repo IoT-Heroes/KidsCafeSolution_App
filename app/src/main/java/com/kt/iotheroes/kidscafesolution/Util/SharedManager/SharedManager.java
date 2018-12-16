@@ -117,4 +117,8 @@ public class SharedManager {
     public void setZonelist(List<Zone> zonelist) {
         this.zonelist = zonelist;
     }
+
+    public void upDateChild(int i, Kid kid) {
+        this.user.upDateChild(i, kid);
+    }
 }

@@ -17,6 +17,7 @@ import com.kt.iotheroes.kidscafesolution.Model.VisitingRecord;
 import com.kt.iotheroes.kidscafesolution.R;
 import com.kt.iotheroes.kidscafesolution.Util.Connections.APIClient;
 import com.kt.iotheroes.kidscafesolution.Util.Connections.Response;
+import com.kt.iotheroes.kidscafesolution.Util.Loadings.LoadingUtil;
 import com.kt.iotheroes.kidscafesolution.Util.SharedManager.SharedManager;
 
 import java.util.List;
@@ -60,11 +61,12 @@ public class KidDetailActivity extends AppCompatActivity {
 
     void reload() {
         if (kid.isBandWearing()) {
+            LoadingUtil.startLoading(indicator);
             connectUsingZoneData();
             connectPulseData();
             connectActivityData();
         }
-        adapter.setKidInfo(kidInfo);
+        adapter.setKidInfo(kidInfo, indicator);
 
         adapter.notifyDataSetChanged();
     }
@@ -195,7 +197,7 @@ public class KidDetailActivity extends AppCompatActivity {
             VisitingRecord visitingRecord = (VisitingRecord) data.getSerializableExtra("visitingRecord");
             kid.setVisitingRecord(visitingRecord);
             // kid 정보 변경에 따른 다른 데이터 동기화 처리
-            SharedManager.getInstance().getUser().upDateChild(kidIdx, kid);
+            SharedManager.getInstance().upDateChild(kidIdx, kid);
             kidInfo.setKid(kid);
             reload();
         }
