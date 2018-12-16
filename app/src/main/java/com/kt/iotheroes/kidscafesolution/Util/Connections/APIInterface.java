@@ -36,37 +36,37 @@ Retrofit을 Rx로 사용하는 이유
  */
 public interface APIInterface {
 
-    @POST("/heroes/user/management/insert")
+    @POST("/heroes/user/management")
     Observable<Response<User>> join(@Body User user);
 
     @POST("/heroes/user/management/login")
     Observable<Response<User>> login(@Body User user);
 
-    @POST("/heroes/child/management/insert")
+    @POST("/heroes/child/management")
     Observable<Response<List<Kid>>> addChildList(@Body List<Kid> kids);
 
     @POST("/heroes/visitingrecord/management")
     Observable<Response<VisitingRecord>> connectBand(@Body VisitingRecord visitingRecord);
 
-    @GET("/heroes/data/food/select")
+    @GET("/heroes/data/food")
     Observable<Response<List<Food>>> getFoodList();
 
-    @GET("/heroes/user/management/select")
+    @GET("/heroes/user/management")
     Observable<Response<List<User>>> getUSer(@Query("id") String id);
 
-    @GET("/heroes/statistics/childusingfrequency/select")
+    @GET("/heroes/statistics/childusingfrequency")
     Observable<Response<List<UsingZone>>> getChildUsingZone(@Query("childId") String childId, @Query("startDate") String startDate);
 
-    @GET("/heroes/visitingrecord/management/select")
+    @GET("/heroes/visitingrecord/management")
     Observable<Response<List<VisitingRecord>>> getChildVisitingRecords(@Query("childId") String childId);
 
-    @GET("/heroes/statistics/childpulse/select")
+    @GET("/heroes/statistics/childpulse")
     Observable<Response<List<KidStatic>>> getChildPulse(@Query("childId") String childId, @Query("startDate") String startDate, @Query("endDate") String endDate, @Query("batchType") String batchType);
 
-    @GET("/heroes/statistics/childactivity/select")
+    @GET("/heroes/statistics/childactivity")
     Observable<Response<List<KidStatic>>> getChildActivity(@Query("childId") String childId, @Query("startDate") String startDate, @Query("endDate") String endDate, @Query("batchType") String batchType);
 
-    @GET("/heroes/zone/management/select")
+    @GET("/heroes/zone/management")
     Observable<Response<List<Zone>>> getZoneList();
 
 }
