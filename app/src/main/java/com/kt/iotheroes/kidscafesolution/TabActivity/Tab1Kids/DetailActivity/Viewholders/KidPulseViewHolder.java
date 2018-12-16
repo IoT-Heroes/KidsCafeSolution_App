@@ -4,7 +4,7 @@ import android.view.View;
 
 import com.kt.iotheroes.kidscafesolution.Model.KidStatic;
 import com.kt.iotheroes.kidscafesolution.R;
-import com.kt.iotheroes.kidscafesolution.Util.ParentView.ViewHolderParent;
+import com.kt.iotheroes.kidscafesolution.ParentView.ViewHolderParent;
 import com.kt.iotheroes.kidscafesolution.Util.TimeFormatter.TimeFormmater;
 
 import org.eazegraph.lib.charts.ValueLineChart;

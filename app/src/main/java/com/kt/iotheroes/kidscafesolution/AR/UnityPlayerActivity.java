@@ -41,6 +41,11 @@ public class UnityPlayerActivity extends Activity
         UnityPlayer.UnitySendMessage("SceneGate", "SetScenePage", arPage);
     }
 
+    public void CallAndroid(String msg) {
+        String meesage = msg;
+        UnityPlayer.UnitySendMessage("AndroidGate", "CallUnity", meesage);
+    }
+
     /**
      * unity로 부터 밴드 id를 전송 받는다.
      * @param id : band id
@@ -53,7 +58,8 @@ public class UnityPlayerActivity extends Activity
     /**
     * unity에게 아이의 id를 전송한다.
     */
-    public void setKidId() {
+    public void setKidId()
+    {
         /**
          * UnityPlayer.UnitySendMessage라는 함수는 유니티로 메시지를 전송하는 기능
          * @param object : 메시지를 받을 객체

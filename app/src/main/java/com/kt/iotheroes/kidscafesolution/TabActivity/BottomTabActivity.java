@@ -126,7 +126,9 @@ public class BottomTabActivity extends AppCompatActivity implements ZoneTab2List
     private boolean moveToARActivity() {
         Intent intent = new Intent(BottomTabActivity.this, UnityPlayerActivity.class);
         intent.putExtra("page", getString(R.string.AR_INFO));
+        intent.putExtra("kidId", "test");
         startActivity(intent);
+
         return true;
     }
 

@@ -17,7 +17,7 @@ import com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids.DetailActivity.Vie
 import com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids.DetailActivity.Viewholders.KidVisitZoneCellViewHolder;
 import com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids.DetailActivity.Viewholders.KidVisitZoneViewHolder;
 import com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids.KidInfoViewHolder;
-import com.kt.iotheroes.kidscafesolution.Util.ParentView.ViewHolderParent;
+import com.kt.iotheroes.kidscafesolution.ParentView.ViewHolderParent;
 
 /**
  * Created by mijeong on 2018. 12. 4..
@@ -125,6 +125,11 @@ public class KidDetailAdapter extends RecyclerView.Adapter<ViewHolderParent> {
             KidVisitZoneCellViewHolder viewHolderParent = (KidVisitZoneCellViewHolder)holder;
             int i = position - TYPE_ITEM_VISIT_ZONE_CELL;
             viewHolderParent.initViewHolder(kidInfo.getZoneDatas().get(i), visited_bar_color[i % kidInfo.getZoneDatas().size()]);
+        }
+        else if (holder instanceof KidNoBandViewHolder) {
+            KidNoBandViewHolder viewHolderParent = (KidNoBandViewHolder)holder;
+            int i = position - TYPE_ITEM_VISIT_ZONE_CELL;
+            viewHolderParent.initViewHolder(activity, kidInfo.getKid().getId());
         }
     }
 
