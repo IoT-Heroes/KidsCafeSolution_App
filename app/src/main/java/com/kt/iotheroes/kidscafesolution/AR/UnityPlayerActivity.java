@@ -9,7 +9,6 @@ import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
-import android.widget.Toast;
 
 import com.kt.iotheroes.kidscafesolution.Model.VisitingRecord;
 import com.kt.iotheroes.kidscafesolution.R;
@@ -66,8 +65,7 @@ public class UnityPlayerActivity extends Activity
      * @param id : band id
      */
     public void setBandId(String id) {
-        // TODO : 서버와의 통신 구현 후 성공 시 다이얼로그 띄워주기
-//        Toast.makeText(this.getApplicationContext(), id, Toast.LENGTH_SHORT).show();
+        // 여러번 호출 되는 것을 막기 위함
         if (connectStatus) {
             connectStatus = false;
             connectBand(id);
@@ -100,7 +98,6 @@ public class UnityPlayerActivity extends Activity
                     @Override
                     public void onNext(@NonNull Response<VisitingRecord> userResponse) {
                         if (userResponse.getState() == 2001) { // success
-                            Toast.makeText(getApplicationContext(), "성공!!!!", Toast.LENGTH_SHORT).show();
                             showSuccessDialog(userResponse.getData());
                         }
                         else if (userResponse.getState() == 4000)
