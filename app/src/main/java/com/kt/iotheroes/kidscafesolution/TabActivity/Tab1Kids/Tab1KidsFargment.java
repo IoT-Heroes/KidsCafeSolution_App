@@ -102,6 +102,7 @@ public class Tab1KidsFargment extends KidsListFargment {
     }
 
     public void connectKids() {
+        // TODO : 여기서 계속 오류 뜸
         List<Kid> kids = SharedManager.getInstance().getUser().getChild();
         if(kids.size() == 0) {
             presentDialog();

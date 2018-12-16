@@ -46,6 +46,7 @@ public class KidDetailAdapter extends RecyclerView.Adapter<ViewHolderParent> {
     public void setKidInfo(KidInfo kidInfo, LinearLayout indicator) {
         this.kidInfo = kidInfo;
         LoadingUtil.stopLoading(indicator);
+        this.wearingBand = kidInfo.getKid().isBandWearing();
     }
 
     public KidDetailAdapter(Context mContext, KidDetailActivity mActivity, LinearLayout mIndicator, boolean wearingBand) {

@@ -43,7 +43,7 @@ public class SharedManager {
         return single;
     }
 
-    public synchronized User getUser() {
+    public User getUser() {
         return user;
     }
 

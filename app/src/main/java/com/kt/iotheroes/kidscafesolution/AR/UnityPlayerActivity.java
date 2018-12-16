@@ -53,11 +53,6 @@ public class UnityPlayerActivity extends Activity
         UnityPlayer.UnitySendMessage("SceneGate", "SetScenePage", arPage);
     }
 
-    public void CallAndroid(String msg) {
-        String meesage = msg;
-        UnityPlayer.UnitySendMessage("AndroidGate", "CallUnity", meesage);
-    }
-
     /**
      * unity로 부터 밴드 id를 전송 받는다.
      * 키즈밴드 등록화면에서 마커가 인식되었을 때 호출되는 함수이다.
@@ -66,9 +61,18 @@ public class UnityPlayerActivity extends Activity
      */
     public void setBandId(String id) {
         // 여러번 호출 되는 것을 막기 위함
+//        if (connectStatus) {
+//            connectStatus = false;
+//            connectBand(id);
+//        }
+
         if (connectStatus) {
             connectStatus = false;
-            connectBand(id);
+            connectBand("BAND2");
+//            VisitingRecord test = new VisitingRecord();
+//            test.setBandDeviceId("BAND3");
+//            test.setChildId(kidId);
+//            showSuccessDialog(test);
         }
     }
 

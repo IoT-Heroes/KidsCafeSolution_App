@@ -93,17 +93,19 @@ public class Kid implements Serializable {
         return eatableFoodList;
     }
 
-    public Kid() {}
-
-    public Kid(String name, int age, String sex, int height, int weight, boolean wearingBand) {
-        this.name = name;
-        this.age = age;
-        this.sex = sex;
-        this.height = height;
-        this.weight = weight;
-        // TODO : 여기 나중에 다 false로 초기화 시킬 것
-        this.isBandWearing = wearingBand;
+    public Kid() {
+        isBandWearing = false;
     }
+
+//    public Kid(String name, int age, String sex, int height, int weight, boolean wearingBand) {
+//        this.name = name;
+//        this.age = age;
+//        this.sex = sex;
+//        this.height = height;
+//        this.weight = weight;
+//        // TODO : 여기 나중에 다 false로 초기화 시킬 것
+//        this.isBandWearing = wearingBand;
+//    }
 
     public void setUserId(String userId) {
         this.userId = userId;
