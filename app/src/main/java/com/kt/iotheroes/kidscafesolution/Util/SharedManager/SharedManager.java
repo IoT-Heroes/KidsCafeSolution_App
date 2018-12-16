@@ -52,6 +52,9 @@ public class SharedManager {
     public synchronized boolean setUser(final User user) {
         try {
             this.user = user;
+            // index 할당 및 isBandWearing의 경우 visitingRecord 알려주기 위해 받는다.
+            // TODO : 처음 유저 불러오는 곳 안에 다 불렀을 경우 아래 setChild진행하기 이 과정 다 진행되면 onComplete 불릴거고 그 부분을 메인 리스트에서 받아서 처리하도록 고칠 것
+//            user.setChild(user.getChild());
 
             for (int i = 0; i < user.getChild().size(); i++) {
                 final Kid kid = user.getChild().get(i);

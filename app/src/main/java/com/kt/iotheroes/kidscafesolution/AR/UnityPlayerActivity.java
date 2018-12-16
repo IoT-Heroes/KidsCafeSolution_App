@@ -29,6 +29,8 @@ public class UnityPlayerActivity extends Activity
     String kidId;
     String arPage;
 
+    boolean connectStatus = true;
+
     // Setup activity layout
     @Override protected void onCreate(Bundle savedInstanceState)
     {
@@ -66,7 +68,10 @@ public class UnityPlayerActivity extends Activity
     public void setBandId(String id) {
         // TODO : 서버와의 통신 구현 후 성공 시 다이얼로그 띄워주기
 //        Toast.makeText(this.getApplicationContext(), id, Toast.LENGTH_SHORT).show();
-        connectBand(id);
+        if (connectStatus) {
+            connectStatus = false;
+            connectBand(id);
+        }
     }
 
     /**
@@ -96,6 +101,7 @@ public class UnityPlayerActivity extends Activity
                     public void onNext(@NonNull Response<VisitingRecord> userResponse) {
                         if (userResponse.getStatus() == 2001) { // success
                             Toast.makeText(getApplicationContext(), "성공!!!!", Toast.LENGTH_SHORT).show();
+                            showSuccessDialog(userResponse.getData());
                         }
                         else if (userResponse.getStatus() == 4000)
                             showAlreadyRentBandDialog();
@@ -111,17 +117,19 @@ public class UnityPlayerActivity extends Activity
 
                     @Override
                     public void onComplete() {
-                        showSuccessDialog();
                     }
                 });
     }
 
-    private void showSuccessDialog() {
+    private void showSuccessDialog(final VisitingRecord visitingRecord) {
         final OkDialog okDialog = new OkDialog(this);
         okDialog.setMessage("밴드 연결에 성공했습니다!");
         okDialog.setOkListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.putExtra("visitingRecord", visitingRecord);
+                setResult(RESULT_OK, intent);
                 UnityPlayerActivity.this.finish();
                 okDialog.dismiss();
             }
@@ -130,6 +138,7 @@ public class UnityPlayerActivity extends Activity
     }
 
     private void showAlreadyRentBandDialog() {
+        connectStatus = true;
         final OkDialog okDialog = new OkDialog(this);
         okDialog.setMessage("이미 연결되어 있는 밴드입니다.");
         okDialog.show();

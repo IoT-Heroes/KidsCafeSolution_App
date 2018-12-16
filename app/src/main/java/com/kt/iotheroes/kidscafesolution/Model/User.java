@@ -75,6 +75,16 @@ public class User {
     }
 
     public void setChild(final List<Kid> child) {
+        // TODO : visitingRecord 불러와 할당 하는 부분 구현하기.
+//        for (int i = 0; i < child.size(); i++) {
+//            Kid kid = child.get(i);
+//
+//            synchronized (kid.isBandWearing())
+//
+//            kid.setKidListIdx(i);
+//            this.child.add(i, child.get(i));
+//        }
+
         this.child = child;
     }
 

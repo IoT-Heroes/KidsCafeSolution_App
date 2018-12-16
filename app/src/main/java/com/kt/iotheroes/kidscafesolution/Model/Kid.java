@@ -55,6 +55,7 @@ public class Kid implements Serializable {
     List<CafeVisitingRecord> cafeVisitingRecord;
 
     VisitingRecord visitingRecord;
+    int kidListIdx;
 
     public String getId() {
         return id;
@@ -134,9 +135,14 @@ public class Kid implements Serializable {
 
     public void setVisitingRecord(VisitingRecord visitingRecord) {
         this.visitingRecord = visitingRecord;
+        this.setBandWearing(true);
     }
 
     public void setBandWearing(Boolean bandWearing) {
         isBandWearing = bandWearing;
+    }
+
+    public void setKidListIdx(int kidListIdx) {
+        this.kidListIdx = kidListIdx;
     }
 }

@@ -14,6 +14,7 @@ import com.kt.iotheroes.kidscafesolution.R;
  */
 
 public class KidNoBandViewHolder extends ViewHolderParent {
+    static final int PICK_CONTACT_REQUEST = 1;
 
     Button button_connect_band;
 
@@ -30,7 +31,7 @@ public class KidNoBandViewHolder extends ViewHolderParent {
                 Intent intent = new Intent(activity, UnityPlayerActivity.class);
                 intent.putExtra("page", activity.getString(R.string.AR_CONNECT));
                 intent.putExtra("kidId", id);
-                activity.startActivity(intent);
+                activity.startActivityForResult(intent, PICK_CONTACT_REQUEST);
             }
         });
     }

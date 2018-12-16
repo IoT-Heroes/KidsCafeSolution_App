@@ -1,5 +1,6 @@
 package com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids.DetailActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,9 +13,11 @@ import com.kt.iotheroes.kidscafesolution.Model.Kid;
 import com.kt.iotheroes.kidscafesolution.Model.KidInfo;
 import com.kt.iotheroes.kidscafesolution.Model.KidStatic;
 import com.kt.iotheroes.kidscafesolution.Model.UsingZone;
+import com.kt.iotheroes.kidscafesolution.Model.VisitingRecord;
 import com.kt.iotheroes.kidscafesolution.R;
 import com.kt.iotheroes.kidscafesolution.Util.Connections.APIClient;
 import com.kt.iotheroes.kidscafesolution.Util.Connections.Response;
+import com.kt.iotheroes.kidscafesolution.Util.SharedManager.SharedManager;
 
 import java.util.List;
 
@@ -28,6 +31,7 @@ import io.reactivex.schedulers.Schedulers;
  */
 
 public class KidDetailActivity extends AppCompatActivity {
+    static final int PICK_CONTACT_REQUEST = 1;
 
     RecyclerView recyclerView;
     LinearLayout indicator;
@@ -37,6 +41,8 @@ public class KidDetailActivity extends AppCompatActivity {
 
     private KidInfo kidInfo;
     private Kid kid;
+    // TODO : 나중에 삭제할 것!
+    private int kidIdx;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,8 +52,13 @@ public class KidDetailActivity extends AppCompatActivity {
         kidInfo = new KidInfo();
         kid = (Kid)getIntent().getSerializableExtra("kid");
         kidInfo.setKid(kid);
+        kidIdx = getIntent().getIntExtra("kidIdx", -1);
 
         initView();
+        reload();
+    }
+
+    void reload() {
         if (kid.isBandWearing()) {
             connectUsingZoneData();
             connectPulseData();
@@ -173,5 +184,18 @@ public class KidDetailActivity extends AppCompatActivity {
             adapter = new KidDetailAdapter(getApplicationContext(), this, indicator, kid.isBandWearing());
         }
         recyclerView.setAdapter(adapter);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == RESULT_OK && requestCode == PICK_CONTACT_REQUEST) {
+            // 키즈 밴드 연결 성공 시 visitingRecord 갱신해준다.
+            VisitingRecord visitingRecord = (VisitingRecord) data.getSerializableExtra("visitingRecord");
+            kid.setVisitingRecord(visitingRecord);
+            SharedManager.getInstance().getUser().upDateChild(kidIdx, kid);
+            reload();
+        }
     }
 }

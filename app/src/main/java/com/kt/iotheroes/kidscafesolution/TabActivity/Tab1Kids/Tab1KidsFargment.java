@@ -50,6 +50,8 @@ public class Tab1KidsFargment extends KidsListFargment {
                 public void onItemClick(View view, int position) {
                     Intent intent = new Intent(getActivity(), KidDetailActivity.class);
                     intent.putExtra("kid", SharedManager.getInstance().getUser().getChild().get(position));
+                    // TODO : 나중에 모델에 실어서 다 변경할 것!!!
+                    intent.putExtra("kidIdx", position);
                     startActivity(intent);
                 }
             });
