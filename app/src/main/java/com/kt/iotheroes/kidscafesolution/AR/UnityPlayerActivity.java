@@ -7,13 +7,16 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
+import android.view.View;
 import android.view.Window;
 import android.widget.Toast;
 
+import com.kt.iotheroes.kidscafesolution.Account.Join.JoinActivity;
 import com.kt.iotheroes.kidscafesolution.Model.VisitingRecord;
 import com.kt.iotheroes.kidscafesolution.R;
 import com.kt.iotheroes.kidscafesolution.Util.Connections.APIClient;
 import com.kt.iotheroes.kidscafesolution.Util.Connections.Response;
+import com.kt.iotheroes.kidscafesolution.Util.Dialog.OkDialog;
 import com.unity3d.player.UnityPlayer;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -107,8 +110,22 @@ public class UnityPlayerActivity extends Activity
 
                     @Override
                     public void onComplete() {
+                        showSuccessDialog();
                     }
                 });
+    }
+
+    private void showSuccessDialog() {
+        final OkDialog okDialog = new OkDialog(this);
+        okDialog.setMessage("밴드 연결에 성공했습니다!");
+        okDialog.setOkListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                UnityPlayerActivity.this.finish();
+                okDialog.dismiss();
+            }
+        });
+        okDialog.show();
     }
 
     @Override protected void onNewIntent(Intent intent)
