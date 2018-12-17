@@ -32,6 +32,7 @@ import io.reactivex.schedulers.Schedulers;
  */
 
 public class KidDetailActivity extends AppCompatActivity {
+    private static final String TAG = KidDetailActivity.class.getSimpleName();
     static final int PICK_CONTACT_REQUEST = 1;
 
     RecyclerView recyclerView;
@@ -49,6 +50,8 @@ public class KidDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kid_detail);
+
+        Log.i(getString(R.string.activity), TAG + "on Create");
 
         kidInfo = new KidInfo();
         kid = (Kid)getIntent().getSerializableExtra("kid");

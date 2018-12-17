@@ -25,6 +25,7 @@ import io.reactivex.schedulers.Schedulers;
 
 public class UnityPlayerActivity extends Activity
 {
+    private static final String TAG = UnityPlayerActivity.class.getSimpleName();
     private long backKeyPressedTime = 0;
     private Toast toast;
 
@@ -39,6 +40,8 @@ public class UnityPlayerActivity extends Activity
     {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
+
+        Log.i(getString(R.string.activity), TAG + "on Create");
 
         mUnityPlayer = new UnityPlayer(this);
         setContentView(mUnityPlayer);

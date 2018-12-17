@@ -30,6 +30,7 @@ import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
 
 public class AddChildListActivity extends AppCompatActivity {
+    private static final String TAG = AddChildListActivity.class.getSimpleName();
     static final int PICK_CONTACT_REQUEST = 1;
 
     List<Kid> kids;
@@ -44,6 +45,7 @@ public class AddChildListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        Log.i(getString(R.string.activity), TAG + "on Create");
         setContentView(R.layout.activity_add_child_list);
 
         initView();

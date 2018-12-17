@@ -17,6 +17,8 @@ import com.kt.iotheroes.kidscafesolution.Util.Dialog.OkDialog;
 
 public class JoinActivity extends AppCompatActivity implements View.OnClickListener, JoinContract.JoinView, TextWatcher {
 
+    private static final String TAG = JoinActivity.class.getSimpleName();
+
     private EditText editId, editPw, editPwCheck, editPhone, editName;
     private ImageView imgCheck;
     private Button btnJoin;
@@ -29,7 +31,7 @@ public class JoinActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_join);
 
 
-        Log.i("err", "join start");
+        Log.i(getString(R.string.activity), TAG + "on Create");
         presenter = new JoinPresenterlmpl(this);
         initView();
     }

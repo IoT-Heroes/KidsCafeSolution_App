@@ -3,6 +3,7 @@ package com.kt.iotheroes.kidscafesolution.ParentView.KidList;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import com.kt.iotheroes.kidscafesolution.R;
 import com.kt.iotheroes.kidscafesolution.TabActivity.ParentFragment.TabParentFragment;
 
 public class KidsListFargment extends TabParentFragment {
+    private static final String TAG = KidsListFargment.class.getSimpleName();
     private static final String NAVIGATION_ID = "navigationId";
 
     protected RecyclerView recyclerView;
@@ -35,6 +37,8 @@ public class KidsListFargment extends TabParentFragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_tab1_kids, container, false);
         initView(view);
+
+        Log.i(getString(R.string.activity), TAG + "on Create");
 
         return view;
     }

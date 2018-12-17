@@ -7,6 +7,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -27,6 +28,7 @@ import com.kt.iotheroes.kidscafesolution.Util.SharedManager.SharedManager;
 import java.util.ArrayList;
 
 public class BottomTabActivity extends AppCompatActivity implements ZoneTab2ListFragment.OnListFragmentInteractionListener{
+    private static final String TAG = BottomTabActivity.class.getSimpleName();
 
     private ArrayList<TabParentFragment> fragments = new ArrayList<>();
     private FragmentManager fm = getSupportFragmentManager();
@@ -77,6 +79,7 @@ public class BottomTabActivity extends AppCompatActivity implements ZoneTab2List
 
         initView();
 
+        Log.i(getString(R.string.activity), TAG + "on Create");
         // TODO : visitingRecord 호출 다 되기 전까지 indicator 돌리기.
     }
 

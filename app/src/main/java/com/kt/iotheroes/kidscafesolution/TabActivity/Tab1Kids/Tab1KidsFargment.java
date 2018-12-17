@@ -2,21 +2,24 @@ package com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.kt.iotheroes.kidscafesolution.Model.Kid;
+import com.kt.iotheroes.kidscafesolution.ParentView.KidList.KidsAdapter;
+import com.kt.iotheroes.kidscafesolution.ParentView.KidList.KidsListFargment;
+import com.kt.iotheroes.kidscafesolution.R;
 import com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids.AddChild.ListActivity.AddChildListActivity;
 import com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids.DetailActivity.KidDetailActivity;
 import com.kt.iotheroes.kidscafesolution.Util.Dialog.OkDialog;
-import com.kt.iotheroes.kidscafesolution.ParentView.KidList.KidsAdapter;
-import com.kt.iotheroes.kidscafesolution.ParentView.KidList.KidsListFargment;
 import com.kt.iotheroes.kidscafesolution.Util.SharedManager.SharedManager;
 
 import java.util.List;
 
 public class Tab1KidsFargment extends KidsListFargment {
+    private static final String TAG = Tab1KidsFargment.class.getSimpleName();
     private static final String NAVIGATION_ID = "navigationId";
 
     private KidsAdapter adapter;
@@ -40,6 +43,8 @@ public class Tab1KidsFargment extends KidsListFargment {
         View view = super.onCreateView(inflater, container, savedInstanceState);
 
         initView(view);
+
+        Log.i(getString(R.string.activity), TAG + "on Create");
         return view;
     }
 

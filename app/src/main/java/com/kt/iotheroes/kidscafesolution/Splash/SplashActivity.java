@@ -33,12 +33,14 @@ import io.reactivex.schedulers.Schedulers;
 
 
 public class SplashActivity extends AppCompatActivity {
+    private static final String TAG = SplashActivity.class.getSimpleName();
     private GoogleCloudMessaging mGcm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+        Log.i(getString(R.string.activity), TAG + "on Create");
 
         PrefManager.getInstance().init(getApplicationContext());
 

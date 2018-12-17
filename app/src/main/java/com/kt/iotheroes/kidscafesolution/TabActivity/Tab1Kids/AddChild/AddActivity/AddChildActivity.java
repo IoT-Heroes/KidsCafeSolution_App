@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -18,6 +19,7 @@ import java.util.List;
 import java.util.Map;
 
 public class AddChildActivity extends AppCompatActivity {
+    private static final String TAG = AddChildActivity.class.getSimpleName();
 
     RecyclerView recyclerView;
     Button button_add;
@@ -41,6 +43,7 @@ public class AddChildActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_child);
 
+        Log.i(getString(R.string.activity), TAG + "on Create");
         kid = new Kid();
         foodList = (List<Food>) getIntent().getSerializableExtra("foodList");
 

@@ -8,6 +8,7 @@ import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceScreen;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.widget.BaseAdapter;
 
 import com.kt.iotheroes.kidscafesolution.Account.Login.LoginActivity;
@@ -20,6 +21,7 @@ import com.kt.iotheroes.kidscafesolution.Util.SharedManager.PrefManager;
  */
 
 public class AdminSettingsFragment extends PreferenceFragment {
+    private static final String TAG = AdminSettingsFragment.class.getSimpleName();
 
     PreferenceScreen zoneConditionPreference;
     Preference logOutButton;
@@ -27,6 +29,8 @@ public class AdminSettingsFragment extends PreferenceFragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Log.i(getString(R.string.activity), TAG + "on Create");
 
         addPreferencesFromResource(R.xml.setting_preference_admin);
         zoneConditionPreference = (PreferenceScreen)findPreference("zoneCondition");

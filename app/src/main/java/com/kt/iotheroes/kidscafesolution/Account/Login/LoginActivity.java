@@ -3,6 +3,7 @@ package com.kt.iotheroes.kidscafesolution.Account.Login;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,6 +15,7 @@ import com.kt.iotheroes.kidscafesolution.Util.Dialog.OkDialog;
 import com.kt.iotheroes.kidscafesolution.Util.SharedManager.PrefManager;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener, LoginContract.LoginView {
+    private static final String TAG = LoginActivity.class.getSimpleName();
 
     private EditText editId, editPw;
     private Button btnLogin, btnJoin;
@@ -29,6 +31,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        Log.i(getString(R.string.activity), TAG + "on Create");
 
         presenter = new LoginPresenterImpl(this);
         preferenceManager = PrefManager.getInstance();
