@@ -145,10 +145,6 @@ public class GCMIntentService extends IntentService {
             if (type == 3) { // 이벤트 발생 데이터만 노티를 띄워준다. D
                 message = objJson.getString("message");
                 sendIntent(context, message);
-            } else if (type == 1) {
-                // TEST 용 (PUSH 수시로 받기 위해서)
-                message = objJson.getString("message");
-                sendIntent(context, message);
             }
         } catch (Exception e) {
             e.printStackTrace();
