@@ -12,7 +12,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.kt.iotheroes.kidscafesolution.AR.UnityPlayerActivity;
 import com.kt.iotheroes.kidscafesolution.Model.Zone;
@@ -145,8 +144,6 @@ public class BottomTabActivity extends AppCompatActivity implements ZoneTab2List
 
     @Override
     public void onListFragmentInteraction(Zone item) {
-        Toast.makeText(getApplicationContext(), item.getName(), Toast.LENGTH_SHORT).show();
-        // TODO : zone detail 구현 (3순위)
         Intent intent = new Intent(this, DetailZoneActivity.class);
         startActivity(intent);
     }

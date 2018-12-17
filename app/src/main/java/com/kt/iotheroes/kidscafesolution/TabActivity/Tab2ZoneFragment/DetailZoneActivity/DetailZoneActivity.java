@@ -20,7 +20,7 @@ public class DetailZoneActivity extends AppCompatActivity {
 
         WebView webView = (WebView)findViewById(R.id.webView);
         webView.setWebViewClient(new WebViewClient()); // 이걸 안해주면 새창이 뜸
-        webView.loadUrl("https://www.naver.com/");
+        webView.loadUrl("http://192.168.0.29:8080/javascript.html");
     }
 
     public void goURL(String url){
