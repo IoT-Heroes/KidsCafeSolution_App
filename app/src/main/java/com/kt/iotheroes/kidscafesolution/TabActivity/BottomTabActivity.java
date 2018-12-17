@@ -21,6 +21,7 @@ import com.kt.iotheroes.kidscafesolution.Settings.Admin.SettingsAdminActivity;
 import com.kt.iotheroes.kidscafesolution.Settings.Parent.SettingsParentActivity;
 import com.kt.iotheroes.kidscafesolution.TabActivity.ParentFragment.TabParentFragment;
 import com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids.Tab1KidsFargment;
+import com.kt.iotheroes.kidscafesolution.TabActivity.Tab2ZoneFragment.DetailZoneActivity.DetailZoneActivity;
 import com.kt.iotheroes.kidscafesolution.TabActivity.Tab2ZoneFragment.Tab2List.ZoneTab2ListFragment;
 import com.kt.iotheroes.kidscafesolution.TabActivity.Tab2ZoneFragment.Tab2ZoneFargment;
 import com.kt.iotheroes.kidscafesolution.Util.SharedManager.SharedManager;
@@ -146,6 +147,8 @@ public class BottomTabActivity extends AppCompatActivity implements ZoneTab2List
     public void onListFragmentInteraction(Zone item) {
         Toast.makeText(getApplicationContext(), item.getName(), Toast.LENGTH_SHORT).show();
         // TODO : zone detail 구현 (3순위)
+        Intent intent = new Intent(this, DetailZoneActivity.class);
+        startActivity(intent);
     }
 
     @Override
