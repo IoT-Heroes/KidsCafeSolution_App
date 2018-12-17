@@ -9,6 +9,7 @@ import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
+import android.widget.Toast;
 
 import com.kt.iotheroes.kidscafesolution.Model.VisitingRecord;
 import com.kt.iotheroes.kidscafesolution.R;
@@ -24,6 +25,9 @@ import io.reactivex.schedulers.Schedulers;
 
 public class UnityPlayerActivity extends Activity
 {
+    private long backKeyPressedTime = 0;
+    private Toast toast;
+
     protected UnityPlayer mUnityPlayer; // don't change the name of this variable; referenced from native code
     String kidId;
     String arPage;
@@ -131,7 +135,8 @@ public class UnityPlayerActivity extends Activity
                 Intent intent = new Intent();
                 intent.putExtra("visitingRecord", visitingRecord);
                 setResult(RESULT_OK, intent);
-                UnityPlayerActivity.this.finish();
+//                UnityPlayerActivity.this.finish();
+                UnityPlayer.UnitySendMessage("AndroidGate", "GoBack", null);
                 okDialog.dismiss();
             }
         });
@@ -149,6 +154,35 @@ public class UnityPlayerActivity extends Activity
             }
         });
         okDialog.show();
+    }
+
+    public void goBack() {
+        Runnable action = new Runnable() {
+            @Override
+            public void run() {
+                onBackPressed();
+            }
+        };
+        runOnUiThread(action);
+    }
+
+    /// EXIT
+    @Override
+    public void onBackPressed() {
+        if (System.currentTimeMillis() > backKeyPressedTime + 2000) {
+            backKeyPressedTime = System.currentTimeMillis();
+            showGuide();
+            return;
+        }
+        if (System.currentTimeMillis() <= backKeyPressedTime + 2000) {
+            finish();
+            toast.cancel();
+        }
+    }
+
+    public void showGuide() {
+        toast = Toast.makeText(getApplicationContext(), getString(R.string.exit_app), Toast.LENGTH_SHORT);
+        toast.show();
     }
 
     @Override protected void onNewIntent(Intent intent)
