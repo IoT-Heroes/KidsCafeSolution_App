@@ -34,7 +34,8 @@ public class KidInfoViewHolder extends ViewHolderParent {
         text_weight.setText(kid.getWeight() + "kg");
         text_height.setText(kid.getHeight() + "cm");
 
-        if (!kid.isBandWearing()) text_band.setVisibility(View.GONE);
+        if (kid.isBandWearing()) text_band.setVisibility(View.VISIBLE);
+        else text_band.setVisibility(View.GONE);
     }
 
     public void setSexImage(Drawable image) {

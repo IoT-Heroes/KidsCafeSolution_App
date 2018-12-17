@@ -68,19 +68,19 @@ public class UnityPlayerActivity extends Activity
      */
     public void setBandId(String id) {
         // 여러번 호출 되는 것을 막기 위함
-        if (connectStatus) {
-            connectStatus = false;
-            connectBand(id);
-        }
-
 //        if (connectStatus) {
 //            connectStatus = false;
-////            connectBand("BAND2");
-//            VisitingRecord test = new VisitingRecord();
-//            test.setBandDeviceId("BAND3");
-//            test.setChildId(kidId);
-//            showSuccessDialog(test);
+//            connectBand(id);
 //        }
+
+        if (connectStatus) {
+            connectStatus = false;
+//            connectBand("BAND2");
+            VisitingRecord test = new VisitingRecord();
+            test.setBandDeviceId("BAND3");
+            test.setChildId(kidId);
+            showSuccessDialog(test);
+        }
     }
 
     /**
@@ -139,7 +139,7 @@ public class UnityPlayerActivity extends Activity
                 intent.putExtra("visitingRecord", visitingRecord);
                 setResult(RESULT_OK, intent);
 //                UnityPlayerActivity.this.finish();
-                UnityPlayer.UnitySendMessage("AndroidGate", "GoBack", null);
+//                UnityPlayer.UnitySendMessage("AndroidGate", "GoBack", null);
                 okDialog.dismiss();
             }
         });
