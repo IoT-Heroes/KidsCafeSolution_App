@@ -160,7 +160,7 @@ public class GCMIntentService extends IntentService {
      * @param context Android Application Context
      * @param message Push 메시지 내용
      */
-    private void sendIntent(Context context, String message) {
+    private void sendIntent(Context context, final String message) {
         Log.d(TAG, "GCMIntentService.sendIntent()  #### GCM sendIntent");
         try {
             JSONObject objJson = new JSONObject(message);
@@ -170,7 +170,7 @@ public class GCMIntentService extends IntentService {
             collectSourceEvents(이벤트 데이터 배열) - attributes(관련 디바이스의 값)
              */
 
-            String title = objJson.getString("evetNm");
+            final String title = objJson.getString("evetNm");
             JSONArray collectSourceEvents = objJson.getJSONArray("collectSourceEvents");
             String[] deviceModelIdText = collectSourceEvents.getJSONObject(0).getString("deviceModelId").split("_"); // 형식 : mbr_1000006334_zone1
             String deviceModelId = deviceModelIdText[deviceModelIdText.length - 1]; // zone의 id : zone1
@@ -190,6 +190,8 @@ public class GCMIntentService extends IntentService {
                 description = deviceModelId + "에서 관리자를 호출 했습니다.";
             else return;
 
+            final String push_message = description;
+
             // notification을 띄워준다. (LOCK일 때는)
             int notiID = Integer.parseInt(evetId.substring(evetId.length() - 6), evetId.length());
             sendNotification(notiID, title, description);
@@ -208,6 +210,10 @@ public class GCMIntentService extends IntentService {
                 @Override
                 public void run() {
                     //TODO : dialog 새로운 창에 띄워주기
+                    Intent intent = new Intent(GCMIntentService.this, ShowMsgActivity.class);
+                    intent.putExtra("title", title);
+                    intent.putExtra("message", push_message);
+                    startActivity(intent);
                 }
             });
 

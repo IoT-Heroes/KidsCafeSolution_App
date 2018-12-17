@@ -22,7 +22,6 @@ import com.kt.iotheroes.kidscafesolution.Util.Connections.APIClient;
 import com.kt.iotheroes.kidscafesolution.Util.Connections.Response;
 import com.kt.iotheroes.kidscafesolution.Util.Constant.Constant;
 import com.kt.iotheroes.kidscafesolution.Util.GCM.GetGcmRegIdTask;
-import com.kt.iotheroes.kidscafesolution.Util.GCM.ShowMsgActivity;
 import com.kt.iotheroes.kidscafesolution.Util.SharedManager.PrefManager;
 import com.kt.iotheroes.kidscafesolution.Util.SharedManager.SharedManager;
 
@@ -42,17 +41,12 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         Log.i(getString(R.string.activity), TAG + "on Create");
-//
-//        PrefManager.getInstance().init(getApplicationContext());
-//
-////        PrefManager.getInstance().logout();
-//        new LoginTask().execute();
-////        connectAutoLogin();
 
-        Intent intent = new Intent(this, ShowMsgActivity.class);
-        intent.putExtra("title", "타이틀");
-        intent.putExtra("message", "메세지");
-        startActivity(intent);
+        PrefManager.getInstance().init(getApplicationContext());
+
+//        PrefManager.getInstance().logout();
+        new LoginTask().execute();
+//        connectAutoLogin();
     }
 
     private class LoginTask extends AsyncTask<Void, Void, GiGaIotOAuthResponse> {
