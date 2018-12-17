@@ -1,6 +1,5 @@
 package com.kt.iotheroes.kidscafesolution.Util.GCM;
 
-import android.app.AlertDialog;
 import android.app.IntentService;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -14,7 +13,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.util.Log;
-import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.kt.gigaiot_sdk.PushApi;
@@ -80,13 +78,13 @@ public class GCMIntentService extends IntentService {
                 handleRegistration(context, intent);
             } else if(action.equals("com.google.android.c2dm.intent.RECEIVE")){
                 // 메시지 받은 것 처리
-				new Handler(getMainLooper()).post(new Runnable() {
-
-					@Override
-					public void run() {
-						Toast.makeText(GCMIntentService.this, "GCM push received!!", Toast.LENGTH_LONG).show();
-					}
-				});
+//				new Handler(getMainLooper()).post(new Runnable() {
+//
+//					@Override
+//					public void run() {
+//						Toast.makeText(GCMIntentService.this, "GCM push received!!", Toast.LENGTH_LONG).show();
+//					}
+//				});
                 handleMessage(context, intent);
             }
         } finally{
@@ -198,11 +196,20 @@ public class GCMIntentService extends IntentService {
             // dialog를 띄워준다. (UNLOCK일때)
             // TODO : dialog 뜨는지 테스트! (해당 화면에 제대로 뜨는지)
 
-//            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-//            builder.setTitle("Test dialog");
-//            AlertDialog alert = builder.create();
-//            alert.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
-//            alert.show();
+            new Handler(getMainLooper()).post(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(GCMIntentService.this, "GCM push received!!", Toast.LENGTH_LONG).show();
+                }
+            });
+
+
+            new Handler(getMainLooper()).post(new Runnable() {
+                @Override
+                public void run() {
+                    //TODO : dialog 새로운 창에 띄워주기
+                }
+            });
 
             //현재 액티비티 알아내기
 //            ActivityManager activityManager = (ActivityManager) context.getSystemService(context.ACTIVITY_SERVICE);
@@ -218,7 +225,6 @@ public class GCMIntentService extends IntentService {
             e.printStackTrace();
         }
     }
-
 
 
     /**

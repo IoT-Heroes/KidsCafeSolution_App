@@ -14,7 +14,7 @@
         android:gravity="center"
         android:text="알림"
         android:textSize="@dimen/title_text_size"
-        android:shadowColor="@color/colorText"
+        android:textColor="@color/colorText"
         android:textStyle="bold"
         android:layout_alignParentTop="true"/>
     <TextView
@@ -25,6 +25,7 @@
         android:layout_centerHorizontal="true"
         android:gravity="center"
         android:text="message"
+        android:textColor="@color/colorText"
         android:layout_marginTop="@dimen/space_small"
         android:layout_above="@+id/button_ok"
         android:layout_below="@id/text_title"
@@ -36,5 +37,7 @@
         android:background="@drawable/button_large"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        android:paddingLeft="@dimen/space_medium"
+        android:paddingRight="@dimen/space_medium"
         android:text="확인"/>
 </RelativeLayout>
