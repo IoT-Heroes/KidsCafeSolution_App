@@ -201,14 +201,6 @@ public class GCMIntentService extends IntentService {
             new Handler(getMainLooper()).post(new Runnable() {
                 @Override
                 public void run() {
-                    Toast.makeText(GCMIntentService.this, "GCM push received!!", Toast.LENGTH_LONG).show();
-                }
-            });
-
-
-            new Handler(getMainLooper()).post(new Runnable() {
-                @Override
-                public void run() {
                     //TODO : dialog 새로운 창에 띄워주기
                     Intent intent = new Intent(GCMIntentService.this, ShowMsgActivity.class);
                     intent.putExtra("title", title);
@@ -216,17 +208,6 @@ public class GCMIntentService extends IntentService {
                     startActivity(intent);
                 }
             });
-
-            //현재 액티비티 알아내기
-//            ActivityManager activityManager = (ActivityManager) context.getSystemService(context.ACTIVITY_SERVICE);
-//            List<ActivityManager.RunningTaskInfo> info;
-//            info = activityManager.getRunningTasks(1);
-//            ActivityManager.RunningTaskInfo topActivity = info.get(0);
-
-//            final PushDialog dialog = new PushDialog(context);
-//            dialog.setMessage(title, description);
-//            dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
-//            dialog.show();
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -55,6 +55,7 @@ public class ShowMsgActivity extends Activity {
             @Override
             public void onClick(View view) {
                 dialog.dismiss();
+                finish();
             }
         });
         dialog.setCancelable(false);
