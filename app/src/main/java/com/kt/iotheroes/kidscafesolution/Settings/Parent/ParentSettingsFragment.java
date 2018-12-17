@@ -11,8 +11,8 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 import android.widget.BaseAdapter;
 
-import com.kt.iotheroes.kidscafesolution.Account.Login.LoginActivity;
 import com.kt.iotheroes.kidscafesolution.R;
+import com.kt.iotheroes.kidscafesolution.Splash.SplashActivity;
 import com.kt.iotheroes.kidscafesolution.Util.IoTMakers.IoTMakersAPI;
 import com.kt.iotheroes.kidscafesolution.Util.SharedManager.PrefManager;
 
@@ -51,7 +51,7 @@ public class ParentSettingsFragment extends PreferenceFragment {
                     public void run() {
                         new IoTMakersAPI.PushSessionDeleteTask().execute();
 
-                        Intent intent = new Intent(getActivity(), LoginActivity.class);
+                        Intent intent = new Intent(getActivity(), SplashActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
                                 Intent.FLAG_ACTIVITY_NEW_TASK);

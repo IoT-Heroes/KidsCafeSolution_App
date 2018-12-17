@@ -43,6 +43,10 @@ public class SharedManager {
         return single;
     }
 
+    public static void logout() {
+        single = null;
+    }
+
     public User getUser() {
         return user;
     }

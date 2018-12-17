@@ -10,6 +10,7 @@ import com.kt.gigaiot_sdk.data.SvcTgtApiResponse;
 import com.kt.gigaiot_sdk.network.ApiConstants;
 import com.kt.iotheroes.kidscafesolution.Util.Constant.Constant;
 import com.kt.iotheroes.kidscafesolution.Util.SharedManager.PrefManager;
+import com.kt.iotheroes.kidscafesolution.Util.SharedManager.SharedManager;
 
 import java.util.ArrayList;
 
@@ -76,6 +77,9 @@ public class IoTMakersAPI {
         protected Void doInBackground(Void... voids) {
             PushApi pushApi = new PushApi(PrefManager.getInstance().getAccessToken());
             pushApi.gcmSessionDelete(PrefManager.getInstance().getGcmRegID());
+
+            PrefManager.getInstance().logout();
+            SharedManager.logout();
 
             return null;
         }

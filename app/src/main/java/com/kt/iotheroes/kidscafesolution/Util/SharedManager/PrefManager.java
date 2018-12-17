@@ -56,6 +56,7 @@ public class PrefManager {
     public void logout() {
         editor.clear();
         editor.commit();
+//        single = null;
     }
 
     public String getGcmRegID() {
@@ -72,6 +73,8 @@ public class PrefManager {
     }
 
     public void setAccessToken(String token) {
+        if (prefs.getString(PREF_ACCESS_TOKEN, null) != null)
+             return;
         editor.putString(PREF_ACCESS_TOKEN, token);
         editor.commit();
     }

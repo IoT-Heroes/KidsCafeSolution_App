@@ -48,7 +48,7 @@ public class SplashActivity extends AppCompatActivity {
         // iot makers 플랫폼 로그인
 
 
-        PrefManager.getInstance().logout();
+//        PrefManager.getInstance().logout();
         new LoginTask().execute();
 
 //        connectAutoLogin();
@@ -101,7 +101,6 @@ public class SplashActivity extends AppCompatActivity {
 
                 mGcm = GoogleCloudMessaging.getInstance(SplashActivity.this);
                 //mGcm.register("772329232378");
-
                 // gcm 등록키를 통한 세션 등록
                 new GetGcmRegIdTask(getApplicationContext()).execute();
             } else {

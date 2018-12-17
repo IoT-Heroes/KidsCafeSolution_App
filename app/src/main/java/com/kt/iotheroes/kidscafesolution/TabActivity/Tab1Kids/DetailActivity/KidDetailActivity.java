@@ -202,8 +202,6 @@ public class KidDetailActivity extends AppCompatActivity {
             kid.setVisitingRecord(visitingRecord);
             // kid 정보 변경에 따른 다른 데이터 동기화 처리
             SharedManager.getInstance().upDateChild(kidIdx, kid);
-//            kidInfo.setKid(kid);
-//            reload();
             finish();
         }
     }

@@ -198,11 +198,11 @@ public class GCMIntentService extends IntentService {
             // dialog를 띄워준다. (UNLOCK일때)
             // TODO : dialog 뜨는지 테스트! (해당 화면에 제대로 뜨는지)
 
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("Test dialog");
-            AlertDialog alert = builder.create();
-            alert.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
-            alert.show();
+//            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//            builder.setTitle("Test dialog");
+//            AlertDialog alert = builder.create();
+//            alert.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+//            alert.show();
 
             //현재 액티비티 알아내기
 //            ActivityManager activityManager = (ActivityManager) context.getSystemService(context.ACTIVITY_SERVICE);
