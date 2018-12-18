@@ -94,6 +94,12 @@ public class AddChildAdapter extends RecyclerView.Adapter<ViewHolderParent> {
                             String dateStr = String.format("%d-%d-%d", year, month+1, date);
                             viewHolderParent.edit_birth.setText(dateStr);
                             inputs.put(R.id.edit_birth, dateStr);
+
+                            Date today = new Date(); // your date
+                            Calendar cal = Calendar.getInstance();
+                            cal.setTime(today);
+                            int todayYear = cal.get(Calendar.YEAR);
+                            inputs.put(R.id.text_age, String.valueOf(todayYear - year + 1));
                         }
                     }, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DATE));
 

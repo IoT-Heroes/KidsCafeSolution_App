@@ -151,6 +151,7 @@ public class BottomTabActivity extends AppCompatActivity implements ZoneTab2List
     @Override
     protected void onResume() {
         super.onResume();
+        currentFragment.willBeDisplayed();
         currentFragment.reload();
     }
 }

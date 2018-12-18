@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QCARConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="qcar_config.xsd">
   <Tracking>
+    <ImageTarget name="BAND1" size="50.000000 50.000000" />
     <ImageTarget name="zone2" size="40.000000 40.000000" />
     <ImageTarget name="zone1" size="40.000000 40.000000" />
     <ImageTarget name="BAND2" size="140.000000 191.100006" />
-    <ImageTarget name="BAND1" size="140.000000 179.948593" />
   </Tracking>
 </QCARConfig>

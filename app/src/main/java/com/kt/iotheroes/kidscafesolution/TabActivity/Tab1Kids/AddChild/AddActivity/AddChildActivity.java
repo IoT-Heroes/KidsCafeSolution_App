@@ -30,9 +30,10 @@ public class AddChildActivity extends AppCompatActivity {
     private Kid kid;
     private List<Food> foodList;
 
-    public void setKidInputInfo(String name, String birth, String sex, int height, int weight) {
+    public void setKidInputInfo(String name, String birth, int age, String sex, int height, int weight) {
         kid.setName(name);
         kid.setBirth(birth);
+        kid.setAge(age);
         kid.setSex(sex);
         kid.setHeight(height);
         kid.setWeight(weight);
@@ -73,10 +74,11 @@ public class AddChildActivity extends AppCompatActivity {
                 try {
                     String name = inputs.get(R.id.edit_name);
                     String birth = inputs.get(R.id.edit_birth);
+                    int age = Integer.parseInt(inputs.get(R.id.text_age));
                     int height = Integer.parseInt(inputs.get(R.id.edit_height));
                     int weight = Integer.parseInt(inputs.get(R.id.edit_weight));
                     String sex = inputs.get(R.id.radio_group);
-                    setKidInputInfo(name, birth, sex, height, weight);
+                    setKidInputInfo(name, birth, age, sex, height, weight);
                 } catch (Exception e) {
                     // 입력 정보 안 담겼을 경우
                     final OkDialog okDialog = new OkDialog(AddChildActivity.this);
