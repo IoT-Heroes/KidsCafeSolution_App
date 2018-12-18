@@ -147,4 +147,12 @@ public class Kid implements Serializable {
     public void setKidListIdx(int kidListIdx) {
         this.kidListIdx = kidListIdx;
     }
+
+    public String getBirth() {
+        return birth;
+    }
+
+    public void setBirth(String birth) {
+        this.birth = birth;
+    }
 }

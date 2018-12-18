@@ -10,7 +10,7 @@
                 android:key="@string/EVENT_ID_TEMP"
                 android:title="온도 알림"
                 android:defaultValue="true"
-                android:summary="00도 이상일 때 알려줍니다." />
+                android:summary="10도 이상일 때 알려줍니다." />
             <SwitchPreference
                 android:key="@string/EVENT_ID_HUMID"
                 android:defaultValue="true"

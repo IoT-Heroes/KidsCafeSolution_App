@@ -13,14 +13,14 @@ import com.kt.iotheroes.kidscafesolution.ParentView.ViewHolderParent;
 
 public class InputInfoViewHolder extends ViewHolderParent {
 
-    public EditText edit_name, edit_age, edit_height, edit_weight;
+    public EditText edit_name, edit_birth, edit_height, edit_weight;
     public RadioGroup radio_group;
 
     public InputInfoViewHolder(View itemView) {
         super(itemView);
 
         edit_name = (EditText)itemView.findViewById(R.id.edit_name);
-        edit_age = (EditText)itemView.findViewById(R.id.edit_age);
+        edit_birth = (EditText)itemView.findViewById(R.id.edit_birth);
         edit_height = (EditText)itemView.findViewById(R.id.edit_height);
         edit_weight = (EditText)itemView.findViewById(R.id.edit_weight);
         radio_group = (RadioGroup)itemView.findViewById(R.id.radio_group);
@@ -39,7 +39,7 @@ public class InputInfoViewHolder extends ViewHolderParent {
     }
 
     public int getAge() {
-        return Integer.parseInt(edit_age.getText().toString());
+        return Integer.parseInt(edit_birth.getText().toString());
     }
 
     public String getSex(int selectedRadioButtonId) {
