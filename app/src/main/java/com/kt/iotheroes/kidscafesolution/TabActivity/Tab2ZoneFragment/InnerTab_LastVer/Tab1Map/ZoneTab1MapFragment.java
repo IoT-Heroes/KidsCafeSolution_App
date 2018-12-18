@@ -1,4 +1,4 @@
-package com.kt.iotheroes.kidscafesolution.TabActivity.Tab2ZoneFragment.Tab1Map;
+package com.kt.iotheroes.kidscafesolution.TabActivity.Tab2ZoneFragment.InnerTab_LastVer.Tab1Map;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

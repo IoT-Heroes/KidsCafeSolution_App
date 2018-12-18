@@ -21,13 +21,10 @@ import com.kt.iotheroes.kidscafesolution.Settings.Parent.SettingsParentActivity;
 import com.kt.iotheroes.kidscafesolution.TabActivity.ParentFragment.TabParentFragment;
 import com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids.Tab1KidsFargment;
 import com.kt.iotheroes.kidscafesolution.TabActivity.Tab2ZoneFragment.DetailZoneActivity.DetailZoneActivity;
-import com.kt.iotheroes.kidscafesolution.TabActivity.Tab2ZoneFragment.newZoneList.ZoneTab2ListFragment;
+import com.kt.iotheroes.kidscafesolution.TabActivity.Tab2ZoneFragment.ZoneTab2ListFragment;
 import com.kt.iotheroes.kidscafesolution.Util.SharedManager.SharedManager;
 
 import java.util.ArrayList;
-
-//import com.kt.iotheroes.kidscafesolution.TabActivity.Tab2ZoneFragment.DetailZoneActivity.DetailZoneActivity;
-//import com.kt.iotheroes.kidscafesolution.TabActivity.Tab2ZoneFragment.Tab2List.ZoneTab2ListFragment;
 
 public class BottomTabActivity extends AppCompatActivity implements ZoneTab2ListFragment.OnListFragmentInteractionListener {
     private static final String TAG = BottomTabActivity.class.getSimpleName();

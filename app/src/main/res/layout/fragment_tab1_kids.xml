@@ -11,5 +11,6 @@
         android:layout_height="match_parent">
 
     </android.support.v7.widget.RecyclerView>
+    <include android:id="@+id/indicator" layout="@layout/view_loading_indicator"/>
 
 </FrameLayout>

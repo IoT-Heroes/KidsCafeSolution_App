@@ -6,23 +6,37 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.kt.iotheroes.kidscafesolution.Model.Kid;
+import com.kt.iotheroes.kidscafesolution.Model.User;
+import com.kt.iotheroes.kidscafesolution.Model.VisitingRecord;
 import com.kt.iotheroes.kidscafesolution.ParentView.KidList.KidsAdapter;
 import com.kt.iotheroes.kidscafesolution.ParentView.KidList.KidsListFargment;
 import com.kt.iotheroes.kidscafesolution.R;
 import com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids.AddChild.ListActivity.AddChildListActivity;
 import com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids.DetailActivity.KidDetailActivity;
+import com.kt.iotheroes.kidscafesolution.Util.Connections.APIClient;
+import com.kt.iotheroes.kidscafesolution.Util.Connections.Response;
 import com.kt.iotheroes.kidscafesolution.Util.Dialog.OkDialog;
+import com.kt.iotheroes.kidscafesolution.Util.Loadings.LoadingUtil;
 import com.kt.iotheroes.kidscafesolution.Util.SharedManager.SharedManager;
 
 import java.util.List;
+
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.observers.DisposableObserver;
+import io.reactivex.schedulers.Schedulers;
 
 public class Tab1KidsFargment extends KidsListFargment {
     private static final String TAG = Tab1KidsFargment.class.getSimpleName();
     private static final String NAVIGATION_ID = "navigationId";
 
+    LinearLayout indicator;
     private KidsAdapter adapter;
+    private int childVisitingCheckCount = 0;
+    List<Kid> kids;
 
     public Tab1KidsFargment() {
     }
@@ -49,6 +63,7 @@ public class Tab1KidsFargment extends KidsListFargment {
     }
 
     private void initView(View view) {
+        indicator = (LinearLayout)view.findViewById(R.id.indicator);
         if (adapter == null) {
             adapter = new KidsAdapter(this, new KidsAdapter.OnItemClickListener() {
                 @Override
@@ -101,20 +116,99 @@ public class Tab1KidsFargment extends KidsListFargment {
 //       Log.i("tag", "onDetach 호출");
 //    }
 
+
+    private void connectAllChild() {
+        APIClient.getClient().getChildList()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<Response<List<Kid>>>() {
+                    @Override
+                    public void onNext(@NonNull Response<List<Kid>> userResponse) {
+                        if (userResponse.getResult().equals("success")) {
+                            SharedManager.getInstance().setKids(userResponse.getData());
+                            kids = userResponse.getData();
+                        } else
+                            Log.i("connect", "get child visiting record 에 문제가 발생하였습니다.");
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        e.printStackTrace();
+                        Log.e("connect", e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        getVisitingRecord(SharedManager.getInstance().getUser());
+                    }
+                });
+    }
+
+    public void getVisitingRecord(final User user) {
+        for (int i = 0; i < user.getChild().size(); i++) {
+            final Kid kid = user.getChild().get(i);
+            // band 연결 아이 데이터의 경우에는 visiting record도 가져온다.
+            if (kid.isBandWearing()) {
+                final int finalI = i;
+                APIClient.getClient().getChildVisitingRecords(kid.getId())
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribeWith(new DisposableObserver<Response<List<VisitingRecord>>>() {
+                            @Override
+                            public void onNext(@NonNull Response<List<VisitingRecord>> userResponse) {
+                                if (userResponse.getResult().equals("success")) {
+                                    // 최근 값만 가져온다.
+                                    // TODO : 가라 데이터라서.. 밴드 미착용으로 바꾸겠음
+                                    if (userResponse.getData().size() > 0)
+                                        kid.setVisitingRecord(userResponse.getData().get(0));
+                                    else kid.setBandWearing(false);
+                                } else
+                                    Log.i("connect", "get child visiting record 에 문제가 발생하였습니다.");
+                            }
+
+                            @Override
+                            public void onError(@NonNull Throwable e) {
+                                e.printStackTrace();
+                                Log.e("connect", e.getMessage());
+                            }
+
+                            @Override
+                            public void onComplete() {
+                                // visiting 정보를 추가한 아이를 업데이트 한다.
+                                user.upDateChild(finalI, kid);
+                                childVisitingCheckCount++;
+                                if (childVisitingCheckCount == kids.size()) {
+                                    // 모두 완료되었을 경우
+                                    adapter.setKids(kids);
+                                    adapter.notifyDataSetChanged();
+                                    LoadingUtil.stopLoading(indicator);
+                                }
+                            }
+                        });
+            } else childVisitingCheckCount++;
+        }
+    }
+
     @Override
     public void reload() {
+        LoadingUtil.startLoading(indicator);
         connectKids();
     }
 
     public void connectKids() {
-        // TODO : 여기서 계속 오류 뜸
-        List<Kid> kids = SharedManager.getInstance().getUser().getChild();
-        if(kids.size() == 0) {
-            presentDialog();
-        } else {
-            adapter.setKids(kids);
+        if (SharedManager.getInstance().getUser().getIsAuthor()) {
+            connectAllChild();
+        }else {
+            // TODO : 여기서 계속 오류 뜸
+            kids = SharedManager.getInstance().getUser().getChild();
+            if(kids.size() == 0) {
+                presentDialog();
+            } else {
+                adapter.setKids(kids);
+            }
+            adapter.notifyDataSetChanged();
+            LoadingUtil.stopLoading(indicator);
         }
-        adapter.notifyDataSetChanged();
     }
 
     public void presentDialog() {

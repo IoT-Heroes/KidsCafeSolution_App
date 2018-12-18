@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TabActivity.Tab2ZoneFragment.Tab1Map.ZoneTab1MapFragment">
+    tools:context=".TabActivity.Tab2ZoneFragment.InnerTab_LastVer.Tab1Map.ZoneTab1MapFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView

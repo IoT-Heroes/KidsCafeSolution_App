@@ -13,8 +13,8 @@
 //import com.kt.iotheroes.kidscafesolution.Model.Zone;
 //import com.kt.iotheroes.kidscafesolution.R;
 //import com.kt.iotheroes.kidscafesolution.TabActivity.ParentFragment.TabParentFragment;
-//import com.kt.iotheroes.kidscafesolution.TabActivity.Tab2ZoneFragment.Tab1Map.ZoneTab1MapFragment;
-//import com.kt.iotheroes.kidscafesolution.TabActivity.Tab2ZoneFragment.Tab2List.ZoneTab2ListFragment;
+//import com.kt.iotheroes.kidscafesolution.TabActivity.Tab2ZoneFragment.InnerTab_LastVer.Tab1Map.ZoneTab1MapFragment;
+//import com.kt.iotheroes.kidscafesolution.TabActivity.Tab2ZoneFragment.InnerTab_LastVer.Tab2List.ZoneTab2ListFragment;
 //import com.kt.iotheroes.kidscafesolution.Util.Connections.APIClient;
 //import com.kt.iotheroes.kidscafesolution.Util.Connections.Response;
 //import com.kt.iotheroes.kidscafesolution.Util.Loadings.LoadingUtil;

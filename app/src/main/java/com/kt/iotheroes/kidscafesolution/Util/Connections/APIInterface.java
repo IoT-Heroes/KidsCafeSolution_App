@@ -48,6 +48,9 @@ public interface APIInterface {
     @POST("/heroes/visitingrecord/management")
     Observable<Response<VisitingRecord>> connectBand(@Body VisitingRecord visitingRecord);
 
+    @GET("/heroes/child/management")
+    Observable<Response<List<Kid>>> getChildList();
+
     @GET("/heroes/data/food")
     Observable<Response<List<Food>>> getFoodList();
 

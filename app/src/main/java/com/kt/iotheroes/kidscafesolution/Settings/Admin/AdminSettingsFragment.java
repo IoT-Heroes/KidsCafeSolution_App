@@ -11,7 +11,6 @@ import android.util.Log;
 import android.widget.BaseAdapter;
 
 import com.kt.iotheroes.kidscafesolution.R;
-import com.kt.iotheroes.kidscafesolution.Settings.Parent.ParentSettingsFragment;
 import com.kt.iotheroes.kidscafesolution.Util.SharedManager.PrefManager;
 
 /**
@@ -28,7 +27,7 @@ public class AdminSettingsFragment extends PreferenceFragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof ParentSettingsFragment.OnLogoutFragmentInteractionListener) {
+        if (context instanceof AdminSettingsFragment.OnLogoutFragmentInteractionListener) {
             mListener = (AdminSettingsFragment.OnLogoutFragmentInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()

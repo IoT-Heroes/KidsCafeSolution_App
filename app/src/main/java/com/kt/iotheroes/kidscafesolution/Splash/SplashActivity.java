@@ -115,7 +115,7 @@ public class SplashActivity extends AppCompatActivity {
 
                         if (userResponse.getResult().equals("success")) {
                             // pw값은 보관 X
-                            if (!SharedManager.getInstance().setUser(userResponse.getData().get(0)))
+                            if (!SharedManager.getInstance().setUserFirstLogin(userResponse.getData().get(0)))
                                 Log.i("connect", "자동로그인 문제");
                         }
                         else

@@ -1,4 +1,4 @@
-package com.kt.iotheroes.kidscafesolution.TabActivity.Tab2ZoneFragment.newZoneList;
+package com.kt.iotheroes.kidscafesolution.TabActivity.Tab2ZoneFragment;
 
 import android.content.Context;
 import android.os.Bundle;

@@ -1,4 +1,4 @@
-package com.kt.iotheroes.kidscafesolution.TabActivity.Tab2ZoneFragment.newZoneList;
+package com.kt.iotheroes.kidscafesolution.TabActivity.Tab2ZoneFragment;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import com.kt.iotheroes.kidscafesolution.Model.Zone;
 import com.kt.iotheroes.kidscafesolution.R;
-import com.kt.iotheroes.kidscafesolution.TabActivity.Tab2ZoneFragment.newZoneList.ZoneTab2ListFragment.OnListFragmentInteractionListener;
+import com.kt.iotheroes.kidscafesolution.TabActivity.Tab2ZoneFragment.ZoneTab2ListFragment.OnListFragmentInteractionListener;
 
 import java.util.List;
 

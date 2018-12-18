@@ -35,7 +35,7 @@ public class LoginPresenterImpl implements LoginContract.LoginPresenter {
     }
 
     public void demoLogin(User user) {
-        if (SharedManager.getInstance().setUser(user)) {
+        if (SharedManager.getInstance().setUserFirstLogin(user)) {
             view.goToBottomTabActivity();
         }
     }
@@ -56,7 +56,7 @@ public class LoginPresenterImpl implements LoginContract.LoginPresenter {
 
                         if (userResponse.getResult().equals("success")) {
                             // pw값은 보관 X
-                            if (!SharedManager.getInstance().setUser(userResponse.getData()))
+                            if (!SharedManager.getInstance().setUserFirstLogin(userResponse.getData()))
                                 Log.i("connect", errMessage);
 
                             PrefManager.getInstance().setUserID(userResponse.getData().getId());

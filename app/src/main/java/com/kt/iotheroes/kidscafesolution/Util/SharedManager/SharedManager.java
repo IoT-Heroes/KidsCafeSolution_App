@@ -53,48 +53,20 @@ public class SharedManager {
 
     // TODO : 로그인 결과 값이 담기기 때문에 pw는 없다.
     // visiting record가 호출되지 않았을 때 false를 리턴한다.
-    public synchronized boolean setUser(final User user) {
+
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public synchronized boolean setUserFirstLogin(final User user) {
         try {
-            this.user = user;
-            // index 할당 및 isBandWearing의 경우 visitingRecord 알려주기 위해 받는다.
-            // TODO : 처음 유저 불러오는 곳 안에 다 불렀을 경우 아래 setChild진행하기 이 과정 다 진행되면 onComplete 불릴거고 그 부분을 메인 리스트에서 받아서 처리하도록 고칠 것
-//            user.setChild(user.getChild());
+            setUser(user);
 
-            for (int i = 0; i < user.getChild().size(); i++) {
-                final Kid kid = user.getChild().get(i);
-                // band 연결 아이 데이터의 경우에는 visiting record도 가져온다.
-                if (kid.isBandWearing()) {
-                    final int finalI = i;
-                    APIClient.getClient().getChildVisitingRecords(kid.getId())
-                            .subscribeOn(Schedulers.io())
-                            .observeOn(AndroidSchedulers.mainThread())
-                            .subscribeWith(new DisposableObserver<Response<List<VisitingRecord>>>() {
-                                @Override
-                                public void onNext(@NonNull Response<List<VisitingRecord>> userResponse) {
-                                    if (userResponse.getResult().equals("success")) {
-                                        // 최근 값만 가져온다.
-                                        // TODO : 가라 데이터라서.. 밴드 미착용으로 바꾸겠음
-                                        if (userResponse.getData().size() > 0)
-                                            kid.setVisitingRecord(userResponse.getData().get(0));
-                                        else kid.setBandWearing(false);
-                                    } else
-                                        Log.i("connect", "get child visiting record 에 문제가 발생하였습니다.");
-                                }
-
-                                @Override
-                                public void onError(@NonNull Throwable e) {
-                                    e.printStackTrace();
-                                    Log.e("connect", e.getMessage());
-                                }
-
-                                @Override
-                                public void onComplete() {
-                                    // visiting 정보를 추가한 아이를 업데이트 한다.
-                                    user.upDateChild(finalI, kid);
-                                    finishVisitingRecord = true;
-                                }
-                            });
-                }
+            // 관리자일 때 모든 아이들을 불러온다.
+            if (!user.getIsAuthor()) {// index 할당 및 isBandWearing의 경우 visitingRecord 알려주기 위해 받는다.
+                // TODO : 처음 유저 불러오는 곳 안에 다 불렀을 경우 아래 setChild진행하기 이 과정 다 진행되면 onComplete 불릴거고 그 부분을 메인 리스트에서 받아서 처리하도록 고칠 것
+                getVisitingRecord(user);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -102,6 +74,45 @@ public class SharedManager {
         }
 
         return finishVisitingRecord;
+    }
+
+    public void getVisitingRecord(final User user) {
+        for (int i = 0; i < user.getChild().size(); i++) {
+            final Kid kid = user.getChild().get(i);
+            // band 연결 아이 데이터의 경우에는 visiting record도 가져온다.
+            if (kid.isBandWearing()) {
+                final int finalI = i;
+                APIClient.getClient().getChildVisitingRecords(kid.getId())
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribeWith(new DisposableObserver<Response<List<VisitingRecord>>>() {
+                            @Override
+                            public void onNext(@NonNull Response<List<VisitingRecord>> userResponse) {
+                                if (userResponse.getResult().equals("success")) {
+                                    // 최근 값만 가져온다.
+                                    // TODO : 가라 데이터라서.. 밴드 미착용으로 바꾸겠음
+                                    if (userResponse.getData().size() > 0)
+                                        kid.setVisitingRecord(userResponse.getData().get(0));
+                                    else kid.setBandWearing(false);
+                                } else
+                                    Log.i("connect", "get child visiting record 에 문제가 발생하였습니다.");
+                            }
+
+                            @Override
+                            public void onError(@NonNull Throwable e) {
+                                e.printStackTrace();
+                                Log.e("connect", e.getMessage());
+                            }
+
+                            @Override
+                            public void onComplete() {
+                                // visiting 정보를 추가한 아이를 업데이트 한다.
+                                user.upDateChild(finalI, kid);
+                                finishVisitingRecord = true;
+                            }
+                        });
+            }
+        }
     }
 
     public boolean setKids(List<Kid> kids) {
