@@ -142,6 +142,10 @@ public class GCMIntentService extends IntentService {
 
             // 01 : 수집 데이터, 03 : 발생 데이터
             type = objJson.getInt("type");
+            if (type == 1) {
+                message = objJson.getString("message");
+                sendIntent(context, message);
+            }
             if (type == 3) { // 이벤트 발생 데이터만 노티를 띄워준다. D
                 message = objJson.getString("message");
                 sendIntent(context, message);
@@ -159,6 +163,7 @@ public class GCMIntentService extends IntentService {
     private void sendIntent(Context context, final String message) {
         Log.d(TAG, "GCMIntentService.sendIntent()  #### GCM sendIntent");
         try {
+            Log.d(TAG, "GCMIntentService.sendIntent()  TYPE = PushApi.PUSH_MSG_TYPE_COLLECT message = " + message);
             JSONObject objJson = new JSONObject(message);
             /*
             evetId : 이벤트 id
@@ -166,6 +171,35 @@ public class GCMIntentService extends IntentService {
             collectSourceEvents(이벤트 데이터 배열) - attributes(관련 디바이스의 값)
              */
 
+//            JSONArray collectSourceEvents = objJson.getJSONArray("collectSourceEvents");
+//            String[] deviceModelIdText = collectSourceEvents.getJSONObject(0).getString("deviceModelId").split("_"); // 형식 : mbr_1000006334_zone1
+//            String deviceModelId = deviceModelIdText[deviceModelIdText.length - 1]; // zone의 id : zone1
+//            JSONObject attributes = collectSourceEvents.getJSONObject(0).getJSONObject("attributes");
+//            int value = attributes.getInt(attributes.keys().next()); // 온도일지 뭘지 key 값을 모름
+//            String key = attributes.keys().next();
+//
+//            String evetId = objJson.getString("evetId"); // evetId 형식 : 001PTL001D10005609
+//            String description = "";
+//
+//
+//            // TODO : 권한 제어 테스트
+//            // 이벤트 구별
+//            if (key.equals("call") && PrefManager.getInstance().getPushTemp())
+//                description = deviceModelId + "놀이구역의 현재 온도는 " + value + "입니다.";
+//            else if(key.equals("humid") && PrefManager.getInstance().getPushHumid())
+//                description = deviceModelId + "놀이구역의 현재 습도는 " + value + "입니다.";
+//            else if (key.equals("temp") && SharedManager.getInstance().getUser().getIsAuthor() && PrefManager.getInstance().getPushAdminCall())
+//                description = deviceModelId + "에서 관리자를 호출 했습니다.";
+//            else return;
+//
+//            String title_temp = "관리자 호출";
+//            if (!key.equals("call"))
+//                title_temp = "경고";
+//            final String title = title_temp;
+//
+//            final String push_message = description;
+
+            // 3 - 이벤트 데이터
             final String title = objJson.getString("evetNm");
             JSONArray collectSourceEvents = objJson.getJSONArray("collectSourceEvents");
             String[] deviceModelIdText = collectSourceEvents.getJSONObject(0).getString("deviceModelId").split("_"); // 형식 : mbr_1000006334_zone1

@@ -30,7 +30,7 @@ public class KidTimeViewHolder extends ViewHolderParent {
         Date startDate = TimeFormmater.getDateFromString(visitingRecord.getStartDate());
         String startTime = TimeFormmater.getTime(startDate);
         text_entrance.setText(startTime);
-        Date endDate = TimeFormmater.getDateFromString(visitingRecord.getStartDate());
+        Date endDate = TimeFormmater.getDateFromString(visitingRecord.getEndDate());
         String endTime = TimeFormmater.getTime(endDate);
         text_exit.setText(endTime);
         text_cost.setText(Integer.toString(visitingRecord.getAmountPrice()));
