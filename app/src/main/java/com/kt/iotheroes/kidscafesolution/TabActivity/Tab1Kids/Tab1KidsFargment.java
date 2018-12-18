@@ -197,7 +197,10 @@ public class Tab1KidsFargment extends KidsListFargment {
 
     public void connectKids() {
         if (SharedManager.getInstance().getUser().getIsAuthor()) {
-            connectAllChild();
+            if (kids == null)
+                connectAllChild();
+            else
+                LoadingUtil.stopLoading(indicator);
         }else {
             // TODO : 여기서 계속 오류 뜸
             kids = SharedManager.getInstance().getUser().getChild();
