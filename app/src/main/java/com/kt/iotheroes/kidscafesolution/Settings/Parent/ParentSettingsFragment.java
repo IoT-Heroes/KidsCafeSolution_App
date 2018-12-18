@@ -1,9 +1,8 @@
 package com.kt.iotheroes.kidscafesolution.Settings.Parent;
 
-import android.content.Intent;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Handler;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceScreen;
@@ -12,8 +11,6 @@ import android.util.Log;
 import android.widget.BaseAdapter;
 
 import com.kt.iotheroes.kidscafesolution.R;
-import com.kt.iotheroes.kidscafesolution.Splash.SplashActivity;
-import com.kt.iotheroes.kidscafesolution.Util.IoTMakers.IoTMakersAPI;
 import com.kt.iotheroes.kidscafesolution.Util.SharedManager.PrefManager;
 
 /**
@@ -25,6 +22,24 @@ public class ParentSettingsFragment extends PreferenceFragment {
 
     PreferenceScreen zoneConditionPreference, endTimePreference;
     Preference logOutButton;
+    private OnLogoutFragmentInteractionListener mListener;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof OnLogoutFragmentInteractionListener) {
+            mListener = (OnLogoutFragmentInteractionListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnListFragmentInteractionListener");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -45,20 +60,21 @@ public class ParentSettingsFragment extends PreferenceFragment {
         logOutButton.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-// login 화면으로 이동
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        new IoTMakersAPI.PushSessionDeleteTask().execute();
-
-                        Intent intent = new Intent(getActivity(), SplashActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                                Intent.FLAG_ACTIVITY_NEW_TASK);
-                        startActivity(intent);
-                        getActivity().finish();
-                    }
-                }, 1000);
+                // login 화면으로 이동
+//                new Handler().postDelayed(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        new IoTMakersAPI.PushSessionDeleteTask().execute();
+//
+//                        Intent intent = new Intent(getActivity(), SplashActivity.class);
+//                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+//                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
+//                                Intent.FLAG_ACTIVITY_NEW_TASK);
+//                        startActivity(intent);
+//                        getActivity().finish();
+//                    }
+//                }, 1000);
+                mListener.onLogoutFragmentInteractionListener();
                 return true;
             }
         });
@@ -93,6 +109,10 @@ public class ParentSettingsFragment extends PreferenceFragment {
             preferenceScreen.setSummary("일부 사용 중");
         else
             preferenceScreen.setSummary("사용 안함");
+    }
+
+    public interface OnLogoutFragmentInteractionListener {
+        void onLogoutFragmentInteractionListener();
     }
 
     SharedPreferences.OnSharedPreferenceChangeListener prefListener = new SharedPreferences.OnSharedPreferenceChangeListener() {
