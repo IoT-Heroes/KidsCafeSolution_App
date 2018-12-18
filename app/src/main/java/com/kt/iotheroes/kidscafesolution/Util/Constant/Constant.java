@@ -6,7 +6,7 @@ package com.kt.iotheroes.kidscafesolution.Util.Constant;
 
 public class Constant {
 //    connections
-    public static final String SERVER_URI = "http://192.168.0.4:7080";
+    public static final String SERVER_URI = "http://221.148.109.180:7080";
 
 //    iot makers
     public static final String IOT_MAKERS_URI = "https://iotmakers.kt.com:443";

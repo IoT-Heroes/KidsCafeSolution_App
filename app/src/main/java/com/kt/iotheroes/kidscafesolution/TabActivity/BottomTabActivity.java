@@ -21,13 +21,15 @@ import com.kt.iotheroes.kidscafesolution.Settings.Parent.SettingsParentActivity;
 import com.kt.iotheroes.kidscafesolution.TabActivity.ParentFragment.TabParentFragment;
 import com.kt.iotheroes.kidscafesolution.TabActivity.Tab1Kids.Tab1KidsFargment;
 import com.kt.iotheroes.kidscafesolution.TabActivity.Tab2ZoneFragment.DetailZoneActivity.DetailZoneActivity;
-import com.kt.iotheroes.kidscafesolution.TabActivity.Tab2ZoneFragment.Tab2List.ZoneTab2ListFragment;
-import com.kt.iotheroes.kidscafesolution.TabActivity.Tab2ZoneFragment.Tab2ZoneFargment;
+import com.kt.iotheroes.kidscafesolution.TabActivity.Tab2ZoneFragment.newZoneList.ZoneTab2ListFragment;
 import com.kt.iotheroes.kidscafesolution.Util.SharedManager.SharedManager;
 
 import java.util.ArrayList;
 
-public class BottomTabActivity extends AppCompatActivity implements ZoneTab2ListFragment.OnListFragmentInteractionListener{
+//import com.kt.iotheroes.kidscafesolution.TabActivity.Tab2ZoneFragment.DetailZoneActivity.DetailZoneActivity;
+//import com.kt.iotheroes.kidscafesolution.TabActivity.Tab2ZoneFragment.Tab2List.ZoneTab2ListFragment;
+
+public class BottomTabActivity extends AppCompatActivity implements ZoneTab2ListFragment.OnListFragmentInteractionListener {
     private static final String TAG = BottomTabActivity.class.getSimpleName();
 
     private ArrayList<TabParentFragment> fragments = new ArrayList<>();
@@ -97,7 +99,8 @@ public class BottomTabActivity extends AppCompatActivity implements ZoneTab2List
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         fragments.add(Tab1KidsFargment.newInstance(R.id.navigation_kids));
-        fragments.add(Tab2ZoneFargment.newInstance(R.id.navigation_zone));
+//        fragments.add(Tab2ZoneFargment.newInstance(R.id.navigation_zone));
+        fragments.add(ZoneTab2ListFragment.newInstance(R.id.navigation_zone));
 
         fm.beginTransaction().add(R.id.content, fragments.get(1)).hide(fragments.get(1)).commit();
         fm.beginTransaction().add(R.id.content, fragments.get(0)).commit();
