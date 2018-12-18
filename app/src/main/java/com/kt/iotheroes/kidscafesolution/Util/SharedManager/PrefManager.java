@@ -56,7 +56,6 @@ public class PrefManager {
     public void logout() {
         editor.clear();
         editor.commit();
-//        single = null;
     }
 
     public String getGcmRegID() {
@@ -120,6 +119,10 @@ public class PrefManager {
 
     public void setChangeListener(SharedPreferences.OnSharedPreferenceChangeListener changeListener) {
         prefs.registerOnSharedPreferenceChangeListener(changeListener);
+    }
+
+    public void removeChangeListener(SharedPreferences.OnSharedPreferenceChangeListener changeListener) {
+        prefs.unregisterOnSharedPreferenceChangeListener(changeListener);
     }
 
     public void initAdminPush() {

@@ -61,20 +61,7 @@ public class ParentSettingsFragment extends PreferenceFragment {
             @Override
             public boolean onPreferenceClick(Preference preference) {
                 // login 화면으로 이동
-//                new Handler().postDelayed(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        new IoTMakersAPI.PushSessionDeleteTask().execute();
-//
-//                        Intent intent = new Intent(getActivity(), SplashActivity.class);
-//                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-//                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
-//                                Intent.FLAG_ACTIVITY_NEW_TASK);
-//                        startActivity(intent);
-//                        getActivity().finish();
-//                    }
-//                }, 1000);
-                mListener.onLogoutFragmentInteractionListener();
+                mListener.onLogoutFragmentInteractionListener(prefListener);
                 return true;
             }
         });
@@ -112,7 +99,7 @@ public class ParentSettingsFragment extends PreferenceFragment {
     }
 
     public interface OnLogoutFragmentInteractionListener {
-        void onLogoutFragmentInteractionListener();
+        void onLogoutFragmentInteractionListener(SharedPreferences.OnSharedPreferenceChangeListener changeListener);
     }
 
     SharedPreferences.OnSharedPreferenceChangeListener prefListener = new SharedPreferences.OnSharedPreferenceChangeListener() {

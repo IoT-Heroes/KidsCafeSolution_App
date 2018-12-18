@@ -1,6 +1,7 @@
 package com.kt.iotheroes.kidscafesolution.Settings.Parent;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +10,7 @@ import android.util.Log;
 import com.kt.iotheroes.kidscafesolution.R;
 import com.kt.iotheroes.kidscafesolution.Splash.SplashActivity;
 import com.kt.iotheroes.kidscafesolution.Util.IoTMakers.IoTMakersAPI;
+import com.kt.iotheroes.kidscafesolution.Util.SharedManager.PrefManager;
 
 public class SettingsParentActivity extends AppCompatActivity implements ParentSettingsFragment.OnLogoutFragmentInteractionListener {
     private static final String TAG = SettingsParentActivity.class.getSimpleName();
@@ -21,10 +23,11 @@ public class SettingsParentActivity extends AppCompatActivity implements ParentS
     }
 
     @Override
-    public void onLogoutFragmentInteractionListener() {
+    public void onLogoutFragmentInteractionListener(final SharedPreferences.OnSharedPreferenceChangeListener changeListener) {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
+                PrefManager.getInstance().removeChangeListener(changeListener);
                 new IoTMakersAPI.PushSessionDeleteTask().execute();
 
                 Intent intent = new Intent(SettingsParentActivity.this, SplashActivity.class);
@@ -34,6 +37,6 @@ public class SettingsParentActivity extends AppCompatActivity implements ParentS
                 startActivity(intent);
                 finish();
             }
-        }, 1000);
+        }, 0);
     }
 }
